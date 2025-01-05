@@ -67,7 +67,7 @@ author:
     #   url: "https://"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://"
+      url: "https://www.linkedin.com/in/thanh-tung-vu/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://x.com/thanhtungvudata"
@@ -80,6 +80,9 @@ author:
 
 footer:
   links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/thanh-tung-vu/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://x.com/thanhtungvudata"
