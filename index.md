@@ -11,4 +11,4 @@ I am a Research Fellow with a PhD degree in Wireless Communications, currently w
 
 In my spare time, I work on personal projects and write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
 
-If you have any questions or inquiries, please contact me via [email][mailto:tungvu.telecom@gmail.com].
+If you have any questions or inquiries, please contact me via [email](mailto:tungvu.telecom@gmail.com)<i class="fa-thin fa-envelope"></i>.
