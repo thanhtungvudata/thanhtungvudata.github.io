@@ -27,6 +27,6 @@ I have a wide range of experience, including:
 - **Research Fellow** at Queen's University Belfast (Feb. 2021 - Sep. 2022), Belfast, U.K.
 
 ### **Education**
-- **Phd in Electrical Engineering** (2021), specialized in Wireless Communications, The University of Newcastle, Australia
+- **PhD in Electrical Engineering** (2021), specialized in Wireless Communications, The University of Newcastle, Australia
 - **MEng in Electrical Engineering** (2016), specialized in Wireless Communications, Ho Chi Minh City University of Technology, Vietnam
 - **MEng in Electronics and Telecommunications** (2016), Ho Chi Minh City University of Science, Vietnam
