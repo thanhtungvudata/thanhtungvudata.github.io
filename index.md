@@ -5,7 +5,3 @@
 layout: single
 author_profile: true
 ---
-I am a **research fellow** at Macquarie University. 
-- Project 1
-- Project 2
-- Project 2
