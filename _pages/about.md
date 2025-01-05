@@ -24,7 +24,7 @@ I have a wide range of experience, including:
 ### **Experience**
 - **Research Fellow** at Macquarie University (Jul. 2023 - present), Sydney, Australia
 - **Research Fellow** at Linköping University (Oct. 2022 - Jun. 2023), Linköping, Sweden
-- **Research Fellow** at Queen's University Belfast (Oct. 2022 - Jun. 2023), Belfast, U.K.
+- **Research Fellow** at Queen's University Belfast (Feb. 2021 - Sep. 2022), Belfast, U.K.
 
 ### **Education**
 - **Phd in Electrical Engineering** (2021), specialized in Wireless Communications, The University of Newcastle, Australia
