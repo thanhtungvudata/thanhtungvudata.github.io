@@ -5,6 +5,6 @@
 layout: single
 author_profile: true
 ---
-I am a Research Fellow with a PhD degree in Wireless Communications, currently working at Macquarie University. My work focuses on developing optimisation and machine learning solutions for predicting and solving combinatorial optimization problems.
+I am a Research Fellow with a PhD degree in Wireless Communications, currently working at Macquarie University. My work focuses on developing optimisation and machine learning solutions for predicting and combinatorial optimization problems.
 
 In my spare time, I write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
