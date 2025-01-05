@@ -59,7 +59,7 @@ plugins:
 
 author:
   name   : "Thanh Tung Vu"
-  avatar : "/assets/images/tung-square.jpg"
+  avatar : "/assets/images/tung_square.jpg"
   bio    : "Research Fellow in Wireless Communications, specializing in Applied Optimisation and Machine Learning."
   links:
     # - label: "Website"
