@@ -60,13 +60,13 @@ plugins:
 author:
   name   : "Thanh Tung Vu"
   avatar : "/assets/images/tung-square.jpg"
-  bio    : "Research Fellow in Wireless Communications | Specialized in Applied Optimisation and Machine Learning."
+  bio    : "Research Fellow in Wireless Communications, specializing in Applied Optimisation and Machine Learning."
   links:
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   url: "https://"
     - label: "LinkedIn"
-      icon: "fab fa-brand fa-linkedin"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
