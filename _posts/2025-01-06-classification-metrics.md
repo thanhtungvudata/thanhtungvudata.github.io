@@ -17,3 +17,5 @@ Precision
 Recall
 
 F1-score
+
+$$E = mc^2 \sum_{n=1}^N \frac{a_n^2}{b_{n}^2}$$
