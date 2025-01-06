@@ -4,8 +4,8 @@ date: 2025-01-06T18:50:00+11:00
 categories:
   - blog
 tags:
-  - Jekyll
-  - update
+  - datascience
+  - fundamentals
 ---
 
 ### Classification metrics
