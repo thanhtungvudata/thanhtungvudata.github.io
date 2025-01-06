@@ -7,7 +7,7 @@ tags:
   - datascience
   - fundamentals
 ---
-In the world of machine learning, evaluating a model's performance is as crucial as building the model itself. Imagine developing a spam email filter or a disease diagnostic tool without a clear idea of how well it works. That’s where metrics for classification problems come into play. Today, we’ll break down four key metrics — accuracy, precision, recall, and F1-score — to understand what they mean, when to use them, and why.
+In the world of machine learning, evaluating a model's performance is as crucial as building the model itself. Imagine developing a spam email filter or a disease diagnostic tool without a clear idea of how well it works. That’s where metrics for machine learning problems come into play. Today, we’ll break down four key metrics (for classification problems) — accuracy, precision, recall, and F1-score — to understand what they mean, when to use them, and why.
 
 ### Accuracy: The Simplest Measure
 
