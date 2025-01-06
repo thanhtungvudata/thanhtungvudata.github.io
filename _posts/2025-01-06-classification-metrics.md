@@ -1,11 +1,11 @@
 ---
-title: "Metrics for Classification Problems"
-date: 2025-01-06T18:29:30-04:00
+title: "Welcome to Jekyll!"
+date: 2019-04-18T15:34:30-04:00
 categories:
   - blog
 tags:
-  - datascience
-  - fundamentals
+  - Jekyll
+  - update
 ---
 
 ### Classification metrics
