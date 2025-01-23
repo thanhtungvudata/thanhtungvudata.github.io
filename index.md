@@ -7,8 +7,8 @@ author_profile: true
 ---
 Welcome to my page!
 
-I am a Research Fellow with a PhD degree in Wireless Communications, currently working at Macquarie University. My work focuses on developing optimisation and machine learning solutions for predicting and combinatorial optimization problems.
+I am a data scientist with a PhD degree in wireless communications, and I am currently working at Macquarie University, Australia. My work focuses on developing optimization and machine learning solutions for predicting and combinatorial optimization problems.
 
-In my spare time, I work on personal projects and write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
+In my spare time, I work on side projects and write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
 
 If you have any questions or inquiries, please contact me via [email](mailto:tungvu.telecom@gmail.com)<i class="fa-thin fa-envelope"></i>.
