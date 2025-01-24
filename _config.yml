@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Thanh Tung Vu"
   avatar : "/assets/images/bio_3.jpg"
-  bio    : "Research Fellow in Wireless Communications, specializing in Applied Optimisation and Machine Learning."
+  bio    : "Data Scientist with a PhD in Electrical Engineering, specializing in Applied Optimisation and Machine Learning."
   location: "Sydney, Australia"
   links:
     - label: "Email"
@@ -120,9 +120,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-analytics:
-  provider: "google"
-  google:
-    tracking_id: "your-ga-tracking-id"
-    anonymize_ip: true
