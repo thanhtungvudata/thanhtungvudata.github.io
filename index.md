@@ -11,4 +11,4 @@ I am a data scientist with a PhD degree in wireless communications, and I am cur
 
 In my spare time, I work on side projects and write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
 
-If you have any questions or inquiries, please contact me via [email](mailto:tungvu.telecom@gmail.com)<i class="fa-thin fa-envelope"></i>.
+If you have any questions or inquiries, please contact me via [email](mailto:tungvu.telecom@gmail.com)<i class="fab fa-fw fa-envelope"></i>.
