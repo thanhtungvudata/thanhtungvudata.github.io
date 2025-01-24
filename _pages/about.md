@@ -16,10 +16,17 @@ I have a wide range of experience, including:
 - Develop and deploy advanced optimisation algorithms to generate optimal solutions (to challenging non-convex problem non-convex constrained problems), which are used as data for learing to optimize the performance of mobile communication networks
 - Build regular supervised learning models using XGBoost, Linear Regression, Random Forest, to predict which user is going to be default for credit risk modelling
 
-### **Tech Stack**
-- Proficient in: Matlab, Python
-- Familiar with: SQL
-- Tools: Gits, Latex, CVX, Mosek, High Performance Computing, VS Code
+### **Technical Skills**
+- Proficient:
+  - Classical Machine Learning (ML): Linear/Logistic Regression, XGBoost, LightGBM, KNN, SVM
+  - Deep Learning (DNN, CNN), Federated Learning
+  - Optimization methods for solving constrained mix-integer and nonconvex / stochastic problems
+  - Python (Pandas, Numpy, Scikit-Learn, Matplotlib), Matlab, SQL
+  - Optimization tools (CVX, Mosek)
+- Familiar with:
+  - Large Language Models (LLM), Generative AI, Reinforcement Learning
+  - ML Tools (Keras, Pytorch, Gymnaslum, PySpark)
+  - ML in production: Git, DVC, MLFlow, NannyML, AWS
 
 ### **Experience**
 - **Research Fellow** at Macquarie University (Jul. 2023 - present), Sydney, Australia
