@@ -61,10 +61,11 @@ author:
   name   : "Thanh Tung Vu"
   avatar : "/assets/images/bio_3.jpg"
   bio    : "Research Fellow in Wireless Communications, specializing in Applied Optimisation and Machine Learning."
+  location: "Sydney, Australia"
   links:
-    # - label: "Website"
-    #   icon: "fas fa-fw fa-link"
-    #   url: "https://"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:tungvu.telecom@gmail.com"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/thanh-tung-vu/"
@@ -73,7 +74,7 @@ author:
       url: "https://x.com/thanhtungvudata"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://thanhtungvudata.github.io/"
+      url: "https://github.com/thanhtungvudata"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/thanhtungvulive/"
@@ -119,3 +120,9 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+analytics:
+  provider: "google"
+  google:
+    tracking_id: "your-ga-tracking-id"
+    anonymize_ip: true
