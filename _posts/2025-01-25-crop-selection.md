@@ -2,10 +2,10 @@
 title: "Smart Crop Selection: Using Machine Learning to Optimize Farming Decisions"
 date: 2025-01-25
 categories:
-  - project
+  - Data Science Projects
 tags:
-  - datascience
-  - multiclassclassification
+  - Data Science
+  - Multiclass Classification
 ---
 
 ### Project Overview
