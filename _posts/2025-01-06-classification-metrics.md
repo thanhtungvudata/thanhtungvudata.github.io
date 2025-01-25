@@ -2,10 +2,9 @@
 title: "Metrics for Classification Problems Explained: Accuracy, Precision, Recall, and F1-Score"
 date: 2025-01-06T18:50:00+11:00
 categories:
-  - blog
+  - Data Science Insights
 tags:
-  - datascience
-  - fundamentals
+  - Data Science
 ---
 In the world of machine learning, evaluating a model's performance is as crucial as building the model itself. Imagine developing a spam email filter or a disease diagnostic tool without a clear idea of how well it works. That’s where metrics for machine learning problems come into play. Today, we’ll break down four key metrics (for classification problems) — accuracy, precision, recall, and F1-score — to understand what they mean, when to use them, and why.
 
