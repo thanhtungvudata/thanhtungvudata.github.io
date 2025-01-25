@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "Metrics for Classification Problems Explained: Accuracy, Precision, Recall, and F1-Score"
 date: 2025-01-06T18:50:00+11:00
 categories:
