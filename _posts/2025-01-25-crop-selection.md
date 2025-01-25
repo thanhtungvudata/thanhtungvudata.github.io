@@ -21,5 +21,15 @@ The dataset used for this project, [**`soil_measures.csv`**](https://drive.googl
 - **`ph`:** The acidity or alkalinity level of the soil, impacting nutrient availability.
 - **`crop`:** The target variable representing the ideal crop for the given soil composition.
 
-
+```
+# All required libraries are imported here.
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.metrics import accuracy_score, classification_report
+import xgboost as xgb
+import matplotlib.pyplot as plt
+```
+`
 
