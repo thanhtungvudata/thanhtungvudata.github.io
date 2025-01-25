@@ -1,6 +1,6 @@
 ---
 title: "Articles by Category"
 layout: categories
-permalink: /categories/
+permalink: /articles/
 author_profile: true
 ---
