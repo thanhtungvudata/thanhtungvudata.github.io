@@ -75,7 +75,8 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-<img src="assets/images/crop_data_box_plot.png" alt="Output" width="600" />
+
+<img src="/assets/images/crop_data_box_plot.png" alt="My Image Description" width="600">
 
 
 
