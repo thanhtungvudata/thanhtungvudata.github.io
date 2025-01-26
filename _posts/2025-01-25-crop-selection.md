@@ -260,3 +260,13 @@ plt.show()
 Output:
 
 <img src="/assets/images/crop_data_cleaned_model_evaluation.png" alt="crop_data_cleaned_model_evaluation" width="600">
+
+Key Actionable Insights:
+- XGBoost outperformed KNN in terms of macro F1-score, making it the preferred model for deployment.
+- While XGBoost slightly outperforms KNN in terms of predictive accuracy, the decision on which model to use should also consider computational efficiency and resource constraints.
+- If computational resources are limited, and the slight reduction in performance is acceptable, KNN would be the preferred choice due to its simplicity and efficiency.
+- However, if accuracy is the top priority and computational resources allow, XGBoost should be used.
+
+### Conclusion
+
+The project has demonstrated that machine learning, particularly tree-based models like XGBoost, can provide valuable insights into agricultural decision-making. With further improvements and expanded datasets, such models can significantly contribute to precision agriculture.
