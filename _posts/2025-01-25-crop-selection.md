@@ -26,7 +26,7 @@ The dataset used for this project, [**`soil_measures.csv`**](https://drive.googl
 ### 3. Data Exploration and Cleaning
 
 ```python
-# All required libraries are imported here for you.
+# All required libraries are imported here
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
