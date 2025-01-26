@@ -75,10 +75,12 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-{% capture fig_img %} ![Foo]({{ "/assets/images/bio-photo.jpg" | relative_url }}) {% endcapture %}
 
+{% capture fig_img %} ![Foo]({{ "/assets/images/images/bio-photo.jpg" | relative_url }}) {% endcapture %}
 
-
+{{ fig_img | markdownify | remove: "
+" | remove: "
+" }} Photo from Unsplash.
 
 
 
