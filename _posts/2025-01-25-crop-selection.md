@@ -75,8 +75,7 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-
-![pic](https://github.com/thanhtungvudata/thanhtungvudata.github.io/blob/bb42a20a09873a6d6f84df75d95b1abf1040ada7/assets/images/crop_data_box_plot.png)
+<iframe src="https://drive.google.com/file/d/1WKzc5pCm3_Yqobvgwhkjxa8N_dhK5KP0/preview" width="640" height="480" allow="autoplay"></iframe>
 
 
 
