@@ -73,16 +73,7 @@ for i, feature in enumerate(numerical_features, 1):
     plt.title(f'Boxplot of {feature}')
 plt.tight_layout()
 plt.show()
-```
-Output:
 
-<img src="/assets/images/crop_data_box_plot.png" alt="Box Plot" width="600">
-
-Key insights:
-- The presence of outliers in `P` and `K` suggests data points with unusually high values, which might require further investigation or potential transformation. 
-- Skewed distributions in P and K might indicate the need for data normalization or transformation before modeling.
-
-```python
 # Analyze the correlation between features using a heatmap
 correlation_matrix = df[numerical_features].corr()
 
@@ -93,11 +84,15 @@ plt.show()
 ```
 Output:
 
+<img src="/assets/images/crop_data_box_plot.png" alt="Box Plot" width="600">
+
 <img src="/assets/images/crop_data_correlation.png" alt="Box Plot" width="600">
 
 Key Insights:
+- The presence of outliers in `P` and `K` suggests data points with unusually high values, which might require further investigation or potential transformation. 
+- Skewed distributions in `P` and `K` might indicate the need for data normalization or transformation before modeling.
 - The strong correlation between `P` and `K` suggests they might be interdependent, possibly due to similar soil management practices or sources.
-- Since pH has weak correlations, it may be treated as an independent factor in subsequent analysis.
+- Since `ph` has weak correlations, it may be treated as an independent factor in subsequent analysis.
 - Multicollinearity might be an issue in modeling due to the high correlation between `P` and `K`.
 
 Since `P` and `K` contain extreme outliers, it is unclear whether the observed strong correlation between them is driven by these outliers or if `P` and `K` are genuinely correlated. To investigate this, we conduct an experiment by simultaneously removing the outliers from both `P` and `K`, and then re-evaluate their correlation.
@@ -121,11 +116,6 @@ def remove_outliers_iqr(data, columns):
 # Remove outliers from all numerical features
 df_cleaned = remove_outliers_iqr(df, numerical_features)
 
-# Print the number of rows removed
-print(f"Original dataset size: {df.shape[0]}")
-print(f"Cleaned dataset size: {df_cleaned.shape[0]}")
-print(f"Number of rows removed: {df.shape[0] - df_cleaned.shape[0]}")
-
 # Plot boxplots for cleaned data
 plt.figure(figsize=(12, 6))
 for i, feature in enumerate(numerical_features, 1):
@@ -134,7 +124,30 @@ for i, feature in enumerate(numerical_features, 1):
     plt.title(f'Boxplot of {feature} (Cleaned)')
 plt.tight_layout()
 plt.show()
+
+# Analyze the correlation between features using a heatmap
+correlation_matrix = df_cleaned[numerical_features].corr()
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', square=True)
+plt.title('Feature Correlation Heatmap')
+plt.show()
 ```
 
+Output:
+<img src="/assets/images/crop_data_cleaned_box_plot" alt="Box Plot" width="600">
+<img src="/assets/images/crop_data_cleaned_box_plot" alt="Box Plot" width="600">
+
+Key Actionable Insights:
+- The correlation between features `P` and `K` becomes minor after removing outliers, it indicates that the observed multicollinearity was primarily influenced by the presence of extreme or anomalous data points. Outliers inflate correlation values, making it seem like two variables are highly related when they are not.
+- With outliers removed, regression models should yield more reliable coefficients and predictions, reducing the risk of overfitting due to anomalous points.
 
 
+### 4. Data Preprocessing
+From the insights from the previous step, we will use the cleaned data (in which the outliers from both `P` and `K` are simultaneously removed) for data preprocessing steps. 
+
+```python
+# Feature and target selection
+X = df_cleaned[['N', 'P', 'K', 'ph']]
+y = df_cleaned['crop']
+```
