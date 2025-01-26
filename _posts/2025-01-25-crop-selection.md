@@ -75,14 +75,7 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-```
-N       0
-P       0
-K       0
-ph      0
-crop    0
-dtype: int64
-```
+![Text](assets/images/example-image.png)
 
 
 
