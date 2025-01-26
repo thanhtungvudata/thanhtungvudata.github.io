@@ -75,7 +75,7 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-<iframe src="https://drive.google.com/file/d/1WKzc5pCm3_Yqobvgwhkjxa8N_dhK5KP0/preview" width="640" height="480" allow="autoplay"></iframe>
+<img src="assets/images/crop_data_box_plot.png" alt="Output" width="600" />
 
 
 
