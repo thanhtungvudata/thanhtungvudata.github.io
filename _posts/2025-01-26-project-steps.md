@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "The Essential Steps of a Successful Data Science Project"
 date: 2025-01-26
 categories:
