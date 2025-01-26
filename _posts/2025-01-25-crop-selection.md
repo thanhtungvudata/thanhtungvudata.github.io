@@ -76,11 +76,7 @@ plt.show()
 ```
 Output:
 
-{% capture fig_img %} ![Foo]({{ "/assets/images/images/bio-photo.jpg" | relative_url }}) {% endcapture %}
-
-{{ fig_img | markdownify | remove: "
-" | remove: "
-" }} Photo from Unsplash.
+![pic](https://github.com/thanhtungvudata/thanhtungvudata.github.io/blob/bb42a20a09873a6d6f84df75d95b1abf1040ada7/assets/images/crop_data_box_plot.png)
 
 
 
