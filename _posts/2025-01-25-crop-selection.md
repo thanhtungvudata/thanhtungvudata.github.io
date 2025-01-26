@@ -78,6 +78,10 @@ Output:
 
 <img src="/assets/images/crop_data_box_plot.png" alt="Box Plot" width="600">
 
+Key insights:
+- The presence of outliers in `P` and `K` suggests data points with unusually high values, which might require further investigation or potential transformation. 
+- Skewed distributions in P and K might indicate the need for data normalization or transformation before modeling.
+
 ```python
 # Analyze the correlation between features using a heatmap
 correlation_matrix = df[numerical_features].corr()
@@ -91,10 +95,46 @@ Output:
 
 <img src="/assets/images/crop_data_correlation.png" alt="Box Plot" width="600">
 
+Key Insights:
+- The strong correlation between `P` and `K` suggests they might be interdependent, possibly due to similar soil management practices or sources.
+- Since pH has weak correlations, it may be treated as an independent factor in subsequent analysis.
+- Multicollinearity might be an issue in modeling due to the high correlation between `P` and `K`.
 
+Since `P` and `K` contain extreme outliers, it is unclear whether the observed strong correlation between them is driven by these outliers or if `P` and `K` are genuinely correlated. To investigate this, we conduct an experiment by simultaneously removing the outliers from both `P` and `K`, and then re-evaluate their correlation.
 
+```python
+# Define numerical features to check for outliers
+numerical_features = ['P', 'K']
 
+# Function to remove outliers using IQR
+def remove_outliers_iqr(data, columns):
+    df_cleaned = data.copy()
+    for col in columns:
+        Q1 = df_cleaned[col].quantile(0.25)
+        Q3 = df_cleaned[col].quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        df_cleaned = df_cleaned[(df_cleaned[col] >= lower_bound) & (df_cleaned[col] <= upper_bound)]
+    return df_cleaned
 
+# Remove outliers from all numerical features
+df_cleaned = remove_outliers_iqr(df, numerical_features)
+
+# Print the number of rows removed
+print(f"Original dataset size: {df.shape[0]}")
+print(f"Cleaned dataset size: {df_cleaned.shape[0]}")
+print(f"Number of rows removed: {df.shape[0] - df_cleaned.shape[0]}")
+
+# Plot boxplots for cleaned data
+plt.figure(figsize=(12, 6))
+for i, feature in enumerate(numerical_features, 1):
+    plt.subplot(1, len(numerical_features), i)
+    sns.boxplot(y=df_cleaned[feature], color='green')
+    plt.title(f'Boxplot of {feature} (Cleaned)')
+plt.tight_layout()
+plt.show()
+```
 
 
 
