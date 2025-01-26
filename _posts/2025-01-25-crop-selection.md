@@ -165,3 +165,98 @@ X_scaled[numerical_features] = scaler.fit_transform(X[numerical_features])
 # Split the data with stratification
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_encoded, test_size=0.2, stratify=y_encoded, random_state=42)
 ```
+
+### 5. Model Selection and Training
+Key Observations from the Correlation Matrix:
+- The correlation values among the features (N, P, K, ph) are very low, mostly in the range of -0.07 to 0.30, indicating weak or no linear relationships between the features. 
+- The highest correlation observed is 0.30 between N and K, which is still considered weak. 
+- Most values are close to zero, suggesting that the features are nearly independent of one another.
+
+```python
+# Print the number of rows of Cleaned dataset
+print(f"Cleaned dataset size: {df_cleaned.shape[0]}")
+```
+Output:
+```
+Cleaned dataset size: 2000
+```
+
+Recommended Models Based on Low Correlation and Small Dataset:
+- Since the correlation among features is minor, models that do not rely heavily on linear relationships and can handle non-linear patterns would be more appropriate.
+- Since the dataset is small, we will start with XGBoost (an advanced tree-based model) and compare its performance with a baseline using a simple K-Nearest Neighbors (KNN) model. 
+
+```python
+# Define parameter grids for XGBoost and LightGBM
+xgb_params = {
+    'max_depth': [10, 20],
+    'learning_rate': [0.01, 0.1, 0.3],
+    'n_estimators': [100, 200],
+    'subsample': [0.7, 0.9]
+}
+
+knn_param_grid = {
+    'n_neighbors': [3, 5, 7, 9],
+    'weights': ['uniform', 'distance'],
+    'metric': ['euclidean', 'manhattan']
+}
+
+# Perform hyperparameter tuning using cross-validation
+kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+# XGBoost tuning
+xgb_model = xgb.XGBClassifier(eval_metric='mlogloss',verbosity=1)
+xgb_grid = GridSearchCV(estimator=xgb_model, param_grid=xgb_params, cv=kf, scoring='accuracy', n_jobs=1, verbose=1)
+xgb_grid.fit(X_train, y_train)
+
+# Hyperparameter tuning for KNN
+knn_model = KNeighborsClassifier()
+knn_grid_search = GridSearchCV(estimator=knn_model, param_grid=knn_param_grid, cv=kf, scoring='accuracy', n_jobs=1, verbose=1)
+knn_grid_search.fit(X_train, y_train)
+```
+
+### 6. Model Evaluation
+To choose a suitable model, we first explore whether data is balanced or not.
+
+```python
+target_counts = df_cleaned['crop'].value_counts()
+
+# Plot the class distribution
+plt.figure(figsize=(12, 6))
+sns.barplot(x=target_counts.index, y=target_counts.values, palette='viridis')
+plt.xticks(rotation=45)
+plt.title('Crop Class Distribution')
+plt.xlabel('Crop Type')
+plt.ylabel('Count')
+plt.show()
+```
+Output:
+
+<img src="/assets/images/crop_data_cleaned_check_class_distribution.png" alt="crop_data_cleaned_check_class_distribution" width="600">
+
+Since the numbers of data sample of each crop class are the same, the data is balanced. Thus, accuracy and marco F1-Score (unweighted average F1-Score) are commonly good metrics. However, considering the multi-class nature of the crop classification problem and the potential impact of both false positives and false negatives, we choose macro F1-Score to evaluate the model performance.  
+
+```python
+# Evaluate models
+xgb_best_model = xgb_grid.best_estimator_
+xgb_pred = xgb_best_model.predict(X_test)
+xgb_f1 = f1_score(y_test, xgb_pred, average='macro')
+
+best_knn_model = knn_grid_search.best_estimator_
+knn_pred = best_knn_model.predict(X_test)
+knn_f1 = f1_score(y_test, knn_pred, average='macro')
+
+# Plot comparison of macro F1-scores
+models = ['XGBoost', 'KNN']
+f1_scores = [xgb_f1, knn_f1]
+
+plt.figure(figsize=(8, 5))
+plt.bar(models, f1_scores, color=['blue', 'orange'])
+plt.xlabel('Model')
+plt.ylabel('Macro F1-Score')
+plt.title('Comparison of Model Performance')
+plt.ylim(0, 1)
+plt.show()
+```
+Output:
+
+<img src="/assets/images/crop_data_cleaned_model_evaluation.png" alt="crop_data_cleaned_model_evaluation" width="600">
