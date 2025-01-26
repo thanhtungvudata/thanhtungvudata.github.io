@@ -25,8 +25,18 @@ The dataset used for this project, [**`soil_measures.csv`**](https://drive.googl
 
 ### 3. Data Exploration and Cleaning
 
-
 ```python
+# All required libraries are imported here for you.
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.metrics import accuracy_score, classification_report, f1_score
+from sklearn.neighbors import KNeighborsClassifier
+import xgboost as xgb
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 # Load dataset
 df = pd.read_csv('soil_measures.csv')
 
