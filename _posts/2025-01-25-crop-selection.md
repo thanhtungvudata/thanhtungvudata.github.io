@@ -76,9 +76,18 @@ plt.show()
 ```
 Output:
 
-<img src="/assets/images/crop_data_box_plot.png" alt="My Image Description" width="600">
+<img src="/assets/images/crop_data_box_plot.png" alt="Box Plot" width="600">
 
+```python
+# Analyze the correlation between features using a heatmap
+correlation_matrix = df[numerical_features].corr()
 
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', square=True)
+plt.title('Feature Correlation Heatmap')
+plt.show()
+```
+Output
 
 
 
