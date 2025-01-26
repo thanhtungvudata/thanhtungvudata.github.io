@@ -87,7 +87,10 @@ sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', square=T
 plt.title('Feature Correlation Heatmap')
 plt.show()
 ```
-Output
+Output:
+
+<img src="/assets/images/crop_data_correlation.png" alt="Box Plot" width="600">
+
 
 
 
