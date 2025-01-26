@@ -75,7 +75,7 @@ plt.tight_layout()
 plt.show()
 ```
 Output:
-{% capture fig_img %} ![Foo]({{ "/assets/images/crop_data_box_plot.png" | relative_url }}) {% endcapture %}
+{% capture fig_img %} ![Foo]({{ "/assets/images/bio-photo.jpg" | relative_url }}) {% endcapture %}
 
 
 
