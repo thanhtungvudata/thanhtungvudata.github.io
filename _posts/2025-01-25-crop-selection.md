@@ -135,8 +135,8 @@ plt.show()
 ```
 
 Output:
-<img src="/assets/images/crop_data_cleaned_box_plot" alt="Box Plot" width="600">
-<img src="/assets/images/crop_data_cleaned_correlation" alt="Box Plot" width="600">
+<img src="/assets/images/crop_data_cleaned_box_plot.png" alt="crop_data_cleaned_box_plot" width="600">
+<img src="/assets/images/crop_data_cleaned_correlation.png" alt="crop_data_cleaned_correlation" width="600">
 
 Key Actionable Insights:
 - The correlation between features `P` and `K` becomes minor after removing outliers, it indicates that the observed multicollinearity was primarily influenced by the presence of extreme or anomalous data points. Outliers inflate correlation values, making it seem like two variables are highly related when they are not.
