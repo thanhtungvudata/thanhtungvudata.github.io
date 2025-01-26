@@ -150,4 +150,18 @@ From the insights from the previous step, we will use the cleaned data (in which
 # Feature and target selection
 X = df_cleaned[['N', 'P', 'K', 'ph']]
 y = df_cleaned['crop']
+
+# Encode the target variable
+label_encoder = LabelEncoder()
+y_encoded = label_encoder.fit_transform(y)
+
+# Preprocessing: Standardize numerical features
+numerical_features = ['N', 'P', 'K', 'ph']
+X[numerical_features] = X[numerical_features].astype('float64')
+scaler = StandardScaler()
+X_scaled = X.copy()
+X_scaled[numerical_features] = scaler.fit_transform(X[numerical_features])
+
+# Split the data with stratification
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_encoded, test_size=0.2, stratify=y_encoded, random_state=42)
 ```
