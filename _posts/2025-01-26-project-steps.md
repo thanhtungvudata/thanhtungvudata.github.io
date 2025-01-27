@@ -58,7 +58,7 @@ Key activities:
 - Tuning hyperparameters for optimal performance.
 - Avoiding overfitting through techniques like cross-validation.
 
-Example: Training an XGBoost model instead of a logistic regression model to predict crops in farming because of the correlation between data features.
+Example: Training a logistic regression model to predict customer churn, as it offers interpretability, efficiency on smaller datasets, and the ability to handle binary classification problems effectively.
 
 ### 6. Model Evaluation
 Evaluating model performance ensures it meets the project's goals and can generalize to unseen data.
