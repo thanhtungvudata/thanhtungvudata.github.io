@@ -284,3 +284,7 @@ Key Actionable Insights:
 ### Conclusion
 
 The project has demonstrated that machine learning, particularly tree-based models like XGBoost, can provide valuable insights into agricultural decision-making. With further improvements and expanded datasets, such models can significantly contribute to precision agriculture.
+
+The code of this project is available [here](https://github.com/thanhtungvudata/Smart-Crop-Selection). 
+
+For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
