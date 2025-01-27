@@ -197,7 +197,7 @@ Cleaned dataset size: 2000
 
 Recommended Models Based on Low Correlation and Small Dataset:
 - Since the correlation among features is minor, models that do not rely heavily on linear relationships and can handle non-linear patterns would be more appropriate.
-- Since the dataset is small, we will start with XGBoost (an advanced tree-based model) and compare its performance with a baseline using a simple K-Nearest Neighbors (KNN) model. 
+- Since the dataset is small, we will start with XGBoost (an advanced tree-based model which is robust to multicollinearity) and compare its performance with a baseline using a simple K-Nearest Neighbors (KNN) model. 
 
 ```python
 # Define parameter grids for XGBoost and LightGBM
