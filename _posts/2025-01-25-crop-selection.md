@@ -156,6 +156,36 @@ Key Actionable Insights:
 - The correlation between features `P` and `K` becomes minor after removing outliers, it indicates that the observed multicollinearity was primarily influenced by the presence of extreme or anomalous data points. Outliers inflate correlation values, making it seem like two variables are highly related when they are not.
 - With outliers removed, regression models should yield more reliable coefficients and predictions, reducing the risk of overfitting due to anomalous points.
 
+Now, we will investigate the existence of a linear relationship between the features and target variable in the cleaned dataset. This will be achieved by applying one-hot encoding to the categorical target variable and computing the Pearson correlation matrix.
+
+```python
+# Perform one-hot encoding on the categorical target variable 'crop'
+df_encoded = pd.get_dummies(df_cleaned, columns=['crop'])
+
+# Calculate Pearson correlation matrix
+correlation_matrix = df_encoded.corr(method='pearson')
+
+# Extract correlations between features (N, P, K, ph) and target classes (one-hot encoded crops)
+feature_columns = ['N', 'P', 'K', 'ph']
+target_columns = [col for col in df_encoded.columns if col.startswith('crop_')]
+correlation_with_target = correlation_matrix[feature_columns].loc[target_columns]
+
+# Display the correlation heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(correlation_with_target, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Pearson Correlation Between Features and Crop Targets')
+plt.xlabel('Soil Features')
+plt.ylabel('Crop Classes')
+plt.show()
+```
+
+Output:
+
+<img src="/assets/images/crop_data_cleaned_correlation_features_targets.png" alt="crop_data_cleaned_correlation_features_targets" width="600">
+
+Key insights:
+- Most correlations are relatively weak, meaning soil features have only a limited linear influence on crop selection.
+- This suggests that linear models such as Logistic Regression may not be suitable, and more advanced models that capture non-linear relationships, such as XGBoost or Random Forest, should be used.
 
 ### 4. Data Preprocessing
 From the insights from the previous step, we will use the cleaned data (in which the outliers from both `P` and `K` are simultaneously removed) for data preprocessing steps. 
@@ -181,11 +211,6 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_encoded, test_si
 ```
 
 ### 5. Model Selection and Training
-Key Observations from the Correlation Matrix:
-- The correlation values among the features (N, P, K, ph) are very low, mostly in the range of -0.07 to 0.30, indicating weak or no linear relationships between the features. 
-- The highest correlation observed is 0.30 between N and K, which is still considered weak. 
-- Most values are close to zero, suggesting that the features are nearly independent of one another.
-
 ```python
 # Print the number of rows of Cleaned dataset
 print(f"Cleaned dataset size: {df_cleaned.shape[0]}")
@@ -195,9 +220,8 @@ Output:
 Cleaned dataset size: 2000
 ```
 
-Recommended Models Based on Low Correlation and Small Dataset:
-- Since the correlation among features is minor, models that do not rely heavily on linear relationships and can handle non-linear patterns would be more appropriate.
-- Since the dataset is small, we will start with XGBoost (an advanced tree-based model which is robust to multicollinearity) and compare its performance with a baseline using a simple K-Nearest Neighbors (KNN) model. 
+Recommended models for this small dataset based on the key insights from the EDA step above:
+- Since the dataset is small, we will begin by using XGBoost instead of a deep neural network and compare its performance against a baseline model using K-Nearest Neighbors (KNN).
 
 ```python
 # Define parameter grids for XGBoost and LightGBM
