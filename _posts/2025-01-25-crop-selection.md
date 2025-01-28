@@ -219,7 +219,7 @@ Output:
 <img src="/assets/images/crop_data_class_distribution.png" alt="crop_data_class_distribution" width="600">
 
 Key insights:
-- The dataset is balanced.
+- Since the numbers of data sample of each crop class are the same, the data is balanced.
 
 ### 4. Data Preprocessing
 From the insights from the previous step, we will use the original data for data preprocessing steps. 
@@ -287,7 +287,7 @@ knn_grid_search.fit(X_train, y_train)
 ```
 
 ### 6. Model Evaluation
-Since the numbers of data sample of each crop class are the same, the data is balanced. Thus, accuracy and marco F1-Score (unweighted average F1-Score) are commonly good metrics. However, considering the multi-class nature of the crop classification problem and the potential impact of both false positives and false negatives, we choose macro F1-Score to evaluate the model performance.  
+Since the data is balanced, accuracy and marco F1-Score (unweighted average F1-Score) are commonly good metrics. However, considering the multi-class nature of the crop classification problem and the potential impact of both false positives and false negatives, we choose macro F1-Score to evaluate the model performance.  
 
 ```python
 # Evaluate models
