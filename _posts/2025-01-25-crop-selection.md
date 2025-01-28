@@ -146,21 +146,36 @@ plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', square=True)
 plt.title('Feature Correlation Heatmap')
 plt.show()
+
+# Check the numberes of crop classes in both orginal and cleaned datasets
+original_num_classes = df['crop'].nunique()
+cleaned_num_classes = df_cleaned['crop'].nunique()
+print(original_num_classes)
+print(cleaned_num_classes)
 ```
 
 Output:
+
 <img src="/assets/images/crop_data_cleaned_box_plot.png" alt="crop_data_cleaned_box_plot" width="600">
 <img src="/assets/images/crop_data_cleaned_correlation.png" alt="crop_data_cleaned_correlation" width="600">
 
-Key Actionable Insights:
-- The correlation between features `P` and `K` becomes minor after removing outliers, it indicates that the observed multicollinearity was primarily influenced by the presence of extreme or anomalous data points. Outliers inflate correlation values, making it seem like two variables are highly related when they are not.
-- With outliers removed, regression models should yield more reliable coefficients and predictions, reducing the risk of overfitting due to anomalous points.
+```
+22
+20
+```
 
-Now, we will investigate the existence of a linear relationship between the features and target variable in the cleaned dataset. This will be achieved by applying one-hot encoding to the categorical target variable and computing the Pearson correlation matrix.
+Key Actionable Insights:
+- The correlation between features P and K becomes negligible after outlier removal, indicating that the observed multicollinearity was largely driven by the presence of extreme or anomalous data points. Outliers tend to inflate correlation values, creating a false impression of a strong relationship between variables.
+- Removing outliers improves regression model reliability by yielding more accurate coefficients and predictions, reducing the risk of overfitting caused by anomalous data points.
+- However, the identified outliers are associated with two specific classes. Eliminating all outliers would result in insufficient data for predicting these two classes.
+
+Given the importance of predicting all classes, the decision is to retain the outliers.
+
+Now, we will investigate the existence of a linear relationship between the features and target variable in the original dataset. This will be achieved by applying one-hot encoding to the categorical target variable and computing the Pearson correlation matrix.
 
 ```python
 # Perform one-hot encoding on the categorical target variable 'crop'
-df_encoded = pd.get_dummies(df_cleaned, columns=['crop'])
+df_encoded = pd.get_dummies(df, columns=['crop'])
 
 # Calculate Pearson correlation matrix
 correlation_matrix = df_encoded.corr(method='pearson')
@@ -181,14 +196,33 @@ plt.show()
 
 Output:
 
-<img src="/assets/images/crop_data_cleaned_correlation_features_targets.png" alt="crop_data_cleaned_correlation_features_targets" width="600">
+<img src="/assets/images/crop_data_correlation_features_targets.png" alt="crop_data_correlation_features_targets" width="600">
 
 Key insights:
 - Most correlations are relatively weak, meaning soil features have only a limited linear influence on crop selection.
 - This suggests that linear models such as Logistic Regression may not be suitable, and more advanced models that capture non-linear relationships, such as XGBoost or Random Forest, should be used.
 
+```python
+target_counts = df_cleaned['crop'].value_counts()
+
+# Plot the class distribution
+plt.figure(figsize=(12, 6))
+sns.barplot(x=target_counts.index, y=target_counts.values, palette='viridis')
+plt.xticks(rotation=45)
+plt.title('Crop Class Distribution')
+plt.xlabel('Crop Type')
+plt.ylabel('Count')
+plt.show()
+```
+Output:
+
+<img src="/assets/images/crop_data_class_distribution.png" alt="crop_data_class_distribution" width="600">
+
+Key insights:
+- The dataset is balanced.
+
 ### 4. Data Preprocessing
-From the insights from the previous step, we will use the cleaned data (in which the outliers from both `P` and `K` are simultaneously removed) for data preprocessing steps. 
+From the insights from the previous step, we will use the original data for data preprocessing steps. 
 
 ```python
 # Feature and target selection
@@ -227,8 +261,8 @@ Recommended models for this small dataset based on the key insights from the EDA
 # Define parameter grids for XGBoost and LightGBM
 xgb_params = {
     'max_depth': [10, 20],
-    'learning_rate': [0.01, 0.1, 0.3],
-    'n_estimators': [100, 200],
+    'learning_rate': [0.001, 0.1, 1],
+    'n_estimators': [100, 200, 500],
     'subsample': [0.7, 0.9]
 }
 
@@ -253,24 +287,6 @@ knn_grid_search.fit(X_train, y_train)
 ```
 
 ### 6. Model Evaluation
-To choose a suitable model, we first explore whether data is balanced or not.
-
-```python
-target_counts = df_cleaned['crop'].value_counts()
-
-# Plot the class distribution
-plt.figure(figsize=(12, 6))
-sns.barplot(x=target_counts.index, y=target_counts.values, palette='viridis')
-plt.xticks(rotation=45)
-plt.title('Crop Class Distribution')
-plt.xlabel('Crop Type')
-plt.ylabel('Count')
-plt.show()
-```
-Output:
-
-<img src="/assets/images/crop_data_cleaned_class_distribution.png" alt="crop_data_cleaned_class_distribution" width="600">
-
 Since the numbers of data sample of each crop class are the same, the data is balanced. Thus, accuracy and marco F1-Score (unweighted average F1-Score) are commonly good metrics. However, considering the multi-class nature of the crop classification problem and the potential impact of both false positives and false negatives, we choose macro F1-Score to evaluate the model performance.  
 
 ```python
@@ -297,13 +313,10 @@ plt.show()
 ```
 Output:
 
-<img src="/assets/images/crop_data_cleaned_model_evaluation.png" alt="crop_data_cleaned_model_evaluation" width="600">
+<img src="/assets/images/crop_data_model_evaluation.png" alt="crop_data_model_evaluation" width="600">
 
 Key Actionable Insights:
 - XGBoost outperformed KNN in terms of macro F1-score, making it the preferred model for deployment.
-- While XGBoost slightly outperforms KNN in terms of predictive accuracy, the decision on which model to use should also consider computational efficiency and resource constraints.
-- If computational resources are limited, and the slight reduction in performance is acceptable, KNN would be the preferred choice due to its simplicity and efficiency.
-- However, if accuracy is the top priority and computational resources allow, XGBoost should be used.
 
 ### Conclusion
 
