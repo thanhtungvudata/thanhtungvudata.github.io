@@ -1,6 +1,13 @@
-# 🌱 Step-by-Step Guide to Building a Smart Crop Selection App Using Streamlit
+---
+title: " 🌱 Step-by-Step Guide to Building a Smart Crop Selection App Using Streamlit"
+date: 2025-02-01
+categories:
+  - Data Science Projects
+tags:
+  - Data Science
+  - ML Engineer
+---
 
-## 📌 Introduction
 Agriculture plays a crucial role in feeding the world, and selecting the right crop for a given soil type can significantly improve productivity. With **Machine Learning and Streamlit**, we can build a **Smart Crop Selection App** that predicts the most suitable crop based on **soil properties** such as Nitrogen (N), Phosphorus (P), Potassium (K), and pH levels.
 
 In this blog post, we will walk you through **how to use Streamlit** to build and deploy a **Smart Crop Selection** web application.
