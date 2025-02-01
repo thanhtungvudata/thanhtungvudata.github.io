@@ -1,5 +1,5 @@
 ---
-title: " 🌱 Step-by-Step Guide to Building a Smart Crop Selection App Using Streamlit"
+title: "Step-by-Step Guide to Building a Smart Crop Selection App Using Streamlit"
 date: 2025-02-01
 categories:
   - Data Science Projects
