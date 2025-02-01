@@ -6,7 +6,7 @@ title: "About"
 
 Hi, I'm Thanh Tung! 
 
-I'm a Data Scientist and Research Fellow, living in Sydney, Australia.
+I'm a Data Scientist/Research Fellow, living in Sydney, Australia.
 
 I work in a research team at Macquarie University, where I help build optimisation and machine learning models to improve the performance of mobile communication networks. The main areas I specialise in are predicting (information of wireless medium), combinatorial optimisation (deciding which user should be served, when a user is served, and how much network resource (time, power) to serve a user). 
 
