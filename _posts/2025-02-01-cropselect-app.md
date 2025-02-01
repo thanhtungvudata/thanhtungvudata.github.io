@@ -254,7 +254,7 @@ streamlit run app.py
 ---
 
 ## Live Demo 
-You can access the deployed version of this app: [https://smartcropselection.streamlit.app/](https://github.com/thanhtungvudata/smart_crop_selection_web_app).
+You can access the deployed version of this app: [https://smartcropselection.streamlit.app/](https://smartcropselection.streamlit.app/).
 
 ---
 
