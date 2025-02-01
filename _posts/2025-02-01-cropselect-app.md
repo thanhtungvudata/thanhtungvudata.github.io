@@ -253,10 +253,16 @@ streamlit run app.py
 
 ---
 
-## Live Demo
+## Live Demo 
 You can access the deployed version of this app: [https://smartcropselection.streamlit.app/](https://github.com/thanhtungvudata/smart_crop_selection_web_app).
 
-The code of the project is available [here](https://github.com/thanhtungvudata/smart_crop_selection_web_app).
+---
+
+## Deployment Code & Model Development Insights
+
+The deployment code of the project is available [here](https://github.com/thanhtungvudata/smart_crop_selection_web_app).
+
+The data exploratory analysis and model development insights are discussed in detail in my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/crop-selection/).
 
 ---
 
