@@ -14,7 +14,7 @@ I have a wide range of experience, including:
 - Using Deep Neural Networks to predict information of wireless medium
 - Appying Convolutional Neural Networks to schedule users and network resource to improve improve the performance of mobile communication networks
 - Develop and deploy advanced optimisation algorithms to generate optimal solutions (to challenging non-convex problem non-convex constrained problems), which are used as data for learing to optimize the performance of mobile communication networks
-- Build regular supervised learning models using XGBoost, Linear Regression, Random Forest, to predict which user is going to be default for credit risk modelling
+- Build regular supervised learning models using XGBoost, Linear Regression, Random Forest, to solve real-world problems (e.g., smart crop selection in farming, user default prediction in banking)
 
 ### **Technical Skills**
 - Proficient:
