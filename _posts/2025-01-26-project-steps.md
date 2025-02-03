@@ -10,6 +10,8 @@ tags:
 
 In the era of data-driven decision-making, embarking on a data science project requires a structured approach to extract meaningful insights and build impactful solutions. Whether we're analyzing customer behavior, predicting financial trends, or optimizing operations, following a well-defined workflow ensures efficiency and accuracy. In this post, we'll explore the crucial steps involved in a successful data science project.
 
+[https://medium.com/@tungvu_37498/the-essential-steps-of-a-successful-data-science-project-b1c300ec1098](https://medium.com/@tungvu_37498/the-essential-steps-of-a-successful-data-science-project-b1c300ec1098)
+
 ### 1. Problem Definition and Business Understanding
 Before diving into data analysis, defining the project's objective clearly is critical. Understanding the business context and goals helps align the project with organizational priorities. Key considerations include:
 - Identifying the stakeholders and their expectations.
