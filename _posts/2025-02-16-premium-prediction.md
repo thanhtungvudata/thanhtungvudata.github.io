@@ -492,6 +492,6 @@ Key Actionable Insights:
 
 This project successfully built a data-driven insurance premium prediction model using EDA, feature engineering, and XGBoost. Our model mimics the insurer’s pricing approach, revealing key premium factors while improving transparency.
 
-The code of this project is available [here](https://github.com/thanhtungvudata/Smart-Crop-Selection). 
+The code of this project is available [here](https://github.com/thanhtungvudata/insurance_premium_prediction). 
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
