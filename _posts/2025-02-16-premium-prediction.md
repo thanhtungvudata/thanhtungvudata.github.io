@@ -480,7 +480,7 @@ Output:
 
 Key Actionable Insights:
 - Previous Claims is the most influential factor in predicting premium amounts, indicating that individuals with past claims significantly impact the model's predictions.
-- Customer Feedback, Annual Income & Credit Score, highlighting the role of customer sentiment and financial stability have a in  premium pricing.
+- Customer Feedback, Annual Income & Credit Score, highlighting the role of customer sentiment and financial stability in  premium pricing.
 - Year of policy start are among the top features, indicating a seasonal or yearly pattern in insurance premium pricing.
 - Health Score plays a critical role, possibly due to its impact on risk assessment.
 - Marital Status have moderate influence, likely because they somehow correlate with income stability and insurance needs.
