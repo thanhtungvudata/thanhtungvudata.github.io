@@ -11,7 +11,7 @@ Insurance pricing is a complex process where companies determine premiums based 
 
 In this project, we build a machine learning model using EDA, feature engineering, and XGBoost to predict insurance premium amounts. By mimicking the insurer's pricing strategy, our goal is to uncover key factors affecting premiums and develop a data-driven premium estimation tool.
 
-<img src="/assets/images/Building a Machine Learning Model to Estimate Insurance Premiums.png" alt="Estimate Insurance Premiums" width="600">
+<img src="/assets/images/Building a Machine Learning Model to Estimate Insurance Premiums.jpg" alt="Estimate Insurance Premiums" width="600">
 
 To run the project, we follow the [essential steps](https://thanhtungvudata.github.io/data%20science%20insights/project-steps/) of a data science project as follows.
 
