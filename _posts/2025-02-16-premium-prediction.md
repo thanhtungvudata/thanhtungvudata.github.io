@@ -358,24 +358,6 @@ for fold, (train_idx, valid_idx) in enumerate(kf.split(X)):
     # ✅ Store Feature Importance
     feature_importance_df[f"Fold_{fold + 1}"] = model.feature_importances_
 ```
-
-### 6. Model Evaluation
-We evaluated models using:
-- Root Mean Squared Log Error (RMSLE) → Measures the average logarithmic difference between actual and predicted premium amounts, reducing the impact of large outliers and ensuring better performance on skewed data.
-- Feature Importance Analysis → Identifies top factors influencing premium pricing.
-
-```python
-# 📌 Compute and Print Overall RMSLE
-overall_rmsle = np.mean(rmsle_per_fold)
-print("\n📊 Cross-Validation RMSLE Scores per Fold:")
-for i, score in enumerate(rmsle_per_fold):
-    print(f"✔ Fold {i + 1} RMSLE: {score:.5f}")
-print(f"\n🚀 Overall Cross-Validation RMSLE: {overall_rmsle:.5f}")
-
-# 📌 Compute Final RMSLE Using All Out-of-Fold Predictions
-final_rmsle = np.sqrt(mean_squared_log_error(np.expm1(y), np.expm1(oof_preds)))
-print(f"\n✅ Final Model RMSLE: {final_rmsle:.5f}")
-```
 Output:
 ```
 🚀 Training Fold 1...
@@ -445,7 +427,27 @@ Output:
 [900]	validation_0-rmse:1.04572
 [929]	validation_0-rmse:1.04572
 ✔ Fold 5 RMSLE: 1.04571
+```
 
+### 6. Model Evaluation
+We evaluated models using:
+- Root Mean Squared Log Error (RMSLE) → Measures the average logarithmic difference between actual and predicted premium amounts, reducing the impact of large outliers and ensuring better performance on skewed data.
+- Feature Importance Analysis → Identifies top factors influencing premium pricing.
+
+```python
+# 📌 Compute and Print Overall RMSLE
+overall_rmsle = np.mean(rmsle_per_fold)
+print("\n📊 Cross-Validation RMSLE Scores per Fold:")
+for i, score in enumerate(rmsle_per_fold):
+    print(f"✔ Fold {i + 1} RMSLE: {score:.5f}")
+print(f"\n🚀 Overall Cross-Validation RMSLE: {overall_rmsle:.5f}")
+
+# 📌 Compute Final RMSLE Using All Out-of-Fold Predictions
+final_rmsle = np.sqrt(mean_squared_log_error(np.expm1(y), np.expm1(oof_preds)))
+print(f"\n✅ Final Model RMSLE: {final_rmsle:.5f}")
+```
+Output:
+```
 📊 Cross-Validation RMSLE Scores per Fold:
 ✔ Fold 1 RMSLE: 1.04627
 ✔ Fold 2 RMSLE: 1.04557
