@@ -503,6 +503,17 @@ The final web app delivers mood-based movie recommendations in just a second, wi
 
 You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://huggingface.co/spaces/thanhtungvudata/cinemood)
 
+<div style="text-align: center;">
+    <h3>🎬 Try CineMood Now!</h3>
+    <iframe
+        src="https://huggingface.co/spaces/thanhtungvudata/cinemood"
+        width="100%"
+        height="600"
+        style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"
+        allowfullscreen>
+    </iframe>
+</div>
+
 ## 🚀 Conclusion
 CineMood showcases how machine learning, APIs, and web tools can create an engaging and user-friendly app. From data collection to deployment, it demonstrates the power of end-to-end ML pipelines.
 
