@@ -170,7 +170,7 @@ if __name__ == "__main__":
 - Preprocessed text with TF-IDF vectorization and handled class imbalance natuarally by using XGBoost.
 - Mapped Hugging Face labels to custom moods (e.g., “joy” → 😃 Joy).
 
-Create a file `train_model.py`:
+Create a file `train_model.py` to generate trained models `tfidf_vectorizer.pkl` and `xgb_mood_classifier.pkl`:
 ```python
 import pandas as pd
 import joblib
