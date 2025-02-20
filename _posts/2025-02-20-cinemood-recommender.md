@@ -53,7 +53,7 @@ cinemood_project/
 ├── models/
 │   ├── tfidf_vectorizer.pkl        # TF-IDF vectorization of movie overview
 │   ├── xgb_mood_classifier.pkl     # Trained XGBoost model
-├── generate_movie_mood_dataset.py  # Model training script
+├── generate_movie_mood_dataset.py  # Script to Generate dataset
 ├── train_model.py                  # Model training script
 ├── requirements.txt                # List of dependencies
 ├── README.md                       # Project documentation
