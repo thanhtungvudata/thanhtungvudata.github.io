@@ -6,6 +6,7 @@ categories:
 tags:
   - Data Science
   - Multiclass Classification
+  - ML Engineer
 ---
 Ever wondered how to get personalized movie recommendations based on your mood? In this project, I built CineMood (a Mood-Based Trending Movie Recommendation Web App) from scratch—using Python, Hugging Face, XGBoost, and the TMDb API. The app analyzes trending movies, classifies them by mood, and delivers real-time recommendations.
 
