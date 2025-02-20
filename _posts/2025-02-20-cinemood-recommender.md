@@ -506,7 +506,7 @@ You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://hugg
 <div style="text-align: center;">
     <h3>🎬 Try CineMood Now!</h3>
     <iframe
-        src="https://huggingface.co/spaces/thanhtungvudata/cinemood"
+        src="https://thanhtungvudata-cinemood.hf.space"
         width="100%"
         height="600"
         style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"
