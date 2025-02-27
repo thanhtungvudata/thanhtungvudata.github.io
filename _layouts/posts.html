@@ -10,3 +10,12 @@ layout: default
   </li>
 {% endfor %}
 </ul>
+
+{% for post in site.posts %}
+  <li>
+    {% if post.image %}
+      <img src="{{ post.image | relative_url }}" class="post-thumbnail">
+    {% endif %}
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
