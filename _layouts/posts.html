@@ -1,21 +1,16 @@
 ---
 layout: default
 ---
+
 <h1>{{ page.title }}</h1>
 
-<ul>
-{% for post in site.posts %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-  </li>
-{% endfor %}
+<ul class="articles-list">
+  {% for post in site.posts %}
+    <li class="article-item">
+      {% if post.image %}
+        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="article-thumbnail">
+      {% endif %}
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
 </ul>
-
-{% for post in site.posts %}
-  <li>
-    {% if post.image %}
-      <img src="{{ post.image | relative_url }}" class="post-thumbnail">
-    {% endif %}
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-  </li>
-{% endfor %}
