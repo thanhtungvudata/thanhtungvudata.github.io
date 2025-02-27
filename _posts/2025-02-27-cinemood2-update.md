@@ -366,7 +366,9 @@ def fetch_movies(max_movies=100):
 3. The app can now be deployed anywhere, ensuring reproducibility.
 
 🛠 Technical Details:
+
 1. Create `Dockerfile`:
+
 ```dockerfile
 FROM python:3.11-slim
 
@@ -380,7 +382,9 @@ EXPOSE 8501
 
 CMD ["streamlit", "run", "/app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
+
 2. Create `docker-compose.yml`:
+
 ```yml
 version: '3.8'
 
@@ -392,6 +396,7 @@ services:
       - "8501:8501"
     restart: always
 ```
+
 3. Docker Commands:
 - Build: `docker-compose up --build`
 - Re-Run: `docker-compose down`, then `docker-compose up --build`
