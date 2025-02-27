@@ -1,6 +1,6 @@
 ---
 title: "Articles"
-layout: category-archive
+layout: posts
 permalink: /articles/
 author_profile: true
 ---
