@@ -25,7 +25,7 @@ With the rise of **AI agents**, we upgraded **CineMood to CineMood2** in this po
 2. **CineMood2 (AI-Agent-Based Approach)**  
    - Uses **GPT-4o-mini** to **extract** moods from user input.  
    - **Fetches 100 trending movies** from TMDB.
-   - Uses **GPT-4o-mini** again to find the **3 most relevant** movies based on mood.
+   - Uses **GPT-4o-mini** again to find the **3 most relevant** movies based on mood and movie overviews.
    - More **dynamic** trending movies.
 
 ---
