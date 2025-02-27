@@ -1,5 +1,5 @@
 ---
-title: "🚀 From API to App: Creating a Mood-Based Trending Movie Recommender with Python, Hugging Face, and XGBoost"
+title: "From API to App: Creating a Mood-Based Trending Movie Recommender with Python, Hugging Face, and XGBoost"
 date: 2025-02-20
 categories:
   - Data Science Projects
