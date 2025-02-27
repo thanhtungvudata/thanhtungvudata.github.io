@@ -21,13 +21,12 @@ With the rise of **AI agents**, we upgraded **CineMood to CineMood2** in this po
 1. **CineMood (ML-Based Approach)**  
    - Used **predefined mood-to-genre mapping**.
    - Limited adaptability to **dynamic** trending movies.
-   - **Couldn’t analyze** movie descriptions for mood relevance.
 
 2. **CineMood2 (AI-Agent-Based Approach)**  
    - Uses **GPT-4o-mini** to **extract** moods from user input.  
    - **Fetches 100 trending movies** from TMDB.
    - Uses **GPT-4o-mini** again to find the **3 most relevant** movies based on mood.
-   - Runs efficiently in **Docker** and **Streamlit**.
+   - More **dynamic** trending movies.
 
 ---
 
@@ -43,7 +42,7 @@ However, **GPT-4o-mini can still be used as a tool** to analyze moods and **rank
 
 ---
 
-## 🤖 Why GPT-4o-Mini Instead of Local or Paid Models?  
+## 🤖 Why GPT-4o-Mini Instead of Local or Advanced Paid Models?  
 
 ### **❌ Local Models (Mistral-7B, Llama2, etc.)**
 - **Too large** to run on a laptop efficiently.  
@@ -87,7 +86,7 @@ Thus, **GPT-4o-mini is the best balance** between performance and cost.
 
 ## 🚀 How CineMood2 is Built (Using Docker & Streamlit)  
 
-### **🔹 Step 1: Setting Up Streamlit UI (`app.py`) **
+### 🔹 **Step 1: Setting Up Streamlit UI (`app.py`)**
 💡 Goal: Provide a simple user interface where users describe how they feel.
 
 ✅ How it Works:
@@ -145,7 +144,7 @@ st.markdown("**Made by [Thanh Tung Vu](https://thanhtungvudata.github.io/)**")
 
 ```
 
-### **🔹 Step 2: Using OpenAI's GPT-4o-mini for Mood Detection (`llm.py`) **
+### 🔹 **Step 2: Using OpenAI's GPT-4o-mini for Mood Detection (`llm.py`)**
 💡 Goal: Extract key mood words from user input.
 
 ✅ How it Works:
@@ -263,7 +262,7 @@ def get_movies_by_mood(mood_words, movies):
 
 ```
 
-### **🔹 Step 3: Fetching TMDB Trending Movies (`tmdb_api.py`) **
+### 🔹 **Step 3: Fetching TMDB Trending Movies (`tmdb_api.py`)**
 💡 Goal: Get a list of currently trending movies from The Movie Database (TMDB) API.
 
 ✅ How it Works:
@@ -340,7 +339,7 @@ def fetch_movies(max_movies=100):
 
 ```
 
-### **🔹 Step 4: Using GPT-4o-mini to Find Best Matches (llm.py) **
+### 🔹 **Step 4: Using GPT-4o-mini to Find Best Matches (llm.py)**
 💡 Goal: Select the top 3 movies that best match the user's mood.
 
 ✅ How it Works:
@@ -355,7 +354,7 @@ def fetch_movies(max_movies=100):
 - Each movie has a match explanation.
 3. If errors occur, the first three movies are used with a default explanation.
 
-### **🔹 Step 5: Deploying CineMood2 in Docker
+### 🔹 **Step 5: Deploying CineMood2 in Docker**
 💡 Goal: Ensure consistent deployment and easy sharing across environments.
 
 ✅ How it Works:
