@@ -1,4 +1,5 @@
 ---
+layout: category-archive
 title: "AI-Agent-Assisted Mood-Based Movie Recommendation"
 date: 2025-02-27
 image: /assets/images/cinemood2_overview.png
