@@ -367,7 +367,7 @@ def fetch_movies(max_movies=100):
 
 🛠 Technical Details:
 
-1. Create `Dockerfile`:
+- Create `Dockerfile`:
 
 ```dockerfile
 FROM python:3.11-slim
@@ -383,7 +383,7 @@ EXPOSE 8501
 CMD ["streamlit", "run", "/app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
-2. Create `docker-compose.yml`:
+- Create `docker-compose.yml`:
 
 ```yml
 version: '3.8'
@@ -397,15 +397,14 @@ services:
     restart: always
 ```
 
-3. Docker Commands:
-- Build: `docker-compose up --build`
-- Re-Run: `docker-compose down`, then `docker-compose up --build`
+- Docker Commands:
+    - Build: `docker-compose up --build`
+    - Re-Run: `docker-compose down`, then `docker-compose up --build`
 
 ## **📦Tech Stack**
-- Backend: Python, XGBoost, TMDb API, bert-base-uncased-emotion (Pre-trained Hugging Face Emotional Classification Model)
+- AI & Backend: GPT-4o-mini, TMDB API, Python 
 - Frontend: Streamlit
-- Deployment: Docker, Hugging Face Spaces
-- Data Processing: Pandas, NumPy, Scikit-Learn
+- Development & Deployment: Docker, VSCode, Flake8, pytest 
 
 ## **🎉 Results and Live Demo**
 
@@ -424,7 +423,7 @@ You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://hugg
     </iframe>
 </div>
 
-## 🚀 Conclusion
+## 📌 Conclusion
 CineMood2 provides an AI-powered, mood-based movie recommendation system that seamlessly integrates GPT-4o-mini, TMDB trending movies, and Docker deployment.
 
 💡 Key Advantages: 
