@@ -347,7 +347,7 @@ def run_app():
 
 if __name__ == "__main__":
     run_app()
-    
+
 ```
 
 - File `tmdb_api.py` is the same.
@@ -378,6 +378,6 @@ By implementing **strict validation** and **hallucination prevention techniques*
 
 These enhancements significantly improve the **user experience** and **trustworthiness** of AI-powered recommendations!
 
-The code of this project is available [here](https://github.com/thanhtungvudata/mood_based_trending_movie_recommendation). 
+The code of this project is available [here](https://github.com/thanhtungvudata/cinemood2/tree/main/CineMood%20v2). 
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
