@@ -1,6 +1,6 @@
 ---
 title: "Articles"
-layout: custom-posts
+layout: posts
 permalink: /articles/
 author_profile: true
 ---
