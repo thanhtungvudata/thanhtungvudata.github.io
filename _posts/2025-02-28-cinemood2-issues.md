@@ -57,6 +57,7 @@ Hallucination occurs when an LLM generates responses that are **plausible but in
 ## 🛠 **Technical Details:**
 
 - Revised `llm.py`:
+
 ```python
 import json
 import openai
@@ -280,6 +281,7 @@ def get_movies_by_mood(mood_words, movies):
 ```
 
 - Revised `app.py`:
+
 ```python
 import streamlit as st
 from llm import detect_mood, get_movies_by_mood
@@ -345,7 +347,7 @@ def run_app():
 
 if __name__ == "__main__":
     run_app()
-
+    
 ```
 
 - File `tmdb_api.py` is the same.
