@@ -59,7 +59,7 @@ Hallucination occurs when an LLM generates responses that are **plausible but in
 - The previous version asked GPT to pick the best movies but did not validate the indices.
 - If GPT returned incorrect or incomplete JSON, it could cause runtime errors.
 
-### **# **New Implementation**
+#### **New Implementation**
 ✅ **Validation of GPT Response**: Ensures the response is correctly formatted JSON with valid movie indices.
 
 ✅ **Fallback Strategy**: If the ranking process fails, it defaults to the most recent trending movies instead of providing no results.
@@ -388,6 +388,7 @@ You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://hugg
 By implementing **strict validation** and **hallucination prevention techniques**, our Mood-Based Movie Recommendation App now provides **reliable** and **accurate** movie suggestions. The updated version ensures:
 - ✅ Proper validation of moods and user input.
 - ✅ Preventing hallucination by strictly defining mood categories.
+- ✅ Safer movie ranking by enforcing structured JSON responses.
 
 These enhancements significantly improve the **user experience** and **trustworthiness** of AI-powered recommendations!
 
