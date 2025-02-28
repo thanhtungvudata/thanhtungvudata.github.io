@@ -53,6 +53,19 @@ Hallucination occurs when an LLM generates responses that are **plausible but in
 
 ✅ **Mapping Unknown Moods**: If an unknown mood appears, the function remaps it to the closest valid mood or defaults to neutral.
 
+
+### **3. Safer Movie Matching in `get_movies_by_mood()`**
+#### **Old Implementation**
+- The previous version asked GPT to pick the best movies but did not validate the indices.
+- If GPT returned incorrect or incomplete JSON, it could cause runtime errors.
+
+### **# **New Implementation**
+✅ **Validation of GPT Response**: Ensures the response is correctly formatted JSON with valid movie indices.
+
+✅ **Fallback Strategy**: If the ranking process fails, it defaults to the most recent trending movies instead of providing no results.
+
+✅ **Consistent Sorting**: Movies are always sorted by release date to ensure newer movies are prioritized.
+
 ---
 ## 🛠 **Technical Details:**
 
