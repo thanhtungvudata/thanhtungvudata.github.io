@@ -43,19 +43,9 @@ However, **GPT-4o-mini can still be used as a tool** to analyze moods and **rank
 
 ---
 
-## 🤖 Why GPT-4o-Mini Instead of Local or Advanced Paid Models?  
+## 🤖 Why GPT-4o-Mini?  
 
-### **❌ Local Models (Mistral-7B, Llama2, etc.)**
-- **Too large** to run on a laptop efficiently.  
-- Requires **high-end GPUs** to process LLM queries in real-time.  
-- Slower and **not practical for fast API calls**.  
-
-### **❌ Advanced Paid Models (GPT-4, Claude, etc.)**
-- **Higher cost** for API usage.  
-- Not necessary for simple **mood extraction and ranking tasks**.  
-- **GPT-4o-mini is cheaper and performs well** for this purpose.
-
-Thus, **GPT-4o-mini is the best balance** between performance and cost.
+It is my personal choice. Any model (e.g., Mistral-7B, Llama2, Claude, etc.) can be used for this project. 
 
 ---
 
