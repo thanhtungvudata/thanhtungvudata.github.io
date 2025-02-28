@@ -1,0 +1,42 @@
+---
+layout: single
+---
+
+<!-- 
+  Custom layout overriding Minimal Mistakes "posts" layout.
+  You can rename this file however you like, but make sure
+  you reference it correctly in articles.md
+-->
+
+{% assign posts_collection = site.posts | where_exp: "post", "post.layout != 'page'" %}
+{% if paginator %}
+  {% assign posts_collection = paginator.posts %}
+{% endif %}
+
+<h1>{{ page.title }}</h1>
+
+<!-- Start your custom loop -->
+{% for post in posts_collection %}
+  <article class="archive-item">
+    <h2>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+
+    {% if post.image %}
+      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="article-thumbnail">
+    {% endif %}
+
+    <!-- Minimal Mistakes typically calculates read_time automatically -->
+    {% if post.read_time %}
+      <p class="reading-time">🕒 {{ post.read_time }} minute read</p>
+    {% endif %}
+
+    <!-- Post excerpt -->
+    <p>{{ post.excerpt }}</p>
+  </article>
+{% endfor %}
+
+<!-- If you want pagination, include the paginator -->
+{% if paginator %}
+  {% include paginator.html %}
+{% endif %}
