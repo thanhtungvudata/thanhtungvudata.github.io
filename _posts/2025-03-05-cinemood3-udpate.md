@@ -20,7 +20,7 @@ In this post, I take a step further by implementing a **RAG (Retrieval-Augmented
 While the previous approach provided **decent recommendations**, it had several shortcomings:
 
 1. **Scalability Issues**: LLM-based approaches require processing a predefined, **limited set of movies** (e.g., 50 movies) at inference time. Increasing the dataset size exponentially increases computation time and memory usage, leading to impractical delays.
-2. **Validation of Mood**: The mood validation was **not robust**—it relied only on simple keyword matching, leading to potential **incorrect classifications**.
+2. **Validation of Mood**: The mood validation was **not robust**—it relied only on simple keyword matching, which fails to capture semantic similarity. This means they might misinterpret user moods, leading to **incorrect recommendations**.  
 3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset.
 
 
