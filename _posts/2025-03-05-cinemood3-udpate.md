@@ -12,7 +12,7 @@ tags:
 ---
 In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to scan through around **50 trending movie metadata** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** in a simple way by letting LLM chec the user input with a list of valid moods. However, the method had limitations in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
 
-<img src="/assets/images/cinemood2_overview2.png" alt="CineMood2" width="600">
+<img src="/assets/images/cinemood3_overview.png" alt="CineMood3" width="600">
 
 In this post, I take a step further by implementing a **RAG (Retrieval-Augmented Generation) mood-based trending movie recommendation app** that can efficiently **handle a larger dataset of movies**, validate moods more effectively using **embeddings and similarity scores**, and improve the **explainability of recommendations**.
 
@@ -30,6 +30,58 @@ To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generati
 **Retrieval-Augmented Generation (RAG)** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
 
 ## **RAG-Based Workflow in My App**
+
+### Overview Diagram:
+
+```bash
+ ┌──────────────────────────┐
+ │        User Input        │
+ │ (Mood description in UI) │
+ └──────────▲───────────────┘
+            │
+            ▼
+ ┌──────────────────────────┐
+ │      OpenAI Embeddings   │  ◀── Generates vector embeddings for moods
+ └──────────▲───────────────┘
+            │
+            ▼
+ ┌──────────────────────────┐
+ │      ChromaDB (Moods)    │  ◀── Stores & retrieves valid mood embeddings
+ └──────────▲───────────────┘
+            │
+     [Cosine Similarity]
+            ▼
+ ┌──────────────────────────┐
+ │    Detected Closest Mood │
+ └──────────▲───────────────┘
+            │
+            ▼
+ ┌──────────────────────────┐
+ │      ChromaDB (Movies)   │  ◀── Stores & retrieves movie embeddings
+ └──────────▲───────────────┘
+            │
+            ▼
+ ┌──────────────────────────┐
+ │  Top 3 Movie Matches     │
+ │ (Based on mood similarity) │
+ └──────────▲───────────────┘
+            │
+     [GPT-4o-mini LLM]
+            ▼
+ ┌──────────────────────────┐
+ │  AI-Generated Explanation│
+ │   (Why this movie?)      │
+ └──────────▲───────────────┘
+            │
+            ▼
+ ┌──────────────────────────┐
+ │   Streamlit UI (Web App) │
+ │ Displays Movie Titles,   │
+ │ Posters & Explanations   │
+ └──────────────────────────┘
+```
+
+
 ### **Step 1: Storing Valid Mood and Movie Metadata in ChromaDB**
 - **Valid moods** and **movie metadata** are **embedded using OpenAI embeddings** and stored in **ChromaDB**, a vector database optimized for retrieval.
 - This enables **efficient vector-based retrieval** of moods and movies.
