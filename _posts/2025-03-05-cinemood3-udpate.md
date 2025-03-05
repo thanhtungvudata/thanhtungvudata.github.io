@@ -27,7 +27,7 @@ While the previous approach provided **decent recommendations**, it had several 
 To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generation)**, which enhances the accuracy and explainability of recommendations.
 
 ## **What is RAG?**
-**Retrieval-Augmented Generation (RAG)** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
+**RAG** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
 
 ## **RAG-Based Workflow in My App**
 
@@ -797,7 +797,7 @@ LangChain is a framework for building LLM-powered applications, and in this proj
 - The project needs to retrieve and rank movies based on mood similarity.
 - LangChain’s Chroma interface simplifies managing retrieval pipelines for structured responses.
 
-Also, why LangChain over other LLM orchestration framworks?
+Also, why LangChain over other LLM orchestration frameworks?
 
 ✅ Provides OpenAI API integration out of the box (unlike Sentence-Transformers (SBERT) + FAISS (Facebook AI Similarity Search)).
 
