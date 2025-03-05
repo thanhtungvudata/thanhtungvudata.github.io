@@ -1,0 +1,115 @@
+---
+title: "Building a RAG Mood-Based Trending Movie Recommendation App"
+date: 2025-03-05
+image: /assets/images/cinemood2_overview.png
+categories:
+  - Data Science Projects
+tags:
+  - Data Science
+  - AI Agent
+  - ML Engineer
+  - RAG
+---
+In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to scan through **50 trending movie metadata** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** in a simple way. However, the method had limitations in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
+
+<img src="/assets/images/cinemood2_overview2.png" alt="CineMood2" width="600">
+
+In this post, I take a step further by implementing a **RAG (Retrieval-Augmented Generation) mood-based trending movie recommendation app** that can efficiently **handle a larger dataset of movies**, validate moods more effectively using **embeddings and similarity scores**, and improve the **explainability of recommendations**.
+
+## **Limitations of the Previous Approach**
+While the previous approach provided **decent recommendations**, it had several shortcomings:
+
+1. **Scalability Issues**: The LLM scanned through only **50 movies**, which limited the diversity of recommendations.
+2. **Validation of Mood**: The mood validation was **not robust**—it relied only on simple keyword matching, leading to potential **incorrect classifications**.
+3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset.
+4. **Lack of Efficient Retrieval**: The previous method did not use a **vector database**, making it **inefficient for large-scale retrieval.**
+
+To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generation)**, which enhances the accuracy and explainability of recommendations.
+
+## **What is RAG?**
+**Retrieval-Augmented Generation (RAG)** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
+
+### **Why is RAG a Better Method for This App?**
+- ✅ **Scalable Retrieval**: The app can now search for relevant movies **from a large dataset**, rather than just 50 movies.
+- ✅ **Better Mood Validation**: Mood validation is now based on **cosine similarity of embeddings**, ensuring the input mood is **related to a known valid mood**.
+- ✅ **Reduced LLM Hallucination**: Since LLM responses are grounded in **retrieved metadata**, it **cannot generate non-existent movies**.
+- ✅ **Improved Ranking**: The app ranks movies based on **embedding similarity between user mood and movie metadata** (title, overview, tagline), leading to **more accurate recommendations**.
+
+## **RAG-Based Workflow in My App**
+### **Step 1: Storing Valid Mood and Movie Metadata in ChromaDB**
+- **Valid moods** and **movie metadata** are **embedded using OpenAI embeddings** and stored in **ChromaDB**, a vector database optimized for retrieval.
+- This enables **efficient vector-based retrieval** of moods and movies.
+
+### **Step 2: User Mood Validation Using Embedding Similarity**
+- The **user input mood** is embedded using **OpenAI embeddings**.
+- The system retrieves **the top 5 closest moods** from ChromaDB.
+- If the **best similarity score** is **below a defined threshold**, the system **rejects the input** and asks the user to rephrase their mood.
+
+### **Step 3: Retrieving the Top 3 Movies Using Semantic Search**
+- If the user mood is valid, the system **performs a semantic search in ChromaDB**.
+- Movies are ranked based on **similarity between the top mood and the movie title, overview, and tagline**.
+- The **top 3 movies** with the highest scores are selected.
+
+### **Step 4: LLM Generates Explanation for Recommendations**
+- The **LLM (GPT-4o-mini)** is prompted to explain why the **selected movies** match the user’s mood.
+- The model uses **retrieved metadata** to ensure the explanation is **grounded in real data**, reducing hallucination.
+
+### **Step 5: Displaying the Recommendations in a Streamlit Web App**
+- The **user sees the top 3 movies**, along with details:
+  - 🎬 **Title**
+  - 📅 **Release Date**
+  - 🏷️ **Tagline**
+  - 🎭 **Cast & Director**
+  - 🌍 **Production Country**
+  - 🏢 **Production Company**
+  - ⏳ **Runtime**
+  - 🖼️ **Movie Poster** (Fetched dynamically via URL)
+  - 📝 **LLM-generated explanation** of why these movies fit the user’s mood
+
+## **Results & Improvements**
+With this RAG-based approach, the **movie recommendations are more accurate, scalable, and explainable**. The app now:
+- ✅ Works with **large-scale datasets** stored in ChromaDB.
+- ✅ Validates moods **more effectively** using **vector similarity**.
+- ✅ Reduces **hallucination by grounding explanations in real movie metadata**.
+- ✅ Provides **dynamic explanations using LLM** while maintaining factual correctness.
+
+## **Limitations of the Current RAG-Based Approach**
+While this RAG-based approach significantly improves the recommendation system, it still has some limitations:
+- 🔹 **Dependency on Embedding Quality**: The accuracy of retrieval depends on the quality of **OpenAI embeddings**.
+- 🔹 **Fixed Similarity Threshold**: The system might reject **unconventional mood inputs** that don't closely match predefined moods.
+- 🔹 **LLM Bias**: While hallucination is reduced, **LLM-generated explanations** might still contain **subjective biases**.
+- 🔹 **Poster Availability**: Some movies **may not have a valid poster URL**, leading to missing images.
+
+
+## **🎉 Results and Live Demo**
+
+The final web app delivers mood-based movie recommendations in just a second, with fresh content every week. 
+
+You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://huggingface.co/spaces/thanhtungvudata/CineMoodv3)
+
+<div style="text-align: center;">
+    <h3>🎬 Try CineMoodv3 Now!</h3>
+    <iframe
+        src="https://thanhtungvudata-cinemoodv3.hf.space"
+        width="100%"
+        height="600"
+        style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);"
+        allowfullscreen>
+    </iframe>
+</div>
+
+## **Conclusion & Next Steps**
+By integrating **RAG with OpenAI embeddings and ChromaDB**, the **mood-based movie recommendation app** has become **more scalable, reliable, and explainable**. Moving forward, possible improvements include:
+- 🔹 **Fine-tuning threshold values for similarity scores**.
+- 🔹 **Expanding the movie dataset** to include more diverse genres and countries.
+- 🔹 **Integrating user feedback to refine future recommendations**.
+- 🔹 **Enhancing explanation generation by incorporating more structured metadata.**
+
+🚀 **Try it out and let me know what you think!**
+
+---
+📌 **Stay tuned for more updates on AI-powered movie recommendations!** 🎬✨
+
+The code of this project is available [here](https://github.com/thanhtungvudata/cinemood2/tree/main/CineMood%20v2). 
+
+For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
