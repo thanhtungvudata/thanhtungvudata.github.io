@@ -96,14 +96,35 @@ You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://hugg
     </iframe>
 </div>
 
+## **Tech Stack**
+1. Data Storage & Retrieval
+- Vector Database: ChromaDB (stores and retrieves movie embeddings efficiently for fast and scalable similarity search)
+2. Embedding & Retrieval-Augmented Generation (RAG) Pipeline
+- LLM Model: OpenAI GPT-4o-mini (generates responses based on retrieved movie data)
+- Embedding Model: OpenAI’s text-embedding-ada-002 (encodes movie metadata and user input into a high-dimensional vector space)
+- Similarity Search: Cosine similarity with ChromaDB (retrieves the most relevant movies based on user queries)
+- Document Processing: LangChain (manages RAG-based retrieval, query execution, and data flow)
+3. Web Application (Self-Contained, No Separate Backend Needed)
+- Framework: Streamlit (builds an interactive web interface and processes user inputs)
+- Programming Language: Python (integrates Streamlit, retrieval logic, and ML models)
+- UI Components: Streamlit’s built-in widgets (for creating a user-friendly interface)
+4. Model Deployment & Infrastructure
+- Web App Hosting: Hugging Face Spaces (hosts the Streamlit app for public access)
+- Database Updates: GitHub Actions (automates weekly ChromaDB updates to keep recommendations fresh)
+- Containerization: Docker (optional, for packaging and deploying the app efficiently on HF Spaces)
+
 ## **Conclusion & Next Steps**
 By integrating **RAG with OpenAI embeddings and ChromaDB**, the **mood-based movie recommendation app** has become **more scalable, reliable, and explainable**. Moving forward, possible improvements include:
-- 🔹 **Fine-tuning threshold values for similarity scores**.
-- 🔹 **Expanding the movie dataset** to include more diverse genres and countries.
-- 🔹 **Integrating user feedback to refine future recommendations**.
-- 🔹 **Enhancing explanation generation by incorporating more structured metadata.**
 
-🚀 **Try it out and let me know what you think!**
+🔹 **Fine-tuning threshold values for similarity scores**.
+
+🔹 **Expanding the movie dataset** to include more diverse genres and countries.
+
+🔹 **Integrating user feedback to refine future recommendations**.
+
+🔹 **Enhancing explanation generation by incorporating more structured metadata.**
+
+🚀 **Let me know what you think!**
 
 ---
 📌 **Stay tuned for more updates on AI-powered movie recommendations!** 🎬✨
