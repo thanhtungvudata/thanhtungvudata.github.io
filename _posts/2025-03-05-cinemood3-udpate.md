@@ -10,7 +10,7 @@ tags:
   - ML Engineer
   - RAG
 ---
-In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to scan through around **50 trending movie metadata** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** in a simple way by letting LLM chec the user input with a list of valid moods. However, the method had limitations in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
+In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to analyze metadata from approximately **50 trending movies** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** by having the LLM compare user input against a predefined list of valid moods. However, the method faced challenges in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
 
 <img src="/assets/images/cinemood3_overview.png" alt="CineMood3" width="600">
 
@@ -262,7 +262,7 @@ if __name__ == "__main__":
     print("\n✅ Trending movies saved to `trending_movies.json`")
 ```
 
-#### Create `generate_embeddings.py:
+#### Create `generate_embeddings.py`:
 
 ✅ Loads movie metadata from `trending_movies.json`.
 
@@ -741,10 +741,14 @@ if __name__ == "__main__":
 
 ## **Results & Improvements**
 With this RAG-based approach, the **movie recommendations are more accurate, scalable, and explainable**. The app now:
-- ✅ Works with **large-scale datasets** stored in ChromaDB.
-- ✅ Validates moods **more effectively** using **vector similarity**.
-- ✅ Reduces **hallucination by grounding explanations in real movie metadata**.
-- ✅ Provides **dynamic explanations using LLM** while maintaining factual correctness.
+
+✅ Works with **large-scale datasets** stored in ChromaDB.
+
+✅ Validates moods **more effectively** using **vector similarity**.
+
+✅ Reduces **hallucination by grounding explanations in real movie metadata**.
+
+✅ Provides **dynamic explanations using LLM** while maintaining factual correctness.
 
 ## **🎉 Results and Live Demo**
 
