@@ -10,7 +10,7 @@ tags:
   - ML Engineer
   - RAG
 ---
-In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to scan through **50 trending movie metadata** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** in a simple way. However, the method had limitations in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
+In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to scan through around **50 trending movie metadata** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** in a simple way by letting LLM chec the user input with a list of valid moods. However, the method had limitations in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
 
 <img src="/assets/images/cinemood2_overview2.png" alt="CineMood2" width="600">
 
@@ -19,10 +19,10 @@ In this post, I take a step further by implementing a **RAG (Retrieval-Augmented
 ## **Limitations of the Previous Approach**
 While the previous approach provided **decent recommendations**, it had several shortcomings:
 
-1. **Scalability Issues**: The LLM scanned through only **50 movies**, which limited the diversity of recommendations.
+1. **Scalability Issues**: LLM-based approaches require processing a predefined, **limited set of movies** (e.g., 50 movies) at inference time. Increasing the dataset size exponentially increases computation time and memory usage, leading to impractical delays.
 2. **Validation of Mood**: The mood validation was **not robust**—it relied only on simple keyword matching, leading to potential **incorrect classifications**.
 3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset.
-4. **Lack of Efficient Retrieval**: The previous method did not use a **vector database**, making it **inefficient for large-scale retrieval.**
+
 
 To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generation)**, which enhances the accuracy and explainability of recommendations.
 
@@ -30,7 +30,7 @@ To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generati
 **Retrieval-Augmented Generation (RAG)** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
 
 ### **Why is RAG a Better Method for This App?**
-- ✅ **Scalable Retrieval**: The app can now search for relevant movies **from a large dataset**, rather than just 50 movies.
+- ✅ **Scalable Retrieval**: Instead of embedding and processing all movies in a single LLM prompt, **RAG retrieves only the most relevant movie embeddings** from a **vector database** (e.g., ChromaDB, FAISS, Pinecone) at runtime. This enables the app to **efficiently scale to thousands or millions of movies** while maintaining fast response times.
 - ✅ **Better Mood Validation**: Mood validation is now based on **cosine similarity of embeddings**, ensuring the input mood is **related to a known valid mood**.
 - ✅ **Reduced LLM Hallucination**: Since LLM responses are grounded in **retrieved metadata**, it **cannot generate non-existent movies**.
 - ✅ **Improved Ranking**: The app ranks movies based on **embedding similarity between user mood and movie metadata** (title, overview, tagline), leading to **more accurate recommendations**.
@@ -51,7 +51,7 @@ To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generati
 - The **top 3 movies** with the highest scores are selected.
 
 ### **Step 4: LLM Generates Explanation for Recommendations**
-- The **LLM (GPT-4o-mini)** is prompted to explain why the **selected movies** match the user’s mood.
+- The **LLM (GPT-4o-mini)** is prompted to explain why the **selected movies** match the user's mood.
 - The model uses **retrieved metadata** to ensure the explanation is **grounded in real data**, reducing hallucination.
 
 ### **Step 5: Displaying the Recommendations in a Streamlit Web App**
@@ -64,7 +64,7 @@ To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generati
   - 🏢 **Production Company**
   - ⏳ **Runtime**
   - 🖼️ **Movie Poster** (Fetched dynamically via URL)
-  - 📝 **LLM-generated explanation** of why these movies fit the user’s mood
+  - 📝 **LLM-generated explanation** of why these movies fit the user's mood
 
 ## **Results & Improvements**
 With this RAG-based approach, the **movie recommendations are more accurate, scalable, and explainable**. The app now:
