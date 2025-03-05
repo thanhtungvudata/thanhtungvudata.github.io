@@ -21,19 +21,13 @@ While the previous approach provided **decent recommendations**, it had several 
 
 1. **Scalability Issues**: LLM-based approaches require processing a predefined, **limited set of movies** (e.g., 50 movies) at inference time. Increasing the dataset size exponentially increases computation time and memory usage, leading to impractical delays.
 2. **Validation of Mood**: The mood validation was **not robust**—it relied only on simple keyword matching, which fails to capture semantic similarity. This means they might misinterpret user moods, leading to **incorrect recommendations**.  
-3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset.
+3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset. This is because LLMs, when not grounded in structured data, **tend to hallucinate**—generating movie titles, summaries, or recommendations that do not exist because their responses are based purely on learned probabilities rather than factual data.
 
 
 To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generation)**, which enhances the accuracy and explainability of recommendations.
 
 ## **What is RAG?**
 **Retrieval-Augmented Generation (RAG)** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
-
-### **Why is RAG a Better Method for This App?**
-- ✅ **Scalable Retrieval**: Instead of embedding and processing all movies in a single LLM prompt, **RAG retrieves only the most relevant movie embeddings** from a **vector database** (e.g., ChromaDB, FAISS, Pinecone) at runtime. This enables the app to **efficiently scale to thousands or millions of movies** while maintaining fast response times.
-- ✅ **Better Mood Validation**: Mood validation is now based on **cosine similarity of embeddings**, ensuring the input mood is **related to a known valid mood**.
-- ✅ **Reduced LLM Hallucination**: Since LLM responses are grounded in **retrieved metadata**, it **cannot generate non-existent movies**.
-- ✅ **Improved Ranking**: The app ranks movies based on **embedding similarity between user mood and movie metadata** (title, overview, tagline), leading to **more accurate recommendations**.
 
 ## **RAG-Based Workflow in My App**
 ### **Step 1: Storing Valid Mood and Movie Metadata in ChromaDB**
@@ -65,6 +59,15 @@ To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generati
   - ⏳ **Runtime**
   - 🖼️ **Movie Poster** (Fetched dynamically via URL)
   - 📝 **LLM-generated explanation** of why these movies fit the user's mood
+
+## **Why is RAG a Better Method for This App?**
+✅ **Scalable Retrieval**: Instead of embedding and processing all movies in a single LLM prompt, **RAG retrieves only the most relevant movie embeddings** from a **vector database** (e.g., ChromaDB, FAISS, Pinecone) at runtime. This enables the app to **efficiently scale to thousands or millions of movies** while maintaining fast response times.
+
+✅ **Better Mood Validation**: By **embedding user inputs** and comparing them against a predefined set of **valid moods** using **cosine similarity in a high-dimensional vector space**, the system ensures that only moods with **high semantic relevance** are considered valid. This prevents misclassification and improves mood-based filtering.
+
+✅ **Reduced LLM Hallucination**: Instead of relying on the LLM to generate recommendations from its internal knowledge, **RAG retrieves actual metadata from an external database**. The LLM only processes **verified movie details** (e.g., titles, descriptions, genres), ensuring that all recommendations are **based on real, retrievable content**.
+
+✅ **Improved Ranking**: Standard LLM-based ranking often relies on simple text similarity measures (e.g., token-level similarity or TF-IDF-based heuristics), which do not effectively capture **latent relationships between moods and movie metadata**. Now, using **embedding-based similarity scoring**, the system computes the **cosine similarity between the user's mood embedding and movie metadata embeddings** (title, overview, tagline). This enables **context-aware ranking**, ensuring that the most semantically relevant movies are prioritized over those with only superficial text similarity.
 
 ## **Results & Improvements**
 With this RAG-based approach, the **movie recommendations are more accurate, scalable, and explainable**. The app now:
