@@ -24,7 +24,7 @@ While the previous approach provided **decent recommendations**, it had several 
 3. **LLM Hallucination**: Since the model relied solely on **LLM reasoning** to select movies, it could **hallucinate recommendations** not present in the dataset. This is because LLMs, when not grounded in structured data, **tend to hallucinate**—generating movie titles, summaries, or recommendations that do not exist because their responses are based purely on learned probabilities rather than factual data.
 
 
-To overcome these limitations, I implemented **RAG (Retrieval-Augmented Generation)**, which enhances the accuracy and explainability of recommendations.
+To overcome these limitations, I implemented **RAG**, which enhances the accuracy and explainability of recommendations.
 
 ## **What is RAG?**
 **RAG** is a method that combines **information retrieval (IR) and generative AI** to improve text generation by grounding responses in **real-world data**. Instead of relying **solely on the LLM’s internal knowledge**, RAG retrieves **relevant documents** or data points from an external **vector database** before generating responses.
@@ -770,7 +770,7 @@ You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://hugg
 ## **Tech Stack**
 1. Data Storage & Retrieval
 - Vector Database: ChromaDB (stores and retrieves movie embeddings efficiently for fast and scalable similarity search)
-2. Embedding & Retrieval-Augmented Generation (RAG) Pipeline
+2. Embedding & RAG Pipeline
 - LLM Model: OpenAI GPT-4o-mini (generates responses based on retrieved movie data)
 - Embedding Model: OpenAI’s text-embedding-ada-002 (encodes movie metadata and user input into a high-dimensional vector space)
 - Similarity Search: Cosine similarity with ChromaDB (retrieves the most relevant movies based on user queries)
@@ -844,6 +844,6 @@ By integrating **RAG with OpenAI embeddings and ChromaDB**, the **mood-based mov
 ---
 📌 **Stay tuned for more updates on AI-powered movie recommendations!** 🎬✨
 
-The code of this project is available [here](https://github.com/thanhtungvudata/cinemood2/tree/main/CineMood%20v2). 
+The code of this project is available [here](https://github.com/thanhtungvudata/CineMood_v3). 
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
