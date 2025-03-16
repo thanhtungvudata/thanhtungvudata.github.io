@@ -199,7 +199,6 @@ def run_app():
         )
         response = llm.invoke(prompt)
         mood_candidate = response.content.strip().lower() if hasattr(response, "content") else response.strip().lower()
-        # print(f"mood candidate is {mood_candidate}")
         if mood_candidate in valid_moods:
             return mood_candidate
         return None
@@ -540,13 +539,6 @@ def run_app():
 
         conversation_generated = False
 
-        # if st.session_state.awaiting_restart_decision:
-        #     st.session_state.awaiting_restart_decision = False
-        #     short_reply = generate_conversational_response(user_input)
-        #     st.session_state.messages.append({"role": "assistant", "type": "text", "content": short_reply})
-        #     st.chat_message("assistant").write(short_reply)
-        #     conversation_generated = True
-
         if st.session_state.awaiting_mood_clarification:
             st.session_state.awaiting_mood_clarification = False
             if "keep current" in user_input.lower():
@@ -705,7 +697,6 @@ def run_app():
         )
         st.session_state.messages.append({"role": "assistant", "type": "text", "content": followup})
         st.chat_message("assistant").write(followup)
-        # st.session_state.awaiting_restart_decision = True 
 
     st.markdown("**Made by [Thanh Tung Vu](https://thanhtungvudata.github.io/)**")
 
