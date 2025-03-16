@@ -9,11 +9,9 @@ tags:
   - AI Agent
   - ML Engineer
   - RAG
+  - GitHub Action
 ---
 
-# Automating Database Updates with GitHub Actions
-
-## Introduction
 In many applications, keeping the database up-to-date with fresh data from an API is essential. Manually updating data can be time-consuming and error-prone. GitHub Actions provides a robust way to automate these updates on a schedule.
 
 In this blog post, we'll explore how to use GitHub Actions to schedule and automate database updates from an API. We'll then illustrate this with a real-world example: updating the database for a **movie recommendation chatbot** that suggests trending movies based on a user's mood and preferences.

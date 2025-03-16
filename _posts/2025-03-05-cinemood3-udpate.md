@@ -9,6 +9,7 @@ tags:
   - AI Agent
   - ML Engineer
   - RAG
+  - GitHub Action
 ---
 In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood2-issues/), I built a **mood-based movie recommendation app** that used **LLM (Large Language Model)** to analyze metadata from approximately **50 trending movies** and select the **top 3 movies** based on user mood. The app handled **validation and hallucination** by having the LLM compare user input against a predefined list of valid moods. However, the method faced challenges in working with **larger datasets**, ensuring **reliable validation**, and **reducing LLM hallucination.**
 
