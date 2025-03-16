@@ -39,7 +39,7 @@ Detecting moods accurately from user inputs is **not straightforward**. Users of
 
 🔹 **Semantic Ambiguity:** Some moods are context-dependent, requiring additional validation. *For example, 'bittersweet' could mean happy or sad, depending on the situation.*
 
-🔹 **Prompt Engineering with GPT-4o-mini:** Our chatbot **filters out extraneous information**, ensuring that it extracts only the **core mood** before matching it with stored mood embeddings in **ChromaDB**.
+🔹 **Prompt Engineering with GPT-4o-mini:** Our chatbot **filters out extraneous information**, ensuring that it extracts only the **core mood** from the list of valid moods.
 
 ## 🎬 Key Features of the Chatbot
 
@@ -61,7 +61,7 @@ By integrating RAG with advanced mood detection and leveraging robust tools like
 ensures that users receive tailored movie recommendations that truly resonate with their current mood.
 
 ## **Technical Details**
-Compared to the previous post, we only need to update date the `app.py` file for the chatbot:
+Compared to the previous post, we only need to update the file `app.py` for the chatbot:
 
 ✅ Setup OpenAI Embeddings, ChromaDB, and GPT-4o-mini LLM for conversational responses and movie recommendations.
 
