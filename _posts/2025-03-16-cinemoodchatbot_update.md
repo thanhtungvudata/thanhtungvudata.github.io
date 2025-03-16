@@ -1,7 +1,7 @@
 ---
 title: "Building a Chatbot for Mood-Based Trending Movie Recommendation"
 date: 2025-03-16
-image: /assets/images/cinemood2_overview.png
+image: /assets/images/cinemoodchatbot_overview.png
 categories:
   - Data Science Projects
 tags:

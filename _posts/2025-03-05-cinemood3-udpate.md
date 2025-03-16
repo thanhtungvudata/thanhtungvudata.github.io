@@ -1,7 +1,7 @@
 ---
 title: "Building a RAG Mood-Based Trending Movie Recommendation App"
 date: 2025-03-05
-image: /assets/images/cinemood2_overview.png
+image: /assets/images/cinemood3_overview.png
 categories:
   - Data Science Projects
 tags:
