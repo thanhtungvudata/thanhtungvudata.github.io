@@ -10,7 +10,7 @@ tags:
   - ML Engineer
   - RAG
 ---
-In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood3-udpate/), I shows how to build a RAG (Retrieval-Augmented Generation) mood-based trending movie recommendation app. In this post, we dive into how to build a web-based chatbot that recommends trending movies based on users' moods and preferences. This latest update overcomes previous limitations by introducing **conversational interactions** and **advanced mood detection** using the **GPT-4o-mini** model with careful **prompt engineering**.
+In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood3-udpate/), I showed how to build a RAG (Retrieval-Augmented Generation) mood-based trending movie recommendation app. In this post, we dive into how to build a web-based chatbot that recommends trending movies based on users' moods and preferences. This latest update overcomes previous limitations by introducing **conversational interactions** and **advanced mood detection** using the **GPT-4o-mini** model with careful **prompt engineering**.
 
 <img src="/assets/images/cinemoodchatbot_overview.png" alt="CineMood Chatbot" width="600">
 
