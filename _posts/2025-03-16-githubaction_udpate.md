@@ -16,6 +16,10 @@ In many applications, keeping the database up-to-date with fresh data from an AP
 
 In this blog post, we'll explore how to use GitHub Actions to schedule and automate database updates from an API. We'll then illustrate this with a real-world example: updating the database for a **movie recommendation chatbot** that suggests trending movies based on a user's mood and preferences.
 
+<img src="/assets/images/githubaction_overview.png" alt="GitHub Action" width="600">
+
+---
+
 ## Why Automate Database Updates?
 Automating database updates using GitHub Actions has several advantages:
 
