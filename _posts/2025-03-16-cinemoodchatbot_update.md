@@ -1,5 +1,5 @@
 ---
-title: "Building a Trending Movie Recommendation Chatbot"
+title: "Building a Chatbot for Mood-Based Trending Movie Recommendation"
 date: 2025-03-16
 image: /assets/images/cinemood2_overview.png
 categories:
@@ -12,7 +12,7 @@ tags:
 ---
 In my previous [post](https://thanhtungvudata.github.io/data%20science%20projects/cinemood3-udpate/), I shows how to build a RAG (Retrieval-Augmented Generation) mood-based trending movie recommendation app. In this post, we dive into how to build a web-based chatbot that recommends trending movies based on users' moods and preferences. This latest update overcomes previous limitations by introducing **conversational interactions** and **advanced mood detection** using the **GPT-4o-mini** model with careful **prompt engineering**.
 
-<img src="/assets/images/cinemood3_overview.png" alt="CineMood3" width="600">
+<img src="/assets/images/cinemoodchatbot_overview.png" alt="CineMood Chatbot" width="600">
 
 
 ## 🎉 What’s New: Improvements Over the Previous Version
@@ -54,9 +54,8 @@ Detecting moods accurately from user inputs is **not straightforward**. Users of
 🖥️ **User-Friendly Interface:** Built with **Streamlit**, the chatbot provides **interactive conversations, mood tracking, and personalized recommendations** with **movie posters, genres, and trailers**.
 
 By integrating RAG with advanced mood detection and leveraging robust tools like ChromaDB and GPT-4o-mini, our chatbot has evolved into a scalable, reliable, and highly interactive movie recommendation system. The combination of:
-- **Efficient vector-based retrieval,**
-- **Accurate mood validation via cosine similarity,**
-- **Careful prompt engineering for precise mood detection,** and
+- **Careful prompt engineering for precise mood detection,**
+- **Efficient vector-based retrieval for trending movie recommendation,** and
 - **A user-friendly conversational interface**
 
 ensures that users receive tailored movie recommendations that truly resonate with their current mood.
@@ -771,6 +770,6 @@ By integrating **conversational AI** with **retrieval-augmented generation (RAG)
 ---
 📌 **Stay tuned for more updates on AI-powered movie recommendations!** 🎬✨
 
-The code of this project is available [here](https://github.com/thanhtungvudata/CineMood_v3). 
+The code of this project is available [here](https://github.com/thanhtungvudata/CineMood_Chatbot). 
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
