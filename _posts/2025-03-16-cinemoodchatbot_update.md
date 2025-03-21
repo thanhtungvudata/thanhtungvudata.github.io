@@ -712,7 +712,7 @@ The final chatbot web app delivers movie recommendations based on the user's moo
 You can try it here:👉 [CineMood Live App on Hugging Face Spaces](https://huggingface.co/spaces/thanhtungvudata/CineMood_Chatbot)
 
 <div style="text-align: center;">
-    <h3>🎬 Try CineMoodv3 Now!</h3>
+    <h3>🎬 Try CineMood Chatbot Now!</h3>
     <iframe
         src="https://thanhtungvudata-cinemood-chatbot.hf.space"
         width="100%"
