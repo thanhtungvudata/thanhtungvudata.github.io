@@ -61,7 +61,7 @@ plugins:
 
 author:
   name   : "Thanh Tung Vu"
-  avatar : "/assets/images/6.jpg"
+  avatar : "/assets/images/6.jpeg"
   bio    : "Data Scientist/Research Fellow with a PhD in Electrical Engineering, specializing in Applied Optimisation and Machine Learning."
   location: "Sydney, Australia"
   links:
