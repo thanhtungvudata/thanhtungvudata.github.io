@@ -130,6 +130,8 @@ Instead, the estimated SE for the difference in the observed conversion rates is
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
+This expression will be explained at the end of the post. 
+
 🧮 Step 4: Z-Statistic Under $$H_0$$
 
 The z-score tells us how far the difference of the observed conversion rates we see is from zero, using standard error as the unit, assuming that $$H_0$$ is true:
@@ -255,3 +257,7 @@ For further inquiries or collaboration, please contact me at [my email](mailto:t
 ### Expression of SE Explained:
 
 SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$.
+
+Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Therefore, by definition of the Binomial distribution, $$x_A \sim \text{Binomial} (n_A, p) $$ and $$x_B \sim \text{Binomial} (n_B, p) $$.
+
+Then, $$\mathbb{E}(x_A) = n_A p$$ and $$\mathbb{E}(\hat{p}_A) = \mathbb{E}( \frac{x_A}{n_A} ) = \frac{1}{n_A} \mathbb{E}( x_A )$$
