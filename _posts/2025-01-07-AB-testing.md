@@ -108,9 +108,9 @@ or if B is better, i.e.,
 
 $$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
-📊 Step 2: Pooled Conversion Rate
+📊 Step 2: Pooled Conversion Rate Under $$H_0$$
 
-Under $$H_0$$, the true conversion rates are assumed equal to $$p$$. We treat both groups as coming from the same population. Since $$p$$ is usually known in real-world tests, we compute the pooled estimate of $$p$$ instead:
+Assume $$H_0$$ is true, the true conversion rates are equal to $$p$$. We treat both groups as coming from the same population. Since $$p$$ is usually unknown in real-world tests, we compute the pooled estimate of $$p$$ instead:
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
@@ -120,11 +120,13 @@ SE is a measure of the uncertainty or variability in the difference between two 
 
 In simple terms, SE tells you how much ``wiggle room'' you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
 
-The true SE for the difference in observed conversion rates is:
+The true SE for the difference in observed conversion rates under $$H_0$$ is:
 
 $$\text{SE} = \sqrt{p(1 - p)\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
-However, this true SE is only theoretical. Instead, the estimated SE for the difference in observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
+However, this true SE is only theoretical. 
+
+Instead, the estimated SE for the difference in observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
@@ -134,9 +136,15 @@ The z-score measures how many standard errors the observed difference is from 0 
 
 $$z = \frac{\hat{p}_B - \hat{p}_A}{\text{SE}}$$
 
+This formula tells us: How many standard errors apart the observed difference of conversion rates between Group B and Group A is, compared to the null hypothesis which assumes there's no real difference.
+
+So, 
+- If $$z$$ is close to 0, the observed difference is what we'd expect from random chance
+- If $$z$$ is far from 0, the difference is larger than what we'd expect from chance, so it might be statistically significant
+
 📉 Step 5: Compute P-Value
 
-We compute the p-value using the standard normal distribution:
+We use the z-score to find a p-value from the standard normal distribution:
 
 - For a two-tailed test:
 
