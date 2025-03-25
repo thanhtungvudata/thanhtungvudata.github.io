@@ -225,7 +225,7 @@ Z-score: 1.2008
 P-value: 0.1149
 ```
 
-Since the p-value is ~0.1149, it's significantly above the typical 0.05 threshold. We fail to reject $$H_0$$, which means the improvement is not statistically significant. Therefore, we may choose to collect more data.
+Since the p-value is ~0.1149, it's significantly above the typical 0.05 threshold. We fail to reject $$H_0$$, which means the improvement is not statistically significant. 
 
 ### ⚠️ Common Pitfalls and Best Practices
 ❌ Pitfalls
