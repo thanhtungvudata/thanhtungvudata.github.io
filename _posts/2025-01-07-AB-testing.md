@@ -132,7 +132,7 @@ $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}
 
 🧮 Step 4: Z-Statistic Under $$H_0$$
 
-The z-score measures how many standard errors the observed difference is from 0 (under $$H_0$$):
+The z-score tells us how far the difference of the observed conversion rates we see is from zero, using standard error as the unit, (under $$H_0$$):
 
 $$z = \frac{\hat{p}_B - \hat{p}_A}{\text{SE}}$$
 
