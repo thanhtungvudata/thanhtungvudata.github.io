@@ -2,7 +2,7 @@
 title: "Metrics for Classification Problems Explained: Accuracy, Precision, Recall, and F1-Score"
 date: 2025-01-06
 categories:
-  - Data Science Insights
+  - Data Science Fundamentals
 tags:
   - Data Science
 ---

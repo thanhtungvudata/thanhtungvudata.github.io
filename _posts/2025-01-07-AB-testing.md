@@ -2,7 +2,7 @@
 title: "The Ultimate Guide to A/B Testing: Workflow, Theory, and Python Example"
 date: 2025-01-07
 categories:
-  - Data Science Insights
+  - Data Science Fundamentals
 tags:
   - Data Science
 ---
