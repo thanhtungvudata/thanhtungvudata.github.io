@@ -7,7 +7,7 @@ author_profile: true
 ---
 Welcome to my page!
 
-I am a data scientist/research fellow with a PhD degree in wireless communications, and I am currently working at Macquarie University, Australia. My work focuses on developing optimization and machine learning solutions for predictive modeling and combinatorial optimization challenges.
+I am a data/research scientist with a PhD degree in wireless communications, and I am currently working at Macquarie University, Australia. My work focuses on developing optimization, machine learning, generative AI solutions for predictive modeling and combinatorial optimization challenges.
 
 In my spare time, I work on side projects and write blogs about data science and machine learning. My content ranges from technical deep dives to life skills.
 

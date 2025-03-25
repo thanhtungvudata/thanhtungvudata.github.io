@@ -258,7 +258,7 @@ For further inquiries or collaboration, please contact me at [my email](mailto:t
 ---
 ### Expression of SE Explained:
 
-SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$.
+SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$
 
 Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Without loss of generality, consider group A with $$n_A$$ trials (e.g., show a button to users). Each trial $$i$$ is a Bernoulli random variable $$X_i \in \{0,1\} $$, in which the probability of $$X_i=1$$ (conversion) is $$p$$, i.e., $$X_i \sim \text{Bernoulli} (p) $$. Then,
 
