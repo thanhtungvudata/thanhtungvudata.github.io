@@ -173,7 +173,8 @@ Say your z-score is 1.96. Using the standard normal table:
 
 So there's a $$5\%$$ chance you'd observe such a difference (or bigger) if there really were no true difference.
 
-<img src="/assets/images/p-value.png" alt="p-value" width="600">
+<img src="/assets/images/p-value-one-tailed.png" alt="p-value" width="600">
+<img src="/assets/images/p-value-two-tailed.png" alt="p-value" width="600">
 
 ✅ Step 6: Decide to reject $$H_0$$ or not
 
