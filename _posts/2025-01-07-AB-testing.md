@@ -274,4 +274,10 @@ $$\text{Var}(x_A) = \sum_{i=1}^{n_A} \text{Var}(X_i) = n_A p (1-p)$$
 
 $$\text{Var}(\hat{p}_A) = \text{Var}\Big(\frac{x_A}{n_A}\Big) = \frac{\text{Var}(x_A)}{n_A^2} = \frac{n_A p (1-p)}{n_A^2} = \frac{p (1-p)}{n_A}$$
 
-Central Limit Theorem (CLT) allows us to treat 
+Central Limit Theorem (CLT) allows us to treat the distribution of $$\hat{p}_A$$ as an approximate normal distribution for a large population, i.e., $$\hat{p}_A \sim \text{Approximate Normal} \Big(p, \frac{p(1-p)}{n_A}\Big)$$.
+
+Now, consider both $$\hat{p}_A$$ and $$\hat{p}_B$$. Since these variables are independent, their varience is
+
+$$\text{Var} (\hat{p}_B - \hat{p}_A) = \text{Var} (\hat{p}_B) + \text{Var} (\hat{p}_A) = p(1-p)\Big(\frac{1}{n_A}+\frac{1}{n_B}\Big)$$.
+
+Then, the expression of SE is obtained via $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$. 
