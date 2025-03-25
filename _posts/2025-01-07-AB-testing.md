@@ -272,4 +272,6 @@ Then, $$\mathbb{E}(x_A) = n_A p$$ and $$\mathbb{E}(\hat{p}_A) = \mathbb{E}( \fra
 
 $$\text{Var}(x_A) = \sum_{i=1}^{n_A} \text{Var}(X_i) = n_A p (1-p)$$
 
-$$\text{Var}(\hat{p}_A) = \text{Var}\Big(\frac{x_A}{n_A}\Big) = \frac{1}{n_A^2} = \frac{n_A p (1-p)}{n_A^2} = \frac{p (1-p)}{n_A}$$
+$$\text{Var}(\hat{p}_A) = \text{Var}\Big(\frac{x_A}{n_A}\Big) = \frac{\text{Var}(x_A)}{n_A^2} = \frac{n_A p (1-p)}{n_A^2} = \frac{p (1-p)}{n_A}$$
+
+Central Limit Theorem (CLT) allows us to treat 
