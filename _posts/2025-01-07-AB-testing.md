@@ -120,13 +120,13 @@ SE is a measure of the uncertainty or variability in the difference between two 
 
 In simple terms, SE tells you how much "wiggle room" you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
 
-The true SE for the difference in observed conversion rates under $$H_0$$ is:
+The true SE for the difference in the observed conversion rates under $$H_0$$ is:
 
 $$\text{SE} = \sqrt{p(1 - p)\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
 However, this true SE is only theoretical. 
 
-Instead, the estimated SE for the difference in observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
+Instead, the estimated SE for the difference in the observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
@@ -144,7 +144,7 @@ So,
 
 📉 Step 5: Compute P-Value Under $$H_0$$
 
-Just knowing ``how many standard errors away'' from the computed z-score is isn't enough — we want to **quantify how likely** it is to observe such a result by chance. 
+Just knowing "how many standard errors away" from the computed z-score is isn't enough — we want to **quantify how likely** it is to observe such a result by chance. 
 
 To do this, given the z-score formula above, we transform it into the standard normal scale — a distribution with: Mean = 0, Standard deviation = 1, Symmetrical bell shape. 
 
@@ -152,7 +152,7 @@ If the sample size is large, the Central Limit Theorem tells us that the differe
 
 We use the z-score to find a p-value from the standard normal distribution. 
 
-The p-value answers this question: ``If the null hypothesis $$H_0$$ is true, what is the probability of seeing a result this extreme or more extreme just by chance?''
+The p-value answers this question: "If the null hypothesis $$H_0$$ is true, what is the probability of seeing a result this extreme or more extreme just by chance?"
 
 Mathematically, p-value is the area under the curve of the standard normal distribution beyond your z-score.
 
@@ -172,6 +172,8 @@ Say your z-score is 1.96. Using the standard normal table:
 - For a two-tailed test, $$p_{value} = 2 P(Z > 1.96) = 0.05$$
 
 So there's a $$5\%$$ chance you'd observe such a difference (or bigger) if there really were no true difference.
+
+<img src="/assets/images/p-value.png" alt="p-value" width="600">
 
 ✅ Step 6: Decide to reject $$H_0$$ or not
 
