@@ -110,7 +110,7 @@ $$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
 📊 Step 2: Pooled Conversion Rate Under $$H_0$$
 
-Assume $$H_0$$ is true, the true conversion rates are equal to $$p$$. We treat both groups as coming from the same population. Since $$p$$ is usually unknown in real-world tests, we compute the pooled estimate of $$p$$ instead:
+Assume $$H_0$$ is true, the true conversion rates are equal to $$p$$, i.e., $$p_A = p_B = p$$. We treat both groups as coming from the same population. Since $$p$$ is usually unknown in real-world tests, we compute the pooled estimate of $$p$$ instead:
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
