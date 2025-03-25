@@ -124,13 +124,13 @@ The true SE for the difference in the observed conversion rates under $$H_0$$ is
 
 $$\text{SE} = \sqrt{p(1 - p)\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
+(This expression will be explained at the end of the post)
+
 However, this true SE is only theoretical because $$p$$ is unknown. 
 
 Instead, the estimated SE for the difference in the observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
-
-This expression will be explained at the end of the post. 
 
 🧮 Step 4: Z-Statistic Under $$H_0$$
 
