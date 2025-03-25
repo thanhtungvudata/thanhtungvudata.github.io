@@ -50,7 +50,7 @@ Detecting moods accurately from user inputs is **not straightforward**. Users of
 
 📀 **Scalable Movie Retrieval:** Unlike the previous version, which **processed a fixed dataset**, the new chatbot **searches dynamically** through a **large collection** using **semantic similarity**.
 
-📜 **Fact-Based Explanations:** Instead of generating random explanations, **GPT-4o-mini** **grounds its responses** in real metadata like **movie titles, summaries, and cast details**.
+📜 **Fact-Based Explanations:** Instead of generating random explanations, **GPT-4o-mini** **grounds its responses** in real metadata like **movie titles, summaries, and genres**.
 
 🖥️ **User-Friendly Interface:** Built with **Streamlit**, the chatbot provides **interactive conversations, mood tracking, and personalized recommendations** with **movie posters, genres, and trailers**.
 
