@@ -260,4 +260,4 @@ SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt
 
 Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Therefore, by definition of the Binomial distribution, $$x_A \sim \text{Binomial} (n_A, p) $$ and $$x_B \sim \text{Binomial} (n_B, p) $$.
 
-Then, $$\mathbb{E}(x_A) = n_A p$$ and $$\mathbb{E}(\hat{p}_A) = \mathbb{E}( \frac{x_A}{n_A} ) = \frac{1}{n_A} \mathbb{E}( x_A )$$
+Then, $$\mathbb{E}(x_A) = n_A p$$ and $$\mathbb{E}(\hat{p}_A) = \mathbb{E}( \frac{x_A}{n_A} ) = \frac{1}{n_A} \mathbb{E}( x_A ) = \frac{n_A p }{n_A} = p$$ --- the true popolation conversion rate. This means $$\hat{p}_A$$ an biased estimator of $$p$$.
