@@ -224,7 +224,7 @@ Z-score: 1.5119
 P-value: 0.0654
 ```
 
-Since the p-value is ~0.065, it's slightly above the typical 0.05 threshold. The improvement is not statistically significant, so we may choose to collect more data.
+Since the p-value is ~0.065, it's slightly above the typical 0.05 threshold. We fail to reject $$H_0$$, which means the improvement is not statistically significant. Therefore, we may choose to collect more data.
 
 ### ⚠️ Common Pitfalls and Best Practices
 ❌ Pitfalls
