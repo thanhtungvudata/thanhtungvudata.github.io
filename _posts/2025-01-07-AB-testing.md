@@ -114,7 +114,7 @@ Assume $$H_0$$ is true, the true conversion rates are equal to $$p$$. We treat b
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
-⚙️ Step 3: Estimated Standard Error (SE)
+⚙️ Step 3: Estimated Standard Error (SE) Under $$H_0$$
 
 SE is a measure of the uncertainty or variability in the difference between two observed conversion rates $$\hat{p}_A$$ and $$\hat{p}_B$$. It tells you how much the observed difference between groups A and B might vary just due to random sampling. 
 
@@ -130,7 +130,7 @@ Instead, the estimated SE for the difference in observed conversion rates is com
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
-🧮 Step 4: Z-Statistic
+🧮 Step 4: Z-Statistic Under $$H_0$$
 
 The z-score measures how many standard errors the observed difference is from 0 (under $$H_0$$):
 
@@ -142,9 +142,19 @@ So,
 - If $$z$$ is close to 0, the observed difference is what we'd expect from random chance
 - If $$z$$ is far from 0, the difference is larger than what we'd expect from chance, so it might be statistically significant
 
-📉 Step 5: Compute P-Value
+📉 Step 5: Compute P-Value Under $$H_0$$
 
-We use the z-score to find a p-value from the standard normal distribution:
+Just knowing ``how many standard errors away'' from the computed z-score is isn't enough — we want to **quantify how likely** it is to observe such a result by chance. 
+
+Given the z-score formula above, we can transform it into the standard normal scale — a distribution with: Mean = 0, Standard deviation = 1, Symmetrical bell shape. 
+
+If the sample size is large, the Central Limit Theorem tells us that the difference $$\hat{p}_B - \hat{p}_A$$ (appropriately normalized) follows an approximately normal distribution — so the z-score follows the standard normal distribution.
+
+We use the z-score to find a p-value from the standard normal distribution. 
+
+The p-value answers this question: ``If the null hypothesis $$H_0$$ is true, what is the probability of seeing a result this extreme or more extreme just by chance?''
+
+Mathematically, p-value is the area under the curve of the standard normal distribution beyond your z-score.
 
 - For a two-tailed test:
 
@@ -156,7 +166,13 @@ $$p_{value} = 1 - \Phi(|z|)$$
 
 where $$\Phi (z)$$ is the cumulative distribution function (CDF) of the standard normal distribution.
 
-✅ Step 6: Decision
+Example:
+Say your z-score is 1.96. Using the standard normal table:
+- For one-tailed test, $$p_{value} = P(Z > 1.96) = 1 - \Phi (1.96) = 0.025$$
+- For a two-tailed test, $$p_{value} = 2 P(Z > 1.96) = 0.05$$
+So there's a $$5\%$$ chance you'd observe such a difference (or bigger) if there really were no true difference.
+
+✅ Step 6: Decide to reject $$H_0$$ or not
 
 - If $$p_{value} < \alpha$$ (commonly $$0.05$$), we reject $$H_0$$ and conclude that the difference is statistically significant.
 - Otherwise, we fail to reject $$H_0$$
