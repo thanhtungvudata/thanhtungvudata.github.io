@@ -251,3 +251,7 @@ A/B testing is a powerful yet simple tool that enables product and marketing tea
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
 
+---
+### Expression of SE Explained:
+
+SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$.
