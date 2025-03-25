@@ -83,7 +83,7 @@ Suppose:
 - $$p_A$$ is the true conversion rate in A
 - $$p_B$$ is the true conversion rate in B
 
-These are unknown parameters we are trying to make inferences about using sample data.
+These are unknown parameters we are trying to make inferences about using sample data:
 
 - Group A (control) has $$n_A$$ users with $$x_A$$ conversions
 - Group B (control) has $$n_B$$ users with $$x_B$$ conversions
@@ -95,6 +95,7 @@ Then:
 We use $$\hat{p}_A$$ and $$\hat{p}_B$$ to estimate $$p_A$$ and $$p_B$$. We also use hypothesis testing to decide if the difference in observed conversion rates is statistically significant.
 
 🔍 Step 1: Define Hypotheses
+
 - Null hypothesis $$H_0$$: No difference in conversion rates, i.e.,
 
 $$H_0: p_A = p_B$$ 
@@ -108,11 +109,13 @@ or if B is better, i.e.,
 $$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
 📊 Step 2: Pooled Proportion
+
 Under $$H_0$$, the true conversion rates are assumed equal, so we compute the pooled estimate:
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
 ⚙️ Step 3: Standard Error (SE)
+
 The standard error for the difference in sample proportions is:
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
