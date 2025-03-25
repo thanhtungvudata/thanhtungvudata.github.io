@@ -146,7 +146,7 @@ So,
 
 Just knowing ``how many standard errors away'' from the computed z-score is isn't enough — we want to **quantify how likely** it is to observe such a result by chance. 
 
-Given the z-score formula above, we can transform it into the standard normal scale — a distribution with: Mean = 0, Standard deviation = 1, Symmetrical bell shape. 
+To do this, given the z-score formula above, we transform it into the standard normal scale — a distribution with: Mean = 0, Standard deviation = 1, Symmetrical bell shape. 
 
 If the sample size is large, the Central Limit Theorem tells us that the difference $$\hat{p}_B - \hat{p}_A$$ (appropriately normalized) follows an approximately normal distribution — so the z-score follows the standard normal distribution.
 
@@ -170,6 +170,7 @@ Example:
 Say your z-score is 1.96. Using the standard normal table:
 - For one-tailed test, $$p_{value} = P(Z > 1.96) = 1 - \Phi (1.96) = 0.025$$
 - For a two-tailed test, $$p_{value} = 2 P(Z > 1.96) = 0.05$$
+
 So there's a $$5\%$$ chance you'd observe such a difference (or bigger) if there really were no true difference.
 
 ✅ Step 6: Decide to reject $$H_0$$ or not
