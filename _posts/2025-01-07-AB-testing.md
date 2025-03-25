@@ -177,7 +177,7 @@ So there's a $$5\%$$ chance you'd observe such a difference (or bigger) if there
 ✅ Step 6: Decide to reject $$H_0$$ or not
 
 - If $$p_{value} < \alpha$$ (commonly $$0.05$$), we reject $$H_0$$ and conclude that the difference is statistically significant.
-- Otherwise, we fail to reject $$H_0$$
+- Otherwise, we fail to reject $$H_0$$.
 
 
 ### Implementing an Example A/B Test in Python
