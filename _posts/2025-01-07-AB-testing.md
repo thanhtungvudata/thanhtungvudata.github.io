@@ -75,9 +75,68 @@ If the variant performs significantly better, consider deploying it to all users
 
 
 ### Theory for A/B Testing
-Often, there’s a trade-off between precision and recall. The F1-score combines them into a single metric, offering a harmonic mean:
+At its core, A/B testing is a statistical hypothesis test. It helps us determine whether the difference in performance between two groups (A and B) is statistically significant or due to random chance.
 
-$$\text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$$
+#### 🎯 Problem Setup
+
+Suppose: 
+- Group A (control) has $n_A$ users with $x_A$ conversions
+- Group B (control) has $n_B$ users with $x_B$ conversions
+- $p_A$ is the true conversion rate in A
+- $p_B$ is the true conversion rate in B
+
+Then:
+- $\hat{p}_A = \frac{x_A}{n_A}$ is the observed conversion rate in A
+- $\hat{p}_B = \frac{x_A}{n_B}$ is the observed conversion rate in B
+
+🔍 Step 1: Define Hypotheses
+- Null hypothesis $H_0$: No difference in conversion rates, i.e.,
+
+$$H_0: p_A = p_B$$ 
+
+- Alternative hypothesis $H_1$: Variant B performs differently, i.e.,
+
+$$H_1: p_A \neq p_B \,\, \text{(two-sided)}$$
+
+or if expecting an improvement, i.e.,
+
+$$H_1: p_A < p_B \,\, \text{(one-sided)}$$
+
+📊 Step 2: Pooled Proportion
+Under $H_0$, the true conversion rates are assumed equal, so we compute the pooled estimate:
+
+$$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
+
+⚙️ Step 3: Standard Error (SE)
+The standard error for the difference in sample proportions is:
+
+$$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
+
+🧮 Step 4: Z-Statistic
+
+The z-score measures how many standard errors the observed difference is from 0 (under $H_0$):
+
+$$z = \frac{\hat{p}_B - \hat{p}_A}{\text{SE}}$$
+
+📉 Step 5: Compute P-Value
+
+We compute the p-value using the standard normal distribution:
+
+- For a two-tailed test:
+
+$$p = 2 (1 - \Phi(|z|))$$
+
+- For a one-tailed test:
+
+$$p = 1 - \Phi(|z|)$$
+
+where $\Phi (z)$ is the cumulative distribution function (CDF) of the standard normal distribution.
+
+✅ Step 6: Decision
+
+- If $p < \alpha$ (commonly $0.05$), we reject $H_0$ and conclude that the difference is statistically significant.
+- Otherwise, we fail to reject $H_0$
+
 
 ### Implementing an Example A/B Test in Python
 Let’s simulate a basic A/B test for conversion rates.
