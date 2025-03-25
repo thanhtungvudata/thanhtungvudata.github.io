@@ -110,13 +110,13 @@ $$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
 📊 Step 2: Pooled Proportion
 
-Under $$H_0$$, the true conversion rates are assumed equal. We treat both groups as coming from the same population. So we compute the pooled estimate:
+Under $$H_0$$, the true conversion rates are assumed equal to $$p$$. We treat both groups as coming from the same population. So we compute the pooled estimate of $$p$$:
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
 ⚙️ Step 3: Standard Error (SE)
 
-SE is a measure of the uncertainty or variability in the difference between two observed conversion rates. It tells you how much the observed difference between groups A and B might vary just due to random sampling. 
+SE is a measure of the uncertainty or variability in the difference between two observed conversion rates $$\hat{p}_A$$ and $$\hat{p}_B$$. It tells you how much the observed difference between groups A and B might vary just due to random sampling. 
 
 In simple terms, SE tells you how much ``wiggle room'' you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
 
@@ -136,17 +136,17 @@ We compute the p-value using the standard normal distribution:
 
 - For a two-tailed test:
 
-$$p = 2 (1 - \Phi(|z|))$$
+$$p_{value} = 2 (1 - \Phi(|z|))$$
 
 - For a one-tailed test:
 
-$$p = 1 - \Phi(|z|)$$
+$$p_{value} = 1 - \Phi(|z|)$$
 
 where $$\Phi (z)$$ is the cumulative distribution function (CDF) of the standard normal distribution.
 
 ✅ Step 6: Decision
 
-- If $$p < \alpha$$ (commonly $$0.05$$), we reject $$H_0$$ and conclude that the difference is statistically significant.
+- If $$p_{value} < \alpha$$ (commonly $$0.05$$), we reject $$H_0$$ and conclude that the difference is statistically significant.
 - Otherwise, we fail to reject $$H_0$$
 
 
