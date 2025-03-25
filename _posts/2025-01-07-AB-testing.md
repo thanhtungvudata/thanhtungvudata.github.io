@@ -260,12 +260,16 @@ SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt
 
 Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Without loss of generality, consider group A with $$n_A$$ trials (e.g., show a button to users). Each trial $$i$$ is a Bernoulli random variable $$X_i \in \{0,1\} $$, in which the probability of $$X_i=1$$ (conversion) is $$p$$, i.e., $$X_i \sim \text{Bernoulli} (p) $$. Then,
 
-$$x_A = \sum_{i=1}^{n_A} X_i$$ 
-
 $$\mathbb{E}(X_i) = p$$
 
 $$\text{Var}(X_i) = \mathbb{E}(X_i^2) - (\mathbb{E}(X_i))^2 = p\times 1^2 + (1-p)\times 0^2 - p^2 = p(1-p)$$
 
-Therefore, by definition of the Binomial distribution, $$x_A \sim \text{Binomial} (n_A, p) $$ and $$x_B \sim \text{Binomial} (n_B, p) $$.
+$$x_A = \sum_{i=1}^{n_A} X_i$$ 
+
+Therefore, by definition of the Binomial distribution, $$x_A \sim \text{Binomial} (n_A, p) $$.
 
 Then, $$\mathbb{E}(x_A) = n_A p$$ and $$\mathbb{E}(\hat{p}_A) = \mathbb{E}( \frac{x_A}{n_A} ) = \frac{1}{n_A} \mathbb{E}( x_A ) = \frac{n_A p }{n_A} = p$$ --- the true popolation conversion rate. This means $$\hat{p}_A$$ an biased estimator of $$p$$.
+
+$$\text{Var}(x_A) = \sum_{i=1}^{n_A} \text{Var}(X_i) = n_A p (1-p)$$
+
+$$\text{Var}(\hat{p}_A) = \text{Var}\Big(\frac{x_A}{n_A}\Big) = \frac{1}{n_A^2} = \frac{n_A p (1-p)}{n_A^2} = \frac{p (1-p)}{n_A}$$
