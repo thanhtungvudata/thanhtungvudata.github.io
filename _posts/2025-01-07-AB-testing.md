@@ -132,11 +132,9 @@ $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}
 
 🧮 Step 4: Z-Statistic Under $$H_0$$
 
-The z-score tells us how far the difference of the observed conversion rates we see is from zero, using standard error as the unit, (under $$H_0$$):
+The z-score tells us how far the difference of the observed conversion rates we see is from zero, using standard error as the unit, assuming that $$H_0$$ is true:
 
 $$z = \frac{\hat{p}_B - \hat{p}_A}{\text{SE}}$$
-
-This formula tells us: How many standard errors apart the observed difference of conversion rates between Group B and Group A is, compared to the null hypothesis which assumes there's no real difference.
 
 So, 
 - If $$z$$ is close to 0, the observed difference is what we'd expect from random chance
