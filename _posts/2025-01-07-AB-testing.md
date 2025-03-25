@@ -8,6 +8,8 @@ tags:
 ---
 A/B testing is a cornerstone of data-driven decision-making in product development, marketing, and user experience optimization. Whether you're launching a new feature or redesigning a webpage, A/B testing helps you understand what works best for your users with scientific rigor.
 
+<img src="/assets/images/AB_testing_overview.png" alt="AB Testing" width="600">
+
 ### 🧪 What is A/B Testing?
 
 A/B Testing, also known as split testing, is a controlled experiment comparing two versions (A and B) to determine which performs better for a specific outcome (e.g., clicks, conversions, or revenue).
