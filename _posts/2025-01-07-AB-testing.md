@@ -80,14 +80,19 @@ At its core, A/B testing is a statistical hypothesis test. It helps us determine
 #### 🎯 Problem Setup
 
 Suppose: 
-- Group A (control) has $$n_A$$ users with $$x_A$$ conversions
-- Group B (control) has $$n_B$$ users with $$x_B$$ conversions
 - $$p_A$$ is the true conversion rate in A
 - $$p_B$$ is the true conversion rate in B
+
+These are unknown parameters we are trying to make inferences about using sample data.
+
+- Group A (control) has $$n_A$$ users with $$x_A$$ conversions
+- Group B (control) has $$n_B$$ users with $$x_B$$ conversions
 
 Then:
 - $$\hat{p}_A = \frac{x_A}{n_A}$$ is the observed conversion rate in A
 - $$\hat{p}_B = \frac{x_A}{n_B}$$ is the observed conversion rate in B
+
+We use $$\hat{p}_A$$ and $$\hat{p}_B$$ to estimate $$p_A$$ and $$p_B$$. We also use hypothesis testing to decide if the difference in observed conversion rates is statistically significant.
 
 🔍 Step 1: Define Hypotheses
 - Null hypothesis $$H_0$$: No difference in conversion rates, i.e.,
@@ -96,11 +101,11 @@ $$H_0: p_A = p_B$$
 
 - Alternative hypothesis $$H_1$$: Variant B performs differently, i.e.,
 
-$$H_1: p_A \neq p_B \,\, \text{(two-sided)}$$
+$$H_1: p_A \neq p_B \,\, \text{(two-sided test)}$$
 
-or if expecting an improvement, i.e.,
+or if B is better, i.e.,
 
-$$H_1: p_A < p_B \,\, \text{(one-sided)}$$
+$$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
 📊 Step 2: Pooled Proportion
 Under $$H_0$$, the true conversion rates are assumed equal, so we compute the pooled estimate:
