@@ -118,7 +118,7 @@ $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
 SE is a measure of the uncertainty or variability in the difference between two observed conversion rates $$\hat{p}_A$$ and $$\hat{p}_B$$. It tells you how much the observed difference between groups A and B might vary just due to random sampling. 
 
-In simple terms, SE tells you how much ``wiggle room'' you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
+In simple terms, SE tells you how much "wiggle room" you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
 
 The true SE for the difference in observed conversion rates under $$H_0$$ is:
 
