@@ -108,19 +108,23 @@ or if B is better, i.e.,
 
 $$H_1: p_B > p_A \,\, \text{(one-sided test)}$$
 
-📊 Step 2: Pooled Proportion
+📊 Step 2: Pooled Conversion Rate
 
-Under $$H_0$$, the true conversion rates are assumed equal to $$p$$. We treat both groups as coming from the same population. So we compute the pooled estimate of $$p$$:
+Under $$H_0$$, the true conversion rates are assumed equal to $$p$$. We treat both groups as coming from the same population. Since $$p$$ is usually known in real-world tests, we compute the pooled estimate of $$p$$ instead:
 
 $$\hat{p} = \frac{x_A+x_B}{n_A+n_B}$$
 
-⚙️ Step 3: Standard Error (SE)
+⚙️ Step 3: Estimated Standard Error (SE)
 
 SE is a measure of the uncertainty or variability in the difference between two observed conversion rates $$\hat{p}_A$$ and $$\hat{p}_B$$. It tells you how much the observed difference between groups A and B might vary just due to random sampling. 
 
 In simple terms, SE tells you how much ``wiggle room'' you should expect in your A/B test results — even if there were actually no real difference in the true conversion rates of A and B.
 
-The SE for the difference in observed conversion rates is:
+The true SE for the difference in observed conversion rates is:
+
+$$\text{SE} = \sqrt{p(1 - p)\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
+
+However, this true SE is only theoretical. Instead, the estimated SE for the difference in observed conversion rates is computed using the estimate $$\hat{p}$$ of $$p$$:
 
 $$\text{SE} = \sqrt{\hat{p}(1 - \hat{p})\Big(\frac{1}{n_A} + \frac{1}{n_B}\Big)}$$
 
