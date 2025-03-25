@@ -88,13 +88,13 @@ Suppose:
 These are unknown parameters we are trying to make inferences about using sample data:
 
 - Group A (control) has $$n_A$$ users with $$x_A$$ conversions
-- Group B (control) has $$n_B$$ users with $$x_B$$ conversions
+- Group B (variant) has $$n_B$$ users with $$x_B$$ conversions
 
 Then:
 - $$\hat{p}_A = \frac{x_A}{n_A}$$ is the observed conversion rate in A
 - $$\hat{p}_B = \frac{x_A}{n_B}$$ is the observed conversion rate in B
 
-We use $$\hat{p}_A$$ and $$\hat{p}_B$$ to estimate $$p_A$$ and $$p_B$$. We also use hypothesis testing to decide if the difference in observed conversion rates is statistically significant.
+We use $$\hat{p}_A$$ and $$\hat{p}_B$$ to estimate $$p_A$$ and $$p_B$$. We also use hypothesis testing to decide if the difference in the observed conversion rates is statistically significant.
 
 🔍 Step 1: Define Hypotheses
 
