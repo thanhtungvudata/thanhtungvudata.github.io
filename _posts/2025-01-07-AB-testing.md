@@ -258,9 +258,13 @@ For further inquiries or collaboration, please contact me at [my email](mailto:t
 
 SE is the standard error of $$\hat{p}_B - \hat{p}_A$$, i.e., $$\text{SE} = \sqrt{\text{Var} (\hat{p}_B - \hat{p}_A)}$$.
 
-Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Without loss of generality, consider group A with $$n_A$$ trials (e.g., show a button to users). Each trial $$i$$ is a Bernoulli random variable $$X_i \in \{0,1\} $$, in which the probability of $$X_i=1$$ (conversion) is $$p$$. Then,
+Recall that under $$H_0$$, both groups A and B has the same conversion rate $$p$$. Without loss of generality, consider group A with $$n_A$$ trials (e.g., show a button to users). Each trial $$i$$ is a Bernoulli random variable $$X_i \in \{0,1\} $$, in which the probability of $$X_i=1$$ (conversion) is $$p$$, i.e., $$X_i \sim \text{Bernoulli} (p) $$. Then,
 
-$$x_A = \sum_{i=1}^{n_A} X_i$$. 
+$$x_A = \sum_{i=1}^{n_A} X_i$$ 
+
+$$\mathbb{E}(X_i) = p$$
+
+$$\text{Var}(X_i) = \mathbb{E}(X_i^2) - (\mathbb{E}(X_i))^2 = p\times 1^2 + (1-p)\times 0^2 - p^2 = p(1-p)$$
 
 Therefore, by definition of the Binomial distribution, $$x_A \sim \text{Binomial} (n_A, p) $$ and $$x_B \sim \text{Binomial} (n_B, p) $$.
 
