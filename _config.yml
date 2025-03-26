@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Thanh Tung Vu"
   avatar : "/assets/images/6.jpeg"
-  bio    : "Data/Research Scientist, Deep Learning and Machine Learning Specialist"
+  bio    : "Data/Research Scientist, Machine Learning and Optimization Specialist"
   location: "Sydney, Australia"
   links:
     - label: "Email"
