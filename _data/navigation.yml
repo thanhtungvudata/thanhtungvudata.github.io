@@ -1,6 +1,6 @@
 main:
-  - title: "About"
-    url: /about/
+  # - title: "About"
+  #   url: /about/
   - title: "CV"
     url: https://drive.google.com/file/d/1qbKO_utlKmLtIHRJt91sk4Qen7YSzJQd/view?usp=sharing
   - title: "Portfolio"
