@@ -53,11 +53,13 @@ We'll now explore each component.
 ## 1️⃣ Token Embeddings + Positional Encoding
 
 ### **What it does:**
-Converts each input token into a vector and adds a positional signal. Each word (like “The”, “cat”, “sleeps”) is converted into a vector of numbers that captures the meaning of the word. Adds information about word order (like “first”, “second”, etc.) to each word vector.
+Converts each input token into a vector and adds a positional signal. 
+- Each word (like “The”, “cat”, “sleeps”) is converted into a vector of numbers that captures the meaning of the word. 
+- Adds information about word order (like “first”, “second”, etc.) to each word vector.
 
 ### **Why it's needed:**
-- The model can't work directly with text — it needs a numerical understanding of words. These embeddings capture similarities, like “cat” and “dog” being closer than “cat” and “sleep”. 
-- Transformers don’t know order by default — so “the cat sleeps” and “sleeps cat the” would look the same without this. Positional encoding tells the model who came before and after.
+- The model can't work directly with text. It needs a numerical understanding of words. These embeddings capture similarities, like "cat" and "dog" has a larger similarity than "cat" and "sleep". 
+- Transformers don't know order by default. So "the cat sleeps" and "sleeps cat the" would look the same without this. Positional encoding tells the model who came before and after.
 
 ### **Example:**
 For the sentence `"The cat sleeps"`:
@@ -79,10 +81,10 @@ For the sentence `"The cat sleeps"`:
 ## 2️⃣ Multi-Head Self-Attention
 
 ### **What it does:**
-Each token looks at **all other tokens** and decides **who to pay attention to**.
+Each word looks at **all the other words** in the sentence and decides **how much attention to pay** to each of them.
 
 ### **Why it's needed:**
-Captures context from anywhere in the sequence — essential for meaning.
+This helps the model understand context. Multi-head means this is done in multiple ways at once. One head might look at subject-verb, another at adjectives, etc.
 
 ### **How it works:**
 - Compute query (Q), key (K), value (V) vectors:
@@ -103,10 +105,10 @@ If the word is "sleeps", attention helps it realize that "cat" is the subject pe
 ## 3️⃣ Add & LayerNorm (Post-Attention)
 
 ### **What it does:**
-Adds the attention output back to the input and normalizes.
+Adds the attention output back to the input and normalizes. 
 
 ### **Why it's needed:**
-Helps with gradient flow and keeps representations stable.
+This helps the model not forget the original word info, and makes training stable and fast.
 
 ### **Formula:**
 \[ \text{LayerNorm}(X + \text{MultiHead}(X)) \]
