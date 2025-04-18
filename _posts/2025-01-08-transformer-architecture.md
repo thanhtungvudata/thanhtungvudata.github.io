@@ -194,7 +194,7 @@ This helps the model understand context. Multi-head means this is done in multip
 
 ### **How it works:**
 - Compute query (Q), key (K), value (V) vectors:
-  $ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
+  $$ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
 - Compute attention weights:
   $$ \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) $$
 - Multiply by V and combine heads:
