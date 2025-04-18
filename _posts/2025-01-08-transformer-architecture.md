@@ -94,8 +94,8 @@ Each encoder layer in the stack follows this sequence:
 - For each token, calculates attention over **all other tokens**
 - Uses learned projections to compute $$Q$$ (query), $$K$$ (key), and $$V$$ (value)
 - Computes:
-  $$\(\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\)$$
-- Attention from multiple heads are concatenated and passed through $$\(W^O\)$$
+  $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+- Attention from multiple heads are concatenated and passed through $$W^O$$
 
 ### 3. Add & LayerNorm (Residual Block 1)
 
@@ -104,14 +104,14 @@ Each encoder layer in the stack follows this sequence:
 ### 4. Feedforward Neural Network (FFN)
 
 - Two-layer MLP with GELU or ReLU
-  $$\(\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2\)$$
+  $$\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2$$
 - Applied independently to each token
 
 ### 5. Add & LayerNorm (Residual Block 2)
 
 - Adds FFN output to input of FFN and normalizes again
 
-This block is repeated $$\(N\)$$ times to build deeper semantic understanding.
+This block is repeated $$N$$ times to build deeper semantic understanding.
 
 ---
 
@@ -150,7 +150,7 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 
 - Final residual normalization
 
-Decoder layers are also repeated $$\(N\)$$ times for generation depth.
+Decoder layers are also repeated $$N$$ times for generation depth.
 
 We'll now explore each component.
 
@@ -194,9 +194,9 @@ This helps the model understand context. Multi-head means this is done in multip
 
 ### **How it works:**
 - Compute query (Q), key (K), value (V) vectors:
-  \[ Q = XW^Q, \quad K = XW^K, \quad V = XW^V \]
+  $ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
 - Compute attention weights:
-  \[ \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) \]
+  $$ \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) $$
 - Multiply by V and combine heads:
   ```python
   Attention = softmax(Q @ K.T / sqrt(d_k)) @ V
@@ -217,7 +217,8 @@ Adds the attention output back to the input and normalizes.
 This helps the model not forget the original word info, and makes training stable and fast.
 
 ### **Formula:**
-\[ \text{LayerNorm}(X + \text{MultiHead}(X)) \]
+
+$$\text{LayerNorm}(X + \text{MultiHead}(X)) $$
 
 ---
 
@@ -230,7 +231,7 @@ It runs a mini (2-layer) Multi-Layer Perceptron (MLP) on each word’s vector se
 It helps the model transform the meaning of each word based on what it has learned — like going from "noun" to "subject", or sharpening what was learned in attention.
 
 ### **Formula:**
-\[ \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2 \]
+$$ \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2 $$
 
 ### **Example:**
 After attention figures out that "cat" is important to "sleeps", the FFN updates the "sleeps" vector to reflect this.
