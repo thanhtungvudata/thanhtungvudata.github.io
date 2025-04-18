@@ -10,7 +10,7 @@ tags:
 
 Transformers have revolutionized the world of AI, powering models like GPT, BERT, and T5. But what actually goes on inside these models?
 
-In this blog post, we'll demystify the transformer architecture by walking through each component, how they relate to one another, and give practical examples to help you understand how it all fits together.
+In this blog post, we’ll explore the motivation behind transformers, the three main architectural variants (full transformer, encoder-only, and decoder-only), their best applications, and how each component works — with practical examples and diagrams.
 
 ---
 
@@ -18,33 +18,139 @@ In this blog post, we'll demystify the transformer architecture by walking throu
 
 Before transformers, models like RNNs and LSTMs were used for sequential data. These models process tokens **one at a time**, which limits parallelism and struggles with long-range dependencies.
 
-**Transformers** changed the game by using **self-attention** to allow each token to look at the entire sequence in **parallel**, capturing relationships between words, no matter how far apart they are.
+**Transformers** changed the game by using **self-attention**, which allows each token to directly consider **all other tokens in the sequence simultaneously** — capturing relationships between words, no matter how far apart they are.
 
 This makes transformers faster to train, more scalable, and dramatically more powerful.
 
 ---
 
-## 📊 Transformer Diagram 
+## 🧱 Transformer Architectures: Full, Encoder-Only, Decoder-Only
+
+There are three main variants of the transformer architecture, each optimized for different types of tasks:
+
+| Architecture     | Example Models            | Best For                                |
+| ---------------- | ------------------------- | --------------------------------------- |
+| Full Transformer | T5, BART, MarianMT        | Translation, summarization, multimodal  |
+| Encoder-Only     | BERT, RoBERTa             | Classification, sentence similarity, QA |
+| Decoder-Only     | GPT-2/3/4, LLaMA, ChatGPT | Text generation, chat, code completion  |
+
+### ✅ Why Each Fits Its Application
+
+- **Encoder-only** models create **contextual representations** of text — ideal for understanding tasks.
+- **Decoder-only** models generate text **token by token**, making them ideal for chat, storytelling, coding, and completion.
+- **Encoder–decoder** models separate input and output — perfect for **sequence-to-sequence** tasks like translation.
+
+---
+
+## 📊 Architecture Diagrams
+
+### 📘 Full Transformer (Encoder–Decoder)
+
+```text
+Input Tokens (e.g. English)
+   ↓
+[Encoder Stack]
+   ↓
+Context Representations
+   ↓
+[Decoder Stack with Cross-Attention]
+   ↓
+Output Tokens (e.g. French)
+```
+
+### 📗 Encoder-Only Transformer
 
 ```text
 Input Tokens
    ↓
-Token Embeddings + Positional Encoding
+[Encoder Stack]
    ↓
-Multi-Head Attention
-   ↓
-Add & LayerNorm
-   ↓
-Feedforward Neural Network
-   ↓
-Add & LayerNorm
-   ↓
-(repeat N times)
-   ↓
-Final Output → (Used for prediction/classification/etc.)
+Contextual Embeddings → used for classification or sentence-level tasks
 ```
 
-N varies based on the models (e.g., 12 layers in GPT-2 small, 96 in GPT-4).
+### 📙 Decoder-Only Transformer
+
+```text
+Prompt/Input Tokens
+   ↓
+[Decoder Stack with Masked Self-Attention]
+   ↓
+Autoregressive Output → one token at a time
+```
+
+---
+
+## 🧱 Detailed Encoder Stack (Used in BERT, T5)
+
+Each encoder layer in the stack follows this sequence:
+
+### 1. Token Embeddings + Positional Encoding
+
+- Maps each word/token into a vector of size `d_model`
+- Adds positional encoding (sinusoidal or learned) to represent order
+
+### 2. Multi-Head Self-Attention
+
+- For each token, calculates attention over **all other tokens**
+- Uses learned projections to compute $$Q$$ (query), $$K$$ (key), and $$V$$ (value)
+- Computes:
+  $$\(\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\)$$
+- Attention from multiple heads are concatenated and passed through $$\(W^O\)$$
+
+### 3. Add & LayerNorm (Residual Block 1)
+
+- Adds the attention output to the original input and applies LayerNorm
+
+### 4. Feedforward Neural Network (FFN)
+
+- Two-layer MLP with GELU or ReLU
+  $$\(\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2\)$$
+- Applied independently to each token
+
+### 5. Add & LayerNorm (Residual Block 2)
+
+- Adds FFN output to input of FFN and normalizes again
+
+This block is repeated $$\(N\)$$ times to build deeper semantic understanding.
+
+---
+
+## 🧱 Detailed Decoder Stack (Used in GPT, T5, BART)
+
+Each decoder layer includes all of the above **plus masking and cross-attention**:
+
+### 1. Token Embeddings + Positional Encoding
+
+- Same as encoder
+- During training, uses **shifted input** (e.g. "Translate: The cat sleeps" → "Le", then "Le chat", etc.)
+
+### 2. Masked Multi-Head Self-Attention
+
+- Tokens can **only attend to earlier positions** (causal masking)
+- Prevents the model from seeing future tokens
+
+### 3. Add & LayerNorm (Residual Block 1)
+
+- As in encoder
+
+### 4. Cross-Attention (Encoder-Decoder only)
+
+- Query from decoder attends to K/V from **encoder output**
+- Allows decoder to access input sentence meaning (e.g., translation)
+
+### 5. Add & LayerNorm (Residual Block 2)
+
+- Same structure as above
+
+### 6. Feedforward Neural Network (FFN)
+
+- Same as encoder
+
+### 7. Add & LayerNorm (Residual Block 3)
+
+- Final residual normalization
+
+Decoder layers are also repeated $$\(N\)$$ times for generation depth.
 
 We'll now explore each component.
 
@@ -160,16 +266,21 @@ This process is repeated N times. Each layer refines the understanding.
 ## ⚡ **Limitations**
 
 - **Quadratic attention complexity** w.r.t. sequence length.
-- **Context length limit** (e.g., 2048–128K tokens).
+- **input sequence length limit** (e.g., 2048–128K tokens).
 - Memory and compute heavy.
 
 ## ✅ Final Thoughts
 
-Transformers are deep but modular. Once you understand how token embeddings, attention, and FFNs work together, the entire architecture becomes intuitive.
+Decoder-only transformers like GPT have proven incredibly powerful, as they can perform many tasks **just by clever prompting**, without needing a full encoder-decoder structure.
 
-Mastering this opens the door to understanding GPT, Claude, Gemini, LLaMA, PaLM, and almost every state-of-the-art NLP model today.
+Still, encoder-only and full transformer models are valuable in **understanding tasks** and **structured input-output tasks**, respectively.
 
-For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
+Understanding these architectures is essential to mastering LLMs like GPT, BERT, Claude, Gemini, LLaMA, and beyond.
+
+For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+
+
+
 
 
 
