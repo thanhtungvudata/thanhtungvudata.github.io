@@ -2,7 +2,7 @@
 title: "Understanding Transformer Architecture: The Brains Behind Modern AI"
 date: 2025-01-08
 categories:
-  - Large Languague Model Fundamentals
+  - Large Languague Model Architectures
 tags:
   - Data Science
   - Generative AI
@@ -18,23 +18,33 @@ In this blog post, we'll demystify the transformer architecture by walking throu
 
 Before transformers, models like RNNs and LSTMs were used for sequential data. These models process tokens **one at a time**, which limits parallelism and struggles with long-range dependencies.
 
-**Transformers** changed the game by using **self-attention** to allow each token to look at the entire sequence in **parallel**, capturing relationships at any distance.
+**Transformers** changed the game by using **self-attention** to allow each token to look at the entire sequence in **parallel**, capturing relationships between words, no matter how far apart they are.
 
 This makes transformers faster to train, more scalable, and dramatically more powerful.
 
 ---
 
-## 🧱 Transformer Block Overview
+## 📊 Transformer Diagram 
 
-Each transformer layer includes:
+```text
+Input Tokens
+   ↓
+Token Embeddings + Positional Encoding
+   ↓
+Multi-Head Attention
+   ↓
+Add & LayerNorm
+   ↓
+Feedforward Neural Network
+   ↓
+Add & LayerNorm
+   ↓
+(repeat N times)
+   ↓
+Final Output → (Used for prediction/classification/etc.)
+```
 
-1. Token + Positional Embedding
-2. Multi-Head Self-Attention
-3. Add & LayerNorm
-4. Feedforward Neural Network (FFN)
-5. Add & LayerNorm
-
-These blocks are stacked \( N \) times (e.g., 12 layers in GPT-2 small, 96 in GPT-4).
+N varies based on the models (e.g., 12 layers in GPT-2 small, 96 in GPT-4).
 
 We'll now explore each component.
 
@@ -135,28 +145,6 @@ This process is repeated multiple times. Each layer refines the understanding.
 - Early layers learn local syntax.
 - Mid layers capture sentence structure.
 - Later layers understand abstract meaning.
-
----
-
-## 📊 Visual Diagram (Text Layout)
-
-```text
-Input Tokens
-   ↓
-Token Embeddings + Positional Encoding
-   ↓
-Multi-Head Attention
-   ↓
-Add & LayerNorm
-   ↓
-Feedforward Neural Network
-   ↓
-Add & LayerNorm
-   ↓
-(repeat N times)
-   ↓
-Final Output → (Used for prediction/classification/etc.)
-```
 
 ---
 
