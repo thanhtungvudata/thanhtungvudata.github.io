@@ -118,10 +118,10 @@ This helps the model not forget the original word info, and makes training stabl
 ## 4️⃣ Feedforward Neural Network (FFN)
 
 ### **What it does:**
-Applies a mini-MLP to each token independently.
+It runs a mini (2-layer) Multi-Layer Perceptron (MLP) on each word’s vector separately to help the model better understand and refine the meaning of that word in context. MLP is a specific type of FNN made of fully connected layers with nonlinear activations (e.g., ReLU or GELU).
 
 ### **Why it's needed:**
-Transforms and refines token-level features.
+It helps the model transform the meaning of each word based on what it has learned — like going from "noun" to "subject", or sharpening what was learned in attention.
 
 ### **Formula:**
 \[ \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2 \]
@@ -136,15 +136,14 @@ After attention figures out that "cat" is important to "sleeps", the FFN updates
 ### **What it does:**
 Adds FFN output to its input and applies LayerNorm again.
 
-### **Formula:**
-\[ \text{LayerNorm}(x + \text{FFN}(x)) \]
+### **Why it's needed:**
+Same reason: keeps info flowing well and helps avoid forgetting or over-correcting.
 
 ---
 
 ## 🔁 Stack of Layers
 
-This process is repeated multiple times. Each layer refines the understanding.
-
+This process is repeated N times. Each layer refines the understanding.
 - Early layers learn local syntax.
 - Mid layers capture sentence structure.
 - Later layers understand abstract meaning.
