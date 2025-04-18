@@ -150,11 +150,24 @@ This process is repeated N times. Each layer refines the understanding.
 
 ---
 
+## 🛠️ **Key Advantages of Transformer Architecture**
+
+- **Parallel processing** of inputs.
+- **Long-range dependency handling**.
+- **Scalable** to massive parameter counts.
+- Suitable for **pretraining + finetuning paradigm** in LLMs.
+
+## ⚡ **Limitations**
+
+- **Quadratic attention complexity** w.r.t. sequence length.
+- **Context length limit** (e.g., 2048–128K tokens).
+- Memory and compute heavy.
+
 ## ✅ Final Thoughts
 
 Transformers are deep but modular. Once you understand how token embeddings, attention, and FFNs work together, the entire architecture becomes intuitive.
 
-Mastering this opens the door to understanding GPT, BERT, T5, and almost every state-of-the-art NLP model today.
+Mastering this opens the door to understanding GPT, Claude, Gemini, LLaMA, PaLM, and almost every state-of-the-art NLP model today.
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
 
