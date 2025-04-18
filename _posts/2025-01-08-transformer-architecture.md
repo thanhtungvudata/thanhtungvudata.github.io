@@ -53,10 +53,11 @@ We'll now explore each component.
 ## 1️⃣ Token Embeddings + Positional Encoding
 
 ### **What it does:**
-Converts each input token into a vector and adds a positional signal.
+Converts each input token into a vector and adds a positional signal. Each word (like “The”, “cat”, “sleeps”) is converted into a vector of numbers that captures the meaning of the word. Adds information about word order (like “first”, “second”, etc.) to each word vector.
 
 ### **Why it's needed:**
-Transformers have no built-in sense of word order. Positional encoding injects order info.
+- The model can't work directly with text — it needs a numerical understanding of words. These embeddings capture similarities, like “cat” and “dog” being closer than “cat” and “sleep”. 
+- Transformers don’t know order by default — so “the cat sleeps” and “sleeps cat the” would look the same without this. Positional encoding tells the model who came before and after.
 
 ### **Example:**
 For the sentence `"The cat sleeps"`:
