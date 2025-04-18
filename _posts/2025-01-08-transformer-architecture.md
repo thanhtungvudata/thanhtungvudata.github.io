@@ -86,8 +86,14 @@ Each encoder layer in the stack follows this sequence:
 
 ### 1. Token Embeddings + Positional Encoding
 
-- Maps each word/token into a vector of size `d_model`
-- Adds positional encoding (sinusoidal or learned) to represent order
+#### **What it does:**
+Converts each input token into a vector and adds a positional signal. 
+- Each word (like “The”, “cat”, “sleeps”) is converted into a vector of numbers that captures the meaning of the word. 
+- Adds information about word order (like “first”, “second”, etc.) to each word vector.
+
+#### **Why it's needed:**
+- The model can't work directly with text. It needs a numerical understanding of words. These embeddings capture similarities, like "cat" and "dog" has a larger similarity than "cat" and "sleep". 
+- Transformers don't know order by default. So "the cat sleeps" and "sleeps cat the" would look the same without this. Positional encoding tells the model who came before and after.
 
 ### 2. Multi-Head Self-Attention
 
