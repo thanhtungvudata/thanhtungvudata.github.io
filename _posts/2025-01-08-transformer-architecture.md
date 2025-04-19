@@ -475,15 +475,13 @@ This process is repeated $$N$$ times. Each layer refines the understanding.
 - Transformers have a **maximum sequence length**, often 2048–32K tokens (though some newer models go up to 128K).
 - Input that exceeds this limit is truncated or must be chunked.
 
-### WResource-Intensive
+### Resource-Intensive
 - Training and running large transformers require **significant memory, compute, and energy**.
 - Not ideal for real-time applications or deployment on low-resource devices.
 
 Despite these limitations, transformers remain the dominant architecture in NLP and are being extended to vision, audio, robotics, and multimodal applications.
 
 ## Why Models Like GPT (Decoder-Only) Can Do Translation, Summarization, Multimodal
-
-### 🔍 How is GPT able to perform tasks like translation or summarization?
 
 Although GPT is a **decoder-only transformer**, it can handle tasks traditionally associated with **encoder–decoder models** because of how it’s trained and how prompting works:
 
