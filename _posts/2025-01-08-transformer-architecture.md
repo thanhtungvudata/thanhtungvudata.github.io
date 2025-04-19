@@ -182,7 +182,12 @@ $$
 \alpha_{ij} = \text{softmax}_j\left(\text{score}_{ij}\right)
 $$
 
-Each $$ \alpha_{ij} \in [0,1] $$, and $$ \sum_j \alpha_{ij} = 1 $$
+Each $$ \alpha_{ij} \in [0,1] $$, and $$ \sum_j \alpha_{ij} = 1 $$.
+
+**Intuition:**
+- The softmax function turns raw scores into probabilities.
+- It highlights the tokens with **higher relevance** by assigning them **larger weights**, while **downplaying** less relevant tokens.
+- In other words, it helps the model focus more on important words — like attending to "cat" when decoding "sleeps".
 
 ##### 4. Weighted sum of values
 Use the attention weights to combine the values:
