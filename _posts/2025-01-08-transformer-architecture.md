@@ -455,16 +455,43 @@ This process is repeated $$N$$ times. Each layer refines the understanding.
 
 ## 🛠️ **Key Advantages of Transformer Architecture**
 
-- **Parallel processing** of inputs.
-- **Long-range dependency handling**.
-- **Scalable** to massive parameter counts.
-- Suitable for **pretraining + finetuning paradigm** in LLMs.
+### Parallel Processing
+- Unlike RNNs which process tokens one by one, transformers process **all tokens simultaneously** using self-attention.
+- This massively improves training speed and allows **efficient use of modern GPUs and TPUs**.
+
+### Captures Long-Range Dependencies
+- Self-attention computes pairwise relationships between all tokens.
+- This makes it easy to model dependencies even between **distant tokens** in a sequence.
+- In contrast, RNNs suffer from vanishing gradients over long sequences.
+
+### Scalable to Large Models
+- Transformers scale well with increased model size and data.
+- They've been used to train models with **billions to trillions of parameters**, such as GPT-4, PaLM, and Claude.
+
+### Supports Pretraining + Finetuning
+- Transformers excel in **transfer learning**:
+  - Pretrain on massive, diverse corpora (e.g., web, books, code)
+  - Finetune on specific downstream tasks with relatively small labeled datasets
+- This is the foundation of **modern LLM pipelines**.
+
+---
 
 ## ⚡ **Limitations**
 
-- **Quadratic attention complexity** w.r.t. sequence length.
-- **Input sequence length limit** (e.g., 2048–128K tokens).
-- Memory and compute heavy.
+### Quadratic Attention Complexity
+- Self-attention requires computing a matrix of size \( n \times n \) (where \( n \) = sequence length).
+- Memory and compute costs scale **quadratically**: \( \mathcal{O}(n^2) \).
+- Long documents are expensive to process.
+
+### Fixed Context Window
+- Transformers have a **maximum sequence length**, often 2048–32K tokens (though some newer models go up to 128K).
+- Input that exceeds this limit is truncated or must be chunked.
+
+### WResource-Intensive
+- Training and running large transformers require **significant memory, compute, and energy**.
+- Not ideal for real-time applications or deployment on low-resource devices.
+
+Despite these limitations, transformers remain the dominant architecture in NLP and are being extended to vision, audio, robotics, and multimodal applications.
 
 ## Why Models Like GPT (Decoder-Only) Can Do Translation, Summarization, Multimodal
 
