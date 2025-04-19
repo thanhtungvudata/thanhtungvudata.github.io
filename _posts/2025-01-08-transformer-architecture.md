@@ -227,9 +227,33 @@ which **Normalizes** the result using **layer normalization**, which adjusts the
 
 ### 4. Feedforward Neural Network (FFN)
 
-- Two-layer MLP with GELU or ReLU
-  $$\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2$$
-- Applied independently to each token
+#### **What it does:**
+Each token’s vector (after attention) is passed through a small neural network — the same one for every position — to refine its representation. 
+
+Each token goes through this same transformation separately — it's position-wise, not sequence-wide.
+
+#### **Why it's needed:**
+- Adds nonlinearity to the model
+- Lets the model reprocess each token’s context-aware vector independently
+- Helps the model abstract and compress information
+
+For example, if the word "sleeps" attends to "cat" in attention, the FFN helps turn that into a refined idea like "subject performs action.
+
+#### **How it works:**
+It consists of two fully connected layers with an activation in between:
+
+$$
+\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2
+$$
+
+- $$ W_1 \in \mathbb{R}^{d \times d_{ff}} $$, $$ W_2 \in \mathbb{R}^{d_{ff} \times d} $$
+- $$ d_{ff} $$ is usually 4x the size of $$ d $$ (embedding dimension)
+- Activation is typically **ReLU** or **GELU** (more commonly used in transformers)
+
+#### Intuition:
+- Think of this as a mini brain that processes each token in isolation.
+- While attention lets tokens talk to each other, FFN helps each token **reflect and reshape** what it just learned.
+
 
 ### 5. Add & LayerNorm (Residual Block 2)
 
@@ -277,22 +301,6 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 Decoder layers are also repeated $$N$$ times for generation depth.
 
 We'll now explore each component.
-
----
-
-## 4️⃣ Feedforward Neural Network (FFN)
-
-### **What it does:**
-It runs a mini (2-layer) Multi-Layer Perceptron (MLP) on each word’s vector separately to help the model better understand and refine the meaning of that word in context. MLP is a specific type of FNN made of fully connected layers with nonlinear activations (e.g., ReLU or GELU).
-
-### **Why it's needed:**
-It helps the model transform the meaning of each word based on what it has learned — like going from "noun" to "subject", or sharpening what was learned in attention.
-
-### **Formula:**
-$$ \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2 $$
-
-### **Example:**
-After attention figures out that "cat" is important to "sleeps", the FFN updates the "sleeps" vector to reflect this.
 
 ---
 
