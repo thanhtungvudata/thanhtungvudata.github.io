@@ -77,13 +77,31 @@ This single objective turns out to be incredibly powerful: by learning to predic
 ### 2. **Transformer Layers**
 
 - These layers take the embedded input sequence and transform it through a stack of self-attention and feedforward blocks, producing a **contextualized representation** for each token in the sequence.
+
 - The output for each token position $$t$$ after the final Transformer layer is a vector $$h_t$$, which captures its meaning in context.
 
-  &#x20;
-- Each layer includes:
-  - **Self-attention** with learned weights: $$W^Q, W^K, W^V, W^O$$
-  - **Feedforward Network (FFN)** with learned weights $$W_1, W_2$$ and biases $$b_1, b_2$$
-  - **LayerNorm** and residual connections
+- Each Transformer layer consists of two main sub-blocks:
+
+  1. **Self-attention block**
+  2. **Feedforward block**
+
+- Both sub-blocks are wrapped with:
+
+  - **Residual connection** (Add): the input is added to the output of the sub-block.
+  - **Layer Normalization** (LayerNorm): applied either before or after the sub-block (depending on architecture).
+
+- Each LayerNorm includes **learnable parameters**:
+
+  - **Gain**: $$\gamma \in \mathbb{R}^{d}$$
+  - **Bias**: $$\beta \in \mathbb{R}^{d}$$
+
+- Summary of learnable components per layer:
+
+  - **Self-attention**: $$W^Q, W^K, W^V, W^O$$
+  - **Feedforward Network (FFN)**: $$W_1, W_2, b_1, b_2$$
+  - **LayerNorm Parameters**: $$\gamma, \beta$$ for each normalization layer
+
+
 
 ### 3. **Output Projection**
 
