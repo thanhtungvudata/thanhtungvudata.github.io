@@ -132,10 +132,10 @@ $$
 $$ E_{\text{pos}} \in \mathbb{R}^{L \times d} $$, where $$ L $$ is max sequence length.
 
 ##### Final Input:
-For position $$p $$ with its implied token ID $$ t $$:
+For position $$p $$ with its implied token ID $$ t_p $$:
 
 $$
-X_p = E_{\text{token}}[t] + \text{PE}[p]
+X_p = E_{\text{token}}[t_p] + \text{PE}[p]
 $$
 
 This combined vector $$ X_p $$ which encodes both **what the word is** and **where it is** becomes the input to the first transformer layer.
@@ -223,7 +223,7 @@ $$
 Z = \text{LayerNorm}(X + \text{MultiHead}(X))
 $$
 
-which **Normalizes** the result using **layer normalization**, which adjusts the mean and variance of the combined vector.
+which **normalizes** the result using **layer normalization**, which adjusts the mean and variance of the combined vector.
 
 ### 4. Feedforward Neural Network (FFN)
 
@@ -267,10 +267,34 @@ This block is repeated $$N$$ times to build deeper semantic understanding.
 
 Each decoder layer includes all of the above **plus masking and cross-attention**:
 
-### 1. Token Embeddings + Positional Encoding
+### 1. Token Embeddings + Positional Encoding (in Decoder)
 
-- Same as encoder
-- During training, uses **shifted input** (e.g. "Translate: The cat sleeps" → "Le", then "Le chat", etc.)
+#### **What it does & Why it's needed:**
+Same as the encoder: tokens are converted into vectors and combined with positional encodings to retain order.
+
+#### **How it works (differences from encoder):**
+- Token embeddings and positional encodings are constructed the **same way** as in the encoder:
+  - Use a learned embedding matrix $$ E_{\text{token}} \in \mathbb{R}^{V \times d} $$
+  - Add positional vectors $$ \text{PE}[p] \in \mathbb{R}^d $$
+
+- The **key difference** is that the decoder uses **shifted inputs**:
+
+```text
+Target sequence:         ["The", "cat", "sleeps"]
+Shifted decoder input:   ["<BOS>", "The", "cat"]
+```
+
+`<BOS>` stands for Beginning of Sequence. It’s a special token inserted at the start of the decoder input to indicate the start of generation.
+- It has its own embedding like any other token.
+- It helps the model know when and how to begin generating output.
+- During inference, generation typically begins from <BOS> alone.
+
+#### Why the shift?
+The decoder generates tokens **one by one**, using only the **tokens that came before**. During training, we shift the input so that:
+- At each position $$ p $$, the model sees tokens $$ < t_0, t_1, ..., t_{p-1} > $$
+- And it is trained to predict $$ t_p $$
+
+This teaches the model to learn autoregressive generation — i.e., predict the next word based only on previously generated ones.
 
 ### 2. Masked Multi-Head Self-Attention
 
@@ -299,18 +323,6 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 - Final residual normalization
 
 Decoder layers are also repeated $$N$$ times for generation depth.
-
-We'll now explore each component.
-
----
-
-## 5️⃣ Add & LayerNorm (Post-FFN)
-
-### **What it does:**
-Adds FFN output to its input and applies LayerNorm again.
-
-### **Why it's needed:**
-Same reason: keeps info flowing well and helps avoid forgetting or over-correcting.
 
 ---
 
