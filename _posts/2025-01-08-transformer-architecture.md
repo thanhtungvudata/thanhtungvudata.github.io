@@ -451,8 +451,6 @@ This process is repeated $$N$$ times. Each layer refines the understanding.
 - Mid layers capture sentence structure.
 - Later layers understand abstract meaning.
 
----
-
 ## 🛠️ **Key Advantages of Transformer Architecture**
 
 ### Parallel Processing
@@ -473,8 +471,6 @@ This process is repeated $$N$$ times. Each layer refines the understanding.
   - Pretrain on massive, diverse corpora (e.g., web, books, code)
   - Finetune on specific downstream tasks with relatively small labeled datasets
 - This is the foundation of **modern LLM pipelines**.
-
----
 
 ## ⚡ **Limitations**
 
