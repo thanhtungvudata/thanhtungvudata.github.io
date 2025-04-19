@@ -130,7 +130,7 @@ This single objective turns out to be incredibly powerful: by learning to predic
 - The model is trained to minimize the **cross-entropy loss** between the predicted distribution and the actual next token:
 
   $$
-  \mathcal{L}(\theta) = -\sum_{t=1}^{T} \log P_\theta(x_t \mid x_{<t})
+  \mathcal{L}(\theta) = -\sum_{t=1}^{T} \log P_\theta(x_{t+1} = x_{t+1}^* \mid x_{\leq t})
   $$
 
 - The variable $$ \theta $$ is the stack of all learnable parameters in the model:
