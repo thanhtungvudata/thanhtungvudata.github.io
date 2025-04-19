@@ -40,8 +40,6 @@ There are three main variants of the transformer architecture, each optimized fo
 - **Decoder-only** models generate text **token by token**, making them ideal for chat, storytelling, coding, and completion.
 - **Encoder–decoder** models separate input and output — perfect for **sequence-to-sequence** tasks like translation.
 
----
-
 ## 📊 Architecture Diagrams
 
 ### 📘 Full Transformer (Encoder–Decoder)
@@ -77,8 +75,6 @@ Prompt/Input Tokens
    ↓
 Autoregressive Output → one token at a time
 ```
-
----
 
 ## 🧱 Detailed Encoder Stack (Used in BERT, T5)
 
@@ -288,8 +284,6 @@ This is applied **independently to each token vector** in the sequence, with sha
 
 This block is repeated $$N$$ times to build deeper semantic understanding.
 
----
-
 ## 🧱 Detailed Decoder Stack (Used in GPT, T5, BART)
 
 Each decoder layer includes all of the above **plus masking and cross-attention**:
@@ -442,8 +436,6 @@ This mechanism is what allows **sequence-to-sequence** models to perform tasks l
 
 Decoder layers are also repeated $$N$$ times for generation depth.
 
----
-
 ## 🔁 Stack of Layers
 
 This process is repeated $$N$$ times. Each layer refines the understanding.
@@ -536,8 +528,6 @@ This lets GPT solve problems **without separate encoder/decoder modules**.
   - Question answering
 - Clear separation of input encoding and output decoding allows better alignment in sequence-to-sequence problems.
 - The encoder provides **full comprehension of input**, while the decoder **generates target sequences** with cross-attention.
-
----
 
 ## ✅ Final Thoughts
 
