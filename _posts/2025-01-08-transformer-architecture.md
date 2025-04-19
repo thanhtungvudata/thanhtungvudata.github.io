@@ -294,12 +294,54 @@ The decoder generates tokens **one by one**, using only the **tokens that came b
 - At each position $$ p $$, the model sees tokens $$ < t_0, t_1, ..., t_{p-1} > $$
 - And it is trained to predict $$ t_p $$
 
-This teaches the model to learn autoregressive generation — i.e., predict the next word based only on previously generated ones.
+This teaches the model to learn **autoregressive generation** — i.e., predict the next word based only on previously generated ones.
 
-### 2. Masked Multi-Head Self-Attention
+### 2. Masked Multi-Head Self-Attention (in Decoder)
 
-- Tokens can **only attend to earlier positions** (causal masking)
-- Prevents the model from seeing future tokens
+#### **What it does & Why it's needed:**
+In the decoder, masked self-attention ensures that each token can only attend to **earlier tokens** — not to future ones.
+
+- This is essential for **autoregressive generation**, where the model generates text one token at a time.
+- Without masking, the model could "cheat" by peeking at the token it’s supposed to predict.
+- Masking enforces strict **causality** in generation.
+
+#### **How it works (differences from encoder):**
+- In the encoder, attention is **fully visible** — each token can attend to all others.
+- In the decoder, we apply a **causal mask** (a triangular matrix) that blocks attention to future positions.
+
+##### Steps:
+1. Compute Q, K, V projections just like in the encoder:
+
+   $$
+   Q = XW^Q, \quad K = XW^K, \quad V = XW^V
+   $$
+
+2. Compute raw attention scores:
+
+   $$
+   \text{scores} = \frac{QK^T}{\sqrt{d_k}}
+   $$
+
+3. Apply **causal mask**:
+   Set all positions $$ (i,j) $$ where $$ j > i $$ to $$-\infty$$:
+
+   $$
+   \text{scores}_{ij} = -\infty \text{ if } j > i
+   $$
+
+4. Apply softmax:
+
+   $$
+   \alpha_{ij} = \text{softmax}_j(\text{scores}_{ij})
+   $$
+
+5. Compute output:
+
+   $$
+   \text{output}_i = \sum_j \alpha_{ij} V_j
+   $$
+
+Each token only "looks left" — at the tokens that came before.
 
 ### 3. Add & LayerNorm (Residual Block 1)
 
