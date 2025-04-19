@@ -151,10 +151,10 @@ This helps the model understand context. Multi-head means this is done in multip
 #### **How it works:**
 
 ##### 1. Linear projections for Q, K, V
-Each input token vector $$ x \in \mathbb{R}^d $$ is transformed into:
-- Query vector: $$ Q = xW^Q $$
-- Key vector: $$ K = xW^K $$
-- Value vector: $$ V = xW^V $$
+Each input token vector $$ x \in \mathbb{R}^{1 \time d} $$ in $$X$$ is transformed into:
+- Query vector: $$ Q = xW^Q \in \mathbb{R}^{1 \time d_k} $$
+- Key vector: $$ K = xW^K \in \mathbb{R}^{1 \time d_k} $$
+- Value vector: $$ V = xW^V \in \mathbb{R}^{1 \time d_k} $$
 
 where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
 
@@ -469,11 +469,9 @@ This lets GPT solve problems **without separate encoder/decoder modules**.
 - In GPT-4 and other multimodal variants, **non-text data (like images)** are tokenized and embedded into the same input stream.
 - This allows models to **reason over images + text together**, using the same decoder-only architecture.
 
----
-
 ## Why Encoder-Only and Full Transformer Models Are Still Valuable
 
-### 🔹 Encoder-Only Models (like BERT)
+### Encoder-Only Models (like BERT)
 - Produce **rich contextual embeddings** for each token.
 - Best used when **no generation is needed**, e.g.:
   - Classification (e.g. sentiment analysis)
@@ -481,7 +479,7 @@ This lets GPT solve problems **without separate encoder/decoder modules**.
   - Named entity recognition
 - They’re bidirectional — can attend to **both left and right context**.
 
-### 🔹 Encoder–Decoder Models (like T5, BART)
+### Encoder–Decoder Models (like T5, BART)
 - Best for **structured input–output mappings** like:
   - Translation
   - Summarization
