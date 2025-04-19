@@ -273,10 +273,7 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 Same as the encoder: tokens are converted into vectors and combined with positional encodings to retain order.
 
 #### **How it works (differences from encoder):**
-- Token embeddings and positional encodings are constructed the **same way** as in the encoder:
-  - Use a learned embedding matrix $$ E_{\text{token}} \in \mathbb{R}^{V \times d} $$
-  - Add positional vectors $$ \text{PE}[p] \in \mathbb{R}^d $$
-
+- Token embeddings and positional encodings are constructed the **same way** as in the encoder
 - The **key difference** is that the decoder uses **shifted inputs**:
 
 ```text
