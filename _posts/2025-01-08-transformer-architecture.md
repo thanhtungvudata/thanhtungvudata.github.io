@@ -142,11 +142,64 @@ This combined vector $$ X_p $$ which encodes both **what the word is** and **whe
 
 ### 2. Multi-Head Self-Attention
 
-- For each token, calculates attention over **all other tokens**
-- Uses learned projections to compute $$Q$$ (query), $$K$$ (key), and $$V$$ (value)
-- Computes:
-  $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
-- Attention from multiple heads are concatenated and passed through $$W^O$$
+### **What it does:**
+Each word looks at **all the other words** in the sentence and decides **how much attention to pay** to each of them.
+
+### **Why it's needed:**
+This helps the model understand context. Multi-head means this is done in multiple ways at once. One head might look at subject-verb, another at adjectives, etc. For example, if the word is "sleeps", attention helps it realize that "cat" is the subject performing the action.
+
+### **How it works:**
+
+#### 1. Linear projections for Q, K, V
+Each input token vector $$ x \in \mathbb{R}^d $$ is transformed into:
+- Query vector: $$ Q = xW^Q $$
+- Key vector: $$ K = xW^K $$
+- Value vector: $$ V = xW^V $$
+
+where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
+
+#### 2. Compute attention scores
+For each query-key pair, compute a score:
+$$
+\text{score}_{ij} = \frac{Q_i \cdot K_j^T}{\sqrt{d_k}}
+$$
+This measures how much token $$ i $$ should attend to token $$ j $$.
+
+#### 3. Apply softmax
+Convert scores to attention weights:
+$$
+\alpha_{ij} = \text{softmax}_j\left(\text{score}_{ij}\right)
+$$
+Each $$ \alpha_{ij} \in [0,1] $$, and $$ \sum_j \alpha_{ij} = 1 $$
+
+#### 4. Weighted sum of values
+Use the attention weights to combine the values:
+$$
+\text{output}_i = \sum_j \alpha_{ij} V_j
+$$
+This is the context-aware representation for token $$ i $$.
+
+#### 5. Do this for multiple heads
+Repeat the steps above $$ h $$ times, each with its own set of learned $$ W^Q, W^K, W^V $$ matrices.
+
+#### 6. Concatenate and project
+Concatenate the output of all heads and apply a final linear projection:
+$$
+\text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
+$$
+
+Where $$ W^O \in \mathbb{R}^{(h \cdot d_k) \times d} $$ is also learned.
+
+#### Intuition:
+- **Queries ask questions**: “Who’s relevant to me?”
+- **Keys answer**: “Here’s what I have to offer.”
+- **Values carry content**.
+- Multi-head = many ways to look at the same sentence — one head might focus on syntax, another on long-distance relationships.
+
+Each output vector is a blend of others — how much it blends depends on the attention scores. That’s how the model learns context.
+
+
+
 
 ### 3. Add & LayerNorm (Residual Block 1)
 
@@ -204,44 +257,6 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 Decoder layers are also repeated $$N$$ times for generation depth.
 
 We'll now explore each component.
-
----
-
-## 1️⃣ Token Embeddings + Positional Encoding
-
-### **What it does:**
-Converts each input token into a vector and adds a positional signal. 
-- Each word (like “The”, “cat”, “sleeps”) is converted into a vector of numbers that captures the meaning of the word. 
-- Adds information about word order (like “first”, “second”, etc.) to each word vector.
-
-### **Why it's needed:**
-- The model can't work directly with text. It needs a numerical understanding of words. These embeddings capture similarities, like "cat" and "dog" has a larger similarity than "cat" and "sleep". 
-- Transformers don't know order by default. So "the cat sleeps" and "sleeps cat the" would look the same without this. Positional encoding tells the model who came before and after.
-
-
----
-
-## 2️⃣ Multi-Head Self-Attention
-
-### **What it does:**
-Each word looks at **all the other words** in the sentence and decides **how much attention to pay** to each of them.
-
-### **Why it's needed:**
-This helps the model understand context. Multi-head means this is done in multiple ways at once. One head might look at subject-verb, another at adjectives, etc.
-
-### **How it works:**
-- Compute query (Q), key (K), value (V) vectors:
-  $$ Q = XW^Q, \quad K = XW^K, \quad V = XW^V $$
-- Compute attention weights:
-  $$ \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) $$
-- Multiply by V and combine heads:
-  ```python
-  Attention = softmax(Q @ K.T / sqrt(d_k)) @ V
-  MultiHead = Concat(Head1, Head2, ...) @ W^O
-  ```
-
-### **Example:**
-If the word is "sleeps", attention helps it realize that "cat" is the subject performing the action.
 
 ---
 
