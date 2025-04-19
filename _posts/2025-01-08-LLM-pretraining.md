@@ -1,5 +1,5 @@
 ---
-title: "Demystifying LLM Pre-training: What, Why, and How"
+title: "A Guide to LLM Pre-training: Teaching Machines to Think"
 date: 2025-01-08
 categories:
   - LLM Pre-training
