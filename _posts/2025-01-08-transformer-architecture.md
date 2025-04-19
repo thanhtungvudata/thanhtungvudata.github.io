@@ -268,12 +268,14 @@ For example, if the word "sleeps" attends to "cat" in attention, the FFN helps t
 It consists of two fully connected layers with an activation in between:
 
 $$
-\text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2
+\text{FFN}(x_i) = \text{GELU}(x_i W_1 + b_1) W_2 + b_2 \in \mathbb{R}^{1 \times d}
 $$
 
 - $$ W_1 \in \mathbb{R}^{d \times d_{ff}} $$, $$ W_2 \in \mathbb{R}^{d_{ff} \times d} $$
-- $$ d_{ff} $$ is usually 4x the size of $$ d $$ (embedding dimension)
+- $$ d_{ff} $$ is usually 4× the size of $$ d $$ (embedding dimension)
 - Activation is typically **ReLU** or **GELU** (more commonly used in transformers)
+
+This is applied **independently to each token vector** in the sequence, with shared weights across positions.
 
 #### Intuition:
 - Think of this as a mini brain that processes each token in isolation.
