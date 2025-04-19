@@ -197,7 +197,13 @@ This is the context-aware representation for token $$ i $$.
 Repeat the steps above $$ h $$ times, each with its own set of learned $$ W^Q, W^K, W^V $$ matrices.
 
 ##### 6. Concatenate and project
-Concatenate the output of all heads and apply a final linear projection:
+Each attention head produces its own output matrix:
+
+$$
+\text{head}_i = \text{Attention}(Q^{(i)}, K^{(i)}, V^{(i)}) \in \mathbb{R}^{n \times d_k}, \quad i = 1, \dots, h
+$$
+
+Concatenate all the heads along the feature dimension and apply a final linear projection:
 
 $$
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
