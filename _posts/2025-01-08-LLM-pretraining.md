@@ -9,8 +9,6 @@ tags:
   - LLM
 ---
 
-# 📚 A Guide to LLM Pre-training: Teaching Machines to Think
-
 Large Language Models (LLMs) like GPT-4 and ChatGPT are powerful tools that understand and generate human-like text. But how do they get so smart in the first place? The answer lies in **pre-training** — a foundational step in building these intelligent systems.
 
 In this post, we’ll break down:
@@ -87,16 +85,19 @@ This single objective turns out to be incredibly powerful: by learning to predic
   \text{logits}_t = h_t \cdot W^{LM}
   $$
 
-  - $$W^{LM} \in \mathbb{R}^{d \times V}$$ projects to the vocabulary size.
+  - $$W^{LM} \in \mathbb{R}^{d \times V}$$ projects the hidden state to a vector of vocabulary-sized logits. Each element in the resulting vector corresponds to a score (logit) for one vocabulary token.
   - A softmax turns logits into probabilities over all possible next tokens:
 
   $$
-  P(x_{t+1} = i \mid x_{\leq t}) = \frac{\exp(\text{logits}_t[i])}{\sum_{j=1}^{V} \exp(\text{logits}_t[j])}
+  P_\theta(x_{t+1} = x^* \mid x_{\leq t}) = \frac{\exp(\text{logits}_t[x^*])}{\sum_{j=1}^{V} \exp(\text{logits}_t[j])}
   $$
 
   where:
-  - $$\text{logits}_t[i]$$ is the unnormalized score for token $$i$$,
-  - and $$V$$ is the size of the vocabulary.
+  - $$x^*$$ is the actual next token,
+  - $$\text{logits}_t[x^*]$$ is its unnormalized score,
+  - and $$V$$ is the vocabulary size.
+
+
 
 ### 4. **Loss Function**
 
