@@ -195,7 +195,7 @@ $$
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
 $$
 
-Where $$ W^O \in \mathbb{R}^{(h \cdot d_k) \times d} $$ is also learned.
+where $$ W^O \in \mathbb{R}^{(h \cdot d_k) \times d} $$ is also learned. $$ W^O $$ learns how to combine the different "perspectives" from all attention heads into a single, unified vector that can be used by the next layer. It decides how much weight to give to each head'’'s output, essentially blending them into a coherent representation for each token.
 
 #### Intuition:
 - **Queries ask questions**: “Who’s relevant to me?”
