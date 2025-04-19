@@ -151,12 +151,17 @@ This helps the model understand context. Multi-head means this is done in multip
 #### **How it works:**
 
 ##### 1. Linear projections for Q, K, V
-Each input token vector $$ x \in \mathbb{R}^{1 \times d} $$ of input token matrix $$X \in \mathbb{R}^{n \times d} $$ is transformed into:
-- Query vector: $$ Q = xW^Q \in \mathbb{R}^{1 \times d_k} $$
-- Key vector: $$ K = xW^K \in \mathbb{R}^{1 \times d_k} $$
-- Value vector: $$ V = xW^V \in \mathbb{R}^{1 \times d_k} $$
+Each input token vector $$ x_i \in \mathbb{R}^{1 \times d} $$ from the input matrix $$ X \in \mathbb{R}^{n \times d} $$ is transformed into:
+- Query vector: $$ Q_i = x_i W^Q \in \mathbb{R}^{1 \times d_k} $$
+- Key vector: $$ K_i = x_i W^K \in \mathbb{R}^{1 \times d_k} $$
+- Value vector: $$ V_i = x_i W^V \in \mathbb{R}^{1 \times d_k} $$
 
 where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
+
+Stacking across all tokens:
+- $$ Q = X W^Q \in \mathbb{R}^{n \times d_k} $$
+- $$ K = X W^K \in \mathbb{R}^{n \times d_k} $$
+- $$ V = X W^V \in \mathbb{R}^{n \times d_k} $$
 
 ##### 2. Compute attention scores
 For each query-key pair, compute a score:
