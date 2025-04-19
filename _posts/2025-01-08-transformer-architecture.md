@@ -14,8 +14,6 @@ In this blog post, we’ll explore the motivation behind transformers, the three
 
 <img src="/assets/images/transformer_overview.png" alt="Transformer Architecture" width="600">
 
----
-
 ## 🚀 Motivation
 
 Before transformers, models like RNNs and LSTMs were used for sequential data. These models process tokens **one at a time**, which limits parallelism and struggles with long-range dependencies.
