@@ -132,7 +132,7 @@ $$
 $$ E_{\text{pos}} \in \mathbb{R}^{L \times d} $$, where $$ L $$ is max sequence length.
 
 #### Final Input:
-For position $$p $$ with token ID $$ t $$:
+For position $$p $$ with its implied token ID $$ t $$:
 
 $$
 X_p = E_{\text{token}}[t] + \text{PE}[p]
