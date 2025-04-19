@@ -102,9 +102,9 @@ Let’s break it down:
 
 ##### Token Embeddings:
 Given:
-- Vocabulary size:  $$V$$
+- Vocabulary size:  $$S_v$$
 - Embedding dimension: $$d$$
-- Embedding matrix: $$E_{\text{token}} \in \mathbb{R}^{V \times d}$$
+- Embedding matrix: $$E_{\text{token}} \in \mathbb{R}^{S_v \times d}$$
 
 If your sentence is `["The", "cat", "sleeps"]`, and these map to token IDs `[12, 45, 230]`, then:
 
@@ -159,9 +159,12 @@ Each input token vector $$ x_i \in \mathbb{R}^{1 \times d} $$ from the input mat
 where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
 
 Stacking across all tokens:
-- $$ Q = X W^Q \in \mathbb{R}^{n \times d_k} $$
-- $$ K = X W^K \in \mathbb{R}^{n \times d_k} $$
-- $$ V = X W^V \in \mathbb{R}^{n \times d_k} $$
+
+$$ Q = X W^Q \in \mathbb{R}^{n \times d_k} $$
+
+$$ K = X W^K \in \mathbb{R}^{n \times d_k} $$
+
+$$ V = X W^V \in \mathbb{R}^{n \times d_k} $$
 
 ##### 2. Compute attention scores
 For each query-key pair, compute a score:
