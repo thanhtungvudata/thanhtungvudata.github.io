@@ -193,16 +193,22 @@ $$
 
 This is the context-aware representation for token $$ i $$.
 
-##### 5. Do this for multiple heads
-Repeat the steps above $$ h $$ times, each with its own set of learned $$ W^Q, W^K, W^V $$ matrices.
+Define the full attention operation:
 
-##### 6. Concatenate and project
-Each attention head produces its own output matrix:
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
+$$
+
+This function maps the queries to a weighted sum of values, using scores derived from the keys.
+
+##### 5. Do this for multiple heads
+Repeat the attention process above $$ h $$ times, each with its own set of learned $$ W^Q, W^K, W^V $$ matrices:
 
 $$
 \text{head}_i = \text{Attention}(Q^{(i)}, K^{(i)}, V^{(i)}) \in \mathbb{R}^{n \times d_k}, \quad i = 1, \dots, h
 $$
 
+##### 6. Concatenate and project
 Concatenate all the heads along the feature dimension and apply a final linear projection:
 
 $$
