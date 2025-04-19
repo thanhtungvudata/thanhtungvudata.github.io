@@ -160,23 +160,29 @@ where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matri
 
 #### 2. Compute attention scores
 For each query-key pair, compute a score:
+
 $$
 \text{score}_{ij} = \frac{Q_i \cdot K_j^T}{\sqrt{d_k}}
 $$
+
 This measures how much token $$ i $$ should attend to token $$ j $$.
 
 #### 3. Apply softmax
 Convert scores to attention weights:
+
 $$
 \alpha_{ij} = \text{softmax}_j\left(\text{score}_{ij}\right)
 $$
+
 Each $$ \alpha_{ij} \in [0,1] $$, and $$ \sum_j \alpha_{ij} = 1 $$
 
 #### 4. Weighted sum of values
 Use the attention weights to combine the values:
+
 $$
 \text{output}_i = \sum_j \alpha_{ij} V_j
 $$
+
 This is the context-aware representation for token $$ i $$.
 
 #### 5. Do this for multiple heads
@@ -184,6 +190,7 @@ Repeat the steps above $$ h $$ times, each with its own set of learned $$ W^Q, W
 
 #### 6. Concatenate and project
 Concatenate the output of all heads and apply a final linear projection:
+
 $$
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, ..., \text{head}_h) W^O
 $$
