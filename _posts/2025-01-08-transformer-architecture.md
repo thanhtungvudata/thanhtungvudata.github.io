@@ -176,7 +176,7 @@ Converts each input token into a vector and adds a positional signal.
 ### **How it works:**
 
 Each input token (like "The", "cat", "sleeps") is mapped to a vector using a learned **token embedding matrix**. These vectors represent the meaning of each token in a high-dimensional space. 
-Let’s break it down:
+Let’s break it down: 
 
 #### Token Embeddings:
 Given:
