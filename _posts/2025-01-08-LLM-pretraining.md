@@ -111,7 +111,7 @@ This single objective turns out to be incredibly powerful: by learning to predic
   \text{logits}_t = h_t \cdot W^{LM}
   $$
 
-  - $$W^{LM} \in \mathbb{R}^{d \times V}$$ projects the hidden state to a vector of vocabulary-sized logits. Each element in the resulting vector corresponds to a score (logit) for one vocabulary token.
+  - $$W^{LM} \in \mathbb{R}^{d \times V}$$ is learnable matrix that projects the hidden state to a vector of vocabulary-sized logits. Each element in the resulting vector corresponds to a score (logit) for one vocabulary token.
   - A softmax turns logits into probabilities over all possible next tokens:
 
   $$
