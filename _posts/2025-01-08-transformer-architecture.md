@@ -346,8 +346,60 @@ Each token only "looks left" — at the tokens that came before.
 
 ### 4. Cross-Attention (Encoder-Decoder only)
 
-- Query from decoder attends to K/V from **encoder output**
-- Allows decoder to access input sentence meaning (e.g., translation)
+#### **What it does**
+Cross-attention allows the decoder to **look at the encoder’s output** — i.e., the representation of the input sequence.
+- Each token in the decoder can attend to **all positions of the input**.
+- This provides context from the input sequence that guides the decoder's output.
+
+#### **Why it's needed:**
+- Without cross-attention, the decoder would only generate based on its own past outputs.
+- In tasks like **translation**, the decoder needs to condition its next token prediction on the **entire input sentence**.
+- Cross-attention lets the model align output tokens with relevant input tokens.
+
+#### **How it works:**
+- Similar to regular attention, but instead of Q, K, V all coming from the decoder, only **Q** comes from the decoder, and **K** and **V** come from the encoder.
+
+##### Steps:
+1. Use the decoder’s hidden states to compute queries:
+
+   $$
+   Q = X_{\text{decoder}} W^Q
+   $$
+
+2. Use the encoder’s output (fixed after encoding) to compute keys and values:
+
+   $$
+   K = X_{\text{encoder}} W^K, \quad V = X_{\text{encoder}} W^V
+   $$
+
+3. Compute attention scores:
+
+   $$
+   \text{scores} = \frac{QK^T}{\sqrt{d_k}}
+   $$
+
+4. Apply softmax to get weights:
+
+   $$
+   \alpha_{ij} = \text{softmax}_j(\text{scores}_{ij})
+   $$
+
+5. Compute weighted sum of values:
+
+   $$
+   \text{output}_i = \sum_j \alpha_{ij} V_j
+   $$
+
+This output is then passed forward in the decoder layer.
+
+#### Intuition:
+- Think of encoder-decoder attention as a **bridge**.
+- The decoder is generating text and asks: “What did the input say that’s relevant right now?”
+- Cross-attention provides that answer, using the encoder’s understanding of the input.
+
+This mechanism is what allows **sequence-to-sequence** models to perform tasks like summarization, translation, and more.
+
+
 
 ### 5. Add & LayerNorm (Residual Block 2)
 
