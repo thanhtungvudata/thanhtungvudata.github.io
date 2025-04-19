@@ -6,6 +6,7 @@ categories:
 tags:
   - Data Science
   - Generative AI
+  - LLM
 ---
 
 Transformers have fundamentally reshaped the AI landscape — powering models like ChatGPT and driving major innovations across Google Search, recommendation engines, and enterprise analytics. From smarter user interfaces to advanced automation and real-time insight generation, transformer-based models such as GPT, BERT, and T5 are enabling businesses to **streamline workflows, personalize customer experiences, uncover valuable insights, and accelerate product development**.
