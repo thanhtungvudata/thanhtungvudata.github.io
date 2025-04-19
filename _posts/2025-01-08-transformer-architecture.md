@@ -307,7 +307,7 @@ In the decoder, masked self-attention ensures that each token can only attend to
 
 #### **How it works (differences from encoder):**
 - In the encoder, attention is **fully visible** — each token can attend to all others.
-- In the decoder, we apply a **causal mask** (a triangular matrix) that blocks attention to future positions.
+- In the decoder, we apply a **causal mask** that blocks attention to future positions.
 
 ##### Steps:
 1. Compute Q, K, V projections just like in the encoder:
