@@ -115,12 +115,12 @@ This single objective turns out to be incredibly powerful: by learning to predic
   - A softmax turns logits into probabilities over all possible next tokens:
 
   $$
-  P_\theta(x_{t+1} = x^* \mid x_{\leq t}) = \frac{\exp(\text{logits}_t[x^*])}{\sum_{j=1}^{V} \exp(\text{logits}_t[j])}
+  P_\theta(x_{t+1} = x_{t+1}^* \mid x_{\leq t}) = \frac{\exp(\text{logits}_t[x_{t+1}^*])}{\sum_{j=1}^{V} \exp(\text{logits}_t[j])}
   $$
 
   where:
-  - $$x^*$$ is the actual next token,
-  - $$\text{logits}_t[x^*]$$ is its unnormalized score,
+  - $$x_{t+1}^*$$ is the actual next token,
+  - $$\text{logits}_t[x_{t+1}^*]$$ is its unnormalized score,
   - and $$V$$ is the vocabulary size.
 
 
