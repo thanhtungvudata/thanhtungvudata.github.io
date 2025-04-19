@@ -357,7 +357,7 @@ Cross-attention allows the decoder to **look at the encoder’s output** — i.e
 - Cross-attention lets the model align output tokens with relevant input tokens.
 
 #### **How it works:**
-- Similar to regular attention, but instead of Q, K, V all coming from the decoder, only **Q** comes from the decoder, and **K** and **V** come from the encoder.
+- Similar to regular attention, but instead of $$Q$$, $$K$$, $$V$$ all coming from the decoder, only **$$Q$$** comes from the decoder, and **$$K$$** and **$$V$$** come from the encoder.
 
 ##### Steps:
 1. Use the decoder’s hidden states to compute queries:
@@ -419,7 +419,7 @@ Decoder layers are also repeated $$N$$ times for generation depth.
 
 ## 🔁 Stack of Layers
 
-This process is repeated N times. Each layer refines the understanding.
+This process is repeated $$N$$ times. Each layer refines the understanding.
 - Early layers learn local syntax.
 - Mid layers capture sentence structure.
 - Later layers understand abstract meaning.
@@ -436,14 +436,68 @@ This process is repeated N times. Each layer refines the understanding.
 ## ⚡ **Limitations**
 
 - **Quadratic attention complexity** w.r.t. sequence length.
-- **input sequence length limit** (e.g., 2048–128K tokens).
+- **Input sequence length limit** (e.g., 2048–128K tokens).
 - Memory and compute heavy.
+
+## Why Models Like GPT (Decoder-Only) Can Do Translation, Summarization, Multimodal
+
+### 🔍 How is GPT able to perform tasks like translation or summarization?
+
+Although GPT is a **decoder-only transformer**, it can handle tasks traditionally associated with **encoder–decoder models** because of how it’s trained and how prompting works:
+
+#### 1. Instruction Tuning
+GPT models are trained on datasets that include examples of translation, summarization, Q&A, etc. These are framed as **text-in → text-out** tasks.
+- Example: "Translate English to French: The cat sleeps →"
+- The prompt encodes both the **task type** and **input context**.
+
+#### 2. Unified Text Format
+In decoder-only transformers:
+- **Inputs and outputs are handled in the same sequence stream.**
+- The model learns to complete tasks based on pattern recognition from massive pretraining + finetuning.
+- The autoregressive setup means GPT is great at generating structured completions.
+
+#### 3. Prompt Engineering
+You can turn nearly any problem into a **single text string**, which GPT learns to respond to appropriately:
+```text
+Summarize: Climate change is accelerating due to... → Summary:
+Translate: Hello, how are you? → French:
+Describe this image: <image tokens> → A dog jumping over a fence.
+```
+This lets GPT solve problems **without separate encoder/decoder modules**.
+
+#### 4. Multimodal Support via Tokenization
+- In GPT-4 and other multimodal variants, **non-text data (like images)** are tokenized and embedded into the same input stream.
+- This allows models to **reason over images + text together**, using the same decoder-only architecture.
+
+---
+
+## Why Encoder-Only and Full Transformer Models Are Still Valuable
+
+### 🔹 Encoder-Only Models (like BERT)
+- Produce **rich contextual embeddings** for each token.
+- Best used when **no generation is needed**, e.g.:
+  - Classification (e.g. sentiment analysis)
+  - Semantic similarity
+  - Named entity recognition
+- They’re bidirectional — can attend to **both left and right context**.
+
+### 🔹 Encoder–Decoder Models (like T5, BART)
+- Best for **structured input–output mappings** like:
+  - Translation
+  - Summarization
+  - Question answering
+- Clear separation of input encoding and output decoding allows better alignment in sequence-to-sequence problems.
+- The encoder provides **full comprehension of input**, while the decoder **generates target sequences** with cross-attention.
+
+---
 
 ## ✅ Final Thoughts
 
 Decoder-only transformers like GPT have proven incredibly powerful, as they can perform many tasks **just by clever prompting**, without needing a full encoder-decoder structure.
 
 Still, encoder-only and full transformer models are valuable in **understanding tasks** and **structured input-output tasks**, respectively.
+
+The choice depends on task structure and deployment goals.
 
 Understanding these architectures is essential to mastering LLMs like GPT, BERT, Claude, Gemini, LLaMA, and beyond.
 
