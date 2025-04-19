@@ -35,21 +35,21 @@ This single objective turns out to be incredibly powerful: by learning to predic
 
 ## 💡 Why Is Pre-training Needed?
 
-1. **Foundation of Knowledge**
+1. **To Build General Language Understanding**
 
-   - Pre-training equips the model with a broad understanding of language, facts, and logic, much like how humans learn from reading.
+   - Pre-training exposes the model to large-scale text so it can learn syntax, semantics, and real-world knowledge. This equips the model with a broad understanding of language, facts, and logic, much like how humans learn from reading.
 
-2. **Scalability**
+2. **To Reduce Dependence on Task-Specific Supervision**
 
-   - It uses **self-supervised learning**, meaning it doesn’t require manually labeled data.
+   - It uses **self-supervised learning**, meaning it doesn’t require manually labeled data. Models can leverage massive unlabeled corpora. This makes it possible to train powerful general-purpose models without needing labeled data at scale.
 
-3. **Transferability**
+3. **To Enable Knowledge Transfer**
 
-   - Once pre-trained, the model can be fine-tuned or adapted to many downstream tasks: summarization, coding, translation, and more.
+   - Once pre-trained, the model can be fine-tuned or adapted to many downstream tasks: summarization, coding, translation, and more, reducing the need to train models from scratch for each one.
 
-4. **Emergent Capabilities**
+4. **To Improve Sample Efficiency and Performance**
 
-   - Larger pre-trained models start to show surprising skills like arithmetic, chain-of-thought reasoning, and even code generation, without being explicitly trained for them.
+   - Pre-trained models often achieve strong performance with less labeled data and fine-tuning. This leads to better generalization, especially in low-resource or few-shot settings.
 
 ---
 
