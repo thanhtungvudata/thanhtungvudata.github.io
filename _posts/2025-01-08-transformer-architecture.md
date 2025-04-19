@@ -32,7 +32,7 @@ There are three main variants of the transformer architecture, each optimized fo
 | ---------------- | ------------------------- | --------------------------------------- |
 | Full Transformer | T5, BART, MarianMT        | Translation, summarization, multimodal  |
 | Encoder-Only     | BERT, RoBERTa             | Classification, sentence similarity, QA |
-| Decoder-Only     | GPT-2/3/4, LLaMA, ChatGPT | Text generation, chat, code completion  |
+| Decoder-Only     | GPT-2/3/4, LLaMA, PaLM, Claude | Text generation, chat, code completion  |
 
 ### ✅ Why Each Fits Its Application
 
