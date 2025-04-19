@@ -153,7 +153,7 @@ This helps the model understand context. Multi-head means this is done in multip
 ##### 1. Linear projections for Q, K, V
 Each input token vector $$ x \in \mathbb{R}^{1 \times d} $$ of input token matrix $$X \in \mathbb{R}^{n \times d} $$ is transformed into:
 - Query vector: $$ Q = xW^Q \in \mathbb{R}^{1 \times d_k} $$
-- Key vector: $$ K = xW^K \in \mathbb{R}^{1 \timse d_k} $$
+- Key vector: $$ K = xW^K \in \mathbb{R}^{1 \times d_k} $$
 - Value vector: $$ V = xW^V \in \mathbb{R}^{1 \times d_k} $$
 
 where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
