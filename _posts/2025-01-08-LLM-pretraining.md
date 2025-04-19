@@ -9,13 +9,19 @@ tags:
   - LLM
 ---
 
-Large Language Models (LLMs) like GPT-4 and ChatGPT are powerful tools that understand and generate human-like text. But how do they get so smart in the first place? The answer lies in **pre-training** — a foundational step in building these intelligent systems.
+Large Language Models (LLMs) like GPT-4 and ChatGPT are reshaping how businesses operate — streamlining content creation, automating knowledge work, improving decision-making, and powering a new wave of AI-driven products. But what gives these models their capabilities in the first place?
 
-In this post, we’ll break down:
+The answer lies in **pre-training** — a massive, foundational learning process where LLMs absorb language, reasoning patterns, and world knowledge by processing vast amounts of text. While most companies don’t pre-train models themselves, understanding how pre-training works is essential for anyone who builds with LLMs or integrates them into products.
 
-- ✅ What LLM pre-training does
-- 💡 Why it’s necessary
-- ⚙️ How it works under the hood
+In this post, we’ll unpack the full story behind LLM pre-training:
+
+- What LLM pre-training does and why it matters for model capabilities
+- How the full pre-training pipeline works — from tokenization to training loops
+- Why understanding it is critical for product, engineering, and data teams
+
+Whether you’re selecting the right foundation model, fine-tuning it for your domain, or evaluating model risks and limitations, this guide will help you understand the engine under the hood.
+
+<img src="/assets/images/LLM_pretraining_overview.png" alt="LLM Pre-training" width="600">
 
 ---
 
