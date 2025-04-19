@@ -86,9 +86,17 @@ This single objective turns out to be incredibly powerful: by learning to predic
   $$
   \text{logits}_t = h_t \cdot W^{LM}
   $$
-  
+
   - $$W^{LM} \in \mathbb{R}^{d \times V}$$ projects to the vocabulary size.
-  - A softmax turns logits into probabilities over all possible next tokens.
+  - A softmax turns logits into probabilities over all possible next tokens:
+
+  $$
+  P(x_{t+1} = i \mid x_{\leq t}) = \frac{\exp(\text{logits}_t[i])}{\sum_{j=1}^{V} \exp(\text{logits}_t[j])}
+  $$
+
+  where:
+  - $$\text{logits}_t[i]$$ is the unnormalized score for token $$i$$,
+  - and $$V$$ is the size of the vocabulary.
 
 ### 4. **Loss Function**
 
