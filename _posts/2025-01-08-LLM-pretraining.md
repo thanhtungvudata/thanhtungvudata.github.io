@@ -9,14 +9,12 @@ tags:
   - LLM
 ---
 
-# 📚 Demystifying LLM Pre-training: What, Why, and How
-
 Large Language Models (LLMs) like GPT-4 and ChatGPT are powerful tools that understand and generate human-like text. But how do they get so smart in the first place? The answer lies in **pre-training** — a foundational step in building these intelligent systems.
 
 In this post, we’ll break down:
-- ✅ What LLM pre-training does
-- 💡 Why it’s necessary
-- ⚙️ How it works under the hood
+- What LLM pre-training does
+- Why it’s necessary
+- How it works under the hood
 
 ---
 
@@ -63,24 +61,24 @@ This single objective turns out to be incredibly powerful: by learning to predic
 
 - These embeddings pass through multiple Transformer layers.
 - Each layer includes:
-  - **Self-attention** with learned weights: \( W^Q, W^K, W^V, W^O \)
-  - **Feedforward Network (FFN)** with learned weights \( W_1, W_2 \) and biases \( b_1, b_2 \)
+  - **Self-attention** with learned weights: $$ W^Q, W^K, W^V, W^O $$
+  - **Feedforward Network (FFN)** with learned weights $$ W_1, W_2 $$ and biases $$ b_1, b_2 $$
   - **LayerNorm** and residual connections
 
 ### 3. **Output Projection**
 
-- The final hidden state \( h_t \) is passed to a **language modeling head**:
+- The final hidden state $$ h_t $$ is passed to a **language modeling head**:
   ```
   logits = h_t @ W_LM
   ```
-  - \( W_LM \) projects to the vocabulary size.
+  - $$ W_LM $$ projects to the vocabulary size.
   - A softmax turns logits into probabilities over all possible next tokens.
 
 ### 4. **Loss Function**
 
 - The model is trained to minimize the **cross-entropy loss** between the predicted distribution and the actual next token:
   
-  \[ \mathcal{L}(\theta) = -\sum_{t=1}^{T} \log P_\theta(x_t \mid x_{<t}) \]
+  $$ \mathcal{L}(\theta) = -\sum_{t=1}^{T} \log P_\theta(x_t \mid x_{<t}) $$
 
 - This is optimized using **stochastic gradient descent (SGD)** or adaptive variants like AdamW.
 
