@@ -57,14 +57,22 @@ This single objective turns out to be incredibly powerful: by learning to predic
 
 ### 1. **Input Processing**
 
-- The raw text is tokenized into a sequence of discrete tokens.
-- Each token is mapped to a **token embedding** and added to a **positional encoding**:
+- The raw input text is first tokenized into a sequence of discrete tokens: $$ x_1, x_2, \dots, x_T $$.
+- Each token $$ x_t $$ is mapped to a **token embedding vector** using a learnable embedding matrix $$ W^E \in \mathbb{R}^{V \times d} $$, where $$ V $$ is the vocabulary size and $$ d $$ is the model's hidden dimension.
+- $$ W^E[x_t] $$ denotes the **lookup operation**, retrieving the row vector in $$ W^E $$ corresponding to the token ID $$ x_t $$. This produces an embedding vector of dimension $$ \mathbb{R}^d $$.
+- Simultaneously, a **positional embedding vector** is added to each token to encode its position in the sequence. This is provided by another learnable matrix $$ W^P \in \mathbb{R}^{T \times d} $$, where $$ T $$ is the maximum sequence length.
+
+- The result is a sequence of input vectors:
 
   $$
-  h_0 = \text{Embedding}[x_t] + \text{PositionEmbedding}[t]
+  h_0^{(t)} = W^E[x_t] + W^P[t] \in \mathbb{R}^d
   $$
 
-- These embeddings pass through multiple Transformer layers.
+  for each position $$ t = 1, 2, \dots, T $$. This sequence $$ h_0^{(1)}, h_0^{(2)}, \dots, h_0^{(T)} $$ forms the initial input to the first Transformer layer.
+
+- Both $$ W^E $$ and $$ W^P $$ are **learnable parameters** and are part of the model’s overall parameter set $$ \theta $$. These are updated during training via backpropagation to improve the model's language understanding capabilities.
+
+- These enriched input representations are then passed through the stacked Transformer layers, where more complex contextual features are learned at deeper levels of the network.
 
 ### 2. **Transformer Layers**
 
