@@ -173,20 +173,51 @@ Converts each input token into a vector and adds a positional signal.
 - The model can't work directly with text. It needs a numerical understanding of words. These embeddings capture similarities, like "cat" and "dog" has a larger similarity than "cat" and "sleep". 
 - Transformers don't know order by default. So "the cat sleeps" and "sleeps cat the" would look the same without this. Positional encoding tells the model who came before and after.
 
-### **Example:**
-For the sentence `"The cat sleeps"`:
-- Token embeddings:
-  ```python
-  E_token = [e_The, e_cat, e_sleeps]  # shape: (3, d_model)
-  ```
-- Positional embeddings (learned or sinusoidal):
-  ```python
-  P = [p_0, p_1, p_2]
-  ```
-- Final input:
-  ```python
-  X = E_token + P
-  ```
+### **How it works:**
+
+Each input token (like "The", "cat", "sleeps") is mapped to a vector using a learned **token embedding matrix**. These vectors represent the meaning of each token in a high-dimensional space. 
+Let’s break it down:
+
+#### Token Embeddings:
+Given:
+- Vocabulary size:  $$V$$
+- Embedding dimension: $$d$$
+- Embedding matrix: $$E_{\text{token}} \in \mathbb{R}^{V \times d}$$
+
+If your sentence is `["The", "cat", "sleeps"]`, and these map to token IDs `[12, 45, 230]`, then:
+
+$$
+X = \begin{bmatrix}
+E_{\text{token}}[12] \\
+E_{\text{token}}[45] \\
+E_{\text{token}}[230]
+\end{bmatrix} \in \mathbb{R}^{3 \times d}
+$$
+
+These vectors are **learned during training** via backpropagation.
+
+#### Positional Encoding:
+We add a vector to each token embedding that tells the model its position in the sequence. There are two variants:
+
+- **Sinusoidal PE (fixed):**
+
+$$
+\text{PE}[p, 2i] = \sin\left(\frac{p}{10000^{2i/d}}\right), \quad
+\text{PE}[p, 2i+1] = \cos\left(\frac{p}{10000^{2i/d}}\right)
+$$
+
+- **Learned PE:**
+$$ E_{\text{pos}} \in \mathbb{R}^{L \times d} $$, where $$ L $$ is max sequence length.
+
+#### Final Input:
+For position $$p $$ with token ID $$ t $$:
+
+$$
+X_p = E_{\text{token}}[t] + \text{PE}[p]
+$$
+
+This combined vector $$ X_p $$ which encodes both **what the word is** and **where it is** becomes the input to the first transformer layer.
+
 
 ---
 
@@ -285,6 +316,7 @@ Still, encoder-only and full transformer models are valuable in **understanding 
 Understanding these architectures is essential to mastering LLMs like GPT, BERT, Claude, Gemini, LLaMA, and beyond.
 
 For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+
 
 
 
