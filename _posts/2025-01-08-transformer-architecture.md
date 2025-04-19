@@ -2,7 +2,7 @@
 title: "Understanding Transformer Architecture: The Brains Behind Modern AI"
 date: 2025-01-08
 categories:
-  - Large Languague Model Architectures
+  - LLM Architectures
 tags:
   - Data Science
   - Generative AI
@@ -11,6 +11,8 @@ tags:
 Transformers have revolutionized the world of AI, powering models like GPT, BERT, and T5. But what actually goes on inside these models?
 
 In this blog post, we’ll explore the motivation behind transformers, the three main architectural variants (full transformer, encoder-only, and decoder-only), their best applications, and how each component works — with practical examples and diagrams.
+
+<img src="/assets/images/transformer_overview.png" alt="Transformer Architecture" width="600">
 
 ---
 
@@ -34,7 +36,7 @@ There are three main variants of the transformer architecture, each optimized fo
 | Encoder-Only     | BERT, RoBERTa             | Classification, sentence similarity, QA |
 | Decoder-Only     | GPT-2/3/4, LLaMA, PaLM, Claude | Text generation, chat, code completion  |
 
-### ✅ Why Each Fits Its Application
+### Why Each Fits Its Application
 
 - **Encoder-only** models create **contextual representations** of text — ideal for understanding tasks.
 - **Decoder-only** models generate text **token by token**, making them ideal for chat, storytelling, coding, and completion.
@@ -42,7 +44,7 @@ There are three main variants of the transformer architecture, each optimized fo
 
 ## 📊 Architecture Diagrams
 
-### 📘 Full Transformer (Encoder–Decoder)
+### Full Transformer (Encoder–Decoder)
 
 ```text
 Input Tokens (e.g. English)
@@ -56,7 +58,7 @@ Context Representations
 Output Tokens (e.g. French)
 ```
 
-### 📗 Encoder-Only Transformer
+### Encoder-Only Transformer
 
 ```text
 Input Tokens
@@ -66,7 +68,7 @@ Input Tokens
 Contextual Embeddings → used for classification or sentence-level tasks
 ```
 
-### 📙 Decoder-Only Transformer
+### Decoder-Only Transformer
 
 ```text
 Prompt/Input Tokens
