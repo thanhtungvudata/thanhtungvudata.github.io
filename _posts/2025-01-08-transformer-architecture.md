@@ -209,16 +209,21 @@ Each output vector is a blend of others — how much it blends depends on the at
 
 ### 3. Add & LayerNorm (Residual Block 1)
 
-
 #### **What it does:**
-Adds the attention output back to the input and normalizes. 
+Adds the attention output back to the original input (residual connection), then applies layer normalization.
 
 #### **Why it's needed:**
-This helps the model not forget the original word info, and makes training stable and fast.
+- Helps prevent vanishing gradients and training instability
+- Preserves the original token information and combines it with what attention learned
+- Keeps the scale of values consistent across layers
 
-#### **Formula:**
+#### **How it works:**
 
-$$\text{LayerNorm}(X + \text{MultiHead}(X)) $$
+$$
+Z = \text{LayerNorm}(X + \text{MultiHead}(X))
+$$
+
+which **Normalizes** the result using **layer normalization**, which adjusts the mean and variance of the combined vector.
 
 ### 4. Feedforward Neural Network (FFN)
 
