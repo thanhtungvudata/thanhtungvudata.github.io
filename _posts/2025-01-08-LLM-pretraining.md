@@ -1,5 +1,5 @@
 ---
-title: "A Guide to LLM Pre-training: Teaching Machines to Think"
+title: "Understanding LLM Pre-training: Teaching Machines to Think"
 date: 2025-01-08
 categories:
   - LLM Pre-training
@@ -138,8 +138,6 @@ This single objective turns out to be incredibly powerful: by learning to predic
 $$
 \theta = \{W^E, W^P, W^Q, W^K, W^V, W^O, W_1, b_1, W_2, b_2, \gamma, \beta, W^{LM}\}
 $$
-
-- This is optimized using **stochastic gradient descent (SGD)** or adaptive variants like AdamW.
 
 ### 5. **Update Parameters**
 
