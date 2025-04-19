@@ -193,7 +193,7 @@ $$
 
 This is the context-aware representation for token $$ i $$.
 
-Define the full attention operation:
+So, the full attention operation is:
 
 $$
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
