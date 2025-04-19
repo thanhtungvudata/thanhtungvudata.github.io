@@ -249,7 +249,7 @@ $$
 
 This applies **Layer Normalization** to the sum of the input matrix $$X$$ and the multi-head attention output, producing output matrix $$Z \in \mathbb{R}^{n \times d}$$.
 
-LayerNorm is applied **per token**, i.e., on each row $$z \in \mathbb{R}^{1 \times d}$$ of $$Z$$. It normalizes the feature vector by adjusting its mean and variance:
+LayerNorm is applied **per token**, i.e., on each row $$z_i \in \mathbb{R}^{1 \times d}$$ of $$Z$$. It normalizes the feature vector by adjusting its mean and variance:
 
 $$
 \mu = \frac{1}{d} \sum_{i=1}^{d} z_i, \quad \sigma^2 = \frac{1}{d} \sum_{i=1}^{d} (z_i - \mu)^2
@@ -261,7 +261,7 @@ $$
 \text{LayerNorm}(z) = \gamma \cdot \frac{z - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
 $$
 
-Where:
+where:
 - $$z$$ is one token vector from $$Z$$
 - $$\gamma$$ and $$\beta$$ are learnable gain and bias vectors ($$ \in \mathbb{R}^d $$)
 - $$\epsilon$$ is a small constant for numerical stability
