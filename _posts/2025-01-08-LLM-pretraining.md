@@ -51,6 +51,30 @@ This single objective turns out to be incredibly powerful: by learning to predic
 
    - Pre-trained models often achieve strong performance with less labeled data and fine-tuning. This leads to better generalization, especially in low-resource or few-shot settings.
 
+5. **Update Parameters**
+
+After computing the loss for the current batch of training sequences, the model updates its parameters to improve future predictions.
+
+- The loss function $$ \mathcal{L}(\theta) $$ measures how far the model's predicted token distribution is from the actual next token.
+- Using **backpropagation**, the model computes the gradients of the loss with respect to each parameter in $$ \theta $$.
+- These gradients are then used to update the parameters via an optimizer. A common choice is:
+  - **Stochastic Gradient Descent (SGD)**: Simple and effective but requires careful learning rate tuning.
+  - **AdamW**: A popular adaptive optimizer that combines momentum and adaptive learning rates, with weight decay for better generalization.
+
+The result is an updated parameter set $$ \theta \rightarrow \theta' $$ that should reduce the loss on future sequences.
+
+6. **Training Loop**
+
+This process of forward pass → loss computation → backpropagation → parameter update is repeated across billions of training examples.
+
+- Each iteration is called a **training step**, and a full pass over the dataset is an **epoch**.
+- In practice, models are trained over **shuffled batches of token sequences** sampled from large corpora like Wikipedia, books, and web data.
+- Training can run for **weeks** on massive clusters of GPUs or TPUs.
+
+Over time, the model accumulates patterns, relationships, and facts from the training data, effectively learning a **statistical map of language**. This pre-trained knowledge serves as a foundation for downstream tasks via prompting or fine-tuning.
+
+
+
 ---
 
 ## ⚙️ How LLM Pre-training Works
