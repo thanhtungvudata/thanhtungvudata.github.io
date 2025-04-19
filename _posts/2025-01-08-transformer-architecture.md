@@ -95,12 +95,12 @@ Converts each input token into a vector and adds a positional signal.
 - The model can't work directly with text. It needs a numerical understanding of words. These embeddings capture similarities, like "cat" and "dog" has a larger similarity than "cat" and "sleep". 
 - Transformers don't know order by default. So "the cat sleeps" and "sleeps cat the" would look the same without this. Positional encoding tells the model who came before and after.
 
-### **How it works:**
+#### **How it works:**
 
 Each input token (like "The", "cat", "sleeps") is mapped to a vector using a learned **token embedding matrix**. These vectors represent the meaning of each token in a high-dimensional space. 
 Let’s break it down: 
 
-#### Token Embeddings:
+##### Token Embeddings:
 Given:
 - Vocabulary size:  $$V$$
 - Embedding dimension: $$d$$
@@ -118,7 +118,7 @@ $$
 
 These vectors are **learned during training** via backpropagation.
 
-#### Positional Encoding:
+##### Positional Encoding:
 We add a vector to each token embedding that tells the model its position in the sequence. There are two variants:
 
 - **Sinusoidal PE (fixed):**
@@ -131,7 +131,7 @@ $$
 - **Learned PE:**
 $$ E_{\text{pos}} \in \mathbb{R}^{L \times d} $$, where $$ L $$ is max sequence length.
 
-#### Final Input:
+##### Final Input:
 For position $$p $$ with its implied token ID $$ t $$:
 
 $$
@@ -142,15 +142,15 @@ This combined vector $$ X_p $$ which encodes both **what the word is** and **whe
 
 ### 2. Multi-Head Self-Attention
 
-### **What it does:**
+#### **What it does:**
 Each word looks at **all the other words** in the sentence and decides **how much attention to pay** to each of them.
 
-### **Why it's needed:**
+#### **Why it's needed:**
 This helps the model understand context. Multi-head means this is done in multiple ways at once. One head might look at subject-verb, another at adjectives, etc. For example, if the word is "sleeps", attention helps it realize that "cat" is the subject performing the action.
 
-### **How it works:**
+#### **How it works:**
 
-#### 1. Linear projections for Q, K, V
+##### 1. Linear projections for Q, K, V
 Each input token vector $$ x \in \mathbb{R}^d $$ is transformed into:
 - Query vector: $$ Q = xW^Q $$
 - Key vector: $$ K = xW^K $$
@@ -158,7 +158,7 @@ Each input token vector $$ x \in \mathbb{R}^d $$ is transformed into:
 
 where $$ W^Q, W^K, W^V \in \mathbb{R}^{d \times d_k} $$ are learned weight matrices, and $$ d_k $$ is typically $$ d / h $$, with $$ h $$ being the number of heads.
 
-#### 2. Compute attention scores
+##### 2. Compute attention scores
 For each query-key pair, compute a score:
 
 $$
@@ -167,7 +167,7 @@ $$
 
 This measures how much token $$ i $$ should attend to token $$ j $$.
 
-#### 3. Apply softmax
+##### 3. Apply softmax
 Convert scores to attention weights:
 
 $$
@@ -176,7 +176,7 @@ $$
 
 Each $$ \alpha_{ij} \in [0,1] $$, and $$ \sum_j \alpha_{ij} = 1 $$
 
-#### 4. Weighted sum of values
+##### 4. Weighted sum of values
 Use the attention weights to combine the values:
 
 $$
@@ -185,10 +185,10 @@ $$
 
 This is the context-aware representation for token $$ i $$.
 
-#### 5. Do this for multiple heads
+##### 5. Do this for multiple heads
 Repeat the steps above $$ h $$ times, each with its own set of learned $$ W^Q, W^K, W^V $$ matrices.
 
-#### 6. Concatenate and project
+##### 6. Concatenate and project
 Concatenate the output of all heads and apply a final linear projection:
 
 $$
@@ -197,9 +197,9 @@ $$
 
 where $$ W^O \in \mathbb{R}^{(h \cdot d_k) \times d} $$ is also learned. 
 
-$$ W^O $$ learns how to combine the different "perspectives" from all attention heads into a single, unified vector that can be used by the next layer. It decides how much weight to give to each head'’'s output, essentially blending them into a coherent representation for each token.
+$$ W^O $$ determines how to combine the different "perspectives" from all attention heads into a single, unified vector that can be used by the next layer. It decides how much weight to give to each head'’'s output, essentially blending them into a coherent representation for each token.
 
-#### Intuition:
+##### Intuition:
 - **Queries ask questions**: “Who’s relevant to me?”
 - **Keys answer**: “Here’s what I have to offer.”
 - **Values carry content**.
@@ -207,12 +207,18 @@ $$ W^O $$ learns how to combine the different "perspectives" from all attention 
 
 Each output vector is a blend of others — how much it blends depends on the attention scores. That’s how the model learns context.
 
-
-
-
 ### 3. Add & LayerNorm (Residual Block 1)
 
-- Adds the attention output to the original input and applies LayerNorm
+
+#### **What it does:**
+Adds the attention output back to the input and normalizes. 
+
+#### **Why it's needed:**
+This helps the model not forget the original word info, and makes training stable and fast.
+
+#### **Formula:**
+
+$$\text{LayerNorm}(X + \text{MultiHead}(X)) $$
 
 ### 4. Feedforward Neural Network (FFN)
 
@@ -266,20 +272,6 @@ Each decoder layer includes all of the above **plus masking and cross-attention*
 Decoder layers are also repeated $$N$$ times for generation depth.
 
 We'll now explore each component.
-
----
-
-## 3️⃣ Add & LayerNorm (Post-Attention)
-
-### **What it does:**
-Adds the attention output back to the input and normalizes. 
-
-### **Why it's needed:**
-This helps the model not forget the original word info, and makes training stable and fast.
-
-### **Formula:**
-
-$$\text{LayerNorm}(X + \text{MultiHead}(X)) $$
 
 ---
 
