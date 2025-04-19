@@ -467,8 +467,8 @@ This process is repeated $$N$$ times. Each layer refines the understanding.
 ## ⚡ **Limitations**
 
 ### Quadratic Attention Complexity
-- Self-attention requires computing a matrix of size \( n \times n \) (where \( n \) = sequence length).
-- Memory and compute costs scale **quadratically**: \( \mathcal{O}(n^2) \).
+- Self-attention requires computing a matrix of size $$ n \times n $$ (where $$ n $$ = sequence length).
+- Memory and compute costs scale **quadratically**: $$ \mathcal{O}(n^2) $$.
 - Long documents are expensive to process.
 
 ### Fixed Context Window
