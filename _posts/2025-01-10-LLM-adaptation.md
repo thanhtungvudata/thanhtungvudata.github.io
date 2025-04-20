@@ -37,11 +37,13 @@ There are several strategies:
 - **What**: Updates all model weights.
 - **How**: Trains on labeled task-specific datasets.
 - **When**: Used when you have lots of data, compute, and full access to the model.
+- **Example**: Fine-tuning the open-source GPT-J on a large customer support dataset to build an in-house virtual assistant tailored to company-specific terminology and support procedures. This is a realistic choice for enterprises that want to fine-tune LLMs on-premise or with full control (unlike proprietary APIs like GPT-4).
 
 #### 2. Parameter-Efficient Fine-Tuning (PEFT)
 - **What**: Updates only a small subset of parameters (e.g., LoRA, adapters).
 - **How**: Injects trainable modules or layers into the frozen backbone.
 - **When**: Used when compute or memory is limited, e.g., enterprise deployments.
+- **Example**: Using LoRA to fine-tune LLaMA 2 on a small dataset of internal compliance policies, enabling a legal chatbot to answer company-specific questions without modifying the full model or requiring heavy compute.
 
 #### 3. Instruction Tuning
 - **What**: Trains the model on natural language instructions and desired outputs.
