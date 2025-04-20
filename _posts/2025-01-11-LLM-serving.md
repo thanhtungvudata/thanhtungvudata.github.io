@@ -171,7 +171,7 @@ If we think of LLM serving as a journey, we've now covered the entire route: fro
 
 This post isn’t theoretical—it’s what separates proof-of-concept demos from systems people actually trust and use. Whether you're a startup deploying your first assistant or an enterprise scaling globally, your serving stack is the critical bridge from model to impact.
 
-For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
 
 
 
