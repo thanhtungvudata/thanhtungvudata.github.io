@@ -38,7 +38,7 @@ Before diving into the process, it's important to define what LLM serving is and
 
 ---
 
-## ⚙️ 1. Preparing for Scale: Adapting Models with Modular Serving
+## ⚙️ 1. Preparing for Scale: Adapting Models 
 
 Once you've established a solid serving foundation, the next part of the journey is making your model fit the specific needs of your application. This is where model adaptation comes in.
 
@@ -121,10 +121,13 @@ Even with optimized inference, not every query needs the full power of your larg
 **Why it matters**: After adapting your model and applying performance optimizations, the next challenge is efficient resource usage. Serving every user request with a trillion-parameter model is wasteful. A smart system can distinguish when a small model is enough—and only escalate to a larger one when necessary.
 
 **How it works**:
-- **Model Cascades**: Start with a small, fast model. Escalate to larger, slower models if the output is uncertain or unsatisfactory.
-- **Routers**: Lightweight models or heuristics determine which backend model to invoke.
+- **Model Cascades**: Use a sequence of models arranged by increasing capability and cost. Start with a small, fast model. If the output meets a predefined confidence threshold, return it. Otherwise, escalate to a larger, more powerful model. This approach balances latency, cost, and quality.
+  - **When to use**: Ideal when you want to minimize average inference cost and latency, especially for use cases with a mix of simple and complex queries.
+  - **Example**: A chatbot uses a 7B model to answer routine questions and escalates to GPT-4 only when the 7B model’s response has low confidence.
 
-**Example**: An enterprise assistant handles FAQs with a distilled model, but complex finance-related queries are routed to a fine-tuned GPT-4.
+- **Routers**: Use a lightweight classifier or rules-based system to route the request directly to the most appropriate model based on query characteristics (e.g., topic, length, complexity).
+  - **When to use**: Best when you have domain-specific models or usage tiers and want to make routing decisions upfront to avoid redundant computation.
+  - **Example**: A system detects a user is asking about legal policy and routes the request to a law-specific model instead of a general-purpose LLM.
 
 **Intuition**: Just like customer support teams use first-line reps for standard questions and specialists for advanced issues, LLM systems should respond with the right model at the right time.
 
