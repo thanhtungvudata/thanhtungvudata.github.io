@@ -57,10 +57,18 @@ While all these methods play important roles in the lifecycle of an LLM, this se
 **Why it matters**: No two users—or use cases—are the same. A single base model needs to adapt dynamically to new requirements, domains, or behaviors. Efficient adaptation keeps serving nimble, fast, and low-cost.
 
 **PEFT Serving Strategies**:
-1. **Merged adaptation**: Fuse adapters into the base model weights for maximum speed and simplicity.
-2. **Modular serving**: Load lightweight adapters on demand for multi-domain, multi-tenant environments.
 
-**Example**: A customer service chatbot might need a medical tone for healthcare users and a legal tone for fintech. With modular LoRA adapters, you don’t duplicate the entire model—you just swap in the right specialization.
+There are multiple techniques within PEFT, each with different mechanisms and implications for serving:
+
+- **LoRA (Low-Rank Adaptation)**: Injects trainable low-rank matrices into specific weight components (e.g., attention layers). Ideal for adapting large models with minimal additional memory.
+- **Adapter modules**: Inserts lightweight bottleneck layers between transformer blocks. Commonly used in multi-task learning and multilingual settings.
+
+In serving, both LoRA and adapter methods can be used in two deployment modes:
+
+1. **Merged adaptation**: Merge the adapted weights (e.g., LoRA-modified or adapter-trained) into the base model before deployment. This is fast and simple but inflexible.
+2. **Modular serving**: Keep the base model frozen and dynamically load LoRA weights or adapter modules depending on the use case. This enables multi-tenant and multi-domain applications without duplicating models.
+
+**Example**: A customer service chatbot might serve both healthcare and legal domains. By modularly loading the appropriate LoRA weights or adapter layers per request, it avoids having to fine-tune or store multiple full models.
 
 **Intuition**: Like putting on different uniforms for different jobs—same person, optimized attire.
 
@@ -169,11 +177,4 @@ If we think of LLM serving as a journey, we've now covered the entire route: fro
 This post isn’t theoretical—it’s what separates proof-of-concept demos from systems people actually trust and use. Whether you're a startup deploying your first assistant or an enterprise scaling globally, your serving stack is the critical bridge from model to impact.
 
 For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
-
-
-
-
-
-
-
 
