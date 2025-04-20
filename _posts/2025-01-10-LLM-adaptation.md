@@ -40,8 +40,11 @@ There are several strategies:
 - **Example**: Fine-tuning the open-source GPT-J on a large customer support dataset to build an in-house virtual assistant tailored to company-specific terminology and support procedures. This is a realistic choice for enterprises that want to fine-tune LLMs on-premise or with full control (unlike proprietary APIs like GPT-4).
 
 #### 2. Parameter-Efficient Fine-Tuning (PEFT)
-- **What**: Updates only a small subset of parameters (e.g., LoRA, adapters).
+- **What**: Updates only a small subset of parameters.
 - **How**: Injects trainable modules or layers into the frozen backbone.
+- **Common techniques**:
+  - **LoRA (Low-Rank Adaptation)**: Inserts low-rank matrices into attention layers, allowing efficient adaptation without touching the original weights.
+  - **Adapters**: Small trainable bottleneck layers added between transformer layers; during training, only these adapter layers are updated.
 - **When**: Used when compute or memory is limited, e.g., enterprise deployments.
 - **Example**: Using LoRA to fine-tune LLaMA 2 on a small dataset of internal compliance policies, enabling a legal chatbot to answer company-specific questions without modifying the full model or requiring heavy compute.
 
