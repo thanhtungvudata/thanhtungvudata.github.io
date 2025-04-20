@@ -1,6 +1,6 @@
 ---
 title: "Understanding LLM Pre-training: Teaching Machines to Think"
-date: 2025-01-08
+date: 2025-01-09
 categories:
   - LLM Pre-training
 tags:
