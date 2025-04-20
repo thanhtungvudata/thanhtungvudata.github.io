@@ -55,6 +55,7 @@ There are several strategies:
 - **What**: Further pre-trains the model on domain-specific **unlabeled** data.
 - **How**: Continues next-token prediction training on new corpora.
 - **When**: Used when adapting to technical/legal/biomedical/etc. language.
+- **Example**: Continuing the pre-training of a decoder-only model like GPT-2 on a large corpus of clinical trial reports to create a biomedical variant (e.g., BioGPT), enabling more fluent and accurate medical text generation for tasks like summarizing patient records or drafting clinical notes.
 
 ### Intuition
 Think of internal adaptation as updating the model’s **memory and skills**. You're either:
