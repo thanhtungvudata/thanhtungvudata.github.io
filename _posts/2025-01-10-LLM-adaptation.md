@@ -56,8 +56,9 @@ There are several strategies:
 ### Intuition
 Think of internal adaptation as updating the model’s **memory and skills**. You're either:
 - Teaching it how to do new things (fine-tuning)
-- Helping it speak a different dialect or language style (domain-adaptive pretraining)
+- Adding lightweight modules that inject new skills efficiently without retraining the entire brain (parameter-efficient fine-tuning)
 - Making it more compliant to your task instructions (instruction tuning)
+- Helping it speak a different dialect or language style (domain-adaptive pretraining)
 
 ---
 
