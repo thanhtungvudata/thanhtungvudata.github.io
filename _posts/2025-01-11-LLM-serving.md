@@ -174,9 +174,14 @@ At this stage, you've optimized, routed, and compressed your models for performa
 - **Correctness**: Accuracy, hallucination rate, instruction-following
 
 **How it works**:
-- **Synthetic evaluations**: Use LLMs themselves as judges
-- **Shadow deployments**: Test new models alongside production quietly
-- **Logging and dashboards**: Track trends and debug issues
+- **Synthetic evaluations**: Use one or more LLMs as evaluators to assess the quality, relevance, or correctness of generated outputs. These evaluations can mimic human judgment using scoring rubrics or pairwise comparisons.
+  - **When to use**: Useful when human evaluations are too costly or slow. Ideal for quickly comparing multiple model versions during development.
+
+- **Shadow deployments**: Run a candidate model in parallel with the production model without affecting user experience. Compare its outputs silently to the live model’s outputs to evaluate performance, safety, and stability.
+  - **When to use**: Essential for validating new models in real production traffic before full rollout. Helps catch regressions or unexpected behaviors.
+
+- **Logging and dashboards**: Continuously collect and visualize key metrics such as latency, token usage, error rates, or hallucination frequency. Dashboards provide visibility across time and segments.
+  - **When to use**: Critical for maintaining service reliability and diagnosing issues. Should be implemented from the start and reviewed regularly by ops and ML teams.
 
 **Intuition**: Like sensors in a smart building, monitoring gives you real-time visibility and early warnings—critical for maintaining trust and performance.
 
