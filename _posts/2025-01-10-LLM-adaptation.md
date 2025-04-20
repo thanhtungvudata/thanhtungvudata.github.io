@@ -33,13 +33,25 @@ Internal adaptation tunes the model toward precise performance, sometimes even e
 ### How it works
 There are several strategies:
 
-#### 1. Full Fine-Tuning
+#### 1. Supervised Fine-Tuning
+
+Explanation of Supervised Fine-Tuning here. 
+
+The common strategies are:
+
+##### Full Fine-Tuning
 - **What**: Updates all model weights.
 - **How**: Trains on labeled task-specific datasets.
 - **When**: Used when you have lots of data, compute, and full access to the model.
 - **Example**: Fine-tuning the open-source GPT-J on a large customer support dataset to build an in-house virtual assistant tailored to company-specific terminology and support procedures. This is a realistic choice for enterprises that want to fine-tune LLMs on-premise or with full control (unlike proprietary APIs like GPT-4).
 
-#### 2. Parameter-Efficient Fine-Tuning (PEFT)
+##### Instruction Tuning
+- **What**: Trains the model on natural language instructions and desired outputs.
+- **How**: Uses a dataset of (instruction, response) pairs.
+- **When**: Helps the model generalize to new tasks via zero-/few-shot prompting (prompt engineering - will be discussed later). Instruction tuning makes prompt engineering easier and more effective because the model already understands how to interpret natural-language instructions. 
+- **Example**: Instruction tuning a variant of T5 using a curated dataset of customer FAQs and policy documents, enabling the model to respond accurately to diverse customer service inquiries using clear and compliant language. Models like T5, FLAN-T5, GPT-3.5, and LLaMA 2 Chat are instruction-tuned, which is why they’re good at zero-shot tasks.
+
+##### Parameter-Efficient Fine-Tuning (PEFT)
 - **What**: Updates only a small subset of parameters.
 - **How**: Injects trainable modules or layers into the frozen backbone.
 - **Common techniques**:
@@ -48,13 +60,13 @@ There are several strategies:
 - **When**: Used when compute or memory is limited, e.g., enterprise deployments.
 - **Example**: Using LoRA to fine-tune LLaMA 2 on a small dataset of internal compliance policies, enabling a legal chatbot to answer company-specific questions without modifying the full model or requiring heavy compute.
 
-#### 3. Instruction Tuning
-- **What**: Trains the model on natural language instructions and desired outputs.
-- **How**: Uses a dataset of (instruction, response) pairs.
-- **When**: Helps the model generalize to new tasks via zero-/few-shot prompting (prompt engineering - will be discussed later). Instruction tuning makes prompt engineering easier and more effective because the model already understands how to interpret natural-language instructions. 
-- **Example**: Instruction tuning a variant of T5 using a curated dataset of customer FAQs and policy documents, enabling the model to respond accurately to diverse customer service inquiries using clear and compliant language. Models like T5, FLAN-T5, GPT-3.5, and LLaMA 2 Chat are instruction-tuned, which is why they’re good at zero-shot tasks.
+#### 2. Unsupervised fine-tuning
 
-#### 4. Continual / Domain-Adaptive Pre-training
+Explanation of Unsupervised fine-tuning here
+
+The common strategy is
+
+##### Continual / Domain-Adaptive Pre-training
 - **What**: Further pre-trains the model on domain-specific **unlabeled** data.
 - **How**: Continues next-token prediction training on new corpora.
 - **When**: Used when adapting to technical/legal/biomedical/etc. language.
