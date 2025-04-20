@@ -86,11 +86,25 @@ With your model adapted to its purpose, the next battle is speed and cost. Real-
 
 **Why it matters**: You’ve tailored your model to specific needs—now you need it to perform under pressure. Optimization ensures your system delivers answers quickly and cost-effectively, even at scale.
 
-### Key techniques:
-- **Speculative decoding**: Let a small model guess the output, then validate it with the big model.
-- **KV caching**: Store and reuse attention values across tokens to avoid redundant computation.
-- **Early exit**: If confidence is high, don’t keep generating—stop early.
-- **Batching & parallel decoding**: Combine multiple user queries into one GPU pass to save compute.
+### Key techniques
+
+Each of these techniques serves a different purpose in improving inference performance. Here's a breakdown:
+
+- **Speculative Decoding**: Use a smaller, faster model to generate a draft continuation and then verify it with the larger model.
+  - 🟢 **When to use**: When latency is critical and your large model is expensive to run; useful in settings like chat interfaces where speed is essential.
+  - 📌 **Benefit**: Achieves nearly the same output quality as the large model while cutting generation time.
+
+- **KV Caching (Key/Value Caching)**: Cache attention key and value tensors during decoding to avoid recomputing past states.
+  - 🟢 **When to use**: In any autoregressive model where context is built sequentially—especially effective in multi-turn conversations.
+  - 📌 **Benefit**: Reduces redundant computation and significantly improves throughput.
+
+- **Early Exit**: Terminate generation once the model becomes confident about the outcome.
+  - 🟢 **When to use**: In classification-style tasks or structured output formats where full decoding isn’t necessary.
+  - 📌 **Benefit**: Saves computation by avoiding unnecessary token generation.
+
+- **Batching & Parallel Decoding**: Group multiple inputs into a single batch and decode them concurrently.
+  - 🟢 **When to use**: In high-traffic APIs or backend systems where latency per user can tolerate slight delays for batching.
+  - 📌 **Benefit**: Maximizes GPU utilization and throughput, especially effective for multi-user scenarios.
 
 **Example**: A high-volume call center bot might use speculative decoding to respond to simple queries instantly, reserving heavyweight computation for nuanced requests.
 
