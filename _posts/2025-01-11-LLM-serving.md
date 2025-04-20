@@ -36,8 +36,6 @@ Before diving into the process, it's important to define what LLM serving is and
 
 **Example**: A retail chatbot that handles thousands of queries per minute needs a serving layer that’s fast, elastic, and fault-tolerant.
 
-**Intuition**: Think of it like your model’s launchpad—serving is what takes it out of the lab and puts it into the hands of real users.
-
 ---
 
 ## ⚙️ 1. Preparing for Scale: Adapting Models with Modular Serving
@@ -58,7 +56,7 @@ While all these methods play important roles in the lifecycle of an LLM, this se
 
 **Why it matters**: No two users—or use cases—are the same. A single base model needs to adapt dynamically to new requirements, domains, or behaviors. Efficient adaptation keeps serving nimble, fast, and low-cost.
 
-### PEFT Serving Strategies:
+**PEFT Serving Strategies**:
 1. **Merged adaptation**: Fuse adapters into the base model weights for maximum speed and simplicity.
 2. **Modular serving**: Load lightweight adapters on demand for multi-domain, multi-tenant environments.
 
