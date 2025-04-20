@@ -104,7 +104,7 @@ External adaptation allows maximum flexibility and fast prototyping.
     Review: "The service was slow and the coffee was cold."
     Sentiment: Negative
     Review: "The store was clean but the cashier was rude."
-    Sentimentiment: Positive
+    Sentiment: Positive
     Review: "The food was delicious and the staff were lovely."
     Sentiment: 
     ```
