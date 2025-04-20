@@ -1,8 +1,8 @@
 ---
 title: "Understanding LLM Serving: How to Run Language Models Fast, Cheap, and Effectively"
-date: 2025-01-10
+date: 2025-01-11
 categories:
-  - LLM Apdatation
+  - LLM Serving
 tags:
   - Data Science
   - Generative AI
