@@ -13,11 +13,13 @@ Large Language Models (LLMs) have redefined what’s possible across industries�
 
 LLM serving refers to the process of making trained language models available for inference in production systems. This is where infrastructure meets machine learning, and where engineering choices directly influence user experience, operating costs, and business outcomes.
 
-For CTOs, it’s about building scalable, cost-efficient infrastructure. For ML and platform engineers, it's about optimizing latency, throughput, and performance. For product managers, it’s about delivering responsive, intelligent features that enhance engagement and drive value.
+For CTOs, it’s about building scalable, cost-efficient infrastructure. For ML and platform engineers, it's about optimizing latency, throughput, and performance. For product managers, it’s about delivering responsive, intelligent features that enhance engagement and drive value. 
 
 A poorly optimized LLM serving setup can lead to high cloud bills, inconsistent user experiences, or even system downtime. On the other hand, a well-tuned serving stack can unlock real-time intelligence, handle high traffic gracefully, and enable rapid iteration with multiple model variants.
 
 In this post, we’ll break down the core techniques behind LLM serving and walk you through the full lifecycle—from model adaptation to inference-time optimization, intelligent routing, and performance monitoring. The goal is to help your team build smarter, faster, and more robust systems.
+
+<img src="/assets/images/LLM_serving_overview.png" alt="LLM Serving" width="600">
 
 ---
 
