@@ -103,6 +103,7 @@ External adaptation allows maximum flexibility and fast prototyping.
 - **What**: Feeds relevant external documents into the model as context.
 - **How**: Embeds documents + query, retrieves top matches, adds to the prompt.
 - **When**: For knowledge-intensive tasks or reducing hallucinations.
+- **Example**: Building a customer support chatbot that can answer questions using the company’s internal documentation. When a user asks, "How do I request a refund?", the system first retrieves the most relevant sections from the refund policy and includes them in the prompt. The LLM then generates a response grounded in the retrieved context, reducing the risk of hallucinated or incorrect information.
 
 ### Intuition
 External adaptation is like **showing the model what to pay attention to** or **telling it how to think**, rather than changing what it knows. It’s lightweight but powerful, especially when paired with the right inputs.
