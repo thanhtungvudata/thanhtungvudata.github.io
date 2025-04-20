@@ -42,7 +42,7 @@ Before diving into the process, it's important to define what LLM serving is and
 
 Once you've established a solid serving foundation, the next part of the journey is making your model fit the specific needs of your application. This is where model adaptation comes in.
 
-There are several methods for adapting LLMs to downstream tasks:
+There are several methods for adapting LLMs to downstream tasks (check my previous [post](https://thanhtungvudata.github.io/llm%20apdatation/LLM-adaptation/)):
 - **Full fine-tuning**: retrains all parameters for maximum performance.
 - **Instruction tuning**: aligns behavior for general instruction-following tasks.
 - **Continual pretraining**: extends model pretraining on domain-specific corpora.
