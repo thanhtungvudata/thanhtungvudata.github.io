@@ -68,6 +68,10 @@ In serving, both LoRA and adapter methods can be used in two deployment modes:
 1. **Merged adaptation**: Merge the adapted weights (e.g., LoRA-modified or adapter-trained) into the base model before deployment. This is fast and simple but inflexible.
 2. **Modular serving**: Keep the base model frozen and dynamically load LoRA weights or adapter modules depending on the use case. This enables multi-tenant and multi-domain applications without duplicating models.
 
+**When to use which**:
+- Use **merged adaptation** when you're serving a single specialized use case or want the lowest possible latency and memory overhead.
+- Use **modular serving** when you need to serve multiple use cases, domains, or clients with minimal duplication and maximum flexibility.
+
 **Example**: A customer service chatbot might serve both healthcare and legal domains. By modularly loading the appropriate LoRA weights or adapter layers per request, it avoids having to fine-tune or store multiple full models.
 
 **Intuition**: Like putting on different uniforms for different jobs—same person, optimized attire.
