@@ -141,7 +141,18 @@ As your system scales and requests increase, efficiency becomes more critical. T
 
 **Why it matters**: Smaller models consume less GPU memory and respond faster. This makes it feasible to deploy LLMs in constrained environments (like edge devices) and lowers cloud inference costs.
 
-**Popular methods**: QLoRA, AWQ, GPTQ, GGUF
+**Popular methods**:
+- **QLoRA (Quantized LoRA)**: Combines quantization with parameter-efficient fine-tuning (PEFT) using low-rank adapters. Supports 4-bit quantization with high training efficiency.
+  - **When to use**: Best for fine-tuning large models on low-resource hardware while keeping memory usage minimal.
+
+- **AWQ (Activation-aware Weight Quantization)**: Focuses on minimizing quantization error by calibrating activation distributions during weight quantization.
+  - **When to use**: Ideal for maximizing model accuracy in static quantization scenarios, especially for deployment.
+
+- **GPTQ (Gradient Post-Training Quantization)**: Post-training quantization method that uses second-order optimization to minimize loss introduced by quantization.
+  - **When to use**: Effective when you want to quantize a model without retraining, especially for 4-bit inference.
+
+- **GGUF (GPT-Generated Unified Format)**: A community-driven format used with quantized models in tools like llama.cpp. Supports multiple quantization schemes in an efficient runtime package.
+  - **When to use**: Great for local/offline inference on consumer hardware using llama.cpp or similar lightweight runtimes.
 
 **Example**: A 4-bit quantized LLaMA model running on a consumer GPU delivers comparable performance while slashing costs and latency.
 
