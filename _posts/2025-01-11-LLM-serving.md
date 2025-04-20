@@ -29,7 +29,7 @@ Before diving into the process, it's important to define what LLM serving is and
 
 **Why it matters:** Serving is the operational bridge that turns model training into real-world value. Without an effective serving layer, your model remains inaccessible—no matter how well it’s adapted, optimized, or monitored. Serving is what enables all downstream capabilities to function at scale.
 
-### Core responsibilities:
+**Core responsibilities**:
 - **Expose the model** as an API or service endpoint
 - **Scale inference** across traffic loads and user queries
 - **Optimize throughput and latency** to meet service-level agreements (SLAs) and budgets
