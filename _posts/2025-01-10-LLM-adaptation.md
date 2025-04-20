@@ -81,10 +81,23 @@ External adaptation allows maximum flexibility and fast prototyping.
 
 ### How it works
 
-#### 1. Prompt Engineering (Zero-/Few-shot)
+#### 1. Prompt Engineering
 - **What**: Carefully designs input prompts to guide model behavior.
 - **How**: Uses instructions, examples, constraints, or persona cues.
 - **When**: Useful for simple tasks or when fine-tuning isn’t feasible.
+- **Common techniques**: Zero-shot, Few-shot, Chain-of-thought
+
+- **Example of zero-short**: Asking a model like GPT-4: "Classify the sentiment of this review: 'The product arrived late and was broken.'"
+- **Example of Few-shot**: Includes a few examples in the prompt to help the model infer the pattern. 
+    ```
+    Review: "The food was delicious and the staff were lovely."
+    Seiew: "The service was slow and the coffee was cold."
+    Sentiment: Negative
+    Review: "The store was clean but the cashier was rude."
+    Sentimentiment: Positive
+    Revnt:
+    ```
+- **Example of Chain-of-thought**: Encourages the model to reason step-by-step before producing the answer: "If there are 3 red balls and 5 blue balls in a bag, and you draw two balls without replacement, what is the probability that both are red? Think step by step."
 
 #### 2. Retrieval-Augmented Generation (RAG)
 - **What**: Feeds relevant external documents into the model as context.
