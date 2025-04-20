@@ -20,24 +20,21 @@ For product leaders, data scientists, and AI engineers, understanding how to tai
 ## ⚙️ Internal Adaptation
 
 ### What it does
-Internal adaptation modifies the **internal parameters** of a pre-trained model to specialize it for a specific task or domain. These methods involve further training, often on curated or domain-specific data.
+Internal adaptation modifies the **internal parameters** of a pre-trained model to specialize it for a specific task or domain. These methods involve further training, either with labeled or unlabeled data, depending on the adaptation goal.
 
 ### Why it’s needed
 While pre-trained models have broad capabilities, they often:
 - Lack deep expertise in niche domains
 - Struggle to follow complex task-specific instructions
-- Require behavior refinement for enterprise alignment
+- Require behavior refinement for enterprise or safety alignment
 
-Internal adaptation tunes the model toward precise performance, sometimes even exceeding human-level performance in narrow tasks.
+Internal adaptation tunes the model toward precise performance, sometimes even exceeding human-level capability in narrow or controlled environments.
 
 ### How it works
-There are several strategies:
+Internal adaptation strategies fall into two categories based on the nature of the data used: **supervised** and **unsupervised** fine-tuning.
 
 #### 1. Supervised Fine-Tuning
-
-Explanation of Supervised Fine-Tuning here. 
-
-The common strategies are:
+Supervised fine-tuning adapts the model using **labeled datasets** with input-output pairs. It is the most common method for task-specific or instruction-following customization.
 
 ##### Full Fine-Tuning
 - **What**: Updates all model weights.
@@ -48,7 +45,7 @@ The common strategies are:
 ##### Instruction Tuning
 - **What**: Trains the model on natural language instructions and desired outputs.
 - **How**: Uses a dataset of (instruction, response) pairs.
-- **When**: Helps the model generalize to new tasks via zero-/few-shot prompting (prompt engineering - will be discussed later). Instruction tuning makes prompt engineering easier and more effective because the model already understands how to interpret natural-language instructions. 
+- **When**: Helps the model generalize to new tasks via zero-/few-shot prompting (prompt engineering - will be discussed later). Instruction tuning makes prompt engineering easier and more effective because the model already understands how to interpret natural-language instructions.
 - **Example**: Instruction tuning a variant of T5 using a curated dataset of customer FAQs and policy documents, enabling the model to respond accurately to diverse customer service inquiries using clear and compliant language. Models like T5, FLAN-T5, GPT-3.5, and LLaMA 2 Chat are instruction-tuned, which is why they’re good at zero-shot tasks.
 
 ##### Parameter-Efficient Fine-Tuning (PEFT)
@@ -60,11 +57,8 @@ The common strategies are:
 - **When**: Used when compute or memory is limited, e.g., enterprise deployments.
 - **Example**: Using LoRA to fine-tune LLaMA 2 on a small dataset of internal compliance policies, enabling a legal chatbot to answer company-specific questions without modifying the full model or requiring heavy compute.
 
-#### 2. Unsupervised fine-tuning
-
-Explanation of Unsupervised fine-tuning here
-
-The common strategy is
+#### 2. Unsupervised Fine-Tuning
+Unsupervised fine-tuning (often called **Continual** or **Domain-Adaptive Pre-training**) adapts the model using **unlabeled** domain-specific data. It continues the original pretraining objective, typically next-token prediction.
 
 ##### Continual / Domain-Adaptive Pre-training
 - **What**: Further pre-trains the model on domain-specific **unlabeled** data.
@@ -72,12 +66,13 @@ The common strategy is
 - **When**: Used when adapting to technical/legal/biomedical/etc. language.
 - **Example**: Continuing the pre-training of a decoder-only model like GPT-2 on a large corpus of clinical trial reports to create a biomedical variant (e.g., BioGPT), enabling more fluent and accurate medical text generation for tasks like summarizing patient records or drafting clinical notes.
 
-### Intuition
+#### Intuition
 Think of internal adaptation as updating the model’s **memory and skills**. You're either:
-- Teaching it how to do new things (fine-tuning)
-- Adding lightweight modules that inject new skills efficiently without retraining the entire brain (parameter-efficient fine-tuning)
-- Making it more compliant to your task instructions (instruction tuning)
-- Helping it speak a different dialect or language style (domain-adaptive pretraining)
+- Teaching it how to do new things (**full fine-tuning**)
+- Making it more compliant to your task instructions (**instruction tuning**)
+- Adding lightweight modules that inject new skills efficiently without retraining the entire brain (**parameter-efficient fine-tuning**)
+- Helping it speak a different dialect or language style (**domain-adaptive pretraining**)
+
 
 ---
 
