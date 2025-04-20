@@ -13,6 +13,8 @@ Pre-trained large language models (LLMs) like GPT-4, Claude, and LLaMA are trans
 
 For product leaders, data scientists, and AI engineers, understanding how to tailor LLMs is essential to unlocking business value, ensuring safety, and aligning outputs with brand voice or regulatory standards. In this post, we break down the key strategies for adapting LLMs — **Internal Adaptation**, **External Adaptation**, and **Reinforcement Learning from Human Feedback (RLHF)** — and explain each in terms of: **What it does**, **Why it’s needed**, **How it works**, and the **Intuition** behind it.
 
+<img src="/assets/images/LLM_adaptation_overview.png" alt="LLM Adaptation" width="600">
+
 ---
 
 ## ⚙️ Internal Adaptation
