@@ -197,9 +197,27 @@ By now, we’ve walked through every key component of the LLM serving journey: a
 
 **Components of a modern serving stack**:
 - **Serving engines**: `vLLM`, `Triton` for optimized token generation
+  - `vLLM`: A high-throughput inference engine designed for large language models. Supports paged attention and continuous batching, reducing memory fragmentation and increasing token throughput.
+  - `Triton`: NVIDIA’s inference server supporting multiple backends (PyTorch, TensorFlow, ONNX, etc.). Offers dynamic batching, model versioning, and GPU-accelerated token streaming.
+
 - **Routing frameworks**: `Ray Serve`, `BentoML` to dispatch queries to the right model
+  - `Ray Serve`: Scalable and flexible model serving library built on Ray. Enables dynamic composition of model pipelines, model sharding, and request batching.
+  - `BentoML`: Framework for packaging and deploying models as microservices. Offers model runners, REST APIs, and easy integration with cloud or Kubernetes environments.
+
 - **Deployment platforms**: Hugging Face Inference Endpoints, OpenRouter, Replicate, on-prem clusters
+  - **Hugging Face Inference Endpoints**: Managed service that deploys models directly from the Hub. Provides autoscaling, token usage tracking, and secure APIs.
+  - **OpenRouter**: Unified API interface to multiple commercial and open-source LLMs. Allows routing requests based on pricing, latency, or provider.
+  - **Replicate**: Serverless model deployment platform. Allows fast prototyping and sharing of models via instant APIs.
+  - **On-prem clusters**: Used in regulated or high-security environments. Leverages Triton or vLLM for internal deployment on GPUs with full data control.
+
 - **Monitoring and experiment tracking**: `MLflow`, `LangSmith`, `Weights & Biases`
+  - `MLflow`: Open-source platform for experiment tracking, model registry, and reproducibility. Supports tracking of parameters, metrics, and artifacts across runs.
+  - `LangSmith`: Monitoring and observability platform for LLM applications. Offers tracing, evaluation, and real-time error analytics tailored to language model usage.
+  - `Weights & Biases`: End-to-end MLOps suite with tools for experiment tracking, model comparison, hyperparameter tuning, and collaborative reporting.
+
+**Cloud Platforms**: AWS (SageMaker, Bedrock), Azure (Azure ML, OpenAI Service), and GCP (Vertex AI) provide managed infrastructure for deploying LLMs at scale. These services are ideal for enterprises looking for integration, compliance, and scale without managing serving infrastructure manually.
+
+**Industry Best Practice**: Leading companies like OpenAI, Anthropic, and Cohere often adopt a hybrid approach—using modular serving stacks (e.g., Ray Serve with vLLM or Triton) for flexibility and control, combined with cloud-managed infrastructure for scalability and compliance. Many also build internal routing layers that prioritize cost-aware model selection and observability pipelines to track latency, usage, and hallucinations in real time.
 
 **Intuition**: Like building a house, your architecture matters—but so do the tools and materials used to bring it to life. This is where everything comes together.
 
