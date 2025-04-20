@@ -74,7 +74,7 @@ With your model adapted to its purpose, the next battle is speed and cost. Real-
 
 **What it does**: These are techniques that reduce the time and resources required to generate responses from your model, without retraining or changing the architecture.
 
-**Why it matters in the story**: You’ve tailored your model to specific needs—now you need it to perform under pressure. Optimization ensures your system delivers answers quickly and cost-effectively, even at scale.
+**Why it matters**: You’ve tailored your model to specific needs—now you need it to perform under pressure. Optimization ensures your system delivers answers quickly and cost-effectively, even at scale.
 
 ### Key techniques:
 - **Speculative decoding**: Let a small model guess the output, then validate it with the big model.
@@ -90,14 +90,13 @@ With your model adapted to its purpose, the next battle is speed and cost. Real-
 
 ## 🧠 3. Making Smart Choices: When and What to Serve
 
-Even with optimized inference, not every query needs the full power of your largest model. This is where routing and cascading strategies come into play.
+Even with optimized inference, not every query needs the full power of your largest model. This is where **routing** and **cascading** strategies come into play.
 
 **What it does**: LLM cascades and routing mechanisms dynamically choose the most appropriate model for a given query based on complexity or confidence.
 
-### Why it matters:
-After adapting your model and applying performance optimizations, the next challenge is efficient resource usage. Serving every user request with a trillion-parameter model is wasteful. A smart system can distinguish when a small model is enough—and only escalate to a larger one when necessary.
+**Why it matters**: After adapting your model and applying performance optimizations, the next challenge is efficient resource usage. Serving every user request with a trillion-parameter model is wasteful. A smart system can distinguish when a small model is enough—and only escalate to a larger one when necessary.
 
-### How it works:
+**How it works**:
 - **Model Cascades**: Start with a small, fast model. Escalate to larger, slower models if the output is uncertain or unsatisfactory.
 - **Routers**: Lightweight models or heuristics determine which backend model to invoke.
 
@@ -131,12 +130,12 @@ At this stage, you've optimized, routed, and compressed your models for performa
 
 **Why it matters in the serving lifecycle**: No matter how efficient your pipeline is, without visibility into quality and behavior, you're flying blind. This layer closes the loop by turning runtime behavior into insights for continuous improvement.
 
-### What to track:
+**What to track**:
 - **Latency**: First-token and total response time
 - **Cost**: Per-token or per-request
 - **Correctness**: Accuracy, hallucination rate, instruction-following
 
-### How to do it:
+**How it works**:
 - **Synthetic evaluations**: Use LLMs themselves as judges
 - **Shadow deployments**: Test new models alongside production quietly
 - **Logging and dashboards**: Track trends and debug issues
@@ -151,9 +150,9 @@ By now, we’ve walked through every key component of the LLM serving journey: a
 
 **What it does**: Serving tools and infrastructure turn all your design decisions into a deployable, reliable, and scalable system that runs day and night.
 
-**Why it matters in the story**: All the principles we’ve covered only deliver value when combined in a well-engineered stack. Tooling bridges the gap from theory to deployment.
+**Why it matters**: All the principles we’ve covered only deliver value when combined in a well-engineered stack. Tooling bridges the gap from theory to deployment.
 
-### Components of a modern serving stack:
+**Components of a modern serving stack**:
 - **Serving engines**: `vLLM`, `Triton` for optimized token generation
 - **Routing frameworks**: `Ray Serve`, `BentoML` to dispatch queries to the right model
 - **Deployment platforms**: Hugging Face Inference Endpoints, OpenRouter, Replicate, on-prem clusters
