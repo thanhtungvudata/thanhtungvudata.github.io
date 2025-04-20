@@ -128,9 +128,15 @@ RLHF teaches the model **how it should behave** in ambiguous or high-stakes sett
 
 ### How it works
 It typically involves 3 steps:
+
 1. **Supervised Fine-Tuning (SFT)**: Human-written examples are used to fine-tune the model.
+   - **Example**: Collecting high-quality responses to prompts like "Explain climate change to a 10-year-old" and fine-tuning the model on these pairs to ensure clarity and tone.
+
 2. **Reward Model Training**: Humans rank pairs of model responses; a reward model is trained on these rankings.
+   - **Example**: For the prompt "Should I skip school to play video games?", if the model gives both a responsible and an irresponsible answer, human annotators rank the responsible one higher. This ranking data trains a reward model to prefer such outputs.
+
 3. **Reinforcement Learning (e.g., PPO)**: The base model is updated using the reward model as the optimization signal.
+   - *Intuition*: Using Reinforcement Learning, the model gradually improves its behavior through trial and feedback, learning to produce responses that align with human preferences — such as being helpful, safe, and respectful — while avoiding drastic shifts that could destabilize performance.
 
 ### Intuition
 RLHF is like teaching **manners and judgment**. It doesn't make the model more knowledgeable but helps it behave in ways humans prefer. It’s often the final alignment step for production-grade chatbots like ChatGPT.
