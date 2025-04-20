@@ -164,7 +164,7 @@ As your system scales and requests increase, efficiency becomes more critical. T
 
 ## 🧪 5. Closing the Loop: Monitoring and Evaluation
 
-At this stage, you've optimized, routed, and compressed your models for performance and cost. Now comes the final—but continuous—step in the story: making sure everything works as intended.
+At this stage, you've optimized, routed, and compressed your models for performance and cost. Now comes the final-but-continuous step: making sure everything works as intended.
 
 **What it does**: Evaluation and monitoring ensure your system remains reliable, accurate, and aligned with user expectations in a dynamic production environment.
 
