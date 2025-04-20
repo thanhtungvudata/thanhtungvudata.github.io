@@ -167,7 +167,7 @@ Let me know in the comments if you’d like visualizations or hands-on code exam
 
 
 
-For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
 
 
 

@@ -242,7 +242,7 @@ So next time an LLM answers your question or writes your code, remember: it all 
 
 🧠 **Up Next:** Want to dive into fine-tuning and how LLMs adapt to specific tasks? Stay tuned for the next post!
 
-For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
 
 
 

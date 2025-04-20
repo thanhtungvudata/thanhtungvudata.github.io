@@ -557,7 +557,7 @@ The choice depends on task structure and deployment goals.
 
 Understanding these architectures is essential to mastering LLMs like GPT, BERT, Claude, Gemini, LLaMA, and beyond.
 
-For further inquiries or collaboration, feel free to contact me at [my email](mailto\:tungvutelecom@gmail.com).
+For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
 
 
 
