@@ -49,6 +49,7 @@ There are several strategies:
 - **What**: Trains the model on natural language instructions and desired outputs.
 - **How**: Uses a dataset of (instruction, response) pairs.
 - **When**: Helps the model generalize to new tasks via zero-/few-shot prompting.
+- **Example**: Instruction tuning a variant of T5 using a curated dataset of customer FAQs and policy documents, enabling the model to respond accurately to diverse customer service inquiries using clear and compliant language.
 
 #### 4. Continual / Domain-Adaptive Pre-training
 - **What**: Further pre-trains the model on domain-specific **unlabeled** data.
