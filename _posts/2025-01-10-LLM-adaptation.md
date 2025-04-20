@@ -36,6 +36,8 @@ Internal adaptation strategies fall into two categories based on the nature of t
 #### 1. Supervised Fine-Tuning
 Supervised fine-tuning adapts the model using **labeled datasets** with input-output pairs. It is the most common method for task-specific or instruction-following customization.
 
+The most popular strategies for Supervised Fine-Tuning are:
+
 ##### Full Fine-Tuning
 - **What**: Updates all model weights.
 - **How**: Trains on labeled task-specific datasets.
@@ -72,7 +74,6 @@ Think of internal adaptation as updating the model’s **memory and skills**. Yo
 - Making it more compliant to your task instructions (**instruction tuning**)
 - Adding lightweight modules that inject new skills efficiently without retraining the entire brain (**parameter-efficient fine-tuning**)
 - Helping it speak a different dialect or language style (**domain-adaptive pretraining**)
-
 
 ---
 
