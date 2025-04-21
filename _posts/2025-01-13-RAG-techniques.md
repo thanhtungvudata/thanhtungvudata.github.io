@@ -74,7 +74,7 @@ This end-to-end loop is what transforms an LLM from a stateless predictor into a
 
 ## 🛠 Advanced Techniques
 
-After mastering the core mechanics of RAG, you’ll want to elevate your system’s performance, flexibility, and trustworthiness. The following advanced techniques are designed to help RAG systems deal with ambiguity, complexity, and scale—bridging the gap between simple Q&A bots and production-ready intelligent assistants. For each, we explore what it does, why it's needed, how it works, and provide examples and intuition.
+After mastering the core mechanics of RAG, you’ll want to elevate your system’s performance, flexibility, and trustworthiness. The following advanced techniques are designed to help RAG systems deal with ambiguity, complexity, and scale—bridging the gap between simple Q&A bots and production-ready intelligent assistants.
 
 ### 🔀 Hybrid Search
 **What it does:** Combines semantic similarity search with keyword (lexical) search.
@@ -196,7 +196,7 @@ Selecting the right embedding strategy is not a one-size-fits-all decision. It d
 
 ## 🧪 Evaluation
 
-Evaluating a RAG system is about more than just validating output quality—it's about verifying that the system is retrieving the right context, generating grounded responses, meeting performance thresholds, and delivering on user expectations. A great RAG pipeline is only as good as its weakest link, and these metrics help you find and fix those gaps. Below is a breakdown of the most important metrics, what they do, why they matter, how they work, and how to think about them.
+Evaluating a RAG system is about more than just validating output quality—it's about verifying that the system is retrieving the right context, generating grounded responses, meeting performance thresholds, and delivering on user expectations. A great RAG pipeline is only as good as its weakest link, and these metrics help you find and fix those gaps. 
 
 ### 🎯 Precision@K / Recall@K
 **What it does:** Measures how accurate and comprehensive the top-k retrieved results are.
