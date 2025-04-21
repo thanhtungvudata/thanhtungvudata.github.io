@@ -28,7 +28,7 @@ Use prompt engineering when you need external adaptation of a foundation model�
 
 Prompt engineering is faster, cheaper, and accessible even for closed-source models.
 
-While Retrieval-Augmented Generation (RAG) is another popular external adaptation technique, it’s ideal for dynamic or long-tail knowledge use cases—where you retrieve relevant context at runtime. Prompt engineering, in contrast, excels when you:
+While **Retrieval-Augmented Generation (RAG)** is another popular external adaptation technique, it’s ideal for dynamic or long-tail knowledge use cases—where you retrieve relevant context at runtime. Prompt engineering, in contrast, excels when you:
 
 - Need behavior control or task formatting (e.g., role playing, JSON output)
 - Want to chain or compose reasoning steps (e.g., Chain-of-Thought)
