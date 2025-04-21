@@ -22,6 +22,12 @@ In this guide, we break down what RAG is, why it matters, and how to implement i
 ## 🔍 What is RAG?
 RAG is a technique that combines **information retrieval** from external sources with **language generation**. Instead of relying solely on a model's parameters, RAG enables an LLM to "consult" a knowledge base—reducing hallucinations and increasing factual accuracy.
 
+## 🚀 Why RAG is needed?
+- **Improved Accuracy**: Reduces hallucinations by grounding answers in retrieved facts.
+- **Scalability**: Add or update documents without retraining.
+- **Domain Adaptability**: Customize outputs for specialized use cases by curating external data.
+- **Freshness**: Provide real-time or recent knowledge beyond model cutoff dates.
+
 ## 🧩 Core Components
 
 RAG systems work by layering traditional search techniques with the generative capabilities of large language models. The power of RAG lies in how it integrates these components into a seamless flow. Here's how each part contributes to making LLMs more accurate, explainable, and adaptive:
@@ -33,8 +39,6 @@ RAG systems work by layering traditional search techniques with the generative c
 3. **Generation**: This is where the LLM shines. With the augmented prompt, the model generates a coherent, informed response. Because the prompt contains retrieved facts, the LLM is far more likely to produce outputs that are grounded, accurate, and aligned with your organization's knowledge and policies.
 
 These three components mirror how humans operate when they don’t know something offhand—we look it up, combine what we find with our own understanding, and form a response. RAG makes that process scalable, auditable, and instant.
-
----
 
 ## ⚙️ How It Works
 
@@ -56,16 +60,6 @@ To truly appreciate the value of RAG, it helps to understand how its pipeline tr
 
 This end-to-end loop is what transforms an LLM from a stateless predictor into a context-aware assistant. The elegance of RAG lies in this balance: the precision of retrieval with the fluency of generation.
 
----
-
-## 🚀 Why Use RAG?
-- **Improved Accuracy**: Reduces hallucinations by grounding answers in retrieved facts.
-- **Scalability**: Add or update documents without retraining.
-- **Domain Adaptability**: Customize outputs for specialized use cases by curating external data.
-- **Freshness**: Provide real-time or recent knowledge beyond model cutoff dates.
-
----
-
 ## 🛠 Advanced Techniques
 
 ### Hybrid Search
@@ -83,15 +77,11 @@ Go beyond fixed-size chunking—split based on meaning and context.
 ### Agentic RAG
 Use multi-agent orchestration to assign specialized roles for retrieval, synthesis, and validation.
 
----
-
 ## 🧠 Embedding Strategy
 - **Dense** (e.g., OpenAI Ada, Cohere): General-purpose.
 - **Sparse** (e.g., SPLADE): Emphasizes rare terms.
 - **Multi-vector** (e.g., ColBERT): Late interaction with high precision.
 - **Code & Domain-specific**: Use specialized encoders for technical or regulated domains.
-
----
 
 ## 🧪 Evaluation
 Use metrics like:
@@ -100,14 +90,10 @@ Use metrics like:
 - **Answer relevance (LLM-as-a-judge)**
 - **Latency and Cost**
 
----
-
 ## 🧱 Frameworks & Tools
 - **LangChain**: Flexible, modular RAG pipelines with agents, tools, and chains.
 - **LlamaIndex**: Document loaders, indexes, and retrieval interfaces.
 - **Vector DBs**: ChromaDB, Pinecone, Weaviate, SingleStore.
-
----
 
 ## ✅ Best Practices
 - Choose the right **embedding model** for your domain.
@@ -116,12 +102,8 @@ Use metrics like:
 - Evaluate regularly with real queries.
 - Implement **feedback loops** to learn from user interactions.
 
----
-
 ## 🔄 RAG Isn’t a Silver Bullet
 While RAG helps reduce hallucination and increase relevance, it’s not infallible. Retrieval quality, chunking noise, and prompt design remain critical bottlenecks. But when used wisely, RAG can supercharge any LLM-powered application.
-
----
 
 ## Final Thoughts
 RAG is no longer a niche technique—it’s a production-proven pattern in modern AI stacks. Whether you're building document Q&A systems, AI copilots, or domain-specific chatbots, RAG helps you extend LLMs beyond their training horizon.
