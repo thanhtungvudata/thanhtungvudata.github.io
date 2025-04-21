@@ -17,6 +17,8 @@ For **technical teams**, RAG means reducing hallucinations and increasing confid
 
 In this guide, we break down what RAG is, why it matters, and how to implement it with production-level quality—along with the tools, patterns, and techniques that make it work in practice.
 
+<img src="/assets/images/RAG_overview.png" alt="RAG" width="600">
+
 ---
 
 ## 🔍 What is RAG?
