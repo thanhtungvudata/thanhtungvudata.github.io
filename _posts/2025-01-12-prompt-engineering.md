@@ -16,7 +16,9 @@ For product managers, it means faster iteration and greater control over feature
 
 By crafting effective prompts, teams can guide LLMs to perform complex tasks, replicate domain expertise, or generate structured outputs reliably. Whether you're developing internal tools, customer-facing applications, or automated agents, prompt engineering provides the bridge between generic model behavior and business-specific intelligence.
 
-**What this post does**: This post walks you through the what, why, and how of prompt engineering—from foundational concepts and practical techniques to advanced automation and evaluation methods. You’ll walk away with a strategic understanding and actionable tools to harness LLMs effectively in real-world applications.
+This post introduces what, why, and how of prompt engineering—from foundational concepts and practical techniques to advanced automation and evaluation methods. You’ll walk away with a strategic understanding and actionable tools to harness LLMs effectively in real-world applications.
+
+<img src="/assets/images/prompt_engineering_overview.png" alt="Prompt Engineering" width="600">
 
 ---
 
@@ -250,7 +252,7 @@ Whether you're prototyping a new feature, shipping production workflows, or scal
 
 > Want to go further? Try building your own evaluation pipeline, experiment with DSPy or PromptBreeder, or start versioning prompts like code.
 
-Stay tuned for follow-up posts on retrieval-augmented generation (RAG), agent orchestration, and custom instruction tuning.
+Stay tuned for follow-up posts on retrieval-augmented generation (RAG), agentic AI, MCP, and Google A2A Protocols.
 
 For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
 
