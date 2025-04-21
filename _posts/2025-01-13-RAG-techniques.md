@@ -147,7 +147,7 @@ These techniques are more than engineering tricks—they embody a deeper princip
 
 ## 🧠 Embedding Strategy
 
-At the heart of every RAG system is a powerful representation: the embedding. Embeddings translate text into high-dimensional vectors that encode meaning, allowing similarity-based retrieval. But not all embeddings are created equal. Choosing the right embedding model directly impacts retrieval quality, response relevance, and system efficiency. Let’s break down the types of embeddings with what they do, why they matter, how they work, and real-world intuition.
+At the heart of every RAG system is a powerful representation: the embedding. Embeddings translate text into high-dimensional vectors that encode meaning, allowing similarity-based retrieval. But not all embeddings are created equal. Choosing the right embedding model directly impacts retrieval quality, response relevance, and system efficiency. Let’s break down the types of embeddings with what they do, why they matter, how they work, real-world intuition, and when to use them.
 
 ### 🧬 Dense Embeddings
 **What it does:** Converts text into continuous, dense vectors where every dimension holds some meaningful value.
@@ -160,6 +160,8 @@ At the heart of every RAG system is a powerful representation: the embedding. Em
 
 **Intuition:** Imagine compressing a paragraph’s meaning into a single point in space—texts with similar ideas will be located nearby.
 
+**When to use:** Use dense embeddings when your corpus is general-purpose, meaning-rich, or unstructured—ideal for customer support, product docs, and internal search.
+
 ### 🪶 Sparse Embeddings
 **What it does:** Encodes text into vectors with mostly zero values, emphasizing key terms.
 
@@ -170,6 +172,8 @@ At the heart of every RAG system is a powerful representation: the embedding. Em
 **Example:** A query for "Section 230 Communications Decency Act" benefits from sparse models preserving exact token structure, which dense models may smooth over.
 
 **Intuition:** Think of it like a document’s highlight reel—showing only the terms that matter most, ignoring the rest.
+
+**When to use:** Use sparse embeddings in domains where precision and keyword overlap are critical—legal, search engine tuning, regulatory compliance.
 
 ### 🎯 Multi-vector Embeddings (Late Interaction)
 **What it does:** Uses multiple sub-vectors per document and query for finer-grained matching.
@@ -182,6 +186,8 @@ At the heart of every RAG system is a powerful representation: the embedding. Em
 
 **Intuition:** Instead of comparing headlines, it’s like matching individual sentences and weighting their contributions.
 
+**When to use:** Use when precision is paramount and documents have high internal diversity—e.g., research papers, multi-topic reports, FAQs.
+
 ### ⚙️ Domain-Specific or Code Embeddings
 **What it does:** Embeds language from a specific field—like legal, finance, biomedical, or codebases.
 
@@ -193,6 +199,8 @@ At the heart of every RAG system is a powerful representation: the embedding. Em
 
 **Intuition:** Like asking a specialist vs. a generalist—the answers are more precise because they “speak the language.”
 
+**When to use:** Use in specialized verticals where terminology and structure are domain-bound—medical, legal, scientific, or software documentation.
+
 ### 📦 Variable-dimension or Matryoshka Embeddings
 **What it does:** Packs multiple levels of representational detail into a single embedding structure.
 
@@ -203,6 +211,8 @@ At the heart of every RAG system is a powerful representation: the embedding. Em
 **Example:** A low-power edge device can use the first 128 dimensions of a 768-dim vector for fast approximate retrieval, while a server can use the full embedding.
 
 **Intuition:** Like zooming in or out on a map—you access more detail when you need it, but don’t load everything by default.
+
+**When to use:** Use when operating across heterogeneous environments with different compute budgets—mobile vs. server, or edge vs. cloud.
 
 Selecting the right embedding strategy is not a one-size-fits-all decision. It depends on your domain, latency tolerance, scale, and user expectations. Great RAG starts with great representations.
 
