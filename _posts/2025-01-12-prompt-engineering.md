@@ -28,7 +28,7 @@ Use prompt engineering when you need external adaptation of a foundation model�
 
 Prompt engineering is faster, cheaper, and accessible even for closed-source models.
 
-While **Retrieval-Augmented Generation (RAG)** is another popular external adaptation technique, it’s ideal for dynamic or long-tail knowledge use cases—where you retrieve relevant context at runtime. Prompt engineering, in contrast, excels when you:
+While Retrieval-Augmented Generation (RAG) is another popular external adaptation technique, it’s ideal for dynamic or long-tail knowledge use cases—where you retrieve relevant context at runtime. Prompt engineering, in contrast, excels when you:
 
 - Need behavior control or task formatting (e.g., role playing, JSON output)
 - Want to chain or compose reasoning steps (e.g., Chain-of-Thought)
@@ -40,7 +40,65 @@ In many real-world applications, prompt engineering is the *first* adaptation st
 
 ## 🔧 Core Prompting Techniques
 
-| Category                 | Technique                      | Purpose                                                   |
+Prompt engineering encompasses a wide variety of techniques designed to enhance model reliability, interpretability, and task performance. Here's a detailed breakdown of core prompting strategies, what they do, how they work, and when to use them:
+
+### 🔹 Zero-shot and Few-shot Prompting
+- **What it does**: Guides the model to complete tasks without (zero-shot) or with minimal examples (few-shot).
+- **How it works**: Instruct the model using natural language (zero-shot), or provide a few input-output examples (few-shot) followed by a new query.
+- **Example**:
+  - Zero-shot: *"Classify the sentiment of this review: 'I loved the service!'"
+  - Few-shot: *"Example: 'It was bad.' → Negative
+Example: 'Best meal ever.' → Positive
+Input: 'I loved the service!' →"
+- **When to use**: When you lack training data or need quick evaluation without modifying the model.
+
+### 🔹 Chain-of-Thought (CoT)
+- **What it does**: Encourages the model to reason step by step before producing an answer.
+- **How it works**: Add "Let's think step by step" to the prompt or demonstrate reasoning examples.
+- **Example**:
+  - *"What is 37 + 48? Let's think step by step. First, add 30 + 40 = 70, then add 7 + 8 = 15, so 70 + 15 = 85. Answer: 85."
+- **When to use**: For math, logic, or multi-step tasks where intermediate reasoning improves correctness.
+
+### 🔹 Self-consistency / Tree-of-Thought (ToT)
+- **What it does**: Improves robustness by sampling multiple reasoning paths and aggregating the result.
+- **How it works**: Use CoT sampling and take a majority vote or tree traversal.
+- **Example**:
+  - Ask the same CoT prompt multiple times, then select the answer that appears most frequently.
+- **When to use**: When the task benefits from exploration (e.g., puzzles, planning, ideation).
+
+### 🔹 ReAct (Reason + Act)
+- **What it does**: Integrates reasoning with external tool usage (e.g., APIs, calculators).
+- **How it works**: Prompt the model to reflect, decide, then call tools and continue reasoning.
+- **Example**:
+  - *"Question: What is the weather in Sydney tomorrow?
+Thought: I need to look it up.
+Action: call_weather_api('Sydney')
+Observation: Sunny, 25°C
+Answer: It's expected to be sunny and 25°C."
+- **When to use**: For agents or workflows that require interaction with APIs or databases.
+
+### 🔹 System / Role Prompting
+- **What it does**: Sets context, tone, or persona for the model.
+- **How it works**: Define behavior using system-level or role-defining instructions.
+- **Example**:
+  - System prompt: *"You are a polite and helpful legal assistant."*
+- **When to use**: To maintain consistency in tone or domain (e.g., coding assistant vs therapist).
+
+### 🔹 Step-back Prompting
+- **What it does**: Gets the model to critique or revise its previous response.
+- **How it works**: Ask the model to reflect on or improve its own output.
+- **Example**:
+  - *"Here is your answer: [...]. Is this correct? Why or why not?"*
+- **When to use**: For quality control, revision, or boosting self-awareness in long outputs.
+
+### 🔹 Automated Prompt Engineering (APE)
+- **What it does**: Automatically generates and refines prompts using models or tools.
+- **How it works**: Use an LLM to generate multiple variations, run evaluations, and select the best-performing prompt.
+- **Example**:
+  - *"Generate 10 prompts that improve accuracy for sentiment classification."*
+- **When to use**: To scale prompt design, especially when iterating across many tasks or domains.
+
+| Category                | Technique                      | Purpose                                                   |
 |-------------------------|--------------------------------|-----------------------------------------------------------|
 | Basic prompting         | Zero-shot, Few-shot            | Provide task definitions with/without examples            |
 | Reasoning enhancement   | Chain-of-Thought (CoT)         | Guide model through step-by-step reasoning                |
