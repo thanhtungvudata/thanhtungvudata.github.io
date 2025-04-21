@@ -382,29 +382,27 @@ While RAG is a powerful architecture that significantly extends the usefulness o
 ### 🧱 Dependence on Retrieval Quality
 RAG is only as strong as its weakest link—usually retrieval. If irrelevant or low-quality documents are returned, the LLM may hallucinate or miss the user’s intent entirely.
 
-**Mitigation:** Continuously evaluate and rerank your retriever. Invest in better chunking, metadata tagging, and hybrid search strategies.
+**What to do:** Continuously evaluate and rerank your retriever. Invest in better chunking, metadata tagging, and hybrid search strategies.
 
 ### 🌀 Complexity and Maintenance Overhead
 RAG systems introduce new layers: embedding models, vector stores, retrievers, and chunking strategies. Each adds potential points of failure and requires ongoing tuning.
 
-**Mitigation:** Modularize components using frameworks like LangChain. Automate evaluation pipelines and monitoring tools to manage complexity.
+**What to do:** Modularize components using frameworks like LangChain. Automate evaluation pipelines and monitoring tools to manage complexity.
 
 ### 💸 Latency and Cost
 Each step—retrieval, reranking, generation—adds latency and cost. In real-time settings (e.g., chatbots), these can stack up quickly.
 
-**Mitigation:** Use compact embedding models, batch retrievals, and caching. Consider distilling rerankers or pruning prompts.
+**What to do:** Use compact embedding models, batch retrievals, and caching. Consider distilling rerankers or pruning prompts.
 
 ### 🧪 Evaluation Challenges
 RAG quality is difficult to evaluate holistically. Faithfulness, relevance, and user satisfaction are nuanced and often domain-specific.
 
-**Mitigation:** Combine automatic metrics with LLM-as-a-judge and human review. Use scenario-based benchmarks aligned to user goals.
+**What to do:** Combine automatic metrics with LLM-as-a-judge and human review. Use scenario-based benchmarks aligned to user goals.
 
 ### 🧠 No Understanding of Truth
 RAG doesn’t make a model “understand” truth—it simply adds evidence to guide generation. If the retrieved context is biased, outdated, or wrong, the output may still mislead.
 
-**Mitigation:** Curate your data sources. Tag provenance. Consider human-in-the-loop workflows for high-stakes use cases.
-
----
+**What to do:** Curate your data sources. Tag provenance. Consider human-in-the-loop workflows for high-stakes use cases.
 
 RAG is a transformative approach—but not a plug-and-play solution. By respecting its constraints and complementing it with the right tools, practices, and human oversight, you can build systems that are not just smarter, but safer and more useful.
 
