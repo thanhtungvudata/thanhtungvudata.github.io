@@ -89,6 +89,8 @@ After mastering the core mechanics of RAG, you’ll want to elevate your system�
 
 **Intuition:** This is like asking both an intern (who remembers keywords) and an expert (who grasps concepts) to find relevant info, then cross-validating their results.
 
+**When to use:** Use hybrid search when your domain contains both formal terminology and colloquial or abstract phrasing (e.g., legal, education, healthcare).
+
 ### 🔎 MultiQuery Retrieval
 **What it does:** Expands a user query into multiple sub-queries to retrieve a broader context.
 
@@ -99,6 +101,8 @@ After mastering the core mechanics of RAG, you’ll want to elevate your system�
 **Example:** A query like “What are the causes of inflation?” could expand to “What factors influence inflation?”, “Why does money lose value?”, and “How do interest rates affect inflation?”
 
 **Intuition:** Just like a journalist interviews multiple sources to get the full story, MultiQuery casts a wider net for relevant information.
+
+**When to use:** Use when queries are exploratory, ambiguous, or multi-faceted—especially in research assistants, strategy tools, or open-ended Q&A.
 
 ### 🪜 Reranking
 **What it does:** Reorders retrieved documents to improve relevance to the user’s true intent.
@@ -111,6 +115,8 @@ After mastering the core mechanics of RAG, you’ll want to elevate your system�
 
 **Intuition:** Think of it like a human assistant re-reading documents to decide which ones best answer your question before handing them to you.
 
+**When to use:** Use when precision matters most, like legal reasoning, enterprise knowledge systems, or safety-critical applications.
+
 ### 🧩 Semantic & Agentic Chunking
 **What it does:** Divides documents into meaning-preserving units, with optional LLM-driven control.
 
@@ -122,6 +128,8 @@ After mastering the core mechanics of RAG, you’ll want to elevate your system�
 
 **Intuition:** Instead of cutting a book into 10-page segments, you split it by chapters or key arguments.
 
+**When to use:** Use when documents are long, structured, and meaning is spread unevenly—e.g., technical documentation, contracts, or manuals.
+
 ### 🤖 Agentic RAG
 **What it does:** Distributes RAG tasks across specialized agents coordinated by a manager.
 
@@ -132,6 +140,8 @@ After mastering the core mechanics of RAG, you’ll want to elevate your system�
 **Example:** In a healthcare assistant, one agent retrieves scientific papers, another summarizes them, and a third validates safety information before answering a doctor’s query.
 
 **Intuition:** It’s like building a newsroom: a reporter gathers facts, an editor checks sources, and a producer shapes the final story.
+
+**When to use:** Use when your RAG pipeline spans multiple steps (e.g., validation, summarization, synthesis) or must be extensible over time.
 
 These techniques are more than engineering tricks—they embody a deeper principle: **that language models are not one-size-fits-all reasoning engines**. When thoughtfully designed, RAG systems become dynamic, multi-layered intelligence platforms adaptable to the needs of your users and business.
 
