@@ -1,5 +1,5 @@
 ---
-title: "Prompt Engineering: The Key to Unlocking LLM Performance"
+title: "Understanding Prompt Engineering: From Zero-Shot Prompts to Scalable Systems"
 date: 2025-01-12
 tags:
   - Prompt Engineering
