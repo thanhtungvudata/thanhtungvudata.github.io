@@ -1,5 +1,5 @@
 ---
-title: "Making LLMs Trustworthy: A Practical Guide to Retrieval-Augmented Generation"
+title: "Understanding Retrieval-Augmented Generation (RAG): Making LLMs Trustworthy"
 date: 2025-01-13
 categories:
   - AI Engineering
