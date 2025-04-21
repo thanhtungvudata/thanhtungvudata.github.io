@@ -147,9 +147,24 @@ With APE, prompts are treated like code—modular, versioned, and improvable. Th
 - Tool-assisted design and testing
 
 Common tools include:
-- **PromptBreeder** – Evolves prompt templates using mutation and selection
-- **DSPy** – Treats prompt orchestration as a declarative program with intermediate evaluations
-- **TextGrad** – Applies gradient-based optimization to prompt embeddings
+
+- **PromptBreeder** – Evolves prompt templates using mutation and selection  
+  - **What it does**: Automatically improves prompts through an evolutionary algorithm, treating prompt generation as a search problem.  
+  - **How it works**: It starts with a base prompt population, mutates them (e.g., rewording instructions, changing format), and selects top performers based on downstream task accuracy or reward signal.  
+  - **Example**: Used in classification tasks to discover phrasing that consistently boosts model accuracy without manual tuning.  
+  - **When to use**: When you want to explore a large space of prompt variations and automatically find high-performing ones for a well-defined task.
+
+- **DSPy** – Treats prompt orchestration as a declarative program with intermediate evaluations  
+  - **What it does**: Provides a framework to define, compose, and optimize prompt pipelines declaratively, similar to programming functions.  
+  - **How it works**: Users define modules (e.g., generate, rerank, reflect), and DSPy auto-tunes prompts by optimizing intermediate outputs across the pipeline using eval functions.  
+  - **Example**: Used to build multi-step QA systems where one step retrieves documents and another answers the question, with feedback on answer correctness tuning the retrieval step.  
+  - **When to use**: For structured workflows or agent pipelines where prompt steps are interdependent and benefit from coordinated tuning.
+
+- **TextGrad** – Applies gradient-based optimization to prompt embeddings  
+  - **What it does**: Treats prompt tuning as a continuous optimization problem by learning soft prompts in embedding space.  
+  - **How it works**: Uses gradients from a downstream task loss to update a vector (soft prompt) prepended to inputs. These vectors guide the model similarly to text prompts but are learned rather than written.  
+  - **Example**: Applied in few-shot classification tasks to outperform handcrafted prompts by training prompt embeddings on labeled data.  
+  - **When to use**: When you have access to the model internals and training infrastructure, and need highly optimized prompts for specific performance-critical tasks.
 
 These tools help teams scale their prompt experimentation efforts while improving quality, efficiency, and reproducibility.
 
