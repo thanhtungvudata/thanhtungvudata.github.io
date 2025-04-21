@@ -2,10 +2,11 @@
 title: "Adapting a Pre-trained LLM to a Specific Task, Domain, or Behavior"
 date: 2025-01-10
 categories:
-  - LLM Apdatation
+  - AI Engineering
+  - LLM Guide
 tags:
-  - Data Science
   - Generative AI
+  - LLM Adaptation
   - LLM
 ---
 

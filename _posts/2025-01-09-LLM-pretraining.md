@@ -2,10 +2,11 @@
 title: "Understanding LLM Pre-training: Teaching Machines to Think"
 date: 2025-01-09
 categories:
-  - LLM Pre-training
+  - AI Engineering
+  - LLM Guide
 tags:
-  - Data Science
   - Generative AI
+  - LLM Pre-training
   - LLM
 ---
 
