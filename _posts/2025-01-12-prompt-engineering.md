@@ -18,13 +18,23 @@ By crafting effective prompts, teams can guide LLMs to perform complex tasks, re
 
 ## 🎯 What is Prompt Engineering?
 
-Prompt engineering is the practice of designing inputs that guide a language model's behavior. It’s foundational to building reliable, performant LLM-powered applications—especially when fine-tuning is too costly or inaccessible.
+Prompt engineering is the practice of designing inputs that guide a language model's behavior—without altering its internal parameters. It’s foundational to building reliable, performant LLM-powered applications, especially when retraining or fine-tuning is not feasible due to cost, latency, or access constraints.
 
-At its core, prompt engineering is about:
-- Steering model behavior
-- Enhancing output quality
-- Mitigating hallucinations
-- Facilitating reasoning and tool use
+Use prompt engineering when you need external adaptation of a foundation model—adapting it to your task, domain, or tone through clever input design rather than internal parameter changes. Compared to internal adaptation methods such as:
+
+- **Full Fine-Tuning** (updates all weights): High accuracy but requires compute, data, and access.
+- **Instruction Tuning** (supervised training on instructions): Effective for alignment but costly and hard to iterate.
+- **Parameter-Efficient Fine-Tuning (PEFT)** (e.g., LoRA): Lightweight but still needs training pipelines.
+
+Prompt engineering is faster, cheaper, and accessible even for closed-source models.
+
+While Retrieval-Augmented Generation (RAG) is another popular external adaptation technique, it’s ideal for dynamic or long-tail knowledge use cases—where you retrieve relevant context at runtime. Prompt engineering, in contrast, excels when you:
+
+- Need behavior control or task formatting (e.g., role playing, JSON output)
+- Want to chain or compose reasoning steps (e.g., Chain-of-Thought)
+- Lack structured retrieval data but have intuition about model capabilities
+
+In many real-world applications, prompt engineering is the *first* adaptation strategy you try, and often the *last* you need.
 
 ---
 
