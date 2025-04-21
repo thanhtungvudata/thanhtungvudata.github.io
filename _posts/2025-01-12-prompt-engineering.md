@@ -252,3 +252,5 @@ Whether you're prototyping a new feature, shipping production workflows, or scal
 
 Stay tuned for follow-up posts on retrieval-augmented generation (RAG), agent orchestration, and custom instruction tuning.
 
+For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
+
