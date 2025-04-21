@@ -46,7 +46,10 @@ Prompt engineering encompasses a wide variety of techniques designed to enhance 
 - **What it does**: Guides the model to complete tasks without (zero-shot) or with minimal examples (few-shot).
 - **How it works**: Instruct the model using natural language (zero-shot), or provide a few input-output examples (few-shot) followed by a new query.
 - **Example**:
-  - Zero-shot: "Classify the sentiment of this review: 'I loved the service!'"
+  - Zero-shot: "
+  ```
+  Classify the sentiment of this review: 'I loved the service!'
+  ```
   - Few-shot: 
   ``` 
   Example: 'It was bad.' → Negative
