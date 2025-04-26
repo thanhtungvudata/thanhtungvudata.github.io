@@ -40,7 +40,7 @@ Detailed information about me is in my [CV](https://drive.google.com/file/d/1vzA
 - **Best Poster Award**: Received the prestigious Best Poster Award from the Australian Mathematical Sciences Institute (AMSI) Optimise Conference for excellent research ideas and solutions, AU$500 worth of cash.
 
 ⚡ **Activities**
-- In my spare time, I work on side projects and write [blogs](https://medium.com/@tungvu_37498) about data science, machine learning, and generative AI. My content ranges from technical deep dives to life skills.
+- In my spare time, I work on **side projects** and write [**blogs**](https://medium.com/@tungvu_37498) about data science, machine learning, and generative AI. My content ranges from technical deep dives to life skills.
 - I enjoy exploring emerging AI technologies and applying them to solve real-world problems.
 - I'm passionate about lifelong learning, constantly improving my skills through courses, books, and hands-on experimentation.
 - I also mentor and support early-career professionals and students who are interested in research, optimization, machine learning, data, and AI.
