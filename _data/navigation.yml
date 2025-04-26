@@ -3,8 +3,8 @@ main:
   #   url: /about/
   - title: "CV"
     url: https://drive.google.com/file/d/1vzA-NJ_ti7fj9KMFjTDe1bnPgtziSuad/view?usp=sharing
-  - title: "Portfolio"
-    url: /portfolio/
+  - title: "Technical Articles"
+    url: /articles/
   - title: "Publications"
     url: /publications/
   

@@ -14,7 +14,7 @@ author_profile: true
 - Received Australian Global Talent Permanent Residency.  
 - Received more than AU$120K worth of cash for academic scholarships and awards.
 
-Detailed information on my projects and experience is in my [CV](https://drive.google.com/file/d/1vzA-NJ_ti7fj9KMFjTDe1bnPgtziSuad/view). 
+Detailed information about me is in my [CV](https://drive.google.com/file/d/1vzA-NJ_ti7fj9KMFjTDe1bnPgtziSuad/view). 
 
 ---
 

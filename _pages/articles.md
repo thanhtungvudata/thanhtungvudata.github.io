@@ -1,6 +1,6 @@
 ---
-title: "Portfolio"
+title: "Technical Articles"
 layout: posts
-permalink: /portfolio/
+permalink: /articles/
 author_profile: true
 ---
