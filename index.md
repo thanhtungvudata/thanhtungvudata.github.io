@@ -6,11 +6,11 @@ layout: single
 author_profile: true
 ---
 🌟 **About Me** 
-- Versatile Skill Set: 4+ years in Applied Machine Learning, Generative AI, and Optimization.   
-- Analytical Excellence: Highly skilled in solving complex problems scientifically and engineeringly. 
-- ollaborative Strength: Adaptive and effective in cross‑functional, multicultural team environments to achieve shared goals.
-- Team Building Experience: Mentored 5 PhD candidates from technical growth to applying research in real‑world solutions.
-- Research Excellence: PhD in Applied Machine Learning and Optimization, with a strong publication record.
+- **Versatile Skill Set**: 4+ years in Applied Machine Learning, Generative AI, and Optimization.   
+- **Analytical Excellence**: Highly skilled in solving complex problems scientifically and engineeringly. 
+- **Collaborative Strength**: Adaptive and effective in cross‑functional, multicultural team environments to achieve shared goals.
+- **Team Building Experience**: Mentored 5 PhD candidates from technical growth to applying research in real‑world solutions.
+- **Research Excellence**: PhD in Applied Machine Learning and Optimization, with a strong publication record.
 - Received Australian Global Talent Permanent Residency.  
 - Received more than AU$120K worth of cash for academic scholarships and awards.
 
@@ -20,17 +20,17 @@ Detailed information about me is in my [CV](https://drive.google.com/file/d/1vzA
 
 🚀 **Skills**
 
-- Leadership: Team‑building, Mentoring
-- Programming Languages: Python, SQL, MATLAB
-- Data Science & AI: Deep Learning (DNN, CNN), Federated Learning, Reinforcement Learning
-- Generative AI: Large Language Models (LLM), Retrieval‑Augmented Generation (RAG)
-- Classical ML / Predictive Modelling: Linear/Logistic Regression, XGBoost, LightGBM, KNN, SVM
-- Optimization: Methods for constrained mixed-integer, nonconvex, and stochastic problems
-- Optimization Tools: CVXPY, MOSEK, Gurobi, CPLEX
-- Visualization: matplotlib, seaborn, plotly, Streamlit
-- Cloud Tech: AWS (SageMaker, S3, EC2, RDS), Hugging Face Spaces
-- ML/MLOps Tools: Git, ChromaDB, Snowflake, DVC, MLflow, NannyML
-- Soft Skills: Time Management, Teamwork, Conflict Resolution, Problem Solving, Documentation, Engaging Presentation 
+- **Leadership**: Team‑building, Mentoring
+- **Programming Languages**: Python, SQL, MATLAB
+- **Data Science & AI**: Deep Learning (DNN, CNN), Federated Learning, Reinforcement Learning
+- **Generative AI**: Large Language Models (LLM), Retrieval‑Augmented Generation (RAG)
+- **Classical ML / Predictive Modelling**: Linear/Logistic Regression, XGBoost, LightGBM, KNN, SVM
+- **Optimization**: Methods for constrained mixed-integer, nonconvex, and stochastic problems
+- **Optimization Tools**: CVXPY, MOSEK, Gurobi, CPLEX
+- **Visualization**: matplotlib, seaborn, plotly, Streamlit
+- **Cloud Tech**: AWS (SageMaker, S3, EC2, RDS), Hugging Face Spaces
+- **ML/MLOps Tools**: Git, ChromaDB, Snowflake, DVC, MLflow, NannyML
+- **Soft Skills**: Time Management, Teamwork, Conflict Resolution, Problem Solving, Documentation, Engaging Presentation 
 
 ---
 
