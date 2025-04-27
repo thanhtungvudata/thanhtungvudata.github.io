@@ -163,7 +163,7 @@ Output:
 **Key actionable insights**
 - Balanced Distributions Overall
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
-- The categorical can be safely included in modeling without adjustment.
+- The categorical features can be safely included in modeling without adjustment.
 
 #### Check the Distribution Categorial Features
 
