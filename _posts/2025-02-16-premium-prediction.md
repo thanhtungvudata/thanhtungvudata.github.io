@@ -290,9 +290,11 @@ Output:
 
 #### Check Dependencies between Categorical and Numerical Features
 
-Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. 
+This step helps to:
+- Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in numerical features ("Age", "Annual Income", etc.).
+- Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
 
-In the following, we use ANOVA test to check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in important numerical features ("Age", "Annual Income", etc.).
+In the following, we use ANOVA test to
 
 ```python
 # Identify Categorical & Numerical Features
