@@ -521,15 +521,17 @@ After the log transformation, the data is now closer to a normal (Gaussian-like)
 
 
 ### 5. Model Selection and Training
-From the insights from the EDA step, we will use XGBoost for the predictive model because it minimizes preprocessing needs while maximizing robustness and predictive performance.
+From the insights from the EDA step, we will use XGBoost for the best predictive model choice because it minimizes preprocessing needs while maximizing robustness and predictive performance.
 - Handles missing values internally: No need to impute missing data manually — XGBoost learns the best path for missing values during tree splits.
 - Robust to skewed numerical features: Tree-based models split data by thresholds, not by assuming normality (unlike linear models), so skewness is less of a problem.
 - Supports raw categorical features (enable_categorical=True): Newer versions of XGBoost can handle categorical features directly, reducing the need for manual target encoding, label encoding, or one-hot encoding.
 - Faster and better optimization: Using tree_method='hist', XGBoost optimizes faster even for large datasets and avoids overfitting by regularization.
 - Better predictive performance: Especially in messy real-world datasets like insurance data, where you have mixed data types, missingness, and high skewness.
+- LightGBM is faster but more sensitive to overfitting, especially on small leaves (leaf-wise split), and its categorical is handling less stable if many rare categories.
+- The dataset (around 1.2M rows) is reasonably large but not massive (so XGBoost speed is fine).
+- CatBoost has Very good accuracy but requires careful handling of missing categorical values.
 
 ```python
-
 # Convert Categorical Features to "category" dtype for XGBoost
 for col in cat_features:
     df[col] = df[col].astype("category")
