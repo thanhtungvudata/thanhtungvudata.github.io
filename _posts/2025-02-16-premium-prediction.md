@@ -60,7 +60,7 @@ from sklearn.metrics import mean_squared_log_error
 from xgboost import XGBRegressor
 import scipy.stats as stats
 
-# 📌 Load Dataset
+# Load Dataset
 file_path = "train.csv"  
 df = pd.read_csv(file_path)
 
