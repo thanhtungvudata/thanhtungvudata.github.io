@@ -42,15 +42,20 @@ Common tasks include:
 Example: Analyzing customer demographics to detect potential correlations with purchase patterns.
 
 ### 4. Data Preprocessing
-Data preprocessing prepares the dataset for modeling by transforming and structuring it efficiently.
+Data preprocessing is the crucial step that prepares the dataset for effective modeling by cleaning, transforming, and organizing the data.
 
 Key preprocessing steps:
-- Encoding categorical variables (e.g., one-hot encoding).
-- Scaling numerical features.
-- Handling imbalanced datasets.
-- Splitting data into training, validation, and test sets.
+- **Data Cleaning**: Handling missing values (e.g., imputation, removal, or modeling-friendly handling), fixing outliers and wrong types.
+- **Encoding categorical variables** (e.g., label encoding, one-hot encoding).
+- **Feature engineering** (e.g., extracting new features from dates, creating interaction terms).
+- **Scaling/normalizing** numerical features (only when needed, e.g., Ridge, KNN, SVM).
+- **Data Splitting**: Split the data into training, validation, and test sets.
 
-Example: Scaling transaction amounts and encoding customer segments.
+Example:
+- Filling missing `Annual Income` values with median income.
+- Extracting `year`, `month`, `day` from `Policy Start Date`.
+- One-hot encoding `Gender` into `Gender_Male` and `Gender_Female`.
+- Splitting 80% for training and 20% for testing.
 
 ### 5. Model Selection and Training
 Choosing the right machine learning or statistical models is crucial for achieving the project's objectives. Models are trained using the prepared dataset to identify patterns and make predictions.
