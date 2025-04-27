@@ -127,10 +127,10 @@ Output:
 <img src="/assets/images/premium_prediction_boxplot_original.png" alt="distribution" width="600">
 
 **Key Actionable Insights**:
-- Heavy right skew: Most people have relatively low to moderate premiums, but a small number of people have very large premiums (outliers).
-- Outliers are real: There are significant extreme values.
-- Wide spread: Premiums vary widely from low to very high, consistent with what we saw in the histogram.
-- Log transformation was a good idea: Because it compresses those large premium values and makes the target variable easier for the model to learn.
+- **Heavy right skew**: Most people have relatively low to moderate premiums, but a small number of people have very large premiums (outliers).
+- **Outliers are real**: There are significant extreme values.
+- **Wide spread**: Premiums vary widely from low to very high, consistent with what we saw in the histogram.
+- **Log transformation was a good idea**: Because it compresses those large premium values and makes the target variable easier for the model to learn.
 
 **Check for Multicollinearity Among Numerical Features using a Heatmap**
 - Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
