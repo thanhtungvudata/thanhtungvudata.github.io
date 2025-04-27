@@ -149,7 +149,6 @@ memory usage: 192.3+ MB
 - Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need to be transformed to numerical inputs (floats or integers) to learn patterns.
 
 
-
 #### Check Missing Values
 - This step is a mandatory step to understand data health, knowing which features have missing data and how much in percentage.
 - The result is useful to decide next steps: Drop columns with too many missing values, or impute (fill) missing values, or leave them alone (if very small), or choose a predictive model that can handle missing values automatically. 
@@ -186,7 +185,7 @@ Insurance Duration                 1    0.000083
 
 #### Check the Distribution of Categorial Features
 
-Checking the distribution of categorical features helps to:
+This step helps to:
 - Understand category balance (detect if some classes dominate). Rare categories might cause instability during modeling.
 - Guide encoding decisions (e.g., one-hot, target encoding).
 - Spot data quality issues (e.g., typos, unexpected categories). 
