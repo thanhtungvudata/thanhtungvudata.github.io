@@ -71,7 +71,7 @@ Key activities:
 
 Example: Training a logistic regression model to predict customer churn, as it offers interpretability, efficiency on smaller datasets, and the ability to handle binary classification problems effectively.
 
-### 6. Model Evaluation
+### 6. Model Evaluation and Interpretation
 Evaluating model performance ensures it meets the project's goals and can generalize to unseen data.
 
 Common evaluation metrics include:
@@ -79,7 +79,20 @@ Common evaluation metrics include:
 - Classification: Accuracy, Precision, Recall, F1-score, ROC-AUC.
 - Clustering: Silhouette score.
 
-Example: Using confusion matrix and F1-score to assess model effectiveness in churn prediction.
+Example: 
+- Using confusion matrix and F1-score to assess model effectiveness in churn prediction (classification). 
+- For predicting insurance premium amounts (regression), RMSE and R-squared are used to evaluate how close the predictions are to actual premium values.
+
+Interpretation aims to understand how features influence the model's decisions, helping ensure trustworthiness, compliance, and actionable insights.
+
+Common techniques for explainability:
+- Feature Importance: Rank features by their contribution to the model’s predictions (e.g., LightGBM, XGBoost built-in importance).
+- Permutation Importance: Measures performance decrease when a feature’s values are randomly shuffled.
+- SHAP Values (SHapley Additive exPlanations): Quantify the contribution of each feature to individual predictions, providing localized explanations.
+
+Example:
+- After training a XGBoost model, feature importance analysis showed that Previous Claims and Credit Score were the top drivers of insurance premium prices.
+- Using SHAP plots, we observed that lower Credit Scores were associated with higher predicted premium amounts, explaining individual prediction behaviors.
 
 ### 7. Model Deployment
 Once the model is trained and validated, it's time to deploy it into a production environment where it can provide real-world value.
