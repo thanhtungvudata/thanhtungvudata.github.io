@@ -697,11 +697,11 @@ Output:
 ✅ Final Model RMSLE: 1.04564
 ```
 ```python
-# 📌 Compute Average Feature Importance
+# Compute Average Feature Importance
 feature_importance_df["Average"] = feature_importance_df.mean(axis=1)
 feature_importance_df = feature_importance_df.sort_values(by="Average", ascending=False)
 
-# 📌 Plot Top 20 Important Features
+# Plot Top 20 Important Features
 plt.figure(figsize=(12, 6))
 sns.barplot(
     x=feature_importance_df["Average"][:20], 
@@ -717,15 +717,15 @@ Output:
 
 <img src="/assets/images/premium_prediction_feature_importance.png" alt="feature imporatant" width="700">
 
-Key Actionable Insights:
-- Previous Claims is the most influential factor in predicting premium amounts, indicating that individuals with past claims significantly impact the model's predictions.
-- Customer Feedback, Annual Income & Credit Score, highlighting the role of customer sentiment and financial stability in  premium pricing.
-- Year of policy start is among the top features, indicating a seasonal or yearly pattern in insurance premium pricing.
-- Health Score plays a critical role, possibly due to its impact on risk assessment.
-- Marital Status has moderate influence, likely because they somehow correlate with income stability and insurance needs.
-- Since Previous Claims and Customer Feedback are the top predictors, collecting accurate and detailed historical claim data and customer feedback could enhance model performance.
-- Since Annual Income, Credit Score, and Health Score play significant roles, insurers could offer targeted pricing based on these variables. This leads to a problem of segmenting customers based on financial & health data
-- The significance of year suggests that premiums might fluctuate seasonally, making it beneficial to explore time-series adjustments.
+**Key Actionable Insights**:
+- **Previous Claims is the most influential factor** in predicting premium amounts, indicating that individuals with past claims significantly impact the model's predictions.
+- **Customer Feedback, Annual Income & Credit Score, highlighting the role of customer sentiment and financial stability** in premium pricing.
+- Year of policy start is among the top features, indicating **a seasonal or yearly pattern** in insurance premium pricing.
+- **Health Score plays a critical role**, possibly due to its impact on risk assessment.
+- **Marital Status has moderate influence**, likely because they somehow correlate with income stability and insurance needs.
+- Since Previous Claims and Customer Feedback are the top predictors, **collecting accurate and detailed historical claim data and customer feedback could enhance model performance**.
+- Since Annual Income, Credit Score, and Health Score play significant roles, insurers could offer targeted pricing based on these variables. This leads to a **rising problem of segmenting customers based on financial & health data**.
+- The significance of year suggests that premiums might fluctuate seasonally, making it **beneficial to explore time-series adjustments**.
 
 ### Conclusion
 
