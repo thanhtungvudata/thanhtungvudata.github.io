@@ -11,7 +11,7 @@ Insurance pricing is a complex process where companies determine premiums based 
 
 In this project, we build a machine learning model using EDA, feature engineering, and XGBoost to predict insurance premium amounts. By mimicking the insurer's pricing strategy, our goal is to uncover key factors affecting premiums and develop a data-driven premium estimation tool.
 
-<img src="/assets/images/Building a Machine Learning Model to Estimate Insurance Premiums.jpg" alt="Estimate Insurance Premiums" width="600">
+<img src="/assets/images/Building a Machine Learning Model to Estimate Insurance Premiums.jpg" alt="Estimate Insurance Premiums" width="700">
 
 To run the project, we follow the [**essential steps**](https://thanhtungvudata.github.io/data%20science%20insights/project-steps/) of a data science project as follows.
 
@@ -158,7 +158,7 @@ plt.show()
 
 Output:
 
-<img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="600">
+<img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="700">
 
 **Key actionable insights**
 - The distributions are balanced in overall.
@@ -230,9 +230,9 @@ plt.show()
 ```
 Output:
 
-<img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="600">
+<img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="700">
 
-<img src="/assets/images/premium_prediction_boxplot_original.png" alt="distribution" width="600">
+<img src="/assets/images/premium_prediction_boxplot_original.png" alt="distribution" width="700">
 
 **Key Actionable Insights**:
 - **Heavy right skew**: Most people have relatively low to moderate premiums, but a small number of people have very large premiums (outliers).
@@ -261,7 +261,7 @@ plt.show()
 ```
 Output:
 
-<img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="600">
+<img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="700">
 
 Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. 
 
@@ -481,9 +481,9 @@ plt.xlabel("Premium Amount")
 plt.show()
 ```
 
-<img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="600">
+<img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="700">
 
-<img src="/assets/images/premium_prediction_boxplot_log_transformed.png" alt="distribution" width="600">
+<img src="/assets/images/premium_prediction_boxplot_log_transformed.png" alt="distribution" width="700">
 
 After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
 
@@ -668,7 +668,7 @@ plt.show()
 ```
 Output:
 
-<img src="/assets/images/premium_prediction_feature_importance.png" alt="feature imporatant" width="600">
+<img src="/assets/images/premium_prediction_feature_importance.png" alt="feature imporatant" width="700">
 
 Key Actionable Insights:
 - Previous Claims is the most influential factor in predicting premium amounts, indicating that individuals with past claims significantly impact the model's predictions.
