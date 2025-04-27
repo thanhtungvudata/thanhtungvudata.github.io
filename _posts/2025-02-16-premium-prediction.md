@@ -141,7 +141,9 @@ df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
 df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
 ```
 
-Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. Therefore, we use ANOVA test to check whether different categorical feature (like "Gender", "Policy Type", etc.) cause real differences in important numerical features ("Age", "Annual Income", etc.).
+Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. 
+
+In the following, we use ANOVA test to check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in important numerical features ("Age", "Annual Income", etc.).
 
 ```python
 # Identify Categorical & Numerical Features
