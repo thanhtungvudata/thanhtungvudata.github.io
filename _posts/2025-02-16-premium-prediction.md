@@ -727,6 +727,28 @@ Output:
 - Since Annual Income, Credit Score, and Health Score play significant roles, insurers could offer targeted pricing based on these variables. This leads to a **rising problem of segmenting customers based on financial & health data**.
 - The significance of year suggests that premiums might fluctuate seasonally, making it **beneficial to explore time-series adjustments**.
 
+### Next steps for improvements
+
+To further enhance this insurance premium prediction project, the potential future steps are:
+
+1. Build Scalable and Automated Data Pipelines: 
+- Develop automated end-to-end pipelines by combining SQL for data extraction, Apache Airflow for scheduling and orchestration, and Databricks for collaborative data engineering and machine learning development at scale. (Focus: orchestrating and automating workflows across systems.)
+
+2. Improve Project Structure and Maintainability
+- Using Kedro to structure the project into modular, reproducible, and maintainable pipelines using Kedro. This ensures that as the project grows, it remains clean, easy to extend, and production-ready. (Focus: clean codebase design and reproducibility.)
+
+3. Accelerate Large-Scale Data Processing and Modeling
+- Using Dask / RAPIDS to boost the speed of data processing and model training by using Dask for distributed parallel computing and RAPIDS for GPU-accelerated machine learning, enabling efficient handling of very large datasets. (Focus: computational performance and scalability.)
+
+4. Productionize the Model with Containers and Cloud
+- Use Docker to package the model and its dependencies into a Docker container and deploy it on Kubernetes for scalable, reliable production serving.
+- Use Cloud Platforms (AWS, GCP, Azure) to deploy the solution in the cloud using services like AWS SageMaker, GCP Vertex AI, or Azure ML for robust training, deployment, and monitoring in production environments.
+
+5. Further Enhancements for Model Quality and Reliability
+- Perform large-scale hyperparameter tuning using frameworks like Optuna or Ray Tune.
+- Add advanced model explainability using tools like SHAP or LIME to build stakeholder trust.
+- Set up real-time monitoring dashboards to track model drift, prediction quality, and data pipeline health over time.
+
 ### Conclusion
 
 This project successfully built a data-driven insurance premium prediction model using EDA, feature engineering, and XGBoost. Our model mimics the insurer’s pricing approach, revealing key premium factors while improving transparency.
