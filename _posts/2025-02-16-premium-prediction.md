@@ -62,6 +62,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_log_error
 from xgboost import XGBRegressor
 import scipy.stats as stats
+import math
 
 # Load Dataset
 file_path = "train.csv"  
@@ -131,20 +132,21 @@ if "Policy Start Date" in cat_features:
     cat_features.remove("Policy Start Date")
 
 # Calculate number of rows and columns for the subplots
-n_cols = 3 
+n_cols = 3  # Number of columns
 n_rows = math.ceil(len(cat_features) / n_cols)
 
 # Create subplots
-fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, n_rows * 5))  # Adjust figure size
-axes = axes.flatten()  # Flatten in case of single row
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, n_rows * 5))
+axes = axes.flatten()  # Flatten in case of a single row
 
 # Plot each categorical feature
 for idx, col in enumerate(cat_features):
     ax = axes[idx]
-    df[col].value_counts().plot(kind="bar", ax=ax)
+    sns.countplot(data=df, x=col, ax=ax, order=df[col].value_counts().index)
     ax.set_title(f"Distribution of {col}")
     ax.set_xlabel(col)
     ax.set_ylabel("Count")
+    ax.tick_params(axis='x', rotation=45)
 
 # Hide any empty subplots
 for i in range(len(cat_features), len(axes)):
@@ -163,6 +165,7 @@ Output:
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
 - The categorical can be safely included in modeling without adjustment.
 
+#### Check the Distribution Categorial Features
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
 
