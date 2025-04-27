@@ -182,9 +182,9 @@ Insurance Duration                 1    0.000083
 
 **Key Actionable Insights**: 
 - There are significant missing values in the dataset. 
-- This requries a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
+- This requires a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
 
-#### Check the Distribution of Categorial Features
+#### Check the Distribution of Categorical Features
 
 This step helps to:
 - Understand category balance (detect if some classes dominate). Rare categories might cause instability during modeling.
@@ -230,7 +230,7 @@ Output:
 <img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="700">
 
 **Key actionable insights**
-- The distributions are balanced in overall.
+- The distributions are balanced overall.
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
 - The categorical features can be safely included in modeling without adjustment.
 
@@ -298,7 +298,7 @@ Output:
 <img src="/assets/images/premium_prediction_boxplot_num_features.png" alt="distribution" width="700">
 
 **Key actionable insights**
-- There are few skewed features and outliers (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost, LightGBM) that can handle skewed numrical feature naturally.
+- There are a few skewed features and outliers (e.g., Annual Income, Previous Claims). This requires transformation or models (e.g., XGBoost, LightGBM) that can handle skewed numerical features naturally.
 - There is no data entry errors (e.g., extremely large or negative values where not expected).
 - Previous Claims, Insurance Duration, Number of Dependents are integer with short ranges, representing a meaningful quantity (count, duration, quantity). They are kept as numeric instead of being converted to categorical (e.g., in case of zip code, 1000 and 2000 are categorical).
 
@@ -368,10 +368,10 @@ Output:
 #### Check Dependencies between Categorical and Target Features
 
 This step helps to:
-- Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in the target feature ("Premium Amount").
+- Understand Relationships: Check whether different categorical features (like "Gender", "Policy Type", etc.) might make real differences in the target feature ("Premium Amount").
 - Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
 
-Since Premium Amount is highly skewed, we use Kruskal-Wallis H-test to test the dependency between categorical features and Premium Amount (instead of commonly used ANOVA test with normal distribution of data).
+Since Premium Amount is highly skewed, we use the Kruskal-Wallis H-test to test the dependency between categorical features and Premium Amount (instead of the commonly used ANOVA test with normal distribution of data).
 
 ```python
 cat_features = df.select_dtypes(include=["object"]).columns.tolist()
@@ -442,14 +442,14 @@ Output:
 ```
 
 **Key Actionable Insights**:
-- Only occupation is significantly associated with the target variable Premium Amount but its p-value is close to the significant threshold, meaning that while there is a dependency, it is not very strong.
+- Only occupation is significantly associated with the target variable Premium Amount but its p-value is close to the significance threshold, meaning that while there is a dependency, it is not very strong.
 - No significant relationships were found between categorical features and the target feature.
 - Keep categorical features for modeling.
 - Since there are no strong relationships, models like XGBoost, CatBoost, or LightGBM may better capture complex interactions.
 
 **Action Points from EDA**
 - Extract the useful features from `Policy Start Date` to capture hidden temporal patterns.
-- Log-tranform the target feature to handle its hight skewness.
+- Log-transform the target feature to handle its high skewness.
 - Choose models like XGBoost to naturally handle missing values, skewed numerical features, and raw categorical features without manual encoding.
 
 ### 4 . Data Preprocessing 
@@ -457,7 +457,7 @@ Output:
 #### Feature engineering:
 
 From `Policy Start Date`, we extract the useful following features that allow the model to capture hidden temporal patterns:
-- `year`: to see if policy age can affect premium .
+- `year`: to see if policy age can affect premium amount.
 - `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
 - `day`: to see mid-month vs. end-of-month patterns.
 - `dow` (day of week): to check if policies started on weekends vs. weekdays have different behaviors.
@@ -477,10 +477,10 @@ df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # R
 ```
 
 #### Log Transformation for the Target Feature
-Since the distribution of Premium Amount is highly skewed, we will use log transformation for the data preprocessing step. 
+Since the distribution of Premium Amount is highly skewed, we will use a log transformation for the data preprocessing step. 
 
 This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work better with:
-- Smoother gradients and easier optimization: Models like XGBoost work by minimizing a loss function (e.g., RMSE). During training, they calculate gradients (how much error to correct at each step). If the target has extreme values (huge premiums vs tiny premiums), the model's gradients become unstable — it struggles to balance between small and very large prediction errors. The log transformation compress those extreme values. The differences between low and high premiums are reduced. Then, gradients are smaller and more stable, making optimization smoother and faster.
+- Smoother gradients and easier optimization: Models like XGBoost work by minimizing a loss function (e.g., RMSE). During training, they calculate gradients (how much error to correct at each step). If the target has extreme values (huge premiums vs tiny premiums), the model's gradients become unstable — it struggles to balance between small and very large prediction errors. The log transformation compresses those extreme values. The differences between low and high premiums are reduced. Then, gradients are smaller and more stable, making optimization smoother and faster.
 - Reduced influence of outliers: Without transformation, a few very high premium customers dominate the loss. XGBoost or Ridge Regression will be forced to fit these extreme points, possibly hurting performance for the majority of normal customers. The log transformation shrinks large values. Outliers matter less. Then, the model focuses on fitting the bulk of customers better.
 
 
@@ -489,7 +489,7 @@ This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work bette
 cat_features = df.select_dtypes(include=["object"]).columns.tolist()
 num_features = df.select_dtypes(include=["float64"]).columns.tolist()
 
-# 📌 Define Target Variable (Log Transformation to Reduce Skewness)
+# Define Target Variable (Log Transformation to Reduce Skewness)
 df["Premium Amount"] = np.log1p(df["Premium Amount"])  # log(1 + x) transformation
 num_features.remove("Premium Amount")  # Exclude target variable
 ```
@@ -525,11 +525,11 @@ From the insights from the EDA step, we will use XGBoost for the best predictive
 - Handles missing values internally: No need to impute missing data manually — XGBoost learns the best path for missing values during tree splits.
 - Robust to skewed numerical features: Tree-based models split data by thresholds, not by assuming normality (unlike linear models), so skewness is less of a problem.
 - Supports raw categorical features (enable_categorical=True): Newer versions of XGBoost can handle categorical features directly, reducing the need for manual target encoding, label encoding, or one-hot encoding.
-- Faster and better optimization: Using tree_method='hist', XGBoost optimizes faster even for large datasets and avoids overfitting by regularization.
+- Faster and better optimization: Using tree_method='hist', XGBoost optimizes faster, even for large datasets, and avoids overfitting by regularization.
 - Better predictive performance: Especially in messy real-world datasets like insurance data, where you have mixed data types, missingness, and high skewness.
-- LightGBM is faster but more sensitive to overfitting, especially on small leaves (leaf-wise split), and its categorical is handling less stable if many rare categories.
+- LightGBM is faster but more sensitive to overfitting, especially on small leaves (leaf-wise split), and its categorical handling is less stable if many rare categories.
 - The dataset (around 1.2M rows) is reasonably large but not massive (so XGBoost speed is fine).
-- CatBoost has Very good accuracy but requires careful handling of missing categorical values.
+- CatBoost has a very good accuracy, but requires careful handling of missing categorical values.
 
 **Key Steps**:
 - Convert Categorical Columns: Set all categorical columns' dtype to `"category"` (required for XGBoost’s `enable_categorical=True` to work properly).
@@ -722,7 +722,7 @@ Output:
 - **Customer Feedback, Annual Income & Credit Score, highlighting the role of customer sentiment and financial stability** in premium pricing.
 - Year of policy start is among the top features, indicating **a seasonal or yearly pattern** in insurance premium pricing.
 - **Health Score plays a critical role**, possibly due to its impact on risk assessment.
-- **Marital Status has moderate influence**, likely because they somehow correlate with income stability and insurance needs.
+- **Marital Status has moderate influence**, likely because it somehow correlates with income stability and insurance needs.
 - Since Previous Claims and Customer Feedback are the top predictors, **collecting accurate and detailed historical claim data and customer feedback could enhance model performance**.
 - Since Annual Income, Credit Score, and Health Score play significant roles, insurers could offer targeted pricing based on these variables. This leads to a **rising problem of segmenting customers based on financial & health data**.
 - The significance of year suggests that premiums might fluctuate seasonally, making it **beneficial to explore time-series adjustments**.
