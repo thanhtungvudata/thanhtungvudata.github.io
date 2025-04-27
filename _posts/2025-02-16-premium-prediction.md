@@ -318,13 +318,30 @@ Output:
 
 
 ### 4 . Data Preprocessing 
-From the insights from the previous step, we will use log transformation for data preprocessing steps. 
+Since the distribution of Premium Amount is highly skewed. , we will use log transformation for the data preprocessing step. This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work better because they handle more "normal" shaped target variables easier (better optimization, fewer extreme errors).
 
 ```python
 # 📌 Define Target Variable (Log Transformation to Reduce Skewness)
 df["Premium Amount"] = np.log1p(df["Premium Amount"])  # log(1 + x) transformation
 num_features.remove("Premium Amount")  # Exclude target variable
 
+# Distribution of Transformed Target Variable (Premium Amount)
+plt.figure(figsize=(8, 5))
+sns.histplot(df['Premium Amount'], bins=50, kde=True)
+plt.title("Distribution of Log-Transformed Premium Amount")
+plt.xlabel("Log-Transformed Premium Amount")
+plt.ylabel("Frequency")
+plt.show()
+```
+
+<img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="600">
+
+After the log transformation, the data is closer to a normal (Gaussian-like) distribution.
+
+### 5. Model Selection and Training
+From the insights from the EDA step, we will use XGBoost for the predictive model.
+
+```python
 # 📌 Convert Categorical Features to "category" dtype for XGBoost
 for col in cat_features:
     df[col] = df[col].astype("category")
@@ -332,12 +349,7 @@ for col in cat_features:
 # 📌 Define Features and Target
 X = df.drop(columns=["Premium Amount"])
 y = df["Premium Amount"]
-```
 
-### 5. Model Selection and Training
-From the insights from the EDA step, we will use XGBoost for the predictive model.
-
-```python
 # 📌 Cross-Validation Setup (5-Fold)
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 oof_preds = np.zeros(len(X))  # Out-of-Fold Predictions
