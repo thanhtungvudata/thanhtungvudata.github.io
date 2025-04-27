@@ -531,6 +531,16 @@ From the insights from the EDA step, we will use XGBoost for the best predictive
 - The dataset (around 1.2M rows) is reasonably large but not massive (so XGBoost speed is fine).
 - CatBoost has Very good accuracy but requires careful handling of missing categorical values.
 
+**Key Steps**:
+- Convert Categorical Columns: Set all categorical columns' dtype to `"category"` (required for XGBoost’s `enable_categorical=True` to work properly).
+- Define Features and Target: `X = df` without "Premium Amount", `y = "Premium Amount"`.
+- Set up K-Fold Cross-Validation: Create a 5-fold CV splitter (`KFold`) to evaluate model stability across different subsets of data.
+- Initialize Prediction Holders: `oof_preds`: Out-of-fold predictions (same size as X). `feature_importance_df`: Store feature importance for each fold.
+- Loop Over Each Fold: For each fold (fold 1 to 5): Split Data into training and validation sets (`X_train`, `X_valid`, `y_train`, `y_valid`). Train XGBoost on training data and evaluate on validation data.
+- Predict Validation Set (OOF Prediction): Predict X_valid and store predictions in the corresponding positions of `oof_preds`.
+- Calculate Fold RMSLE: Calculate Root Mean Squared Log Error (RMSLE) for that fold and store.
+- Store Feature Importance: Save feature importance values for each feature from the trained model for that fold in the corresponding positions of `feature_importance_df`.
+
 ```python
 # Convert Categorical Features to "category" dtype for XGBoost
 for col in cat_features:
