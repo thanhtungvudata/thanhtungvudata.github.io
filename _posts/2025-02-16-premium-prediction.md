@@ -306,18 +306,6 @@ From the insights from the previous step, we will use log transformation for dat
 ```python
 # 📌 Define Target Variable (Log Transformation to Reduce Skewness)
 df["Premium Amount"] = np.log1p(df["Premium Amount"])  # log(1 + x) transformation
-
-# 📌 Convert Date Features
-df["Policy Start Date"] = pd.to_datetime(df["Policy Start Date"])
-df["year"] = df["Policy Start Date"].dt.year.astype("float32")
-df["month"] = df["Policy Start Date"].dt.month.astype("float32")
-df["day"] = df["Policy Start Date"].dt.day.astype("float32")
-df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
-df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
-
-# 📌 Identify Categorical and Numerical Features
-cat_features = df.select_dtypes(include=["object"]).columns.tolist()
-num_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
 num_features.remove("Premium Amount")  # Exclude target variable
 
 # 📌 Convert Categorical Features to "category" dtype for XGBoost
