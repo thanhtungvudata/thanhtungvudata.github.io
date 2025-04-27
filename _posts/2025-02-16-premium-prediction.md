@@ -292,6 +292,8 @@ plt.tight_layout()
 plt.show()
 ```
 
+Output:
+
 <img src="/assets/images/premium_prediction_boxplot_num_features.png" alt="distribution" width="700">
 
 **Key actionable insights**
