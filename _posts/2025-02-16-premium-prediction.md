@@ -167,6 +167,44 @@ Output:
 
 #### Check the Distribution of Numerical Features
 
+This step helps to:
+- Understand the shape of the data (normal, skewed, bimodal, etc.).
+- Detect outliers that could affect modeling.
+- Decide on transformations or models to handle highly skewed data.
+- Identify scaling needs (important for models sensitive to feature magnitudes like Ridge, Lasso).
+- Spot data entry errors (e.g., extremely large or negative values where not expected).
+
+```python
+# Select Numerical Features
+num_features = df.select_dtypes(include=["float64"]).columns.tolist()
+
+# Remove the target if it's in the list
+if "Premium Amount" in num_features:
+    num_features.remove("Premium Amount")
+
+# Plot all numerical features together
+n_cols = 3  # number of columns of plots
+n_rows = (len(num_features) + n_cols - 1) // n_cols  # calculate needed rows
+
+plt.figure(figsize=(5 * n_cols, 4 * n_rows))
+
+for idx, col in enumerate(num_features, 1):
+    plt.subplot(n_rows, n_cols, idx)
+    sns.histplot(df[col], kde=True, bins=30)
+    plt.title(f"Distribution of {col}")
+    plt.xlabel(col)
+    plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+```
+
+<img src="/assets/images/premium_prediction_distribution_num_features.png" alt="distribution" width="600">
+
+**Key actionable insights**
+- There are few skewed features (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost) that can handle skewed numrical feature naturally.
+- There is no data entry errors (e.g., extremely large or negative values where not expected).
+
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
 
