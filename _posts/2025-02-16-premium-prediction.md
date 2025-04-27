@@ -335,7 +335,7 @@ Output:
 - **Wide spread**: Premiums vary widely from low to very high, consistent with what we saw in the histogram.
 - **Log transformation was a good idea**: Because it compresses those large premium values and makes the target variable easier for the model to learn.
 
-#### Check for Multicollinearity Among Numerical Features using a Heatmap**
+#### Check for Multicollinearity Among Numerical Features using a Heatmap
 - Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
 - If two variables are highly correlated (correlation > 0.8 or < -0.8), they carry redundant information. This can cause problems for some models (especially linear models like Ridge/Lasso).
 - This check supports feature engineering decisions. For example, after seeing the heatmap, two highly correlated features might be dropped out, or combined into a new feature, or kept but regularized (e.g., with Ridge Regression).
@@ -367,9 +367,8 @@ Output:
 #### Check Dependencies between Categorical and Target Features
 
 This step helps to:
-- Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in numerical features ("Age", "Annual Income", etc.).
+- Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in the target feature ("Premium Amount").
 - Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
-- 
 
 In the following, we use ANOVA test to
 
