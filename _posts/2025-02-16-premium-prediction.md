@@ -67,7 +67,7 @@ file_path = "train.csv"
 df = pd.read_csv(file_path)
 ```
 
-**Check Missing Values**
+#### Check Missing Values
 - This step is a mandatory step to understand data health, knowing which features have missing data and how much in percentage.
 - The result is useful to decide next steps: Drop columns with too many missing values, or impute (fill) missing values, or leave them alone (if very small), or choose a predictive model that can handle missing values automatically. 
 
@@ -99,8 +99,9 @@ Insurance Duration                 1    0.000083
 
 **Key Actionable Insights**: There are significant missing values in the dataset. This requries a careful, feature-by-feature plan to guess/impute missing values or some models (like XGBoost, LightGBM) can natively handle missing values without needing explicit imputation.
 
-**Check the Distribution and Boxplot of Target Variable (Premium Amount)**
-- 
+#### Check the Distribution and Boxplot of Target Variable (Premium Amount)
+
+Checking the distribution and boxplot protects model performance by exposing skewness and outliers early.
 
 ```python
 # Distribution of Target Variable (Premium Amount)
@@ -123,6 +124,12 @@ Output:
 <img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="600">
 
 <img src="/assets/images/premium_prediction_boxplot_original.png" alt="distribution" width="600">
+
+**Key Actionable Insights**:
+- Heavy right skew: Most people have relatively low to moderate premiums, but a small number of people have very large premiums (outliers).
+- Outliers are real: There are significant extreme values.
+- Wide spread: Premiums vary widely from low to very high, consistent with what we saw in the histogram.
+- Log transformation was a good idea: Because it compresses those large premium values and makes the target variable easier for the model to learn.
 
 **Check for Multicollinearity Among Numerical Features using a Heatmap**
 - Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
