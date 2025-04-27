@@ -371,7 +371,7 @@ This step helps to:
 - Understand Relationships: Check whether different categorical features (like "Gender", "Policy Type", etc.) might make real differences in the target feature ("Premium Amount").
 - Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
 
-Since Premium Amount is highly skewed, we use the Kruskal-Wallis H-test to test the dependency between categorical features and Premium Amount (instead of the commonly used ANOVA test with normal distribution of data).
+Since Premium Amount is highly skewed, we use the Kruskal-Wallis H-test to test the dependency between categorical features and Premium Amount (instead of the commonly used ANOVA test with the assumption of normally distributed data).
 
 ```python
 cat_features = df.select_dtypes(include=["object"]).columns.tolist()
