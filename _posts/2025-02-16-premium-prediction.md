@@ -117,8 +117,22 @@ Output:
 
 <img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="600">
 
+**Feature engineering:** 
+
+Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
+
+From Policy Start Date, we extract useful features that allow the model to capture hidden temporal patterns:
+- `year`: to see if policy age can affect risk.
+- `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
+- `day`: to see mid-month vs. end-of-month patterns.
+- `dow` (day of week): to check if policies started on weekends vs. weekdays have different behaviors.
+
+We also remove the unnecessary columns:
+- `Policy Start Date` after extraction is no longer needed
+- `id` is just a unique identifier. It doesn't help with predictions
+
 ```python
-# 📌 Convert Date Features
+# Convert Date Features
 df["Policy Start Date"] = pd.to_datetime(df["Policy Start Date"])
 df["year"] = df["Policy Start Date"].dt.year.astype("float32")
 df["month"] = df["Policy Start Date"].dt.month.astype("float32")
@@ -126,11 +140,11 @@ df["day"] = df["Policy Start Date"].dt.day.astype("float32")
 df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
 df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
 
-# 📌 Identify Categorical & Numerical Features
+# Identify Categorical & Numerical Features
 cat_features = df.select_dtypes(include=["object"]).columns.tolist()
 num_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
 
-# 📌 ANOVA Test to Check Correlation Between Categorical & Numerical Features
+# ANOVA Test to Check Correlation Between Categorical & Numerical Features
 anova_results = {}
 significance_level = 0.05  # Default p-value threshold
 
@@ -151,11 +165,11 @@ for num_col in num_features:
             else:
                 print(f"❌ {cat_col} vs {num_col} | p-value: {p_value:.6f} (Not Significant)")
 
-# 📌 Convert Results to DataFrame
+# Convert Results to DataFrame
 anova_df = pd.DataFrame(anova_results.items(), columns=["Feature Pair", "p-value"])
 anova_df = anova_df.sort_values(by="p-value")
 
-# 📌 Visualizing the Top Significant Relationships
+# Visualizing the Top Significant Relationships
 significant_results = anova_df[anova_df["p-value"] < significance_level]
 
 if not significant_results.empty:
