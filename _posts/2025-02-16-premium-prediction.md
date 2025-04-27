@@ -115,7 +115,7 @@ Insurance Duration                 1    0.000083
 - There are significant missing values in the dataset. 
 - This requries a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
 
-#### Check the Distribution Categorial Features
+#### Check the Distribution of Categorial Features
 
 Checking the distribution of categorical features helps to:
 - Understand category balance (detect if some classes dominate). Rare categories might cause instability during modeling.
@@ -161,11 +161,12 @@ Output:
 <img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="600">
 
 **Key actionable insights**
-- Balanced Distributions Overall.
+- The distributions are balanced in overall.
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
 - The categorical features can be safely included in modeling without adjustment.
 
-#### Check the Distribution Categorial Features
+#### Check the Distribution of Numerical Features
+
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
 
