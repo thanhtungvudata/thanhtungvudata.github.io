@@ -67,17 +67,86 @@ import math
 # Load Dataset
 file_path = "train.csv"  
 df = pd.read_csv(file_path)
+
 print(f"Data shape: {df.shape}")
+print(df.head())
+print(df.info())
 ```
 
 Output:
+
 ```
 Data shape: (1200000, 21)
+   id   Age  Gender  Annual Income Marital Status  Number of Dependents  \
+0   0  19.0  Female        10049.0        Married                   1.0   
+1   1  39.0  Female        31678.0       Divorced                   3.0   
+2   2  23.0    Male        25602.0       Divorced                   3.0   
+3   3  21.0    Male       141855.0        Married                   2.0   
+4   4  21.0    Male        39651.0         Single                   1.0   
+
+  Education Level     Occupation  Health Score  Location  ... Previous Claims  \
+0      Bachelor's  Self-Employed     22.598761     Urban  ...             2.0   
+1        Master's            NaN     15.569731     Rural  ...             1.0   
+2     High School  Self-Employed     47.177549  Suburban  ...             1.0   
+3      Bachelor's            NaN     10.938144     Rural  ...             1.0   
+4      Bachelor's  Self-Employed     20.376094     Rural  ...             0.0   
+
+   Vehicle Age  Credit Score  Insurance Duration           Policy Start Date  \
+0         17.0         372.0                 5.0  2023-12-23 15:21:39.134960   
+1         12.0         694.0                 2.0  2023-06-12 15:21:39.111551   
+2         14.0           NaN                 3.0  2023-09-30 15:21:39.221386   
+3          0.0         367.0                 1.0  2024-06-12 15:21:39.226954   
+4          8.0         598.0                 4.0  2021-12-01 15:21:39.252145   
+
+  Customer Feedback Smoking Status Exercise Frequency Property Type  \
+0              Poor             No             Weekly         House   
+1           Average            Yes            Monthly         House   
+2              Good            Yes             Weekly         House   
+3              Poor            Yes              Daily     Apartment   
+4              Poor            Yes             Weekly         House   
+
+  Premium Amount  
+0         2869.0  
+1         1483.0  
+2          567.0  
+3          765.0  
+4         2022.0  
+
+[5 rows x 21 columns]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1200000 entries, 0 to 1199999
+Data columns (total 21 columns):
+ #   Column                Non-Null Count    Dtype  
+---  ------                --------------    -----  
+ 0   id                    1200000 non-null  int64  
+ 1   Age                   1181295 non-null  float64
+ 2   Gender                1200000 non-null  object 
+ 3   Annual Income         1155051 non-null  float64
+ 4   Marital Status        1181471 non-null  object 
+ 5   Number of Dependents  1090328 non-null  float64
+ 6   Education Level       1200000 non-null  object 
+ 7   Occupation            841925 non-null   object 
+ 8   Health Score          1125924 non-null  float64
+ 9   Location              1200000 non-null  object 
+ 10  Policy Type           1200000 non-null  object 
+ 11  Previous Claims       835971 non-null   float64
+ 12  Vehicle Age           1199994 non-null  float64
+ 13  Credit Score          1062118 non-null  float64
+ 14  Insurance Duration    1199999 non-null  float64
+ 15  Policy Start Date     1200000 non-null  object 
+ 16  Customer Feedback     1122176 non-null  object 
+ 17  Smoking Status        1200000 non-null  object 
+ 18  Exercise Frequency    1200000 non-null  object 
+ 19  Property Type         1200000 non-null  object 
+ 20  Premium Amount        1200000 non-null  float64
+dtypes: float64(9), int64(1), object(11)
+memory usage: 192.3+ MB
 ```
 
 **Key actionable insights:**
 - The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Exercise Frequency and Education Level). 
 - This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), or advanced models (e.g., XGBoost, LightGBM, and CatBoost) that can natively handle raw categorical features without manual encoding.
+- Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need to be transformed to numerical inputs (floats or integers) to learn patterns.
 
 
 
@@ -375,14 +444,13 @@ Output:
 - Keep categorical features for modeling.
 - Since there are no strong relationships, models like XGBoost, CatBoost, or LightGBM may better capture complex interactions.
 
-
 ### 4 . Data Preprocessing 
 
 #### Feature engineering:
 
 Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
 
-From Policy Start Date, we extract the useful following features that allow the model to capture hidden temporal patterns:
+From `Policy Start Date`, we extract the useful following features that allow the model to capture hidden temporal patterns:
 - `year`: to see if policy age can affect risk.
 - `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
 - `day`: to see mid-month vs. end-of-month patterns.
