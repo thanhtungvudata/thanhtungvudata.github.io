@@ -100,6 +100,12 @@ Output:
 
 <img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="600">
 
+**Check for Multicollinearity Among Numerical Features using a Heatmap**
+- Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
+- If two variables are highly correlated (correlation > 0.8 or < -0.8), they carry redundant information. This can cause problems for some models (especially linear models like Ridge/Lasso).
+- This check supports feature engineering decisions. For example, after seeing the heatmap, two highly correlated features might be dropped out, or combined into a new feature, or kept but regularized (e.g., with Ridge Regression).
+- The heatmap reveals clusters of correlated variables via colors, finding hidden patterns quickly in data before even fitting a model.
+
 ```python
 # Correlation Matrix for Numerical Features
 numeric_df = df.select_dtypes(include=['number'])
