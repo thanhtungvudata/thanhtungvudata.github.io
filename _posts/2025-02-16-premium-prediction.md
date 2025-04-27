@@ -64,7 +64,7 @@ import scipy.stats as stats
 file_path = "train.csv"  
 df = pd.read_csv(file_path)
 
-# Missing Values Analysis ###
+# Missing Values Analysis 
 print("\nMissing Values:\n")
 missing_values = df.isnull().sum()
 missing_percentage = (missing_values / len(df)) * 100
@@ -101,7 +101,7 @@ Output:
 <img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="600">
 
 ```python
-# Correlation Matrix for Numerical Features ###
+# Correlation Matrix for Numerical Features
 numeric_df = df.select_dtypes(include=['number'])
 
 # Compute the correlation matrix
