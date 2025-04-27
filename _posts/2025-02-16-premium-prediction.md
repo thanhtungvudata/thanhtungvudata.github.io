@@ -131,7 +131,7 @@ if "Policy Start Date" in cat_features:
     cat_features.remove("Policy Start Date")
 
 # Calculate number of rows and columns for the subplots
-n_cols = 3  # You can change to 2, 4 etc. depending on how wide you want
+n_cols = 3 
 n_rows = math.ceil(len(cat_features) / n_cols)
 
 # Create subplots
