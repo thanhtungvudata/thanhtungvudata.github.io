@@ -13,7 +13,7 @@ In this project, we build a machine learning model using EDA, feature engineerin
 
 <img src="/assets/images/Building a Machine Learning Model to Estimate Insurance Premiums.jpg" alt="Estimate Insurance Premiums" width="600">
 
-To run the project, we follow the [essential steps](https://thanhtungvudata.github.io/data%20science%20insights/project-steps/) of a data science project as follows.
+To run the project, we follow the [**essential steps**](https://thanhtungvudata.github.io/data%20science%20insights/project-steps/) of a data science project as follows.
 
 ### 1. Problem Definition and Business Understanding
 Insurance companies assess risk factors to price policies, but customers often lack transparency on why they are charged certain premiums. A predictive model can:
