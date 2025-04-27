@@ -78,6 +78,8 @@ Data shape: (1200000, 21)
 - The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Exercise Frequency and Education Level). 
 - This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), or advanced models (e.g., XGBoost, LightGBM, and CatBoost) that can natively handle raw categorical features without manual encoding.
 
+
+
 #### Check Missing Values
 - This step is a mandatory step to understand data health, knowing which features have missing data and how much in percentage.
 - The result is useful to decide next steps: Drop columns with too many missing values, or impute (fill) missing values, or leave them alone (if very small), or choose a predictive model that can handle missing values automatically. 
@@ -111,6 +113,52 @@ Insurance Duration                 1    0.000083
 **Key Actionable Insights**: 
 - There are significant missing values in the dataset. 
 - This requries a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
+
+#### Check the Distribution Categorial Features
+
+Checking the distribution of categorical features helps to:
+- Understand category balance (detect if some classes dominate). Rare categories might cause instability during modeling.
+- Guide encoding decisions (e.g., one-hot, target encoding).
+- Spot data quality issues (e.g., typos, unexpected categories). 
+
+
+```python
+# Identify Categorical Features
+cat_features = df.select_dtypes(include=["object"]).columns.tolist()
+
+# Remove 'Policy Start Date' if it exists (safe removal)
+if "Policy Start Date" in cat_features:
+    cat_features.remove("Policy Start Date")
+
+# Calculate number of rows and columns for the subplots
+n_cols = 3  # You can change to 2, 4 etc. depending on how wide you want
+n_rows = math.ceil(len(cat_features) / n_cols)
+
+# Create subplots
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, n_rows * 5))  # Adjust figure size
+axes = axes.flatten()  # Flatten in case of single row
+
+# Plot each categorical feature
+for idx, col in enumerate(cat_features):
+    ax = axes[idx]
+    df[col].value_counts().plot(kind="bar", ax=ax)
+    ax.set_title(f"Distribution of {col}")
+    ax.set_xlabel(col)
+    ax.set_ylabel("Count")
+
+# Hide any empty subplots
+for i in range(len(cat_features), len(axes)):
+    fig.delaxes(axes[i])
+
+plt.tight_layout()
+plt.show()
+```
+
+Output:
+
+<img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="600">
+
+
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
 
