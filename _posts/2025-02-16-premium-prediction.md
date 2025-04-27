@@ -121,7 +121,7 @@ Output:
 
 Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
 
-From Policy Start Date, we extract useful features that allow the model to capture hidden temporal patterns:
+From Policy Start Date, we extract the useful following features that allow the model to capture hidden temporal patterns:
 - `year`: to see if policy age can affect risk.
 - `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
 - `day`: to see mid-month vs. end-of-month patterns.
@@ -139,7 +139,11 @@ df["month"] = df["Policy Start Date"].dt.month.astype("float32")
 df["day"] = df["Policy Start Date"].dt.day.astype("float32")
 df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
 df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
+```
 
+Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. Therefore, we use ANOVA test to check whether different categorical feature (like "Gender", "Policy Type", etc.) cause real differences in important numerical features ("Age", "Annual Income", etc.).
+
+```python
 # Identify Categorical & Numerical Features
 cat_features = df.select_dtypes(include=["object"]).columns.tolist()
 num_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
