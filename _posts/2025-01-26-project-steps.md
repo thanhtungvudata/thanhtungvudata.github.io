@@ -30,22 +30,26 @@ Key activities:
 
 Example: Collecting purchase history, customer demographics, and online behavior data.
 
-### 3. Data Exploration and Cleaning (EDA)
-EDA plays a crucial role in understanding data patterns and identifying anomalies. Data cleaning ensures the dataset is accurate and ready for analysis.
+### 3. Exploration Data Analysis(EDA)
+Exploratory Data Analysis (EDA) is a crucial step for understanding the dataset's structure, discovering patterns, spotting anomalies, and guiding preprocessing and modeling strategies.
 
-Common tasks include:
-- Handling missing values through imputation or removal.
-- Identifying and addressing outliers.
-- Standardizing data formats and fixing inconsistencies.
-- Visualizing relationships through histograms, scatter plots, and heatmaps.
+Common EDA tasks include:
+- **Checking missing values**: Identify missingness patterns to inform imputation or feature dropping decisions.
+- **Understanding feature distributions**: Use histograms or density plots to detect skewness or unusual shapes.
+- **Identifying outliers**: Use box plots to spot extreme values that could affect model stability.
+- **Analyzing feature relationships**: Use scatter plots (numerical vs. numerical) and tests (like ANOVA) or bar plots (categorical vs. numerical) to explore dependencies.
+- **Examining feature correlations**: Use correlation matrices and heatmaps to detect multicollinearity among numerical features.
+- **Checking target variable behavior**: Understand its distribution and whether transformations (like log) are needed.
 
-Example: Analyzing customer demographics to detect potential correlations with purchase patterns.
+Example:
+- Use an ANOVA test to evaluate whether customer feedback groups ("Good", "Poor", etc.) have statistically different average premium amounts.
+- Use a box plot to check if a few customers have extremely high premium values (potential outliers).
 
 ### 4. Data Preprocessing
 Data preprocessing is the crucial step that prepares the dataset for effective modeling by cleaning, transforming, and organizing the data.
 
 Key preprocessing steps:
-- **Data Cleaning**: Handling missing values (e.g., imputation, removal, or modeling-friendly handling), fixing outliers and wrong types.
+- **Data Cleaning**: Handling missing values (e.g., imputation, removal, or modeling-friendly handling), fixing outliers and wrong types, standardizing data formats and fixing inconsistencies.
 - **Encoding categorical variables** (e.g., label encoding, one-hot encoding).
 - **Feature engineering** (e.g., extracting new features from dates, creating interaction terms).
 - **Scaling/normalizing** numerical features (only when needed, e.g., Ridge, KNN, SVM).
