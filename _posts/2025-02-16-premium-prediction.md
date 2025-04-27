@@ -161,7 +161,7 @@ Output:
 <img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="600">
 
 **Key actionable insights**
-- Balanced Distributions Overall
+- Balanced Distributions Overall.
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
 - The categorical features can be safely included in modeling without adjustment.
 
