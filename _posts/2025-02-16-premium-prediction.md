@@ -288,7 +288,13 @@ Output:
 
 <img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="700">
 
-#### Check Dependencies between Categorical and Numerical Features
+**Key Actionable Insights**:
+- Numerical features show little to no correlation with each other.
+- Keep all numerical features for modeling.
+- We don't need to remove or combine features based on correlation.
+- Skip dimensionality reduction (e.g., PCA is not needed here).
+
+#### Check Dependencies between Categorical and Target Features
 
 This step helps to:
 - Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in numerical features ("Age", "Annual Income", etc.).
@@ -365,12 +371,8 @@ Output:
 ```
 
 **Key Actionable Insights**:
-- There are significant missing values in the dataset. 
-- Tree-based models (XGBoost, LightGBM, CatBoost) handle missing values better than linear models.
-- The distribution of Premium Amount is highly skewed. 
-- A log transformation is necessary to reduce skewness and improve model performance.
-- Numerical features show little to no correlation with each other.
 - No significant relationships were found between categorical features and numerical features.
+- Keep categorical features for modeling.
 - Since there are no strong relationships, models like XGBoost, CatBoost, or LightGBM may better capture complex interactions.
 
 
