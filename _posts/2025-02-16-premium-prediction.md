@@ -49,6 +49,8 @@ Target Variable
 
 ### 3. Data Exploration Analysis (EDA)
 
+**Load Dataset**
+
 ```python
 # All required libraries are imported here
 import pandas as pd
@@ -63,7 +65,13 @@ import scipy.stats as stats
 # Load Dataset
 file_path = "train.csv"  
 df = pd.read_csv(file_path)
+```
 
+**Check Missing Values**
+- This step is a mandatory step to understand data health, knowing which features have missing data and how much in percentage.
+- The result is useful to decide next steps: Drop columns with too many missing values, or impute (fill) missing values, or leave them alone (if very small), or choose a predictive model that can handle missing values automatically. 
+
+```python
 # Missing Values Analysis 
 print("\nMissing Values:\n")
 missing_values = df.isnull().sum()
@@ -87,8 +95,10 @@ Vehicle Age                        6    0.000500
 Insurance Duration                 1    0.000083
 ```
 
+**Distribution of Target Variable (Premium Amount)**
+
 ```python
-# Distribution of Target Variable (Premium Amount) ###
+# Distribution of Target Variable (Premium Amount)
 plt.figure(figsize=(8, 5))
 sns.histplot(df['Premium Amount'], bins=50, kde=True)
 plt.title("Distribution of Premium Amount")
