@@ -203,12 +203,31 @@ Output:
 
 <img src="/assets/images/premium_prediction_distribution_num_features.png" alt="distribution" width="700">
 
+```python
+# Set up the plot grid
+n_cols = 3  # Number of columns you want
+n_rows = math.ceil(len(num_features) / n_cols)
+
+fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, n_rows * 4))  # Adjust figure size
+axes = axes.flatten()
+
+# Plot each numerical feature
+for idx, col in enumerate(num_features):
+    sns.boxplot(data=df, y=col, ax=axes[idx])
+    axes[idx].set_title(f"Boxplot of {col}")
+
+# Hide any empty subplots
+for i in range(len(num_features), len(axes)):
+    fig.delaxes(axes[i])
+
+plt.tight_layout()
+plt.show()
+```
 
 <img src="/assets/images/premium_prediction_boxplot_num_features.png" alt="distribution" width="700">
 
-
 **Key actionable insights**
-- There are few skewed features (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost, LightGBM) that can handle skewed numrical feature naturally.
+- There are few skewed features and outliers (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost, LightGBM) that can handle skewed numrical feature naturally.
 - There is no data entry errors (e.g., extremely large or negative values where not expected).
 - Previous Claims, Insurance Duration, Number of Dependents are integer with short ranges, representing a meaningful quantity (count, duration, quantity). They are kept as numeric instead of being converted to categorical (e.g., in case of zip code, 1000 and 2000 are categorical).
 
