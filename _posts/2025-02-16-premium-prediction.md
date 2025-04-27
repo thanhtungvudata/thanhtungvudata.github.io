@@ -43,6 +43,7 @@ Categorical Features
 - Smoking Status (Yes/No)
 - Exercise Frequency (Regular, Occasional, None)
 - Property Type (Owned, Rented)
+- Location (Urban, Rural, Suburban)
 
 Target Variable
 - Premium Amount (Float) – The insurance premium charged by the insurer.
@@ -74,7 +75,7 @@ Data shape: (1200000, 21)
 ```
 
 **Key actionable insights:**
-- The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Occupation and Location). 
+- The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Occupation and Education Level). 
 - This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), while advanced models like XGBoost, LightGBM, and CatBoost can natively handle raw categorical features without manual encoding.
 
 #### Check Missing Values
