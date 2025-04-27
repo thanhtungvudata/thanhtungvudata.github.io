@@ -63,6 +63,7 @@ from sklearn.metrics import mean_squared_log_error
 from xgboost import XGBRegressor
 import scipy.stats as stats
 import math
+from scipy.stats import kruskal
 
 # Load Dataset
 file_path = "train.csv"  
@@ -370,51 +371,54 @@ This step helps to:
 - Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in the target feature ("Premium Amount").
 - Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
 
-In the following, we use ANOVA test to
+Since Premium Amount is highly skewed, we use Kruskal-Wallis H-test to test the dependency between categorical features and Premium Amount (instead of commonly used ANOVA test with normal distribution of data).
 
 ```python
-# Set significance level
-significance_level = 0.05  
+cat_features = df.select_dtypes(include=["object"]).columns.tolist()
 
-# Initialize dictionary for results
-anova_results = {}
+significance_level = 0.05
 
-print("\n📊 ANOVA Results (Categorical Features vs Target - Premium Amount):")
+# Remove 'Policy Start Date' if exists
+if "Policy Start Date" in cat_features:
+    cat_features.remove("Policy Start Date")
+
+# Store results
+kruskal_results = {}
+
+print("\n📊 Kruskal-Wallis H-test Results (Categorical Features vs Target - Premium Amount):")
 print("=" * 60)
 
-# Perform ANOVA: Each Categorical Feature vs Premium Amount
 for cat_col in cat_features:
+    # Prepare groups
     groups = [df["Premium Amount"][df[cat_col] == category] for category in df[cat_col].dropna().unique()]
-
+    
+    # Check if there are at least 2 groups with data
     if len(groups) > 1:
-        try:
-            f_stat, p_value = stats.f_oneway(*groups)
-            anova_results[cat_col] = p_value
+        stat, p_value = kruskal(*groups)
+        kruskal_results[cat_col] = p_value
+        
+        if p_value < significance_level:
+            print(f"✔ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Significant ✅)")
+        else:
+            print(f"❌ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Not Significant)")
 
-            if p_value < significance_level:
-                print(f"✔ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Significant ✅)")
-            else:
-                print(f"❌ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Not Significant)")
-        except Exception as e:
-            print(f"⚠️ Error testing {cat_col}: {e}")
-
-# Convert Results to DataFrame
-anova_df = pd.DataFrame(anova_results.items(), columns=["Categorical Feature", "p-value"])
-anova_df = anova_df.sort_values(by="p-value")
+# Convert to DataFrame for easier viewing
+kruskal_df = pd.DataFrame(kruskal_results.items(), columns=["Categorical Feature", "p-value"])
+kruskal_df = kruskal_df.sort_values(by="p-value")
 
 # Visualize Significant Relationships
-significant_results = anova_df[anova_df["p-value"] < significance_level]
+significant_results = kruskal_df[kruskal_df["p-value"] < significance_level]
 
 if not significant_results.empty:
     plt.figure(figsize=(12, 6))
     sns.barplot(
         x=-np.log10(significant_results["p-value"]), 
         y=significant_results["Categorical Feature"], 
-        palette="coolwarm"
+        palette="mako"
     )
     plt.xlabel("-log10(p-value)")
     plt.ylabel("Categorical Features")
-    plt.title("Significant ANOVA Results (vs Premium Amount)")
+    plt.title("Significant Relationships (Kruskal-Wallis Test)")
     plt.show()
 else:
     print("\n🚀 No significant relationships found!")
@@ -423,32 +427,34 @@ else:
 Output:
 
 ```
-📊 ANOVA Results (Categorical Features vs Target - Premium Amount):
+📊 Kruskal-Wallis H-test Results (Categorical Features vs Target - Premium Amount):
 ============================================================
-❌ Gender vs Premium Amount | p-value: 0.860021 (Not Significant)
-❌ Marital Status vs Premium Amount | p-value: 0.620333 (Not Significant)
-❌ Education Level vs Premium Amount | p-value: 0.329249 (Not Significant)
-❌ Occupation vs Premium Amount | p-value: 0.677483 (Not Significant)
-❌ Location vs Premium Amount | p-value: 0.508437 (Not Significant)
-❌ Policy Type vs Premium Amount | p-value: 0.624434 (Not Significant)
-❌ Customer Feedback vs Premium Amount | p-value: 0.072483 (Not Significant)
-❌ Smoking Status vs Premium Amount | p-value: 0.858504 (Not Significant)
-❌ Exercise Frequency vs Premium Amount | p-value: 0.694050 (Not Significant)
-❌ Property Type vs Premium Amount | p-value: 0.349525 (Not Significant)
-
-🚀 No significant relationships found!
+❌ Gender vs Premium Amount | p-value: 0.893486 (Not Significant)
+❌ Marital Status vs Premium Amount | p-value: 0.557764 (Not Significant)
+❌ Education Level vs Premium Amount | p-value: 0.283390 (Not Significant)
+✔ Occupation vs Premium Amount | p-value: 0.043357 (Significant ✅)
+❌ Location vs Premium Amount | p-value: 0.179990 (Not Significant)
+❌ Policy Type vs Premium Amount | p-value: 0.385302 (Not Significant)
+❌ Customer Feedback vs Premium Amount | p-value: 0.110280 (Not Significant)
+❌ Smoking Status vs Premium Amount | p-value: 0.680346 (Not Significant)
+❌ Exercise Frequency vs Premium Amount | p-value: 0.430723 (Not Significant)
+❌ Property Type vs Premium Amount | p-value: 0.419278 (Not Significant)
 ```
 
 **Key Actionable Insights**:
-- No significant relationships were found between categorical features and numerical features.
+- Only occupation is significantly associated with the target variable Premium Amount but its p-value is close to the significant threshold, meaning that while there is a dependency, it is not very strong.
+- No significant relationships were found between categorical features and the target feature.
 - Keep categorical features for modeling.
 - Since there are no strong relationships, models like XGBoost, CatBoost, or LightGBM may better capture complex interactions.
+
+**Action Points from EDA**
+- Extract the useful features from `Policy Start Date` to capture hidden temporal patterns.
+- Log-tranform the target feature to handle its hight skewness.
+- Choose models like XGBoost to naturally handle missing values, skewed numerical features, and raw categorical features without manual encoding.
 
 ### 4 . Data Preprocessing 
 
 #### Feature engineering:
-
-Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
 
 From `Policy Start Date`, we extract the useful following features that allow the model to capture hidden temporal patterns:
 - `year`: to see if policy age can affect risk.
@@ -512,9 +518,6 @@ plt.show()
 <img src="/assets/images/premium_prediction_boxplot_log_transformed.png" alt="distribution" width="700">
 
 After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
-
-#### Encoding categorical variables
-
 
 
 ### 5. Model Selection and Training
