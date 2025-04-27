@@ -95,7 +95,8 @@ Vehicle Age                        6    0.000500
 Insurance Duration                 1    0.000083
 ```
 
-**Distribution of Target Variable (Premium Amount)**
+**Check the Distribution of Target Variable (Premium Amount)**
+- 
 
 ```python
 # Distribution of Target Variable (Premium Amount)
