@@ -97,7 +97,8 @@ Vehicle Age                        6    0.000500
 Insurance Duration                 1    0.000083
 ```
 
-**Key Actionable Insights**: There are significant missing values in the dataset. This requries a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
+**Key Actionable Insights**: 
+- There are significant missing values in the dataset. This requries a careful, feature-by-feature plan to guess/impute missing values or to use some models (like XGBoost, LightGBM) that can natively handle missing values without needing explicit imputation.
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
 
