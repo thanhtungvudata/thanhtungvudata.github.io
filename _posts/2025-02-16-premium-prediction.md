@@ -203,10 +203,15 @@ Output:
 
 <img src="/assets/images/premium_prediction_distribution_num_features.png" alt="distribution" width="700">
 
+
+<img src="/assets/images/premium_prediction_boxplot_num_features.png" alt="distribution" width="700">
+
+
 **Key actionable insights**
 - There are few skewed features (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost, LightGBM) that can handle skewed numrical feature naturally.
 - There is no data entry errors (e.g., extremely large or negative values where not expected).
 - Previous Claims, Insurance Duration, Number of Dependents are integer with short ranges, representing a meaningful quantity (count, duration, quantity). They are kept as numeric instead of being converted to categorical (e.g., in case of zip code, 1000 and 2000 are categorical).
+
 
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
