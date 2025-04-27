@@ -318,7 +318,12 @@ Output:
 
 
 ### 4 . Data Preprocessing 
-Since the distribution of Premium Amount is highly skewed. , we will use log transformation for the data preprocessing step. This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work better because they handle more "normal" shaped target variables easier (better optimization, fewer extreme errors).
+Since the distribution of Premium Amount is highly skewed, we will use log transformation for the data preprocessing step. 
+
+This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work better with:
+- Smoother gradients and easier optimization: Models like XGBoost work by minimizing a loss function (e.g., RMSE). During training, they calculate gradients (how much error to correct at each step). If the target has extreme values (huge premiums vs tiny premiums), the model's gradients become unstable — it struggles to balance between small and very large prediction errors. The log transformation compress those extreme values. The differences between low and high premiums are reduced. Then, gradients are smaller and more stable, making optimization smoother and faster.
+- Reduced influence of outliers: Without transformation, a few very high premium customers dominate the loss. XGBoost or Ridge Regression will be forced to fit these extreme points, possibly hurting performance for the majority of normal customers. The log transformation shrinks large values. Outliers matter less. Then, the model focuses on fitting the bulk of customers better.
+
 
 ```python
 # 📌 Define Target Variable (Log Transformation to Reduce Skewness)
@@ -336,7 +341,7 @@ plt.show()
 
 <img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="600">
 
-After the log transformation, the data is closer to a normal (Gaussian-like) distribution.
+After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
 
 ### 5. Model Selection and Training
 From the insights from the EDA step, we will use XGBoost for the predictive model.
