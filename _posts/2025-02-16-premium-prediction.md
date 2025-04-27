@@ -165,7 +165,7 @@ Output:
 - No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
 - The categorical features can be safely included in modeling without adjustment.
 
-#### Check the Distribution of Numerical Features
+#### Check the Distribution and Boxplot of Numerical Features
 
 This step helps to:
 - Understand the shape of the data (normal, skewed, bimodal, etc.).
@@ -265,7 +265,7 @@ Output:
 - **Wide spread**: Premiums vary widely from low to very high, consistent with what we saw in the histogram.
 - **Log transformation was a good idea**: Because it compresses those large premium values and makes the target variable easier for the model to learn.
 
-**Check for Multicollinearity Among Numerical Features using a Heatmap**
+#### Check for Multicollinearity Among Numerical Features using a Heatmap**
 - Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
 - If two variables are highly correlated (correlation > 0.8 or < -0.8), they carry redundant information. This can cause problems for some models (especially linear models like Ridge/Lasso).
 - This check supports feature engineering decisions. For example, after seeing the heatmap, two highly correlated features might be dropped out, or combined into a new feature, or kept but regularized (e.g., with Ridge Regression).
@@ -287,6 +287,8 @@ plt.show()
 Output:
 
 <img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="700">
+
+#### Check Dependencies between Categorical and Numerical Features
 
 Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. 
 
