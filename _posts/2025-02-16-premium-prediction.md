@@ -79,7 +79,9 @@ missing_percentage = (missing_values / len(df)) * 100
 missing_df = pd.DataFrame({'Missing Values': missing_values, 'Percentage': missing_percentage})
 print(missing_df[missing_df['Missing Values'] > 0].sort_values(by='Percentage', ascending=False))
 ```
+
 Output:
+
 ```
                       Missing Values  Percentage
 Previous Claims               364029   30.335750
@@ -94,6 +96,8 @@ Marital Status                 18529    1.544083
 Vehicle Age                        6    0.000500
 Insurance Duration                 1    0.000083
 ```
+
+**Key Actionable Insights**: There are significant missing values in the dataset. This requries a careful, feature-by-feature plan to guess/impute missing values or some models (like XGBoost, LightGBM) can natively handle missing values without needing explicit imputation.
 
 **Check the Distribution and Boxplot of Target Variable (Premium Amount)**
 - 
