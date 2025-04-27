@@ -158,6 +158,10 @@ Output:
 
 <img src="/assets/images/premium_prediction_distribution_cat_features.png" alt="distribution" width="600">
 
+**Key actionable insights**
+- Balanced Distributions Overall
+- No major imbalance, so no special resampling (e.g., SMOTE) is needed for these features.
+- The categorical can be safely included in modeling without adjustment.
 
 
 #### Check the Distribution and Boxplot of Target Variable (Premium Amount)
