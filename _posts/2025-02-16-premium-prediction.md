@@ -95,7 +95,7 @@ Vehicle Age                        6    0.000500
 Insurance Duration                 1    0.000083
 ```
 
-**Check the Distribution of Target Variable (Premium Amount)**
+**Check the Distribution and Boxplot of Target Variable (Premium Amount)**
 - 
 
 ```python
@@ -105,6 +105,13 @@ sns.histplot(df['Premium Amount'], bins=50, kde=True)
 plt.title("Distribution of Premium Amount")
 plt.xlabel("Premium Amount")
 plt.ylabel("Frequency")
+plt.show()
+
+# Boxplot of Original Premium Amount
+plt.figure(figsize=(8, 5))
+sns.boxplot(x=df["Premium Amount"])
+plt.title("Boxplot of Original Premium Amount")
+plt.xlabel("Premium Amount")
 plt.show()
 ```
 Output:
@@ -329,7 +336,11 @@ This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work bette
 # 📌 Define Target Variable (Log Transformation to Reduce Skewness)
 df["Premium Amount"] = np.log1p(df["Premium Amount"])  # log(1 + x) transformation
 num_features.remove("Premium Amount")  # Exclude target variable
+```
 
+**Check again the distribution and boxplot of the log-transformed premium amount**
+
+```python
 # Distribution of Transformed Target Variable (Premium Amount)
 plt.figure(figsize=(8, 5))
 sns.histplot(df['Premium Amount'], bins=50, kde=True)
@@ -337,11 +348,20 @@ plt.title("Distribution of Log-Transformed Premium Amount")
 plt.xlabel("Log-Transformed Premium Amount")
 plt.ylabel("Frequency")
 plt.show()
+
+# Boxplot of Log-Transformed Premium Amount
+plt.figure(figsize=(8, 5))
+sns.boxplot(x=df["Premium Amount"])
+plt.title("Boxplot of Log-Transformed Premium Amount")
+plt.xlabel("Premium Amount")
+plt.show()
 ```
 
 <img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="600">
 
 After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
+
+
 
 ### 5. Model Selection and Training
 From the insights from the EDA step, we will use XGBoost for the predictive model.
