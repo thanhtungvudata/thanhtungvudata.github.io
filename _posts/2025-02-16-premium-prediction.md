@@ -65,7 +65,17 @@ import scipy.stats as stats
 # Load Dataset
 file_path = "train.csv"  
 df = pd.read_csv(file_path)
+print(f"Data shape: {df.shape}")
 ```
+
+Output:
+```
+Data shape: (1200000, 21)
+```
+
+**Key actionable insights:**
+- The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Occupation and Location). 
+- This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), while advanced models like XGBoost, LightGBM, and CatBoost can natively handle raw categorical features without manual encoding.
 
 #### Check Missing Values
 - This step is a mandatory step to understand data health, knowing which features have missing data and how much in percentage.
@@ -379,6 +389,8 @@ plt.show()
 <img src="/assets/images/premium_prediction_boxplot_log_transformed.png" alt="distribution" width="600">
 
 After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
+
+#### Encoding categorical variables
 
 
 
