@@ -118,6 +118,8 @@ Output:
 
 <img src="/assets/images/premium_prediction_distribution.png" alt="distribution" width="600">
 
+<img src="/assets/images/premium_prediction_boxplot_original.png" alt="distribution" width="600">
+
 **Check for Multicollinearity Among Numerical Features using a Heatmap**
 - Multicollinearity happens when two or more features are strongly correlated with each other. For example, "Annual Income" and "Credit Score" might be very correlated — both relate to financial stability. 
 - If two variables are highly correlated (correlation > 0.8 or < -0.8), they carry redundant information. This can cause problems for some models (especially linear models like Ridge/Lasso).
@@ -358,6 +360,8 @@ plt.show()
 ```
 
 <img src="/assets/images/premium_prediction_distribution_log_transformed.png" alt="distribution log transformed" width="600">
+
+<img src="/assets/images/premium_prediction_boxplot_log_transformed.png" alt="distribution" width="600">
 
 After the log transformation, the data is now closer to a normal (Gaussian-like) distribution.
 
