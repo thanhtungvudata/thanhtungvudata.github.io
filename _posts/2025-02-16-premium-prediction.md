@@ -155,30 +155,6 @@ Output:
 
 <img src="/assets/images/premium_prediction_heatmap.png" alt="heatmap" width="600">
 
-**Feature engineering:** 
-
-Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
-
-From Policy Start Date, we extract the useful following features that allow the model to capture hidden temporal patterns:
-- `year`: to see if policy age can affect risk.
-- `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
-- `day`: to see mid-month vs. end-of-month patterns.
-- `dow` (day of week): to check if policies started on weekends vs. weekdays have different behaviors.
-
-We also remove the unnecessary columns:
-- `Policy Start Date` after extraction is no longer needed
-- `id` is just a unique identifier. It doesn't help with predictions
-
-```python
-# Convert Date Features
-df["Policy Start Date"] = pd.to_datetime(df["Policy Start Date"])
-df["year"] = df["Policy Start Date"].dt.year.astype("float32")
-df["month"] = df["Policy Start Date"].dt.month.astype("float32")
-df["day"] = df["Policy Start Date"].dt.day.astype("float32")
-df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
-df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
-```
-
 Note that not all features are useful predictors. Some categorical features may have no real impact on numerical outcomes. 
 
 In the following, we use ANOVA test to check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in important numerical features ("Age", "Annual Income", etc.).
@@ -339,6 +315,32 @@ Output:
 
 
 ### 4 . Data Preprocessing 
+
+#### Feature engineering:
+
+Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need numerical inputs (floats or integers) to learn patterns.
+
+From Policy Start Date, we extract the useful following features that allow the model to capture hidden temporal patterns:
+- `year`: to see if policy age can affect risk.
+- `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
+- `day`: to see mid-month vs. end-of-month patterns.
+- `dow` (day of week): to check if policies started on weekends vs. weekdays have different behaviors.
+
+We also remove the unnecessary columns:
+- `Policy Start Date` after extraction is no longer needed
+- `id` is just a unique identifier. It doesn't help with predictions
+
+```python
+# Convert Date Features
+df["Policy Start Date"] = pd.to_datetime(df["Policy Start Date"])
+df["year"] = df["Policy Start Date"].dt.year.astype("float32")
+df["month"] = df["Policy Start Date"].dt.month.astype("float32")
+df["day"] = df["Policy Start Date"].dt.day.astype("float32")
+df["dow"] = df["Policy Start Date"].dt.dayofweek.astype("float32")
+df.drop(columns=["Policy Start Date", "id"], inplace=True, errors="ignore")  # Remove ID and date column
+```
+
+#### Log Transformation for the Target Feature
 Since the distribution of Premium Amount is highly skewed, we will use log transformation for the data preprocessing step. 
 
 This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work better with:
