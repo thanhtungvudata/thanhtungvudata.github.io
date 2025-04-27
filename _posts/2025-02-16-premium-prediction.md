@@ -457,7 +457,7 @@ Output:
 #### Feature engineering:
 
 From `Policy Start Date`, we extract the useful following features that allow the model to capture hidden temporal patterns:
-- `year`: to see if policy age can affect risk.
+- `year`: to see if policy age can affect premium .
 - `month`: to see if seasonality effects (e.g., more claims in winter, sales spikes at year-end) exist.
 - `day`: to see mid-month vs. end-of-month patterns.
 - `dow` (day of week): to check if policies started on weekends vs. weekdays have different behaviors.
@@ -521,7 +521,12 @@ After the log transformation, the data is now closer to a normal (Gaussian-like)
 
 
 ### 5. Model Selection and Training
-From the insights from the EDA step, we will use XGBoost for the predictive model.
+From the insights from the EDA step, we will use XGBoost for the predictive model because it minimizes preprocessing needs while maximizing robustness and predictive performance.
+- Handles missing values internally: No need to impute missing data manually — XGBoost learns the best path for missing values during tree splits.
+- Robust to skewed numerical features: Tree-based models split data by thresholds, not by assuming normality (unlike linear models), so skewness is less of a problem.
+- Supports raw categorical features (enable_categorical=True): Newer versions of XGBoost can handle categorical features directly, reducing the need for manual target encoding, label encoding, or one-hot encoding.
+- Faster and better optimization: Using tree_method='hist', XGBoost optimizes faster even for large datasets and avoids overfitting by regularization.
+- Better predictive performance: Especially in messy real-world datasets like insurance data, where you have mixed data types, missingness, and high skewness.
 
 ```python
 
