@@ -293,52 +293,53 @@ Output:
 This step helps to:
 - Understand Relationships: Check whether different categorical feature (like "Gender", "Policy Type", etc.) might make real differences in numerical features ("Age", "Annual Income", etc.).
 - Improve Feature Engineering: Strong dependency may suggest we should interact features or create new features.
+- 
 
 In the following, we use ANOVA test to
 
 ```python
-# Identify Categorical & Numerical Features
-cat_features = df.select_dtypes(include=["object"]).columns.tolist()
-num_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
+# Set significance level
+significance_level = 0.05  
 
-# ANOVA Test to Check Correlation Between Categorical & Numerical Features
+# Initialize dictionary for results
 anova_results = {}
-significance_level = 0.05  # Default p-value threshold
 
-print("\n📊 ANOVA Results:")
-print("=" * 50)
+print("\n📊 ANOVA Results (Categorical Features vs Target - Premium Amount):")
+print("=" * 60)
 
-for num_col in num_features:
-    for cat_col in cat_features:
-        groups = [df[num_col][df[cat_col] == category] for category in df[cat_col].dropna().unique()]
+# Perform ANOVA: Each Categorical Feature vs Premium Amount
+for cat_col in cat_features:
+    groups = [df["Premium Amount"][df[cat_col] == category] for category in df[cat_col].dropna().unique()]
 
-        if len(groups) > 1:
+    if len(groups) > 1:
+        try:
             f_stat, p_value = stats.f_oneway(*groups)
-            anova_results[(cat_col, num_col)] = p_value
+            anova_results[cat_col] = p_value
 
-            # Print significant results
             if p_value < significance_level:
-                print(f"✔ {cat_col} vs {num_col} | p-value: {p_value:.6f} (Significant ✅)")
+                print(f"✔ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Significant ✅)")
             else:
-                print(f"❌ {cat_col} vs {num_col} | p-value: {p_value:.6f} (Not Significant)")
+                print(f"❌ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Not Significant)")
+        except Exception as e:
+            print(f"⚠️ Error testing {cat_col}: {e}")
 
 # Convert Results to DataFrame
-anova_df = pd.DataFrame(anova_results.items(), columns=["Feature Pair", "p-value"])
+anova_df = pd.DataFrame(anova_results.items(), columns=["Categorical Feature", "p-value"])
 anova_df = anova_df.sort_values(by="p-value")
 
-# Visualizing the Top Significant Relationships
+# Visualize Significant Relationships
 significant_results = anova_df[anova_df["p-value"] < significance_level]
 
 if not significant_results.empty:
     plt.figure(figsize=(12, 6))
     sns.barplot(
         x=-np.log10(significant_results["p-value"]), 
-        y=significant_results["Feature Pair"].astype(str), 
+        y=significant_results["Categorical Feature"], 
         palette="coolwarm"
     )
     plt.xlabel("-log10(p-value)")
-    plt.ylabel("Feature Pairs")
-    plt.title("Significant ANOVA Relationships (Categorical vs Numerical)")
+    plt.ylabel("Categorical Features")
+    plt.title("Significant ANOVA Results (vs Premium Amount)")
     plt.show()
 else:
     print("\n🚀 No significant relationships found!")
@@ -486,6 +487,10 @@ This transformation helps models like Ridge, Lasso, LightGBM, XGBoost work bette
 
 
 ```python
+# Identify Categorical & Numerical Features
+cat_features = df.select_dtypes(include=["object"]).columns.tolist()
+num_features = df.select_dtypes(include=["float64"]).columns.tolist()
+
 # 📌 Define Target Variable (Log Transformation to Reduce Skewness)
 df["Premium Amount"] = np.log1p(df["Premium Amount"])  # log(1 + x) transformation
 num_features.remove("Premium Amount")  # Exclude target variable
@@ -524,21 +529,22 @@ After the log transformation, the data is now closer to a normal (Gaussian-like)
 From the insights from the EDA step, we will use XGBoost for the predictive model.
 
 ```python
-# 📌 Convert Categorical Features to "category" dtype for XGBoost
+
+# Convert Categorical Features to "category" dtype for XGBoost
 for col in cat_features:
     df[col] = df[col].astype("category")
 
-# 📌 Define Features and Target
+# Define Features and Target
 X = df.drop(columns=["Premium Amount"])
 y = df["Premium Amount"]
 
-# 📌 Cross-Validation Setup (5-Fold)
+# Cross-Validation Setup (5-Fold)
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 oof_preds = np.zeros(len(X))  # Out-of-Fold Predictions
 feature_importance_df = pd.DataFrame(index=X.columns)
 rmsle_per_fold = []  # Store RMSLE per fold
 
-# 📌 Train XGBoost with Cross-Validation
+# Train XGBoost with Cross-Validation
 for fold, (train_idx, valid_idx) in enumerate(kf.split(X)):
     print(f"🚀 Training Fold {fold + 1}...")
 
@@ -569,12 +575,12 @@ for fold, (train_idx, valid_idx) in enumerate(kf.split(X)):
     fold_preds = model.predict(X_valid)
     oof_preds[valid_idx] = fold_preds
 
-    # ✅ Calculate RMSLE for This Fold
+    # Calculate RMSLE for This Fold
     fold_rmsle = np.sqrt(mean_squared_log_error(np.expm1(y_valid), np.expm1(fold_preds)))
     rmsle_per_fold.append(fold_rmsle)
     print(f"✔ Fold {fold + 1} RMSLE: {fold_rmsle:.5f}")
 
-    # ✅ Store Feature Importance
+    # Store Feature Importance
     feature_importance_df[f"Fold_{fold + 1}"] = model.feature_importances_
 ```
 Output:
