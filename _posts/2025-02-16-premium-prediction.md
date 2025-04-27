@@ -201,7 +201,7 @@ plt.show()
 
 Output:
 
-<img src="/assets/images/premium_prediction_distribution_num_features.png" alt="distribution" width="600">
+<img src="/assets/images/premium_prediction_distribution_num_features.png" alt="distribution" width="700">
 
 **Key actionable insights**
 - There are few skewed features (e.g., Annual Income, Previous Claims). This requires tranformation or models (e.g., XGBoost, LightGBM) that can handle skewed numrical feature naturally.
