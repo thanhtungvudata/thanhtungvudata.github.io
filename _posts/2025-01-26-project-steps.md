@@ -16,7 +16,7 @@ Before diving into data analysis, defining the project's objective clearly is cr
 - Framing the problem in quantifiable terms.
 - Establishing key performance indicators (KPIs) to measure success.
   
-Example: In an e-commerce business, the goal might be to predict customer churn to improve retention strategies.
+Example: In an e-commerce business, the goal might be to predict customer churn to improve retention strategies. 
 
 ### 2. Data Collection
 Once the problem is defined, the next step is to gather relevant data from various sources. Data may come from structured sources like databases or unstructured sources such as text or images.
