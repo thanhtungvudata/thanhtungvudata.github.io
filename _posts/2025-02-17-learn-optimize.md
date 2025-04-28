@@ -45,22 +45,6 @@ Additionally, Learning to Optimize **significantly cuts computation costs**. Run
 
 Companies that master Learning to Optimize gain a **strong competitive advantage**. They can move faster, make smarter decisions, and operate more efficiently than competitors who rely on traditional methods. In highly competitive industries, the ability to optimize operations in real time can be the difference between leading the market and falling behind.
 
-## When to Use Learning to Optimize?
-
-Learning to Optimize is most valuable in situations where traditional optimization methods struggle to keep up with the demands of the system. If solving **the optimization problem from scratch is too slow, too complex, or too costly to do frequently**, it may be a strong candidate for a learning-to-optimize approach. For example, large-scale scheduling, resource allocation, or supply chain management problems often fall into this category.
-
-Another key scenario is when systems require **real-time decision-making**. In areas like autonomous driving, online recommendations, or dynamic network management, the environment can change rapidly, and decisions must be made immediately. Traditional solvers are often too slow for these use cases, whereas a trained model can make quick, approximate decisions that are good enough to meet operational needs.
-
-Finally, Learning to Optimize is most effective when the underlying structure of the optimization problem remains relatively stable over time. If **the patterns and relationships in the data do not change dramatically**, a model trained once can continue to perform well across many different instances, saving time and computational resources compared to re-solving the optimization anew each time.
-
-## Why Learning to Optimize is Still Needed Even with Machine Learning and LLMs
-
-While machine learning models and large language models (LLMs) like ChatGPT have revolutionized many aspects of technology and decision-making, they are not always efficient at solving constrained optimization problems. For example, although LLMs can provide suggestions or approximate solutions, they are not designed to find precise, feasible solutions to problems that require strict adherence to mathematical constraints, such as those found in logistics planning or network resource allocation.
-
-Constrained optimization problems typically need to be formulated mathematically and solved using specialized algorithms to ensure feasibility and optimality. While LLMs can assist in formulating these problems or suggesting approaches, the real challenge lies in solving them quickly and effectively. For standard problems like linear programming or convex optimization, it is possible for LLMs to call existing optimization solvers. However, the computational cost and solving time become significant as the problem size grows, especially when solutions are needed frequently or in real time.
-
-Moreover, for complex problems with intricate constraints—such as nonconvex mixed-integer problems—LLMs often struggle to produce high-quality solutions. Their outputs may be infeasible, suboptimal, or computationally inefficient. In contrast, Learning to Optimize focuses specifically on training models that can generate solutions efficiently and effectively, making it a critical tool when fast, reliable decision-making is needed in complex, constraint-heavy environments.
-
 ## Key Steps of a Learning-to-Optimize Framework
 
 A Learning-to-Optimize framework follows a structured process to ensure that the machine learning model can effectively replace or accelerate the optimization solver. Below are the detailed steps:
@@ -90,6 +74,21 @@ Finally, the trained model is deployed to predict optimized solutions for new pr
 
 Importantly, a Learning-to-Optimize framework requires **human-in-the-loop** involvement. Human expertise is crucial for both formulating the optimization problem correctly and building a high-quality solution dataset. Without domain knowledge and careful problem structuring, the model risks learning shortcuts that do not align with the real-world goals or constraints of the system.
 
+## When to Use Learning to Optimize?
+
+Learning to Optimize is most valuable in situations where traditional optimization methods struggle to keep up with the demands of the system. If solving **the optimization problem from scratch is too slow, too complex, or too costly to do frequently**, it may be a strong candidate for a learning-to-optimize approach. For example, large-scale scheduling, resource allocation, or supply chain management problems often fall into this category.
+
+Another key scenario is when systems require **real-time decision-making**. In areas like autonomous driving, online recommendations, or dynamic network management, the environment can change rapidly, and decisions must be made immediately. Traditional solvers are often too slow for these use cases, whereas a trained model can make quick, approximate decisions that are good enough to meet operational needs.
+
+Finally, Learning to Optimize is most effective when the underlying structure of the optimization problem remains relatively stable over time. If **the patterns and relationships in the data do not change dramatically**, a model trained once can continue to perform well across many different instances, saving time and computational resources compared to re-solving the optimization anew each time.
+
+## Why Learning to Optimize is Still Needed Even with Machine Learning and LLMs
+
+While machine learning models and large language models (LLMs) like ChatGPT, Claude, Grok, or Gemini have revolutionized many aspects of technology and decision-making, they are not always efficient at solving constrained optimization problems. For example, although LLMs can provide suggestions or approximate solutions, they are not designed to find precise, feasible solutions to problems that require strict adherence to mathematical constraints, such as those found in logistics planning or network resource allocation.
+
+Constrained optimization problems typically need to be formulated mathematically and solved using specialized algorithms to ensure feasibility and optimality. While LLMs can assist in formulating these problems or suggesting approaches, the real challenge lies in solving them quickly and effectively. For standard problems like linear programming or convex optimization, it is possible for LLMs to call existing optimization solvers. However, the computational cost and solving time become significant as the problem size grows, especially when solutions are needed frequently or in real time.
+
+Moreover, for complex problems with intricate constraints—such as nonconvex mixed-integer problems—LLMs often struggle to produce high-quality solutions. Their outputs may be infeasible, suboptimal, or computationally inefficient. In contrast, Learning to Optimize focuses specifically on training models that can generate solutions efficiently and effectively, making it a critical tool when fast, reliable decision-making is needed in complex, constraint-heavy environments.
 
 ## Detailed Example: Learning to Optimize 6G Network Resource Allocation
 
