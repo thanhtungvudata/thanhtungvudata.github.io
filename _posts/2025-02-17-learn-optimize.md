@@ -24,7 +24,7 @@ This post introduces the concept of Learning to Optimize, which is a powerful ne
 
 Learning to Optimize is the process of training a machine learning model to replace or speed up complex optimization tasks. Instead of solving an optimization problem from scratch every time, we **"teach" a model how to find good solutions efficiently**. The model learns patterns in the problem structure and uses them to make fast, high-quality decisions.
 
-**Intuition**: Think of it like teaching a chef how to cook a dish without needing to read the recipe every single time. Once the chef has practiced and internalized the patterns (e.g., the ingredients, techniques, and timing), they can cook efficiently and adapt to slight variations without starting from zero. Similarly, a model that learns to optimize can make decisions quickly and intelligently without re-solving the full problem every time.
+**Intuition**: Think of it like teaching a chef how to cook a dish without needing to read the recipe every single time. Once the chef has practiced and internalized the best cooking patterns (e.g., the ingredients, techniques, and timing), they can cook efficiently and adapt to slight variations without starting from zero. Similarly, a model that learns to optimize can make decisions quickly and intelligently without re-solving the full problem every time.
 
 **What Learning to Optimize is not**: It is not simply making a prediction or forecasting an outcome based on raw data, like predicting next month's sales figures. Rather, it focuses on learning the decision-making process itself, i.e., how to choose actions or allocations that optimize a given objective.
 
