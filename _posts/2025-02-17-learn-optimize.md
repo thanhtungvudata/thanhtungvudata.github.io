@@ -9,15 +9,14 @@ tags:
   - CNN
   - Optimization
 ---
-## Introduction
 
 In today's world of increasingly complex decision-making problems, optimization has become more critical than ever. Whether it's managing supply chains, allocating network resources, or designing smarter transportation systems, the ability to make better decisions faster defines the winners in nearly every industry.
 
-Companies that can intelligently allocate resources, manage networks, or dynamically adjust their operations unlock major advantages. Higher efficiency, lower costs, improved customer satisfaction—these are just a few of the business impacts that effective optimization can deliver. In fast-moving, highly competitive markets, optimization isn't a luxury; it's a necessity.
+Companies that can intelligently allocate resources, manage networks, or dynamically adjust their operations unlock major advantages. Higher efficiency, lower costs, improved customer satisfaction are just a few of the business impacts that effective optimization can deliver. In fast-moving, highly competitive markets, optimization isn't a luxury. It's a necessity.
 
 Optimization touches a wide range of stakeholders. Business leaders depend on it for strategic decision-making. Technical teams use it to drive operational efficiency. End users benefit from smoother services, faster responses, and better experiences. Across all levels, better optimization leads to better outcomes.
 
-This post introduces the concept of Learning to Optimize—a powerful new approach that combines machine learning with traditional optimization. We'll explore what Learning to Optimize means, why it matters, and when to use it. To make things concrete, we'll walk through a real-world example: using deep learning to optimize resource allocation in 6G wireless networks.
+This post introduces the concept of Learning to Optimize, which is a powerful new approach that combines machine learning with traditional optimization. We'll explore what Learning to Optimize means, why it matters, and when to use it. To make things concrete, we'll walk through a real-world example: using deep learning to optimize resource allocation in 6G wireless networks.
 
 <img src="/assets/images/learn_to_optimize.png" alt="Learn to Optimize" width="700">
 
