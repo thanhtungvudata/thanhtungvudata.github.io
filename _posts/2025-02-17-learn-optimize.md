@@ -53,10 +53,15 @@ Another key scenario is when systems require **real-time decision-making**. In a
 
 Finally, Learning to Optimize is most effective when the underlying structure of the optimization problem remains relatively stable over time. If **the patterns and relationships in the data do not change dramatically**, a model trained once can continue to perform well across many different instances, saving time and computational resources compared to re-solving the optimization anew each time.
 
-## Why Learning to Optimize is still needed when having Machine Learning?
-- Machine leanring might not be efficient to find solution solve optimization problem 
+## Why Learning to Optimize is Still Needed Even with Machine Learning and LLMs
 
-## Key Steps to Apply Learning to Optimize
+While machine learning models and large language models (LLMs) like ChatGPT have revolutionized many aspects of technology and decision-making, they are not always efficient at solving constrained optimization problems. For example, although LLMs can provide suggestions or approximate solutions, they are not designed to find precise, feasible solutions to problems that require strict adherence to mathematical constraints, such as those found in logistics planning or network resource allocation.
+
+Constrained optimization problems typically need to be formulated mathematically and solved using specialized algorithms to ensure feasibility and optimality. While LLMs can assist in formulating these problems or suggesting approaches, the real challenge lies in solving them quickly and effectively. For standard problems like linear programming or convex optimization, it is possible for LLMs to call existing optimization solvers. However, the computational cost and solving time become significant as the problem size grows, especially when solutions are needed frequently or in real time.
+
+Moreover, for complex problems with intricate constraints—such as nonconvex mixed-integer problems—LLMs often struggle to produce high-quality solutions. Their outputs may be infeasible, suboptimal, or computationally inefficient. In contrast, Learning to Optimize focuses specifically on training models that can generate solutions efficiently and effectively, making it a critical tool when fast, reliable decision-making is needed in complex, constraint-heavy environments.
+
+## Key Steps of a Learning to Optimize Framework
 - Define the original optimization problem.
 - Collect or simulate solution data (ground-truth optimal solutions).
 - Build a model that learns the mapping from input features to optimal decisions.
