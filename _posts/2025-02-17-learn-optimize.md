@@ -22,14 +22,15 @@ This post introduces the concept of Learning to Optimize, which is a powerful ne
 
 ## What is Learning to Optimize?
 
-### Definition
-Learning to Optimize means training a machine learning model to replace or speed up complex optimization tasks.
+## What is Learning to Optimize?
 
-### Clarify what it is NOT
-It is not just prediction (like forecasting sales) — it is learning a decision policy or solution itself.
+Learning to Optimize is the process of training a machine learning model to replace or speed up complex optimization tasks. Instead of solving an optimization problem from scratch every time, we **"teach" a model how to find good solutions efficiently**. The model learns patterns in the problem structure and uses them to make fast, high-quality decisions.
 
-### In simple words
-Instead of solving an optimization from scratch every time, we teach a model how to solve it efficiently.
+It's important to understand what Learning to Optimize is not. It is **not simply making a prediction or forecasting an outcome based on raw data**, like predicting next month's sales figures. Rather, it focuses on learning the decision-making process itself, i.e., how to choose actions or allocations that optimize a given objective.
+
+In simple terms, Learning to Optimize means shifting from repeatedly solving complex problems manually to creating a model that knows how to solve them automatically. It allows businesses to make better decisions faster, at scale, and with lower computational costs.
+
+For example, in logistics, instead of recalculating the best delivery routes each day with a traditional solver, a model trained through Learning to Optimize can instantly suggest near-optimal routes based on real-time traffic data. In finance, instead of running complex portfolio optimization programs overnight, a trained model can quickly recommend asset allocations that maximize returns within risk constraints. In wireless networks, Learning to Optimize can allocate frequencies and power levels dynamically, enabling faster and more efficient communication without manually solving optimization problems each time.
 
 ## Why is Learning to Optimize Important?
 
