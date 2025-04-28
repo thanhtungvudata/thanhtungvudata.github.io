@@ -62,16 +62,26 @@ Constrained optimization problems typically need to be formulated mathematically
 Moreover, for complex problems with intricate constraints—such as nonconvex mixed-integer problems—LLMs often struggle to produce high-quality solutions. Their outputs may be infeasible, suboptimal, or computationally inefficient. In contrast, Learning to Optimize focuses specifically on training models that can generate solutions efficiently and effectively, making it a critical tool when fast, reliable decision-making is needed in complex, constraint-heavy environments.
 
 ## Key Steps of a Learning-to-Optimize Framework
-- Define the original optimization problem.
-- Collect or simulate solution data (ground-truth optimal solutions).
-- Build a model that learns the mapping from input features to optimal decisions.
-- Train, validate, and test the model.
-- Deploy the model to quickly predict optimized solutions in new scenarios.
 
-Requirement: 
-- Optimization Problem Formulation. This requires the foundation knowledge and skills in optimization, operation research, and domain knowledge to formulate the correct problem that captures all the natural aspects of this problem in practice. For example ....
-- Solution to build the dataset. The quality of the dataset is based on the quality of the solution. Normally, the dataset is the best solution that we can have. For complex optimization problem, it might be impossible to find a globally optimal solution. Instead, a locally optimal solution or a feasible solution that performs much better than naive and common approaches can be used. 
-- This means a Learning-to-Optimize Framework requires human in the loop for formulating optimization problem and building solution dataset. 
+A Learning-to-Optimize framework follows a structured process to ensure that the machine learning model can effectively replace or accelerate the optimization solver. Below are the detailed steps:
+
+### 1. Optimization Problem Formulation
+The first and most critical step is to clearly define the original optimization problem. This requires a solid foundation in optimization theory, operations research, and domain-specific knowledge. The formulation must accurately capture the objectives, constraints, and operational realities of the problem. For instance, in a 6G wireless network, the goal might be to maximize spectral efficiency while respecting constraints like per-antenna power limits and user quality of service requirements. A poor formulation can lead to models that optimize the wrong objective or violate critical real-world constraints.
+
+### 2. Building the Solution Dataset
+Once the problem is formulated, the next step is to build a dataset containing examples of problem instances and their corresponding solutions. The quality of the dataset directly impacts the model's performance. Ideally, this dataset consists of globally optimal solutions. However, for many complex optimization problems, finding global optima is computationally infeasible. In these cases, high-quality locally optimal solutions or feasible solutions that significantly outperform naive approaches are used. For example, in nonconvex mixed-integer optimization problems, heuristic or approximate algorithms can generate sufficiently good solutions for training.
+
+### 3. Model Design: Learning the Mapping
+The core of the framework is building a machine learning model that learns the mapping from input features (problem parameters) to optimal decisions. Depending on the problem structure, convolutional neural networks (CNNs), graph neural networks (GNNs), or other architectures might be chosen to exploit specific patterns, spatial structures, or relational information.
+
+### 4. Training, Validation, and Testing
+The model must be trained on the dataset with careful validation to avoid overfitting and to ensure generalization to unseen instances. Evaluation metrics are chosen based on how well the model approximates the true optimization solutions while respecting constraints. Testing on out-of-sample data verifies the model's practical utility.
+
+### 5. Deployment and Inference
+Finally, the trained model is deployed to predict optimized solutions for new problem instances in real time. Compared to solving each instance with a traditional solver, inference through the trained model offers significant speedups and computational savings.
+
+Importantly, a Learning-to-Optimize framework requires **human-in-the-loop** involvement. Human expertise is crucial for both formulating the optimization problem correctly and building a high-quality solution dataset. Without domain knowledge and careful problem structuring, the model risks learning shortcuts that do not align with the real-world goals or constraints of the system.
+
 
 ## Example: Learning to Optimize 6G Network Resource Allocation
 
