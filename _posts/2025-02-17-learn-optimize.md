@@ -20,8 +20,6 @@ This post introduces the concept of Learning to Optimize, which is a powerful ne
 
 <img src="/assets/images/learn_to_optimize.png" alt="Learn to Optimize" width="700">
 
-
-
 ## What is Learning to Optimize?
 
 ### Definition
