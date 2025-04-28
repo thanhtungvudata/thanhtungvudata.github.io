@@ -61,12 +61,17 @@ Constrained optimization problems typically need to be formulated mathematically
 
 Moreover, for complex problems with intricate constraints—such as nonconvex mixed-integer problems—LLMs often struggle to produce high-quality solutions. Their outputs may be infeasible, suboptimal, or computationally inefficient. In contrast, Learning to Optimize focuses specifically on training models that can generate solutions efficiently and effectively, making it a critical tool when fast, reliable decision-making is needed in complex, constraint-heavy environments.
 
-## Key Steps of a Learning to Optimize Framework
+## Key Steps of a Learning-to-Optimize Framework
 - Define the original optimization problem.
 - Collect or simulate solution data (ground-truth optimal solutions).
 - Build a model that learns the mapping from input features to optimal decisions.
 - Train, validate, and test the model.
 - Deploy the model to quickly predict optimized solutions in new scenarios.
+
+Requirement: 
+- Optimization Problem Formulation. This requires the foundation knowledge and skills in optimization, operation research, and domain knowledge to formulate the correct problem that captures all the natural aspects of this problem in practice. For example ....
+- Solution to build the dataset. The quality of the dataset is based on the quality of the solution. Normally, the dataset is the best solution that we can have. For complex optimization problem, it might be impossible to find a globally optimal solution. Instead, a locally optimal solution or a feasible solution that performs much better than naive and common approaches can be used. 
+- This means a Learning-to-Optimize Framework requires human in the loop for formulating optimization problem and building solution dataset. 
 
 ## Example: Learning to Optimize 6G Network Resource Allocation
 
