@@ -98,7 +98,13 @@ Moreover, for complex problems with intricate constraints—such as nonconvex mi
 - Faster and smarter 6G wireless networks → better coverage, faster data rates, lower costs.
 - Telecom operators, equipment vendors, cloud providers are key stakeholders.
 
-#### Problem
+#### Optimization variables
+- User association and power control
+
+#### Constraints
+- ....
+
+### Optimization Problem Formulation
 - Jointly optimize user association and power control for base stations to maximize network spectral efficiency.
 
 ### Data Collection
