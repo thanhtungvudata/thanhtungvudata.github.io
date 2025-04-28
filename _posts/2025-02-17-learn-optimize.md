@@ -149,6 +149,6 @@ From network resource allocation to supply chain design, it can change how indus
 
 As problems grow in complexity, Learning to Optimize is a key frontier every data scientist and engineer should watch — and master.
 
-The example of this project is available in my [publication](https://ieeexplore.ieee.org/abstract/document/10387264). 
+The detailed example in this post is available in my [publication](https://ieeexplore.ieee.org/abstract/document/10387264). 
 
 For further inquiries or collaboration, please contact me at [my email](mailto:tungvutelecom@gmail.com).
