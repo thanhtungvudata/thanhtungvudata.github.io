@@ -43,12 +43,18 @@ This ability to make real-time decisions is crucial for applications such as tra
 
 Additionally, Learning to Optimize **significantly cuts computation costs**. Running complex solvers repeatedly can be expensive, both in terms of hardware and energy consumption. A learned model, once trained, can perform inference with minimal computational resources, leading to substantial cost savings over time.
 
-Companies that master Learning to Optimize gain a strong competitive advantage. They can move faster, make smarter decisions, and operate more efficiently than competitors who rely on traditional methods. In highly competitive industries, the ability to optimize operations in real time can be the difference between leading the market and falling behind.
+Companies that master Learning to Optimize gain a **strong competitive advantage**. They can move faster, make smarter decisions, and operate more efficiently than competitors who rely on traditional methods. In highly competitive industries, the ability to optimize operations in real time can be the difference between leading the market and falling behind.
 
 ## When to Use Learning to Optimize?
-- Problems where traditional optimization is too slow, too complex, or too costly to solve frequently.
-- Systems requiring real-time decisions.
-- Scenarios where optimization structure doesn’t change much over time, so learning is possible.
+
+Learning to Optimize is most valuable in situations where traditional optimization methods struggle to keep up with the demands of the system. If solving **the optimization problem from scratch is too slow, too complex, or too costly to do frequently**, it may be a strong candidate for a learning-to-optimize approach. For example, large-scale scheduling, resource allocation, or supply chain management problems often fall into this category.
+
+Another key scenario is when systems require **real-time decision-making**. In areas like autonomous driving, online recommendations, or dynamic network management, the environment can change rapidly, and decisions must be made immediately. Traditional solvers are often too slow for these use cases, whereas a trained model can make quick, approximate decisions that are good enough to meet operational needs.
+
+Finally, Learning to Optimize is most effective when the underlying structure of the optimization problem remains relatively stable over time. If **the patterns and relationships in the data do not change dramatically**, a model trained once can continue to perform well across many different instances, saving time and computational resources compared to re-solving the optimization anew each time.
+
+## Why Learning to Optimize is still needed when having Machine Learning?
+- Machine leanring might not be efficient to find solution solve optimization problem 
 
 ## Key Steps to Apply Learning to Optimize
 - Define the original optimization problem.
