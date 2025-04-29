@@ -191,21 +191,35 @@ In simple terms:
 While SCA doesn't guarantee the absolutely highest peak (global optimum) in all cases, it does ensure that we've reached a point that makes sense mathematically and practically,
 
 
-### Building the Learning-to-Optimize Dataset
+## Building the Learning-to-Optimize Dataset
+
+To train a machine learning model to make smart decisions in wireless networks, we first need to build a dataset. 
 
 #### Exploratory Data Analysis (EDA) and Feature Engineering
-- For a test case of this example, we simulated different network deployments with random AP and UE locations.
-- Analyzed distribution of large-scale fading coefficients (statistic signal strengths) given the different location of UEs and APs.
-- Observed patterns: signal strength drops quickly with distance, cluster patterns in users and APs. Meaning, user association and power control depends on signal strengths. 
-- There are other features like large-scale fading coefficients of channels (variation of channels over time)
 
-**Dataset** will look like:
-- **Input feature**: Large-scale fading matrices between users and access points. 
-- **Target features**: Optimal user association and power control decisions.
+We simulated different network setups by randomly placing Access Points (APs) and Users (UEs). This helps reflect real-world conditions, where UEs move around and the network changes.
+
+Next, we measured how strong or weak the signals are between each AP and each UE. This is captured by what's called a **large-scale fading coefficient**. It tells us how much the signal weakens as it travels due to distance or things like buildings and walls. Signals are stronger when UEs are close to an AP, and weaker when they're farther away.
+
+This is important because a UE's **large-scale fading coefficient (based on location) directly influences both UE association and power control decisions**. A UE closer to an AP is more likely to be selected by that AP for service because the connection requires less transmission power and results in better signal quality. On the other hand, UEs farther from an AP may require more power to maintain a reliable connection. Since each AP has a limited power budget, serving distant UEs is more costly and might not be efficient. Therefore, the model must learn to balance UE association and power allocation based on spatial relationships between UEs and APs.
+
+We chose to use only this type of signal information (large-scale fading) as input to the model. While other types of signal changes (like quick fluctuations due to movement or interference) exist, they change too fast and are hard to track in real time. Large-scale fading changes slowly and is more reliable for decision-making.
+
+### What the Dataset Looks Like
+
+For each network setup, the dataset includes:
+- **Input**: Large-scale fading coefficients between each AP and each UE.
+- **Target output**: The best way to connect UEs to APs and assign power, based on a strong optimization method.
 
 #### Building the Dataset
 
-- Computed optimal solutions using Successive Convex Approximation (SCA) algorithm for training elements of target features.
+To figure out what the best decisions look like, we used an optimization method called **Successive Convex Approximation (SCA)**. For each setup, SCA calculated:
+- Which AP should serve which UE.
+- How much power each AP should use for each UE.
+
+These results became the answers our model should learn from. Once trained, the model can make similar high-quality decisions instantly, without having to run the slow optimization process every time.
+
+This dataset will teaches a model how to make smart network decisions by learning from examples where the best possible choices are already known.
 
 ### Model Development
 
