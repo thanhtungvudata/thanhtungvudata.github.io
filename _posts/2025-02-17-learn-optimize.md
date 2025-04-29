@@ -223,16 +223,24 @@ This dataset will teaches a model how to make smart network decisions by learnin
 
 ### Model Development
 
-#### Technical Method
-Built a Convolutional Neural Network (CNN) to learn spatial patterns in wireless networks.
+Built a Convolutional Neural Network (CNN) to learn the best possible choices of UE association and power control.
 
 #### Why CNN
 - Exploits local spatial structures.
 - Reduces parameters compared to fully connected networks.
 - Generalizes well across different layouts.
 
+#### CNN Design
+- Give a workflow
+- Explain the design of CNN model
+- Explain each component of the CNN model and why choosing the design of each component and why not other designs
+
 #### Alternative methods considered
 - Fully connected networks (too many parameters, overfitting risk) — rejected.
+
+
+<img src="/assets/images/CNN_model.png" alt="CNN Model" width="600">
+
 
 ### Model Evaluation
 
