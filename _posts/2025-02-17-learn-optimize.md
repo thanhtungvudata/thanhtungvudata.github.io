@@ -150,7 +150,7 @@ where $$ R_k $$ is the SE received by user $$ k $$.
 - **User Association**: A binary variable $$ a_{mk} $$ where $$ a_{mk} = 1 $$ if AP $$ m $$ serves UE $$ k $$, 0 otherwise.
 - **Power Allocation**: continuous variable $$ p_{mk} $$ is the power allocated by AP $$ m $$ to UE $$ k $$.
 
-Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. Since we do not focus on solving the problem in this post, the detailed mathematical problem is omitted. 
+Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. $$ R_k $$ is basically modeled based on Shannon's theory, which describes the maximum number of bits that can be transmitted through a wireless channel within a given bandwidth.
 
 **Constraints**:
 - $$ \sum_{k} p_{mk} \leq P_m^{\text{max}} $$ (Transmit power limit per AP)
@@ -166,8 +166,10 @@ which mean:
 
 This optimization problem is inherently a **mixed-integer nonconvex** problem, making it extremely challenging to solve quickly in large-scale 6G networks, which is why Learning to Optimize becomes crucial. 
 
+Since this post focuses on the overall concept rather than solving the problem step-by-step, we will skip the detailed mathematical formulation.
+
 ### Data Collection
-- Simulated different network deployments with random AP and UE locations.
+- For a test case of this example, we simulated different network deployments with random AP and UE locations.
 - Computed optimal solutions using Successive Convex Approximation (SCA) algorithm for training labels.
 
 ### Exploratory Data Analysis (EDA)
