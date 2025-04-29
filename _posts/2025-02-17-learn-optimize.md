@@ -174,6 +174,8 @@ Since this post focuses on the overall concept rather than solving the problem s
 
 To solve the complex optimization problem of user association and power control, we use a method called **Successive Convex Approximation (SCA)**.
 
+#### What is SCA?
+
 SCA is an advanced technique for solving problems that are too complicated to tackle all at once. Many real-world optimization problems are "non-convex", meaning they have lots of hills and valleys, making it hard to find the very best solution. Instead of trying to solve the messy problem directly, SCA works step-by-step:
 
 - At each step, it **approximates** the difficult problem with a simpler, easier (convex) problem.
@@ -184,12 +186,21 @@ Think of it like climbing a foggy mountain. Instead of trying to find the highes
 
 When we use SCA, the solution we find satisfies a **necessary condition** for being a global best solution. One type of this condition is called the **Fritz John condition** (named after the mathematician Fritz John).
 
-In simple terms:
-- It means the solution we find is at least a "smart" point—not just some random guess.
-- It's like reaching a point on the mountain where **you can't immediately find any nearby path that goes uphill**. You might not be at the tallest mountain peak in the entire region, but you are somewhere meaningful and high up.
+**Intuition**: It means the solution we find is at least a "smart" point—not just some random guess. It's like reaching a point on the mountain where **you can't immediately find any nearby path that goes uphill**. You might not be at the tallest mountain peak in the entire region, but you are somewhere meaningful and high up.
 
-While SCA doesn't guarantee the absolutely highest peak (global optimum) in all cases, it does ensure that we've reached a point that makes sense mathematically and practically,
+While SCA doesn't guarantee the absolutely highest peak (global optimum) in all cases, it does ensure that we've reached a point that makes sense mathematically and practically.
 
+
+
+#### How to Handle Binary Variables
+
+In the original problem formulation, user association variables are constrained to be binary (i.e., an access point either serves a user or it doesn't). However, directly optimizing over binary variables makes the problem combinatorial and non-convex.
+
+To address this, we relax the binary constraint by reformulating it into two equivalent continuous constraints. These constraints are then incorporated into the objective function using a penalty method. This allows the optimization to proceed in the continuous domain, which is compatible with the SCA framework.
+
+By tuning the penalty parameters properly, the SCA algorithm converges to solutions that closely satisfy the original binary constraints, resulting in user association variables that are exactly binary or extremely close (within a very small error margin).
+
+**Intuition**: Instead of forcing hard binary decisions during optimization, we let the model explore continuous values but penalize it for straying too far from 0 or 1. Over time, the optimization "learns" to favor clean binary-like decisions naturally, much like softly guiding a student to either fully commit or fully avoid a choice, rather than staying indecisive.
 
 ## Building the Learning-to-Optimize Dataset
 
@@ -213,7 +224,7 @@ For each network setup, the dataset includes:
 
 #### Building the Dataset
 
-To figure out what the best decisions look like, we used an optimization method called **Successive Convex Approximation (SCA)**. For each setup, SCA calculated:
+To figure out what the best decisions look like, we used an optimization method **Successive Convex Approximation (SCA)**. For each setup, SCA calculated:
 - Which AP should serve which UE.
 - How much power each AP should use for each UE.
 
