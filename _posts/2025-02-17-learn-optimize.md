@@ -205,7 +205,7 @@ This is important because a UE's **large-scale fading coefficient (based on loca
 
 We chose to use only this type of signal information (large-scale fading) as input to the model. While other types of signal changes (like quick fluctuations due to movement or interference) exist, they change too fast and are hard to track in real time. Large-scale fading changes slowly and is more reliable for decision-making.
 
-### What the Dataset Looks Like
+#### What the Dataset Looks Like
 
 For each network setup, the dataset includes:
 - **Input**: Large-scale fading coefficients between each AP and each UE.
@@ -252,9 +252,9 @@ The CNN model architecture is carefully designed based on the following componen
 - A 2D convolution layer with 64 3×3 **filters**, giving 64 output features. 
 - Each filter has weights that are learned during training.
 - Purpose: Extract local spatial features in the AP-UE grid. 
-- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one pixel in the output feature map. Then the filter moves (slides) across the input by a step (stride), repeating the process.
+- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one of 64 output features. Then the filter moves (slides) across the input by a step (stride), repeating the process.
 - Why 3×3? A small window captures local dependencies without overwhelming complexity.
-- Why 64 output channels? Enough capacity to learn a wide range of basic features.
+- Why 64 output features? Enough capacity to learn a wide range of basic features.
 - **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
 
 **Residual Blocks (ResNet-R)**
