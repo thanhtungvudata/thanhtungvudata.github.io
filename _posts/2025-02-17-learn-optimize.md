@@ -150,7 +150,10 @@ where $$ R_k $$ is the SE received by user $$ k $$.
 - **User Association**: A binary variable $$ a_{mk} $$ where $$ a_{mk} = 1 $$ if AP $$ m $$ serves UE $$ k $$, 0 otherwise.
 - **Power Allocation**: continuous variable $$ p_{mk} $$ is the power allocated by AP $$ m $$ to UE $$ k $$.
 
-Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. $$ R_k $$ is basically modeled based on Shannon's theory, which describes the maximum number of bits that can be transmitted through a wireless channel within a given bandwidth.
+Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. $$ R_k $$ has a mathematical expression inspired by Shannon's capacity formula, representing the maximum achievable data rate over the wireless medium. 
+
+In both theory and practice, $$ R_k $$ depends explicitly on user association and power control decisions. Theoretically, this relationship is modeled using clean, idealized formulas based on Shannon’s theory, signal power, and interference. In practice, however, real-world imperfections such as hardware limits and unpredictable interference make modeling the function
+$$ R_k $$ more complex.
 
 **Constraints**:
 - $$ \sum_{k} p_{mk} \leq P_m^{\text{max}} $$ (Transmit power limit per AP)
