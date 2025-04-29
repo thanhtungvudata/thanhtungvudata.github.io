@@ -249,7 +249,7 @@ The CNN model architecture is carefully designed based on the following componen
 - Number of training samples: T
 
 **Conv Block 1**
-- A 2D convolution layer with 64 3×3 **filters**, giving 64 output features. 
+- A 2D convolution layer with 64 3×3 **filters**, giving 64 output features (e.g., Signal strength patterns, interference cues, proximity effects, context from neighboring APs or UEs, and etc)
 - Each filter has weights that are learned during training.
 - Purpose: Extract local spatial features in the AP-UE grid. 
 - How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one of 64 output features. Then the filter moves (slides) across the input by a step (stride), repeating the process.
@@ -288,6 +288,8 @@ Each output head predicts an M x K matrix:
 - Columns correspond to User Equipments (UEs).
 
 Thus, the model outputs directly reflect the physical structure of the wireless system.
+
+Note that standard practice in CNNs — especially with 3×3 convolutions — involves applying padding of 1 pixel on all sides. This preserves the spatial size of the input, ensuring that the Access Point–User Equipment (AP–UE) relationship grid (M × K) remains consistent throughout the network. Padding is thus implicitly applied in ConvBlock 1, the ResNet blocks, and ConvBlock 2.
 
 #### Why Not Fully Connected Networks?
 
