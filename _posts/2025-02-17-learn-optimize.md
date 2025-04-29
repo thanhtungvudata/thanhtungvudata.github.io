@@ -251,7 +251,7 @@ The CNN model architecture is carefully designed based on the following componen
 **Conv Block 1**
 - A 2D convolution layer with 64 3×3 **filters**, giving 64 output learned features (e.g., signal strength patterns, interference cues, proximity effects, context from neighboring APs or UEs, and etc)
 - Each filter has weights that are learned during training.
-- Purpose: Extract local spatial features in the AP-UE grid. 
+- **Purpose**: Extract local features for AP-UE pairs. 
 - How it interacts with the input: In Conv Block 1, each 3×3 filter slides across the input matrix (which represents AP–UE relationships), examining a small local patch one step at a time. At each position (corresponding to one AP–UE pair), the filter looks at a 3×3 neighborhood, multiplies each input value by its corresponding filter weight, sums them up, and produces one single output feature for that AP–UE pair. Since there are 64 different filters, each AP–UE pair ends up having 64 output features — one feature from each filter — capturing different learned features.
 - Why 3×3? A small window captures local dependencies without overwhelming complexity.
 - Why 64 output learned features? Enough capacity to learn a wide range of basic features.
@@ -264,17 +264,17 @@ The CNN model architecture is carefully designed based on the following componen
 - Batch Normalization is applied after each convolution to stabilize training by normalizing the feature distributions, speeding up convergence and allowing higher learning rates.
 - ReLU activation is applied after Batch Normalization to introduce non-linearity, enabling the network to learn complex, non-linear mappings and preventing vanishing gradients.
 - Skip connections are added to each block, allowing the input to be directly added to the output. This helps gradients flow more easily during backpropagation, solving the vanishing gradient problem and enabling much deeper networks to be trained effectively. Skip connections also help the network remember the input, allowing it to preserve important information and only learn the differences (residuals) needed to improve the mapping.
-- Purpose: Deepen the network to learn complex hierarchical features, where deeper layers extract more abstract patterns based on local relationships.
+- **Purpose**: Deepen the network to learn complex hierarchical features, where deeper layers extract more abstract patterns based on local relationships.
 - **Intuition**: Normal networks try to learn everything from scratch at every layer. ResNet helps networks learn better by making layers focus only on small improvements from Conv Block 1, not full transformations — while remembering and preserving the good parts of the input through skip connections. Like climbing a mountain. Instead of jumping to random new points, you step slightly up from where you already are. 
 
 
 **Conv Block 2**
 - A 2D convolution layer with 3×3 filters, operating on the 64 feature maps produced by the previous layers.
-- Purpose: Refine and unify the deep features extracted by the ResNet blocks.
+- **Purpose**: Refine and unify the deep features extracted by the ResNet blocks.
 - Why 3×3? Maintains local spatial relationships while slightly adjusting and smoothing the features before output.
 - This layer aggregates the various complex patterns detected by earlier layers into a more consistent, task-friendly representation.
 - It prepares a clean and focused feature map that contains distilled information needed for the final predictions made by the output heads.
-- Acts as a final adjustment layer to align the network's learned features with the specific needs of power control and user association prediction.
+- **Intuition**: Like as a final adjustment layer to align the network's learned features with the specific needs of power control and user association prediction.
 - Output size: M x K x 64.
 
 
