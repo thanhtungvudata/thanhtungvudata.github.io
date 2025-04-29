@@ -233,7 +233,6 @@ We specifically chose a CNN instead of other types of neural networks for severa
 - **Efficiency**: CNNs use a small number of parameters compared to fully connected networks. This reduces the risk of overfitting and speeds up training.
 - **Scalability**: Because CNNs work locally (only looking at neighboring points at a time), they scale better when the number of APs and UEs grows.
 - **Generalization**: CNNs generalize better to unseen network layouts because they focus on local relationships rather than memorizing global structures.
-- **Maintaining M x K spatial structure**: CNN operations preserve the dimensions related to APs (M) and UEs (K), ensuring that the output is naturally aligned with the AP-UE relationships.
 
 #### CNN Workflow and Design
 
