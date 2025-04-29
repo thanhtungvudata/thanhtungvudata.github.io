@@ -223,24 +223,76 @@ This dataset will teaches a model how to make smart network decisions by learnin
 
 ### Model Development
 
-Built a Convolutional Neural Network (CNN) to learn the best possible choices of UE association and power control.
+To make fast, smart decisions in a wireless network, we built a machine learning model based on a **Convolutional Neural Network (CNN)**. The goal of the model is to learn from our dataset how to choose the best way to connect users to access points and how to assign transmission power in each scenario.
 
-#### Why CNN
-- Exploits local spatial structures.
-- Reduces parameters compared to fully connected networks.
-- Generalizes well across different layouts.
+#### Why We Chose a CNN
 
-#### CNN Design
-- Give a workflow
-- Explain the design of CNN model
-- Explain each component of the CNN model and why choosing the design of each component and why not other designs
+We specifically chose a CNN instead of other types of neural networks for several important reasons:
 
-#### Alternative methods considered
-- Fully connected networks (too many parameters, overfitting risk) — rejected.
+- **Preserving spatial structure**: The problem has an inherent spatial structure (access points and users are laid out in space), and CNNs are excellent at capturing local patterns like strong signals or interference.
+- **Efficiency**: CNNs use a small number of parameters compared to fully connected networks. This reduces the risk of overfitting and speeds up training.
+- **Scalability**: Because CNNs work locally (only looking at neighboring points at a time), they scale better when the number of APs and UEs grows.
+- **Generalization**: CNNs generalize better to unseen network layouts because they focus on local relationships rather than memorizing global structures.
+- **Maintaining M x K spatial structure**: CNN operations preserve the dimensions related to APs (M) and UEs (K), ensuring that the output is naturally aligned with the AP-UE relationships.
+
+#### CNN Workflow and Design
 
 For this example, we use normalized power ($$ P_m^{\max} = 1, \forall m $$). 
 
 <img src="/assets/images/CNN_model.png" alt="CNN Model" width="700">
+
+The CNN model architecture is carefully designed based on the following components:
+
+1. **Input Layer**
+   - Input: A large-scale fading matrix showing signal strength between APs and UEs.
+   - Size: M x K (M = number of APs, K = number of UEs).
+
+2. **Conv Block 1**
+   - A 2D convolution layer with 3×3 filters, 64 output channels.
+   - Purpose: Extract local spatial features in the AP-UE grid.
+   - Why 3×3? A small window captures local dependencies without overwhelming complexity.
+   - Why 64 output channels? Enough capacity to learn a wide range of basic features.
+
+3. **Residual Blocks (ResNet-R)**
+   - R residual blocks, each with two 3×3 convolution layers with 64 channels.
+   - Skip connections are added to allow better gradient flow and stabilize training.
+   - Purpose: Deepen the network to learn complex hierarchical features.
+   - Why ResNet? Helps train deeper networks without suffering from vanishing gradients.
+
+4. **Conv Block 2**
+   - A 3×3 convolution layer.
+   - Purpose: Refine and unify features after deep feature extraction.
+   - Prepares a clean feature map ready for task-specific decision making.
+
+5. **Output Heads**
+   - After Conv Block 2, the network splits into two branches:
+
+   **Power Control Head**
+   - Conv layer (3×3, 64 filters) followed by sigmoid activation.
+   - Outputs normalized power control values (range 0 to 1) for each AP-UE pair.
+   - Why Conv? Keeps local relationships intact.
+   - Why Sigmoid? Power values are normalized between 0 and 1.
+
+   **User Association Head**
+   - Conv layer (3×3, 64 filters) followed by sigmoid activation.
+   - Outputs association probability (range 0 to 1) for each AP-UE pair.
+   - Why Conv? Maintains the spatial structure.
+   - Why Sigmoid? Predicts association likelihoods.
+
+Each output head predicts an M x K matrix:
+- Rows correspond to Access Points (APs).
+- Columns correspond to User Equipments (UEs).
+
+Thus, the model outputs directly reflect the physical structure of the wireless system.
+
+#### Why Not Fully Connected Networks?
+
+We considered using fully connected networks but rejected them for several reasons:
+- **Too many parameters**: Fully connected layers grow dramatically in size as M and K increase.
+- **Loss of spatial structure**: Fully connected layers ignore the natural 2D structure between APs and UEs.
+- **Higher overfitting risk**: Fully connected networks tend to memorize training data rather than generalize.
+
+
 
 #### Model Training
 - dataset
