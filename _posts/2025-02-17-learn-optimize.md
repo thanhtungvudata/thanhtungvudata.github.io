@@ -259,18 +259,25 @@ The CNN model architecture is carefully designed based on the following componen
 - **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
 
 **Residual Blocks (ResNet-R)**
-- R residual blocks, each with two 3×3 convolution layers with 64 channels.
-- Skip connections are added to allow better gradient flow and stabilize training.
-- Purpose: Deepen the network to learn complex hierarchical features.
-- Why ResNet? Helps train deeper networks without suffering from vanishing gradients.
+- R residual blocks, each containing several convolutional layers.
+- Each convolutional layer uses 3×3 filters across 64 channels, maintaining the feature depth.
+- Batch Normalization is applied after each convolution to stabilize training by normalizing the feature distributions, speeding up convergence and allowing higher learning rates.
+- ReLU activation is applied after Batch Normalization to introduce non-linearity, enabling the network to learn complex, non-linear mappings and preventing vanishing gradients.
+- Skip connections are added to each block, allowing the input to be directly added to the output. This helps gradients flow more easily during backpropagation, solving the vanishing gradient problem and enabling much deeper networks to be trained effectively. Skip connections also help the network remember the input, allowing it to preserve important information and only learn the differences (residuals) needed to improve the mapping.
+- Purpose: Deepen the network to learn complex hierarchical features, where deeper layers extract more abstract patterns based on local relationships.
+- **Intuition**: Normal networks try to learn everything from scratch at every layer. ResNet helps networks learn better by making layers focus only on small improvements from Conv Block 1, not full transformations — while remembering and preserving the good parts of the input through skip connections. Like climbing a mountain. Instead of jumping to random new points, you step slightly up from where you already are. 
+
 
 **Conv Block 2**
-- A 3×3 convolution layer.
-- Purpose: Refine and unify features after deep feature extraction.
-- Prepares a clean feature map ready for task-specific decision making.
+- A 2D convolution layer with 3×3 filters, operating on the 64 feature maps produced by the previous layers.
+- Purpose: Refine and unify the deep features extracted by the ResNet blocks.
+- Why 3×3? Maintains local spatial relationships while slightly adjusting and smoothing the features before output.
+- This layer aggregates the various complex patterns detected by earlier layers into a more consistent, task-friendly representation.
+- It prepares a clean and focused feature map that contains distilled information needed for the final predictions made by the output heads.
+- Acts as a final adjustment layer to align the network's learned features with the specific needs of power control and user association prediction.
 
-**Output Heads**
-- After Conv Block 2, the network splits into two branches:
+
+After Conv Block 2, the network splits into two branches:
 
 **Power Control Head**
 - Conv layer (3×3, 64 filters) followed by sigmoid activation.
