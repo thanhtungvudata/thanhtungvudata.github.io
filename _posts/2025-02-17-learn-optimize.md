@@ -150,7 +150,7 @@ where $$ R_k $$ is the SE received by user $$ k $$.
 - **User Association**: A binary variable $$ a_{mk} $$ where $$ a_{mk} = 1 $$ if AP $$ m $$ serves UE $$ k $$, 0 otherwise.
 - **Power Allocation**: continuous variable $$ p_{mk} $$ is the power allocated by AP $$ m $$ to UE $$ k $$.
 
-Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. 
+Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless environment behaves. It depends on factors like signal strength and interference. The decision of which access points serve which users ($$a_{mk}$$) and how much power is allocated ($$ p_{mk} $$) will affect signal strength and interference, leading to the change in $$ R_k $$. Since we do not focus on solving the problem in this post, the detailed mathematical problem is omitted. 
 
 **Constraints**:
 - $$ \sum_{k} p_{mk} \leq P_m^{\text{max}} $$ (Transmit power limit per AP)
