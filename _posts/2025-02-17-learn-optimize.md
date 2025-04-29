@@ -243,41 +243,44 @@ For this example, we use normalized power ($$ P_m^{\max} = 1, \forall m $$).
 
 The CNN model architecture is carefully designed based on the following components:
 
-1. **Input Layer**
-   - Input: A large-scale fading matrix showing signal strength between APs and UEs.
-   - Size: M x K (M = number of APs, K = number of UEs).
+**Input Layer**
+- Input: A large-scale fading matrix showing signal strength between APs and UEs.
+- Size: M x K (M = number of APs, K = number of UEs).
 
-2. **Conv Block 1**
-   - A 2D convolution layer with 3×3 filters, 64 output channels.
-   - Purpose: Extract local spatial features in the AP-UE grid.
-   - Why 3×3? A small window captures local dependencies without overwhelming complexity.
-   - Why 64 output channels? Enough capacity to learn a wide range of basic features.
+**Conv Block 1**
+- A 2D convolution layer with 3×3 **filters**, 64 output channels. 
+- each filter has weights that are learned during training.
+- Purpose: Extract local spatial features in the AP-UE grid. 
+- **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
+- Why 3×3? A small window captures local dependencies without overwhelming complexity.
+- Why 64 output channels? Enough capacity to learn a wide range of basic features.
+- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one pixel in the output feature map. Then the filter moves (slides) across the input by a step (stride), repeating the process.
 
-3. **Residual Blocks (ResNet-R)**
-   - R residual blocks, each with two 3×3 convolution layers with 64 channels.
-   - Skip connections are added to allow better gradient flow and stabilize training.
-   - Purpose: Deepen the network to learn complex hierarchical features.
-   - Why ResNet? Helps train deeper networks without suffering from vanishing gradients.
+**Residual Blocks (ResNet-R)**
+- R residual blocks, each with two 3×3 convolution layers with 64 channels.
+- Skip connections are added to allow better gradient flow and stabilize training.
+- Purpose: Deepen the network to learn complex hierarchical features.
+- Why ResNet? Helps train deeper networks without suffering from vanishing gradients.
 
-4. **Conv Block 2**
-   - A 3×3 convolution layer.
-   - Purpose: Refine and unify features after deep feature extraction.
-   - Prepares a clean feature map ready for task-specific decision making.
+**Conv Block 2**
+- A 3×3 convolution layer.
+- Purpose: Refine and unify features after deep feature extraction.
+- Prepares a clean feature map ready for task-specific decision making.
 
-5. **Output Heads**
-   - After Conv Block 2, the network splits into two branches:
+**Output Heads**
+- After Conv Block 2, the network splits into two branches:
 
-   **Power Control Head**
-   - Conv layer (3×3, 64 filters) followed by sigmoid activation.
-   - Outputs normalized power control values (range 0 to 1) for each AP-UE pair.
-   - Why Conv? Keeps local relationships intact.
-   - Why Sigmoid? Power values are normalized between 0 and 1.
+**Power Control Head**
+- Conv layer (3×3, 64 filters) followed by sigmoid activation.
+- Outputs normalized power control values (range 0 to 1) for each AP-UE pair.
+- Why Conv? Keeps local relationships intact.
+- Why Sigmoid? Power values are normalized between 0 and 1.
 
-   **User Association Head**
-   - Conv layer (3×3, 64 filters) followed by sigmoid activation.
-   - Outputs association probability (range 0 to 1) for each AP-UE pair.
-   - Why Conv? Maintains the spatial structure.
-   - Why Sigmoid? Predicts association likelihoods.
+**User Association Head**
+- Conv layer (3×3, 64 filters) followed by sigmoid activation.
+- Outputs association probability (range 0 to 1) for each AP-UE pair.
+- Why Conv? Maintains the spatial structure.
+- Why Sigmoid? Predicts association likelihoods.
 
 Each output head predicts an M x K matrix:
 - Rows correspond to Access Points (APs).
