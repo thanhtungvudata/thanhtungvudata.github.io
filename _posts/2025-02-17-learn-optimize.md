@@ -246,15 +246,16 @@ The CNN model architecture is carefully designed based on the following componen
 **Input Layer**
 - Input: A large-scale fading matrix showing signal strength between APs and UEs.
 - Size: M x K (M = number of APs, K = number of UEs).
+- Number of training samples: T
 
 **Conv Block 1**
 - A 2D convolution layer with 3×3 **filters**, 64 output channels. 
-- each filter has weights that are learned during training.
+- Each filter has weights that are learned during training.
 - Purpose: Extract local spatial features in the AP-UE grid. 
-- **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
+- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one pixel in the output feature map. Then the filter moves (slides) across the input by a step (stride), repeating the process.
 - Why 3×3? A small window captures local dependencies without overwhelming complexity.
 - Why 64 output channels? Enough capacity to learn a wide range of basic features.
-- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one pixel in the output feature map. Then the filter moves (slides) across the input by a step (stride), repeating the process.
+- **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
 
 **Residual Blocks (ResNet-R)**
 - R residual blocks, each with two 3×3 convolution layers with 64 channels.
