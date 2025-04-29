@@ -54,7 +54,7 @@ The first and most critical step is to clearly define the original optimization 
 
 For example, in supply chain management, the goal might be to minimize total delivery time while respecting constraints like vehicle capacity limits, delivery time windows, and traffic conditions. A poor formulation can lead to models that optimize the wrong objective or violate critical real-world constraints, such as delivering goods late or overloading vehicles.
 
-### 2. Building the Solution Dataset
+### 2. Building the Learning-to-Optimize Dataset
 Once the problem is formulated, the next step is to build a dataset containing examples of problem instances and their corresponding solutions. The quality of the dataset directly impacts the model's performance. Ideally, this dataset consists of globally optimal solutions. However, for many complex optimization problems, finding global optima is computationally infeasible. In these cases, high-quality locally optimal solutions or feasible solutions that significantly outperform naive approaches are used. 
 
 For example, in nonconvex mixed-integer optimization problems, heuristic or approximate algorithms can generate sufficiently good solutions for training.
@@ -170,17 +170,42 @@ This optimization problem is inherently a **mixed-integer nonconvex** problem, m
 
 Since this post focuses on the overall concept rather than solving the problem step-by-step, we will skip the detailed mathematical formulation.
 
-### Data Collection
+### Solving the Optimization Problem
+
+To solve the complex optimization problem of user association and power control, we use a method called **Successive Convex Approximation (SCA)**.
+
+SCA is an advanced technique for solving problems that are too complicated to tackle all at once. Many real-world optimization problems are "non-convex", meaning they have lots of hills and valleys, making it hard to find the very best solution. Instead of trying to solve the messy problem directly, SCA works step-by-step:
+
+- At each step, it **approximates** the difficult problem with a simpler, easier (convex) problem.
+- It solves this simpler version to get a better guess.
+- Then it updates the problem based on this new guess and repeats the process.
+
+Think of it like climbing a foggy mountain. Instead of trying to find the highest peak right away, you look around your immediate area, climb to the highest nearby point you can see, and then reassess from there. Step by step, you get closer to the top.
+
+When we use SCA, the solution we find satisfies a **necessary condition** for being a global best solution. One type of this condition is called the **Fritz John condition** (named after the mathematician Fritz John).
+
+In simple terms:
+- It means the solution we find is at least a "smart" point—not just some random guess.
+- It's like reaching a point on the mountain where **you can't immediately find any nearby path that goes uphill**. You might not be at the tallest mountain peak in the entire region, but you are somewhere meaningful and high up.
+
+While SCA doesn't guarantee the absolutely highest peak (global optimum) in all cases, it does ensure that we've reached a point that makes sense mathematically and practically,
+
+
+### Building the Learning-to-Optimize Dataset
+
+#### Exploratory Data Analysis (EDA) and Feature Engineering
 - For a test case of this example, we simulated different network deployments with random AP and UE locations.
-- Computed optimal solutions using Successive Convex Approximation (SCA) algorithm for training labels.
+- Analyzed distribution of large-scale fading coefficients (statistic signal strengths) given the different location of UEs and APs.
+- Observed patterns: signal strength drops quickly with distance, cluster patterns in users and APs. Meaning, user association and power control depends on signal strengths. 
+- There are other features like large-scale fading coefficients of channels (variation of channels over time)
 
-### Exploratory Data Analysis (EDA)
-- Analyzed distribution of large-scale fading coefficients (signal strengths).
-- Observed patterns: signal strength drops quickly with distance, cluster patterns in users and APs.
+**Dataset** will look like:
+- **Input feature**: Large-scale fading matrices between users and access points. 
+- **Target features**: Optimal user association and power control decisions.
 
-### Feature Engineering
-- **Inputs**: Large-scale fading matrices between users and access points.
-- **Outputs**: Optimal user association and power control decisions.
+#### Building the Dataset
+
+- Computed optimal solutions using Successive Convex Approximation (SCA) algorithm for training elements of target features.
 
 ### Model Development
 
