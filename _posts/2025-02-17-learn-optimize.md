@@ -238,7 +238,14 @@ Built a Convolutional Neural Network (CNN) to learn the best possible choices of
 #### Alternative methods considered
 - Fully connected networks (too many parameters, overfitting risk) — rejected.
 
+For this example, we use normalized power ($$ P_m^{\max} = 1, \forall m $$). 
+
 <img src="/assets/images/CNN_model.png" alt="CNN Model" width="700">
+
+#### Model Training
+- dataset
+- metric
+- matlab
 
 ### Model Evaluation
 
