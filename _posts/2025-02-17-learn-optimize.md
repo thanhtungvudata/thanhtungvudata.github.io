@@ -259,7 +259,7 @@ The CNN model architecture is carefully designed based on the following componen
 - **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
 
 **Residual Blocks (ResNet-R)**
-- R residual blocks, each containing several convolutional layers.
+- R residual blocks, each containing two convolutional layers.
 - Each convolutional layer uses 3×3 filters across 64 channels, maintaining the feature depth.
 - Batch Normalization is applied after each convolution to stabilize training by normalizing the feature distributions, speeding up convergence and allowing higher learning rates.
 - ReLU activation is applied after Batch Normalization to introduce non-linearity, enabling the network to learn complex, non-linear mappings and preventing vanishing gradients.
@@ -275,29 +275,27 @@ The CNN model architecture is carefully designed based on the following componen
 - This layer aggregates the various complex patterns detected by earlier layers into a more consistent, task-friendly representation.
 - It prepares a clean and focused feature map that contains distilled information needed for the final predictions made by the output heads.
 - Acts as a final adjustment layer to align the network's learned features with the specific needs of power control and user association prediction.
+- Output size: M x K x 64.
 
 
-After Conv Block 2, the network splits into two branches:
+After Conv Block 2, the network splits into two branches of output heads:
 
 **Power Control Head**
-- Conv layer (3×3, 64 filters) followed by sigmoid activation.
-- Outputs normalized power control values (range 0 to 1) for each AP-UE pair.
-- Why Conv? Keeps local relationships intact.
-- Why Sigmoid? Power values are normalized between 0 and 1.
+- A specialized output branch designed to predict normalized power allocation decisions for each AP-UE pair.
+- Structure: A 2D convolution layer with 3×3 filters, followed by a sigmoid activation function.
+- Why Conv? Using a convolutional layer ensures that local spatial patterns and relationships between neighboring APs and UEs are preserved during the final prediction. This helps the model make decisions that are sensitive to nearby network conditions.
+- Why 3×3? A small receptive field captures local dependencies without blending unrelated distant AP-UE interactions.
+- The 3×3×64 kernel collects information from a local 3×3 neighborhood across all 64 learned features, multiplies and sums them, and produces one output number at each AP-UE pair.
+- The sigmoid activation constrains the output values between 0 and 1, matching the normalized power control targets used during training. This guarantees that the model outputs physically meaningful power allocations suitable for real-world system constraints.
+- Output: A matrix of size M x K, where each element represents the predicted normalized power for a specific AP-UE pair.
 
 **User Association Head**
-- Conv layer (3×3, 64 filters) followed by sigmoid activation.
-- Outputs association probability (range 0 to 1) for each AP-UE pair.
-- Why Conv? Maintains the spatial structure.
-- Why Sigmoid? Predicts association likelihoods.
+- Conv layer (3×3, 64 filters) followed by sigmoid activation, which is similar to Power Control Head
+- Output: A matrix of size M x K, where each element represents an association probability (range 0 to 1) for each AP-UE pair.
 
-Each output head predicts an M x K matrix:
-- Rows correspond to Access Points (APs).
-- Columns correspond to User Equipments (UEs).
+Even though the Power Control Head and User Association Head have the same structure (3×3×64 convolution + sigmoid), they predict different types of outputs because they are trained with different ground truth labels (continuous power vs. binary association).
 
-Thus, the model outputs directly reflect the physical structure of the wireless system.
-
-Note that standard practice in CNNs — especially with 3×3 convolutions — involves applying padding of 1 pixel on all sides. This preserves the spatial size of the input, ensuring that the Access Point–User Equipment (AP–UE) relationship grid (M × K) remains consistent throughout the network. Padding is thus implicitly applied in ConvBlock 1, the ResNet blocks, and ConvBlock 2.
+Note that standard practice in CNNs — especially with 3×3 convolutions — involves applying padding of 1 pixel on all sides. This preserves the spatial size of the input, ensuring that the Access Point–User Equipment (AP–UE) relationship grid (M × K) remains consistent throughout the network. Padding is thus implicitly applied in ConvBlock 1, the ResNet blocks, and ConvBlock 2. Also, the bias term from each layer is omitted here to ensure clarity expression.
 
 #### Why Not Fully Connected Networks?
 
