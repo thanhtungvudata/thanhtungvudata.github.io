@@ -139,8 +139,7 @@ To make all this work, we need to solve a math problem. The goal is to get the h
 Spectral efficiency (SE) is just a fancy way of asking: “How much data can we send using a limited amount of bandwidth?” Imagine two highways with the same number of lanes. The one that moves more cars per hour is more efficient. In our case, the cars are data.
 
 #### A Simple Version of the Problem
-We want to:
-**Maximize:** The total SE of all UEs in the network.
+We want to **maximize** the total SE of all UEs in the network.
 
 $$ \sum_{k=1}^K R_k (\{a_{mk}\}, \{p_{mk}\}) $$
 
@@ -155,7 +154,7 @@ Here, $$ R_k $$ is a complex logarithmic function that reflects how the wireless
 In both theory and practice, $$ R_k $$ depends explicitly on user association and power control decisions. Theoretically, this relationship is modeled using clean, idealized formulas based on Shannon’s theory, signal power, and interference. In practice, however, real-world imperfections such as hardware limits and unpredictable interference make modeling the function
 $$ R_k $$ more complex.
 
-**Constraints**:
+**Simplified Constraints**:
 - $$ \sum_{k} p_{mk} \leq P_m^{\text{max}} $$ (Transmit power limit per AP)
 - $$ \sum_{k} R_k \leq C_m^{\text{backhaul}} $$ (Backhaul capacity limit per AP)
 - $$ R_k \geq R_k^{\text{target}} $$ (Minimum data rate per UE)
