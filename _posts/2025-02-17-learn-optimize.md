@@ -249,10 +249,10 @@ The CNN model architecture is carefully designed based on the following componen
 - Number of training samples: T
 
 **Conv Block 1**
-- A 2D convolution layer with 64 3×3 **filters**, giving 64 output features (e.g., Signal strength patterns, interference cues, proximity effects, context from neighboring APs or UEs, and etc)
+- A 2D convolution layer with 64 3×3 **filters**, giving 64 output learned features (e.g., signal strength patterns, interference cues, proximity effects, context from neighboring APs or UEs, and etc)
 - Each filter has weights that are learned during training.
 - Purpose: Extract local spatial features in the AP-UE grid. 
-- How it interacts with the input? The 3×3 filter moves one small patch at a time across the input matrix. At each position, it looks at a 3×3 patch of the input, multiplies each input value by the corresponding filter weight, and sums up the results to produce one single number. This one number becomes one of 64 output features. Then the filter moves (slides) across the input by a step (stride), repeating the process.
+- How it interacts with the input: In Conv Block 1, each 3×3 filter slides across the input matrix (which represents AP–UE relationships), examining a small local patch one step at a time. At each position (corresponding to one AP–UE pair), the filter looks at a 3×3 neighborhood, multiplies each input value by its corresponding filter weight, sums them up, and produces one single output feature for that AP–UE pair. Since there are 64 different filters, each AP–UE pair ends up having 64 output features — one feature from each filter — capturing different learned patterns.
 - Why 3×3? A small window captures local dependencies without overwhelming complexity.
 - Why 64 output features? Enough capacity to learn a wide range of basic features.
 - **Intuition**: The filter acts like a magnifying glass. It scans small local regions of the input. It extracts important local features like "strong connection here," "weak connection there," etc.
