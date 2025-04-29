@@ -182,15 +182,13 @@ SCA is an advanced technique for solving problems that are too complicated to ta
 - It solves this simpler version to get a better guess.
 - Then it updates the problem based on this new guess and repeats the process.
 
-Think of it like climbing a foggy mountain. Instead of trying to find the highest peak right away, you look around your immediate area, climb to the highest nearby point you can see, and then reassess from there. Step by step, you get closer to the top.
+**Intuition**: Think of it like climbing a foggy mountain. Instead of trying to find the highest peak right away, you look around your immediate area, climb to the highest nearby point you can see, and then reassess from there. Step by step, you get closer to the top.
 
 When we use SCA, the solution we find satisfies a **necessary condition** for being a global best solution. One type of this condition is called the **Fritz John condition** (named after the mathematician Fritz John).
 
-**Intuition**: It means the solution we find is at least a "smart" point—not just some random guess. It's like reaching a point on the mountain where **you can't immediately find any nearby path that goes uphill**. You might not be at the tallest mountain peak in the entire region, but you are somewhere meaningful and high up.
+It means the solution we find is at least a "smart" point—not just some random guess. It's like reaching a point on the mountain where **you can't immediately find any nearby path that goes uphill**. You might not be at the tallest mountain peak in the entire region, but you are somewhere meaningful and high up.
 
 While SCA doesn't guarantee the absolutely highest peak (global optimum) in all cases, it does ensure that we've reached a point that makes sense mathematically and practically.
-
-
 
 #### How to Handle Binary Variables
 
@@ -201,6 +199,10 @@ To address this, we relax the binary constraint by reformulating it into two equ
 By tuning the penalty parameters properly, the SCA algorithm converges to solutions that closely satisfy the original binary constraints, resulting in user association variables that are exactly binary or extremely close (within a very small error margin).
 
 **Intuition**: Instead of forcing hard binary decisions during optimization, we let the model explore continuous values but penalize it for straying too far from 0 or 1. Over time, the optimization "learns" to favor clean binary-like decisions naturally, much like softly guiding a student to either fully commit or fully avoid a choice, rather than staying indecisive.
+
+#### Why SCA and penalty-based reformulations?**
+
+Other methods like exhaustive search and mixed-integer programming are too slow or intractable even for small-scale networks. Heuristic and greedy methods are fast but often yield poor-quality or infeasible solutions. In contrast, SCA with penalty-based reformulations efficiently handles non-convexity and binary constraints, offering high-quality solutions with theoretical convergence. SCA strikes the right balance: it’s efficient, scalable, and principled, making it well-suited for joint user association and power control problems.
 
 ## Building the Learning-to-Optimize Dataset
 
