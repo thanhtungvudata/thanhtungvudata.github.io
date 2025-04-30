@@ -320,12 +320,17 @@ We considered using fully connected networks but rejected them for several reaso
 - **Loss of spatial structure**: Fully connected layers ignore the natural 2D structure between APs and UEs.
 - **Higher overfitting risk**: Fully connected networks tend to memorize training data rather than generalize.
 
-
-
 #### Model Training
-- dataset
-- metric
-- matlab
+
+To train the proposed CNN model, we follow the supervised learning approach with $$ 28,000 $$ input samples. The model is trained to minimize the Mean Squared Error (MSE) between its predicted outputs and the SCA-generated ground truths, separately for both power control and user association. The final loss is the average of both components, ensuring equal emphasis on both tasks. Mathematically, the loss is minimized over training batches of size of 512, and the MSE is averaged across all samples in each batch. The MSE metric is chosen for its simplicity and effectiveness in penalizing large deviations while encouraging the model to approximate decisions closely.
+
+Training was carried out using the Adam optimizer with a tuned learning rate, momentum, and maximum 400 epochs. All experiments and model training were implemented in MATLAB, utilizing its deep learning toolbox for defining the CNN architecture, training loops, and performance evaluation. 
+
+The model’s architecture was tuned by varying the number of ResNet blocks, filter sizes, and activation functions to achieve the desired training accuracy. Performance was validated by monitoring both training and validation loss curves, which showed consistent convergence and minimal overfitting.
+
+Here, a training epoch refers to one complete pass through the entire training dataset during model training. In each epoch, the dataset is divided into mini-batches. For each batch, the model makes predictions, computes the error (loss), and updates its weights through backpropagation. Multiple epochs are needed because a single pass is usually not enough for the model to learn meaningful patterns. Repeated passes allow the model to gradually improve. For example, if your dataset has 10,000 samples and the batch size is 512, each epoch processes all 10,000 samples once across multiple iterations. Training typically runs for tens or hundreds of epochs until the model converges. Think of it like studying: one epoch is like reading the full textbook once, while multiple epochs are like reviewing it several times to reinforce understanding.
+
+The Adam optimizer (Adaptive Moment Estimation) is a widely used algorithm for training neural networks that combines the strengths of two other methods: momentum and adaptive learning rates. It adjusts the learning rate for each model parameter individually by using both the average of past gradients (direction) and the average of their squared values (size). This allows it to make stable, efficient updates even when gradients vary in scale. The Adam optimizer works like a smart GPS for training a neural network: it remembers the direction it's been going (momentum) and adjusts its speed (learning rate) based on how bumpy the path is. This helps the model take smoother, faster, and more accurate steps toward better performance without overshooting or getting stuck. Adam typically converges faster than traditional methods like stochastic gradient descent, making it especially suitable for training deep models such as CNNs. 
 
 ### Model Evaluation
 
