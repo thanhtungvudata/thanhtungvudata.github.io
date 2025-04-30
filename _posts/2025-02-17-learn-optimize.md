@@ -49,6 +49,8 @@ Companies that master Learning to Optimize gain a **strong competitive advantage
 
 A Learning-to-Optimize framework follows a structured process to ensure that the machine learning model can effectively replace or accelerate the optimization solver. Below are the detailed steps:
 
+<img src="/assets/images/Learn-to-Optimize-Framework.png" alt="Learn-to-Optimize Framework" width="700">
+
 ### 1. Optimization Problem Formulation
 The first and most critical step is to clearly define the original optimization problem. This requires a solid foundation in optimization theory, operations research, and domain-specific knowledge. The formulation must accurately capture the objectives, constraints, and operational realities of the problem. 
 
