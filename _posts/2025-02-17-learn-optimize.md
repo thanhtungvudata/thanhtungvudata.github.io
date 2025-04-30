@@ -329,7 +329,7 @@ We considered using fully connected networks but rejected them for several reaso
 - **Loss of spatial structure**: Fully connected layers ignore the natural 2D structure between APs and UEs.
 - **Higher overfitting risk**: Fully connected networks tend to memorize training data rather than generalize.
 
-#### Model Training
+### Model Training
 
 To train the proposed CNN model, we follow the supervised learning approach with 28000 input samples.
 
@@ -359,7 +359,7 @@ This approach guarantees that the final solution respects power and fronthaul co
 
 ### Model Evaluation
 
-The performance of the proposed CNN model was evaluated by comparing its outputs to the optimal solutions obtained from the SCA algorithm. The key metric used was total spectral efficiency, which reflects how efficiently the network uses its available resources. 
+The performance of the proposed CNN model was evaluated by comparing its outputs to the optimal solutions obtained from the SCA algorithm. The key metric used is sum spectral efficiency, which reflects how efficiently the network uses its available resources. 
 
 <img src="/assets/images/SumSE.png" alt="Sum SE" width="700">
 
@@ -379,6 +379,8 @@ These results confirm that the model offers a strong balance between solution qu
 ### Next Steps for Improvement
 
 While the current model demonstrates high accuracy and efficiency, several enhancements can be explored to further improve its robustness and scalability. 
+
+- The training data used in this example is based on static network snapshots. In practice, user positions, channel conditions, and interference patterns can change rapidly. Incorporating dynamic network conditions, such as user mobility, time-varying fading, or variable user traffic demands, into the training data would allow the model to better generalize to real-world deployment scenarios and maintain performance in evolving environments.
 
 - As the network size grows, the current CNN architecture may face challenges in capturing long-range dependencies or efficiently scaling to very large AP–UE grids. To address this, future work could explore Graph Neural Networks (GNNs), which naturally model connectivity, sparsity, and relationships in irregular wireless network topologies. GNNs offer the potential to process large-scale networks more flexibly by learning on graph structures rather than fixed spatial grids.
 
