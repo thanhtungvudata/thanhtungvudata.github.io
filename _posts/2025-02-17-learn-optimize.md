@@ -309,6 +309,10 @@ Even though the Power Control Head and User Association Head have the same struc
 
 Note that standard practice in CNNs — especially with 3×3 convolutions — involves applying padding of 1 pixel on all sides. This preserves the spatial size of the input, ensuring that the Access Point–User Equipment (AP–UE) relationship grid (M × K) remains consistent throughout the network. Padding is thus implicitly applied in ConvBlock 1, the ResNet blocks, and ConvBlock 2. Also, the bias term from each layer is omitted here to ensure clarity expression.
 
+#### Summarized CNN Workflow
+
+The CNN begins with Conv Block 1, which extracts local spatial features from the large-scale fading matrix of AP-UE pairs using 3×3 filters, turning each AP–UE pair into a 64-dimensional feature vector. This is followed by ResNet blocks, which deepen the model with residual learning, allowing it to learn increasingly complex patterns while preserving input information through skip connections. Conv Block 2 then refines and unifies these features, preparing a clean, task-ready representation. Finally, the network splits into two Output Heads: one predicts normalized power control values and the other predicts user association probabilities, to produce interpretable outputs for every AP–UE pair.
+
 #### Why Not Fully Connected Networks?
 
 We considered using fully connected networks but rejected them for several reasons:
