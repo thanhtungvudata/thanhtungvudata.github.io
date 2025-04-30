@@ -340,8 +340,8 @@ We choose Adam optimizer because it typically converges faster than traditional 
 
 To ensure the CNN outputs remain feasible with respect to system constraints, the paper applies a lightweight two-step post-processing procedure: 
 
-- First, if any AP's predicted transmit power exceeds its allowed maximum, all its power control values are proportionally rescaled to satisfy the constraint. 
-- Second, after recalculating the spectral efficiencies, if any AP exceeds its fronthaul capacity, all user spectral efficiencies are scaled down to ensure no AP is overloaded. 
+- If any AP's predicted transmit power exceeds its allowed maximum, all its power control values are proportionally rescaled to satisfy the constraint. 
+- After recalculating the spectral efficiencies, if any AP exceeds its fronthaul capacity, all user spectral efficiencies are scaled down to ensure no AP is overloaded. 
 
 These are the constraints that are most likely to be violated.
 
@@ -368,10 +368,14 @@ In addition to accuracy, inference speed was a major focus of evaluation. While 
 These results confirm that the model offers a strong balance between solution quality and computational efficiency, enabling high-performance decisions without relying on slow optimization solvers.
 
 ### Next Steps for Improvement
-- Incorporate dynamic network conditions (e.g., moving users) into training data.
-- Explore graph neural networks (GNNs) for better scalability to very large networks.
-- Add uncertainty quantification to model predictions for reliability.
-- Experiment with reinforcement learning to further enhance adaptability.
+
+While the current model demonstrates high accuracy and efficiency, several enhancements can be explored to further improve its robustness and scalability. 
+
+- As the network size grows, the current CNN architecture may face challenges in capturing long-range dependencies or efficiently scaling to very large AP–UE grids. To address this, future work could explore Graph Neural Networks (GNNs), which naturally model connectivity, sparsity, and relationships in irregular wireless network topologies. GNNs offer the potential to process large-scale networks more flexibly by learning on graph structures rather than fixed spatial grids.
+
+- The current approach is supervised and learns from offline optimization solutions. Incorporating reinforcement learning (RL) could further enhance the model's adaptability by enabling it to interact with the environment and improve through trial-and-error. An RL-based agent could learn to make real-time decisions under uncertainty, adapt to unseen scenarios, and even optimize for long-term performance objectives beyond snapshot efficiency.
+
+These extensions would push the model toward a more autonomous, scalable, and real-world-ready learning-to-optimize framework for next-generation wireless systems.
 
 ## Conclusion
 
