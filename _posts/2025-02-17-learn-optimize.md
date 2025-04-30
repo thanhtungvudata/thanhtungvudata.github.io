@@ -211,7 +211,7 @@ By tuning the penalty parameters properly, the SCA algorithm converges to soluti
 
 Other methods like exhaustive search and mixed-integer programming are too slow or intractable even for small-scale networks. Heuristic and greedy methods are fast but often yield poor-quality or infeasible solutions. In contrast, SCA with penalty-based reformulations efficiently handles non-convexity and binary constraints, offering high-quality solutions with theoretical convergence. SCA strikes the right balance: it’s efficient, scalable, and principled, making it well-suited for joint user association and power control problems.
 
-## Building the Learning-to-Optimize Dataset
+### Building the Learning-to-Optimize Dataset
 
 To train a machine learning model to make smart decisions in wireless networks, we first need to build a dataset. 
 
