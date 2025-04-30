@@ -103,6 +103,8 @@ Moreover, for complex problems with intricate constraints—such as nonconvex mi
 
 One of the promising technologies for future 6G wireless networks is called Cell-Free Massive MIMO, or CFmMIMO for short. Instead of using a single tower (or base station) to serve users in a fixed area like we do today, CFmMIMO uses many small access points spread out across a wide area. These access points work together to serve users, no matter where they are, creating a smoother and more consistent connection.
 
+<img src="/assets/images/CFmMIMO6G.png" alt="CFmMIMO 6G" width="700">
+
 #### Benefits of CFmMIMO
 - **Better coverage**: Users don’t have to worry about being far from a tower. Multiple access points can work together to serve them.
 - **Faster data speeds**: By combining signals from different points, users can get better performance.
