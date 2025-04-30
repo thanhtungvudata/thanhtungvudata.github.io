@@ -216,7 +216,7 @@ Next, we measured how strong or weak the signals are between each AP and each UE
 
 This is important because a UE's **large-scale fading coefficient (based on location) directly influences both UE association and power control decisions**. A UE closer to an AP is more likely to be selected by that AP for service because the connection requires less transmission power and results in better signal quality. On the other hand, UEs farther from an AP may require more power to maintain a reliable connection. Since each AP has a limited power budget, serving distant UEs is more costly and might not be efficient. Therefore, the model must learn to balance UE association and power allocation based on spatial relationships between UEs and APs.
 
-We chose to use only this type of signal information (large-scale fading) as input to the model. While other types of signal changes (like quick fluctuations due to movement or interference) exist, they change too fast and are hard to track in real time. Large-scale fading changes slowly and is more reliable for decision-making.
+We chose to use only this type of signal information (large-scale fading) as input to the model. While other types of signal changes (like small-scale fading or quick fluctuations due to movement or interference) exist, they change too fast and are hard to track in real time. Large-scale fading changes slowly and is more reliable for decision-making.
 
 #### What the Dataset Looks Like
 
