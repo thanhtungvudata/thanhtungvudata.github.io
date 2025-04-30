@@ -20,6 +20,7 @@ Optimization touches a wide range of stakeholders. Business leaders depend on it
 
 This post introduces the concept of Learning to Optimize, which is a powerful new approach that combines machine learning with traditional optimization. We'll explore what Learning to Optimize means, why it matters, and when to use it. To make things concrete, we'll walk through a real-world example: using deep learning to optimize resource allocation in 6G wireless networks.
 
+<img src="/assets/images/Impact-of-Optimization.png" alt="Impact of Optimization" width="700">
 
 
 ## What is Learning to Optimize?
