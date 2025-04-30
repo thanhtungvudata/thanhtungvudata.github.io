@@ -383,7 +383,7 @@ Learning to Optimize bridges machine learning and optimization, offering a power
 
 From network resource allocation to supply chain design, it can change how industries operate.
 
-As problems grow in complexity, Learning to Optimize is a key frontier every data scientist and engineer should watch — and master.
+As problems grow in complexity, Learning to Optimize is a key frontier every data scientist and engineer should know and master.
 
 The detailed example in this post is available in my [publication](https://ieeexplore.ieee.org/abstract/document/10387264). 
 
