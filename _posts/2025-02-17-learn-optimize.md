@@ -127,7 +127,7 @@ Wireless systems are complex because the environment is always changing. Signals
 
 If we make smart choices for these two things, we can make sure everyone gets good service while using the least amount of energy and avoiding interference.
 
-### Business Impact
+#### Business Impact
 If we can solve these challenges, 6G networks will be faster, more reliable, and cheaper to run. This is good news for:
 - **Telecom operators**, who can serve more users with fewer resources.
 - **Equipment providers**, who can build smarter, more efficient systems.
