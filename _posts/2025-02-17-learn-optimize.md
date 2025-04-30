@@ -320,6 +320,8 @@ Note that standard practice in CNNs — especially with 3×3 convolutions — in
 
 The CNN begins with Conv Block 1, which extracts local spatial features from the large-scale fading matrix of AP-UE pairs using 3×3 filters, turning each AP–UE pair into a 64-dimensional feature vector. This is followed by ResNet blocks, which deepen the model with residual learning, allowing it to learn increasingly complex patterns while preserving input information through skip connections. Conv Block 2 then refines and unifies these features, preparing a clean, task-ready representation. Finally, the network splits into two Output Heads: one predicts normalized power control values and the other predicts user association probabilities, to produce interpretable outputs for every AP–UE pair.
 
+<img src="/assets/images/CNN-Flow.png" alt="CNN Flow" width="700">
+
 #### Why Not Fully Connected Networks?
 
 We considered using fully connected networks but rejected them for several reasons:
