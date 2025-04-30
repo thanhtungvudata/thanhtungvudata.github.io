@@ -200,7 +200,7 @@ By tuning the penalty parameters properly, the SCA algorithm converges to soluti
 
 **Intuition**: Instead of forcing hard binary decisions during optimization, we let the model explore continuous values but penalize it for straying too far from 0 or 1. Over time, the optimization "learns" to favor clean binary-like decisions naturally, much like softly guiding a student to either fully commit or fully avoid a choice, rather than staying indecisive.
 
-#### Why SCA and penalty-based reformulations?**
+#### Why SCA and penalty-based reformulations?
 
 Other methods like exhaustive search and mixed-integer programming are too slow or intractable even for small-scale networks. Heuristic and greedy methods are fast but often yield poor-quality or infeasible solutions. In contrast, SCA with penalty-based reformulations efficiently handles non-convexity and binary constraints, offering high-quality solutions with theoretical convergence. SCA strikes the right balance: it’s efficient, scalable, and principled, making it well-suited for joint user association and power control problems.
 
