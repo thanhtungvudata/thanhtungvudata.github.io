@@ -336,6 +336,18 @@ The Adam optimizer (Adaptive Moment Estimation) is a widely used algorithm for t
 
 We choose Adam optimizer because it typically converges faster than traditional methods like stochastic gradient descent, making it especially suitable for training deep models such as CNNs. 
 
+### Post-Processing Procedure: Ensuring Feasible Solution
+
+To ensure the CNN outputs remain feasible with respect to system constraints, the paper applies a lightweight two-step post-processing procedure: 
+
+- First, if any AP's predicted transmit power exceeds its allowed maximum, all its power control values are proportionally rescaled to satisfy the constraint. 
+- Second, after recalculating the spectral efficiencies, if any AP exceeds its fronthaul capacity, all user spectral efficiencies are scaled down to ensure no AP is overloaded. 
+
+These are the constraints that are most likely to be violated.
+
+This approach guarantees that the final solution respects power and fronthaul constraints without retraining the model, allowing for fast, constraint-compliant inference in real time.
+
+
 ### Model Evaluation
 
 The performance of the proposed CNN model was evaluated by comparing its outputs to the optimal solutions obtained from the SCA algorithm. The key metric used was total spectral efficiency, which reflects how efficiently the network uses its available resources. 
@@ -347,7 +359,7 @@ This plot shows the Cumulative Distribution Function (CDF) of the sum spectral e
 - Y-axis (CDF): For each x-value, it shows the percentage of network realizations where the spectral efficiency was less than or equal to that value.
 - Red Curve: SCA (Benchmark Optimal Solution)
 - Blue Curve: Proposed CNN Model
-- The blue and black curves are ignored since they are out of scope of this post.
+- The green and black curves are ignored since they are out of scope of this post.
 
 This plot show that the CNN model achieves over **97% of the spectral efficiency compared to the traditional SCA-based optimization** with only 95% feasible solution. This demonstrating that the model learns to approximate high-quality solutions very effectively.
 
@@ -355,7 +367,7 @@ In addition to accuracy, inference speed was a major focus of evaluation. While 
 
 These results confirm that the model offers a strong balance between solution quality and computational efficiency, enabling high-performance decisions without relying on slow optimization solvers.
 
-## Next Steps for Improvement
+### Next Steps for Improvement
 - Incorporate dynamic network conditions (e.g., moving users) into training data.
 - Explore graph neural networks (GNNs) for better scalability to very large networks.
 - Add uncertainty quantification to model predictions for reliability.
