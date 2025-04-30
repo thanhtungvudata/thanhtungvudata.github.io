@@ -338,12 +338,22 @@ We choose Adam optimizer because it typically converges faster than traditional 
 
 ### Model Evaluation
 
-#### Metrics
-- Mean Squared Error (MSE) between predicted and true optimization outputs.
+The performance of the proposed CNN model was evaluated by comparing its outputs to the optimal solutions obtained from the SCA algorithm. The key metric used was total spectral efficiency, which reflects how efficiently the network uses its available resources. 
 
-#### Results
-- Achieved performance very close to traditional optimization (within 97%).
-- Reduced run-time by 1000x, enabling real-time deployment.
+<img src="/assets/images/SumSE.png" alt="Sum SE" width="700">
+
+This plot shows the Cumulative Distribution Function (CDF) of the sum spectral efficiency (in bits/s/Hz) for different methods under evaluation.
+- X-axis (Sum Spectral Efficiency): Measures the total data rate achieved by all users, normalized by bandwidth. Higher values mean more efficient spectrum usage.
+- Y-axis (CDF): For each x-value, it shows the percentage of network realizations where the spectral efficiency was less than or equal to that value.
+- Red Curve: SCA (Benchmark Optimal Solution)
+- Blue Curve: Proposed CNN Model
+- The blue and black curves are ignored since they are out of scope of this post.
+
+This plot show that the CNN model achieves over **97% of the spectral efficiency compared to the traditional SCA-based optimization** with only 95% feasible solution. This demonstrating that the model learns to approximate high-quality solutions very effectively.
+
+In addition to accuracy, inference speed was a major focus of evaluation. While the SCA algorithm takes approximately 20 seconds to solve a single instance of the optimization problem, the trained CNN model generates predictions in about 2 millisecond, leading to **a speedup of over 1,000×**. This dramatic reduction in runtime makes the approach well-suited for real-time deployment, where rapid decision-making is critical — such as in dense 6G wireless networks with dynamic user movement and varying network loads.
+
+These results confirm that the model offers a strong balance between solution quality and computational efficiency, enabling high-performance decisions without relying on slow optimization solvers.
 
 ## Next Steps for Improvement
 - Incorporate dynamic network conditions (e.g., moving users) into training data.
