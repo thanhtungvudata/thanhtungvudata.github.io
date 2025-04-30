@@ -363,7 +363,7 @@ This plot shows the Cumulative Distribution Function (CDF) of the sum spectral e
 - Blue Curve: Proposed CNN Model
 - The green and black curves are ignored since they are out of scope of this post.
 
-This plot show that the CNN model achieves over **97% of the spectral efficiency compared to the traditional SCA-based optimization** with only 95% feasible solution. This demonstrating that the model learns to approximate high-quality solutions very effectively.
+This plot show that the CNN model achieves over **97% of the spectral efficiency compared to the traditional SCA-based optimization** with up to 95% feasible solution. This demonstrating that the model learns to approximate high-quality solutions very effectively.
 
 In addition to accuracy, inference speed was a major focus of evaluation. While the SCA algorithm takes approximately 20 seconds to solve a single instance of the optimization problem, the trained CNN model generates predictions in about 2 millisecond, leading to **a speedup of over 1,000×**. This dramatic reduction in runtime makes the approach well-suited for real-time deployment, where rapid decision-making is critical — such as in dense 6G wireless networks with dynamic user movement and varying network loads.
 
