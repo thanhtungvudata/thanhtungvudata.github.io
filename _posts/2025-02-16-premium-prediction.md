@@ -401,27 +401,6 @@ for cat_col in cat_features:
             print(f"✔ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Significant ✅)")
         else:
             print(f"❌ {cat_col} vs Premium Amount | p-value: {p_value:.6f} (Not Significant)")
-
-# Convert to DataFrame for easier viewing
-kruskal_df = pd.DataFrame(kruskal_results.items(), columns=["Categorical Feature", "p-value"])
-kruskal_df = kruskal_df.sort_values(by="p-value")
-
-# Visualize Significant Relationships
-significant_results = kruskal_df[kruskal_df["p-value"] < significance_level]
-
-if not significant_results.empty:
-    plt.figure(figsize=(12, 6))
-    sns.barplot(
-        x=-np.log10(significant_results["p-value"]), 
-        y=significant_results["Categorical Feature"], 
-        palette="mako"
-    )
-    plt.xlabel("-log10(p-value)")
-    plt.ylabel("Categorical Features")
-    plt.title("Significant Relationships (Kruskal-Wallis Test)")
-    plt.show()
-else:
-    print("\n🚀 No significant relationships found!")
 ```
 
 Output:
