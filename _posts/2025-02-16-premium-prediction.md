@@ -146,7 +146,7 @@ memory usage: 192.3+ MB
 
 **Key actionable insights:**
 - The dataset contains approximately 1.2 million rows with several categorical features, many of which have a large number of unique categories (such as Exercise Frequency and Education Level). 
-- This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), or advanced models (e.g., XGBoost, LightGBM, and CatBoost) that can natively handle raw categorical features without manual encoding.
+- This necessitates careful selection of encoding strategies when using simpler models (e.g., Ridge Regression, Linear Regression, Random Forest), or advanced models (e.g., XGBoost, LightGBM) that can natively handle raw categorical features without manual encoding.
 - Machine learning models can't understand raw date formats like "2023-05-15" of `Policy Start Date`. They need to be transformed to numerical inputs (floats or integers) to learn patterns.
 
 
@@ -445,7 +445,7 @@ Output:
 - Only occupation is significantly associated with the target variable Premium Amount but its p-value is close to the significance threshold, meaning that while there is a dependency, it is not very strong.
 - No significant relationships were found between categorical features and the target feature.
 - Keep categorical features for modeling.
-- Since there are no strong relationships, models like XGBoost, CatBoost, or LightGBM may better capture complex interactions.
+- Since there are no strong relationships, models like XGBoost or LightGBM may better capture complex interactions.
 
 **Action Points from EDA**
 - Extract the useful features from `Policy Start Date` to capture hidden temporal patterns.
@@ -529,7 +529,6 @@ From the insights from the EDA step, we will use XGBoost for the best predictive
 - Better predictive performance: Especially in messy real-world datasets like insurance data, where you have mixed data types, missingness, and high skewness.
 - LightGBM is faster but more sensitive to overfitting, especially on small leaves (leaf-wise split), and its categorical handling is less stable if many rare categories.
 - The dataset (around 1.2M rows) is reasonably large but not massive (so XGBoost speed is fine).
-- CatBoost has a very good accuracy, but requires careful handling of missing categorical values.
 
 **Key Steps**:
 - Convert Categorical Columns: Set all categorical columns' dtype to `"category"` (required for XGBoost’s `enable_categorical=True` to work properly).
