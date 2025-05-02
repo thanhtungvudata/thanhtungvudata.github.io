@@ -148,7 +148,7 @@ Spectral efficiency (SE) is just a fancy way of asking: “How much data can we 
 #### A Simple Version of the Problem
 We want to **maximize** the total SE of all UEs in the network.
 
-$$ \sum_{k=1}^K R_k (\{a_{mk}\}, \{p_{mk}\}) $$
+$$ \max_{\{a_{mk}\}, \{p_{mk}\}} \sum_{k=1}^K R_k (\{a_{mk}\}, \{p_{mk}\}) $$
 
 where $$ R_k $$ is the SE received by user $$ k $$. 
 
