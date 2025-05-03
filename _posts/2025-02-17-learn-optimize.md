@@ -143,7 +143,7 @@ To make all this work, we need to solve a math problem. The goal is to get the h
 - Each access point can only serve a certain number of users.
 
 #### What Is Spectral Efficiency?
-Spectral efficiency (SE) is just a fancy way of asking: “How much data can we send using a limited amount of bandwidth?” Imagine two highways with the same number of lanes. The one that moves more cars per hour is more efficient. In our case, the cars are data.
+Spectral efficiency (SE) is just a fancy way of asking: “How much data can we send using a limited amount of bandwidth?” Imagine two highways with the same number of lanes. The one that moves more cars per hour is more efficient. In our case, the cars are data. 
 
 #### A Simple Version of the Problem
 We want to **maximize** the total SE of all UEs in the network.
