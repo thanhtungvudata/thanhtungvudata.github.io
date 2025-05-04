@@ -150,7 +150,7 @@ We want to **maximize** the total SE of all UEs in the network.
 
 $$ \max_{\{a_{mk}\}, \{p_{mk}\}} \sum_{k=1}^K R_k (\{a_{mk}\}, \{p_{mk}\}) $$
 
-where $$ R_k $$ is the SE received by user $$ k $$. 
+where $$ R_k $$ is the SE received by user $$ k $$.  
 
 **Variables**:
 - **User Association**: A binary variable $$ a_{mk} $$ where $$ a_{mk} = 1 $$ if AP $$ m $$ serves UE $$ k $$, 0 otherwise.
