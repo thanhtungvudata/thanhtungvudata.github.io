@@ -431,19 +431,114 @@ This level of granular evaluation ensures that your system is not only functiona
 
 ### Use Case: Investment Research Assistant
 
-A finance firm builds an internal assistant for analysts to answer:
+A global investment firm develops an internal AI assistant to help equity analysts rapidly interpret financial performance from earnings call transcripts and company filings. The goal is to answer:
 
 > "How did Company X explain the YoY margin change in their Q2 earnings call?"
 
-With Agentic RAG:
+This is a complex question that requires:
 
-* The **Planner Agent** decomposes the question
-* The **Retriever** pulls relevant excerpts from earnings call transcripts and financial reports
-* A **Summarizer Tool** extracts justifications
-* A **Validator Agent** checks for hallucinations
-* The final response includes an answer + source documents + audio timestamp
+* Multi-hop reasoning (connecting information across multiple documents)
+* Parsing long financial texts (like call transcripts and reports)
+* Synthesizing both qualitative (narrative explanation) and quantitative (numerical) data
+* Ensuring high factual accuracy for investment decisions
 
-This improves research time by 70% while ensuring accuracy.
+Using Agentic RAG, here's how the system processes the query step-by-step, aligned with the Agentic RAG architecture:
+
+### 1. Planner Agent
+
+* **Task**: Understands the question and splits it into subcomponents:
+
+  * Subquery A: "What was the **YoY margin change** in **Q2**?"
+  * Subquery B: "How did leadership explain the margin change?"
+
+  **Glossary:**
+
+  * **YoY (Year-over-Year)**: Compares one period with the same period from the previous year.
+  * **Margin**: Typically refers to profit margin, calculated as a percentage of revenue that remains after subtracting costs.
+  * **Q2 (Quarter 2)**: Refers to the second quarter of a company’s fiscal year (usually April–June).
+
+* **Output**: Sends structured subquestions and keywords to the Query Generator.
+
+### 2. Query Generator
+
+* **Task**: Generates optimized search queries based on subquestions.
+* **Example Queries**:
+
+  * "Q2 margin YoY change site\:companyx.com/investor"
+  * "Company X Q2 earnings call commentary on margin decline"
+* **Output**: Multiple targeted queries are routed to the Retriever Agent.
+
+### 3. Retriever Agent
+
+* **Task**: Pulls relevant information from a database that stores:
+
+  * **Earnings call transcripts** – verbatim discussions between executives and analysts
+  * **SEC 10-Q filings** – standardized quarterly financial statements filed with regulators
+  * **Internal research summaries** – curated notes or summaries by analysts
+* **Output**: Text chunks with financial data and leadership commentary.
+
+### 4. Reranker Tool
+
+* **Task**: Improves quality by reordering results to prioritize:
+
+  * Sections from transcripts labeled as "Q\&A" (where analysts ask questions) or "Outlook" (forward-looking statements)
+  * Content that includes numeric changes (e.g., revenue drop, margin shifts) and associated explanations
+* **Output**: Top-ranked excerpts passed to the Validator.
+
+### 5. Validator Agent
+
+* **Task**:
+
+  * Checks quoted numbers against official SEC filings (e.g., 10-Q)
+  * Ensures management’s explanation aligns with the reported margin drop
+  * Filters out vague or non-specific language ("boilerplate") and speculative statements
+
+  **Glossary:**
+
+  * **Boilerplate language**: Generic, overused statements that provide little concrete insight (e.g., "We remain committed to excellence").
+  * **Speculative claims**: Statements without factual support, often phrased with uncertainty.
+
+* **Fallback Logic**: If validation fails, the agent requests broader context from the retriever.
+
+### 6. Synthesizer Agent
+
+* **Task**:
+
+  * Creates a fluent, concise summary
+  * Embeds citations with timestamps for audio/video transcripts
+  * Explains how the margin change was justified
+
+* **Output**:
+
+```markdown
+Company X reported a 2.3% YoY margin decline in Q2, driven primarily by elevated input costs and lower pricing power in their consumer electronics division. During the Q2 earnings call (28:13 mark), CFO Sarah Kim noted that inventory overhang from Q1 led to discounting pressure, reducing gross margin by approximately 150 basis points (bps).
+```
+
+**Glossary:**
+
+* **Input costs**: The cost of materials or resources used to produce goods.
+* **Pricing power**: A company’s ability to raise prices without losing customers.
+* **Inventory overhang**: Excess stock left over from previous periods.
+* **Discounting pressure**: The need to lower prices to sell excess products.
+* **Gross margin**: Revenue minus cost of goods sold, expressed as a percentage.
+* **Basis points (bps)**: 1 basis point = 0.01%. 150 bps = 1.5%.
+
+### Final Output
+
+* **Displayed to analysts** via a dashboard including:
+
+  * Summarized insight with reasoning
+  * Inline citations linking to source docs and timestamps
+  * Option to explore supporting evidence with one click
+
+### Example Business Impact
+
+* Reduced research time by **70%**
+* Improved accessibility for non-finance stakeholders (e.g., compliance, ESG)
+* Ensured transparency by showing source grounding and reasoning path
+
+Agentic RAG didn’t just answer the question—it **explained how the answer was derived**, giving stakeholders both speed and confidence.
+
 
 ## 10. Conclusion
 
