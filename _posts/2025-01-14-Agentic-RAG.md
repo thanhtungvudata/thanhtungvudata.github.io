@@ -56,7 +56,7 @@ Here’s a comparative look:
 | Collaborative Agents | Rich simulations & planning | Complex, research-stage        |
 | **Agentic RAG**      | Accurate, explainable QA    | Slightly more complex than RAG |
 
-### 🔧 Tool-Using Agents (AutoGPT-style)
+### Tool-Using Agents (AutoGPT-style)
 
 These agents are designed to autonomously complete high-level goals using chains of tools. For example, AutoGPT can research a topic, draft a report, and email the result.
 
@@ -72,9 +72,9 @@ These agents are designed to autonomously complete high-level goals using chains
 * Prone to hallucinations
 * Hard to control or audit in regulated industries
 
-Use case fit: Good for **automation** tasks like writing code, booking appointments, or data scraping—not ideal for high-stakes QA.
+Use case fit: Good for **automation** tasks like writing code, booking appointments, or data scraping, not ideal for high-stakes QA.
 
-### 🧑‍🤝‍🧑 Collaborative Multi-Agent Systems
+### Collaborative Multi-Agent Systems
 
 These paradigms simulate multi-agent interaction for goal completion, planning, or coordination (e.g., Voyager in Minecraft, negotiation agents in research).
 
@@ -91,7 +91,7 @@ These paradigms simulate multi-agent interaction for goal completion, planning, 
 
 Use case fit: Best for **research** and experimental environments, not for enterprise QA or knowledge management.
 
-### 🤖 Agentic RAG
+### Agentic RAG
 
 Agentic RAG blends the **retrieval accuracy of traditional RAG** with the **reasoning and tool-use capabilities of agents**.
 
@@ -103,12 +103,12 @@ Agentic RAG blends the **retrieval accuracy of traditional RAG** with the **reas
 
 **Limitations:**
 
-* Slightly more complex to build and tune than vanilla RAG
+* Slightly more complex to build and tune than traditional RAG
 * Requires evaluation pipelines and agent coordination
 
 Use case fit: Ideal for **finance, healthcare, legal, enterprise support**, or any domain requiring explainable, accurate, and context-aware responses.
 
-### 💡 Bottom Line
+### Bottom Line
 
 Agentic RAG is the **sweet spot** between simplicity, reasoning power, and factual grounding. It’s currently the most **mature, reliable, and deployable** agentic pattern for production-grade knowledge applications.
 
@@ -133,15 +133,78 @@ Agentic RAG is the **sweet spot** between simplicity, reasoning power, and factu
 * Accuracy-critical workflows
 * Multi-hop QA or internal document synthesis
 
-## 6. How Agentic RAG Works: Step-by-Step
+## 6. How Agentic RAG Works:
 
-1. **User Query**: A complex question is submitted
-2. **Planner Agent**: Determines if the query needs decomposition or transformation
-3. **Retriever Agent**: Fetches top-k relevant chunks using vector search
-4. **Reranker Tool**: Ranks retrieved content for precision
-5. **Validator Agent**: Performs self-checks or invokes other tools (e.g., fact checker)
-6. **Synthesizer Agent**: Composes the final response using selected content
-7. **Final Answer**: Returned to the user with source citations
+Agentic RAG transforms the traditional RAG pipeline into a dynamic, intelligent loop that enables **reasoning, correction, and control** throughout the information retrieval and generation process. Below is an explanation of each component in the Agentic RAG workflow, as illustrated in the diagram.
+
+<img src="/assets/images/Agentic RAG.jpg" alt="RAG" width="700">
+
+### 1. **User Query**
+
+The system begins when the user submits a complex, multi-faceted question. This query often requires decomposition, reasoning, and cross-document synthesis to answer correctly.
+
+### 2. **Planner Agent (Decompose / Reformulate)**
+
+The Planner Agent is responsible for:
+
+* Interpreting the query
+* Decomposing it into sub-questions if necessary
+* Reformulating it for improved clarity or retrieval performance
+
+It also handles routing logic based on ambiguity or failure signals from downstream components.
+
+### 3. **Query Generator (Single or Multi-query)**
+
+This module transforms the planner's structured intent into one or more concrete queries. It may:
+
+* Generate a single semantic search query
+* Create multiple sub-queries to broaden coverage (multi-query strategy)
+
+### 4. **Retriever Agent (Vector Search / Hybrid)**
+
+The Retriever Agent performs semantic retrieval using a vector database, keyword search engine, or both. It fetches top-k relevant chunks or documents that align with the generated queries.
+
+### 5. **Reranker Tool (Precision Boost)**
+
+This tool reorders or filters the retrieval results to improve relevance using more refined models (e.g., BERT-based rerankers or Cohere ReRank). It improves the quality of evidence passed to downstream agents.
+
+### 6. **Validator Agent (Fact Check / Redundancy / Risk)**
+
+The Validator Agent ensures that the retrieved content:
+
+* Is factually consistent and relevant
+* Addresses all aspects of the original question
+* Contains no contradictions or hallucinations
+
+It may call external tools like fact-checkers, structured data lookups, or domain-specific rules. If validation fails, it may:
+
+* Request the retriever to refine the query
+* Ask the planner to reframe the task
+
+### 7. **Synthesizer Agent (Chain-of-Thought / Citation)**
+
+This agent constructs the final answer using chain-of-thought reasoning, summarization, and citation embedding. It ensures logical coherence, completeness, and proper attribution to sources.
+
+**Self-Check Loop:**
+The Synthesizer Agent may detect inconsistencies or missing evidence and send the response back to the Validator Agent for rechecking.
+
+### 8. **Final Answer**
+
+Once validated and synthesized, the response is presented to the user with inline citations or supporting metadata.
+
+### 9. **User Feedback Loop**
+
+If the user is dissatisfied, their feedback triggers a loop back to the Planner Agent, allowing the system to re-analyze and refine the output process. This loop helps the system improve over time and provide interactive clarification.
+
+### Summary of Feedback Loops
+
+* **Validator Agent ↔ Planner Agent**: Handles ambiguity and initiates task reformulation
+* **Validator Agent ↔ Retriever Agent**: Fetches better evidence if validation fails
+* **Synthesizer Agent ↔ Validator Agent**: Ensures coherence and factual accuracy before finalization
+* **User ↔ Planner Agent**: User feedback re-triggers the planning cycle for clarification or refinement
+
+This architecture enables **adaptive, explainable, and high-fidelity** AI systems, well-suited for domains like finance, law, and healthcare.
+
 
 ## 7. Popular Tools for Agentic RAG
 
