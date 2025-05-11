@@ -508,11 +508,7 @@ Using Agentic RAG, here's how the system processes the query step-by-step, align
   * Embeds citations with timestamps for audio/video transcripts
   * Explains how the margin change was justified
 
-* **Output**:
-
-```markdown
-Company X reported a 2.3% YoY margin decline in Q2, driven primarily by elevated input costs and lower pricing power in their consumer electronics division. During the Q2 earnings call (28:13 mark), CFO Sarah Kim noted that inventory overhang from Q1 led to discounting pressure, reducing gross margin by approximately 150 basis points (bps).
-```
+* **Output**: "Company X reported a 2.3% YoY margin decline in Q2, driven primarily by elevated input costs and lower pricing power in their consumer electronics division. During the Q2 earnings call (28:13 mark), CFO Sarah Kim noted that inventory overhang from Q1 led to discounting pressure, reducing gross margin by approximately 150 basis points (bps)."
 
 **Glossary:**
 
