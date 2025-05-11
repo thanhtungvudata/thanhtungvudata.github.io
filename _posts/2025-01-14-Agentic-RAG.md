@@ -1,5 +1,5 @@
 ---
-title: "Understanding Agentic RAG: The Next Frontier in Retrieval-Augmented AI Applications"
+title: "Understanding Agentic RAG: A Deep Dive into Intelligent Retrieval and Reasoning Systems"
 date: 2025-01-14
 categories:
   - AI Engineering
@@ -21,6 +21,8 @@ This blog post is written for **technical product managers, data science leads, 
 * Compare it to traditional RAG and other paradigms
 * Provide a practical example from the finance sector
 * Share tools and evaluation strategies to get you started
+
+<img src="/assets/images/Agentic_RAG_overview.png" alt="RAG" width="700">
 
 ## 2. What Is Agentic RAG?
 
