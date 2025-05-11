@@ -481,7 +481,7 @@ Using Agentic RAG, here's how the system processes the query step-by-step, align
 
 * **Task**: Improves quality by reordering results to prioritize:
 
-  * Sections from transcripts labeled as "Q\&A" (where analysts ask questions) or "Outlook" (forward-looking statements)
+  * Sections from transcripts labeled as "Q&A" (where analysts ask questions) or "Outlook" (forward-looking statements)
   * Content that includes numeric changes (e.g., revenue drop, margin shifts) and associated explanations
 * **Output**: Top-ranked excerpts passed to the Validator.
 
@@ -533,7 +533,7 @@ Using Agentic RAG, here's how the system processes the query step-by-step, align
 * Improved accessibility for non-finance stakeholders (e.g., compliance, ESG)
 * Ensured transparency by showing source grounding and reasoning path
 
-Agentic RAG didn’t just answer the question—it **explained how the answer was derived**, giving stakeholders both speed and confidence.
+Agentic RAG didn’t just answer the question, it **explained how the answer was derived**, giving stakeholders both speed and confidence.
 
 
 ## 10. Conclusion
