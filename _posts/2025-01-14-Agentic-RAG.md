@@ -437,6 +437,12 @@ A global investment firm develops an internal AI assistant to help equity analys
 
 > "How did Company X explain the YoY margin change in their Q2 earnings call?"
 
+  **Glossary:**
+
+  * **YoY (Year-over-Year)**: Compares one period with the same period from the previous year.
+  * **Margin**: Typically refers to profit margin, calculated as a percentage of revenue that remains after subtracting costs.
+  * **Q2 (Quarter 2)**: Refers to the second quarter of a company’s fiscal year (usually April–June).
+
 This is a complex question that requires:
 
 * Multi-hop reasoning (connecting information across multiple documents)
@@ -452,12 +458,6 @@ Using Agentic RAG, here's how the system processes the query step-by-step, align
 
   * Subquery A: "What was the **YoY margin change** in **Q2**?"
   * Subquery B: "How did leadership explain the margin change?"
-
-  **Glossary:**
-
-  * **YoY (Year-over-Year)**: Compares one period with the same period from the previous year.
-  * **Margin**: Typically refers to profit margin, calculated as a percentage of revenue that remains after subtracting costs.
-  * **Q2 (Quarter 2)**: Refers to the second quarter of a company’s fiscal year (usually April–June).
 
 * **Output**: Sends structured subquestions and keywords to the Query Generator.
 
