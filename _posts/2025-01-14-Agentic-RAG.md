@@ -24,7 +24,7 @@ This blog post is written for **technical product managers, data science leads, 
 
 ## 2. What Is Agentic RAG?
 
-Agentic RAG is an advanced retrieval-augmented generation system that uses **LLM-powered agents** to perform multi-step reasoning, dynamic querying, and decision-making throughout the retrieval and response process.
+Agentic RAG is an advanced RAG system that uses **LLM-powered agents** to perform multi-step reasoning, dynamic querying, and decision-making throughout the retrieval and response process.
 
 Rather than a static query → retrieve → respond pipeline, Agentic RAG enables **autonomous LLM agents** to:
 
@@ -42,7 +42,7 @@ Modern enterprise use cases demand:
 * **Error recovery** and fallbacks (e.g., if no good answer is found)
 * **Explainability** for compliance and business trust
 
-Traditional RAG struggles with complex queries, shallow retrieval, and hallucination risk. Agentic RAG introduces logic, feedback loops, and tool use—making it far more robust for production use.
+Traditional RAG struggles with complex queries, shallow retrieval, and hallucination risk. Agentic RAG introduces logic, feedback loops, and tool use, making it far more robust for production use.
 
 ## 4. Why Agentic RAG and Not Other Agent Paradigms?
 
@@ -126,7 +126,7 @@ This improves research time by 70% while ensuring accuracy.
 
 Agentic RAG is the natural evolution of retrieval-based AI systems, combining the precision of RAG with the reasoning and planning capabilities of agents. It is especially powerful in regulated, high-stakes, or information-dense industries like finance, legal, and healthcare.
 
-If you’re building an AI system that needs to think before it speaks—and back up its answers—**Agentic RAG is the pattern to adopt**.
+If you’re building an AI system that needs to think before it speaks, and back up its answers, **Agentic RAG is the pattern to adopt**.
 
 
 For further inquiries or collaboration, feel free to contact me at [my email](mailto:tungvutelecom@gmail.com).
