@@ -46,7 +46,7 @@ Modern enterprise use cases demand:
 
 Traditional RAG struggles with complex queries, shallow retrieval, and hallucination risk. Agentic RAG introduces logic, feedback loops, and tool use, making it far more robust for production use.
 
-## 4. Why Agentic RAG and Not Other Agent Paradigms?
+## 4. Why Agentic RAG and Not Other Multi-Agent Paradigms?
 
 In the fast-evolving ecosystem of LLM-powered systems, multiple agent paradigms have emerged. Each serves a different purpose and comes with its own strengths and trade-offs. However, when it comes to **enterprise-grade, retrieval-grounded applications**, Agentic RAG stands out as the most suitable and production-ready solution.
 
