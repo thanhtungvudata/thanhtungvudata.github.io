@@ -46,13 +46,72 @@ Traditional RAG struggles with complex queries, shallow retrieval, and hallucina
 
 ## 4. Why Agentic RAG and Not Other Agent Paradigms?
 
+In the fast-evolving ecosystem of LLM-powered systems, multiple agent paradigms have emerged. Each serves a different purpose and comes with its own strengths and trade-offs. However, when it comes to **enterprise-grade, retrieval-grounded applications**, Agentic RAG stands out as the most suitable and production-ready solution.
+
+Here’s a comparative look:
+
 | Paradigm             | Pros                        | Limitations                    |
 | -------------------- | --------------------------- | ------------------------------ |
 | Tool-using Agents    | Great for automation tasks  | Poor grounding, hard to trace  |
 | Collaborative Agents | Rich simulations & planning | Complex, research-stage        |
 | **Agentic RAG**      | Accurate, explainable QA    | Slightly more complex than RAG |
 
-Agentic RAG is the **most production-ready agentic pattern** for use cases where correctness and context-grounding matter.
+### 🔧 Tool-Using Agents (AutoGPT-style)
+
+These agents are designed to autonomously complete high-level goals using chains of tools. For example, AutoGPT can research a topic, draft a report, and email the result.
+
+**Pros:**
+
+* Flexible and general-purpose
+* Useful for task automation
+* Can handle sequential decision-making
+
+**Limitations:**
+
+* No guaranteed factual grounding or source traceability
+* Prone to hallucinations
+* Hard to control or audit in regulated industries
+
+Use case fit: Good for **automation** tasks like writing code, booking appointments, or data scraping—not ideal for high-stakes QA.
+
+### 🧑‍🤝‍🧑 Collaborative Multi-Agent Systems
+
+These paradigms simulate multi-agent interaction for goal completion, planning, or coordination (e.g., Voyager in Minecraft, negotiation agents in research).
+
+**Pros:**
+
+* Powerful for emergent behaviors
+* Suitable for simulation, game theory, or distributed systems
+
+**Limitations:**
+
+* Computationally expensive
+* Requires sophisticated orchestration
+* Lacks real-world deployment maturity
+
+Use case fit: Best for **research** and experimental environments, not for enterprise QA or knowledge management.
+
+### 🤖 Agentic RAG
+
+Agentic RAG blends the **retrieval accuracy of traditional RAG** with the **reasoning and tool-use capabilities of agents**.
+
+**Pros:**
+
+* Highly traceable, grounded responses
+* Multi-step reasoning with error handling
+* Modular, extensible with domain-specific tools
+
+**Limitations:**
+
+* Slightly more complex to build and tune than vanilla RAG
+* Requires evaluation pipelines and agent coordination
+
+Use case fit: Ideal for **finance, healthcare, legal, enterprise support**, or any domain requiring explainable, accurate, and context-aware responses.
+
+### 💡 Bottom Line
+
+Agentic RAG is the **sweet spot** between simplicity, reasoning power, and factual grounding. It’s currently the most **mature, reliable, and deployable** agentic pattern for production-grade knowledge applications.
+
 
 ## 5. Agentic RAG vs. Traditional RAG
 
