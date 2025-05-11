@@ -321,10 +321,10 @@ Below are detailed criteria and practical techniques to assess the performance o
 
 **Metrics Explained:**
 
-* **Precision\@k**: Proportion of the top-k retrieved items that are relevant. High precision\@k means the system retrieves mostly useful documents.
-* **Recall\@k**: Measures whether all relevant documents are included in the top-k. Important when multiple answers exist.
+* **Precision\@k**: (number of relevant documents in top K) / K. High precision\@k means the system retrieves mostly useful documents.
+* **Recall\@k**: (number of relevant documents in top K) / (total number of relevant documents in the corpus). Important when multiple answers exist.
 * **MRR (Mean Reciprocal Rank)**: The average of the reciprocal ranks of the first relevant result. Helps understand how quickly users find what they need.
-* **nDCG (normalized Discounted Cumulative Gain)**: Accounts for both relevance and position of the correct documents. Higher when relevant items appear near the top.
+* **nDCG (normalized Discounted Cumulative Gain)**: A metric used to evaluate ranking quality in search systems or recommender engines. It measures how well a list of retrieved items is ranked, especially in terms of relevance to the query, while giving more weight to items ranked higher.Accounts for both relevance and position of the correct documents. Higher when relevant items appear near the top.
 
 **Tools:**
 
