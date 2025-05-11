@@ -309,17 +309,123 @@ Agentic RAG systems are modular, and each component of the workflow can be power
 These tools provide a highly customizable and production-friendly foundation for building scalable Agentic RAG systems.
 
 
-## 8. How to Evaluate Agentic RAG
+## 8. How to Evaluate Agentic RAG Systems
 
-Evaluation should be multi-dimensional:
+Evaluating Agentic RAG requires going beyond standard RAG benchmarks to assess reasoning ability, agent coordination, and factual robustness. A good evaluation framework should be **multi-dimensional**, combining retrieval metrics, generation quality, and operational performance.
 
-* **Retrieval Precision\@k**: Are we retrieving the right chunks?
-* **Factual Accuracy**: Is the final answer correct?
-* **Faithfulness to Source**: Is it grounded in retrieved docs?
-* **Completeness**: Are all parts of the user query addressed?
-* **Latency/Cost**: How fast and efficient is the system?
+Below are detailed criteria and practical techniques to assess the performance of Agentic RAG systems:
 
-Use benchmarks like **FEVER**, **HotpotQA**, or domain-specific evals.
+### 1. Retrieval Precision\@k
+
+**Question**: Are we retrieving the most relevant documents or chunks?
+
+**Metrics Explained:**
+
+* **Precision\@k**: Proportion of the top-k retrieved items that are relevant. High precision\@k means the system retrieves mostly useful documents.
+* **Recall\@k**: Measures whether all relevant documents are included in the top-k. Important when multiple answers exist.
+* **MRR (Mean Reciprocal Rank)**: The average of the reciprocal ranks of the first relevant result. Helps understand how quickly users find what they need.
+* **nDCG (normalized Discounted Cumulative Gain)**: Accounts for both relevance and position of the correct documents. Higher when relevant items appear near the top.
+
+**Tools:**
+
+* LlamaIndex / LangChain built-in retrieval eval tools
+* Pyserini + BEIR benchmark datasets
+
+**How to Test:**
+
+* Use labeled QA pairs with known relevant sources
+* Compare top-k retrieved chunks to gold documents
+
+### 2. Factual Accuracy
+
+**Question**: Does the final answer contain hallucinations or factual errors?
+
+**Metrics Explained:**
+
+* **Human-rated factuality**: Human evaluators score answers using Likert scale (e.g., 1-5) or binary correct/incorrect.
+* **GPT-based factual consistency scoring**: Use a second LLM to assess whether the content logically aligns with retrieved evidence.
+* **RGQA Match Score**: Measures whether the response answers the query accurately using the retrieved information.
+
+**Tools:**
+
+* TruthfulQA, FEVER datasets
+* Self-check chains using GPT-4
+* NeMo Guardrails or OpenAI Moderation API for rule enforcement
+
+### 3. Faithfulness to Source
+
+**Question**: Is the generated answer truly supported by the retrieved content?
+
+**Metrics Explained:**
+
+* **Attribution Rate**: Percent of claims in the response that are backed by a cited source.
+* **Source Overlap Score**: Textual overlap between the response and retrieved content.
+* **Citation Match Rate**: Percentage of citations in the answer that point to correct supporting content.
+
+**How to Test:**
+
+* Run automatic overlap checks between generated answer and retrieved documents
+* Use LLM agents to critique alignment between answer and evidence
+
+**Tools:**
+
+* LlamaIndex faithfulness checkers
+* Chain-of-verification prompts in GPT-4
+
+### 4. Completeness
+
+**Question**: Does the system fully address all parts of the user’s question?
+
+**Approach and Metrics:**
+
+* **Multi-hop Reasoning Coverage**: Ensure the answer includes intermediate reasoning steps across documents.
+* **Sub-question Resolution Rate**: Score answers to decomposed queries and aggregate for completeness.
+* **Expected Answer Match**: Compare against a ground truth multi-part answer (e.g., all sub-questions answered).
+
+**Tools:**
+
+* Human review with question decomposition templates
+* LLM evaluators (e.g., "Did this response fully answer all parts of the user query?")
+
+### 5. Latency & Cost
+
+**Question**: Is the system fast and cost-efficient enough for deployment?
+
+**Metrics Explained:**
+
+* **Response Time per Query (ms)**: Total time from user input to final answer.
+* **Number of LLM Calls per Run**: Measures compute intensity, especially with multi-agent orchestration.
+* **Token Usage / Cost per Query**: Based on pricing of the LLMs and number of tokens used.
+
+**Tools:**
+
+* LangChain tracing + OpenAI cost estimation
+* PromptLayer / LangFuse dashboards
+* Server-side profiling with logs and metrics
+
+### Feedback-Driven Evaluation
+
+Integrate live user feedback loops into your system to:
+
+* Collect thumbs-up/down on answers
+* Monitor user re-queries as a proxy for dissatisfaction
+* Use feedback to fine-tune Planner and Validator agents
+
+**Tools:**
+
+* Supabase / Firestore for logging
+* Streamlit/Gradio components for UI-based feedback
+
+### Recommendation
+
+To fully evaluate an Agentic RAG system:
+
+* Use **retrieval and generation benchmarks** (e.g., HotpotQA, FEVER, TruthfulQA)
+* **Involve humans in the loop** where high stakes are involved
+* Track **query-level breakdown** to analyze which component failed (retriever, planner, synth, etc.)
+
+This level of granular evaluation ensures that your system is not only functional but reliable, explainable, and ready for enterprise deployment.
+
 
 ## 9. Example: Agentic RAG in Finance
 
