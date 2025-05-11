@@ -206,13 +206,108 @@ If the user is dissatisfied, their feedback triggers a loop back to the Planner 
 This architecture enables **adaptive, explainable, and high-fidelity** AI systems, well-suited for domains like finance, law, and healthcare.
 
 
-## 7. Popular Tools for Agentic RAG
+## 7. Popular Tools for Agentic RAG (Component by Component)
 
-* **LlamaIndex**: For composing multi-agent RAG pipelines with memory and query routing
-* **LangChain + CrewAI**: Modular agents with tool and role-based behavior
-* **OpenAI Agents SDK**: For direct Python orchestration of tool-using agents
-* **Cohere ReRank**: For improving document relevance
-* **Chroma / Weaviate / Pinecone**: As vector databases
+Agentic RAG systems are modular, and each component of the workflow can be powered by different libraries, APIs, or platforms. Here is a breakdown of recommended tools and technologies for each stage of the Agentic RAG pipeline, consistent with the diagram.
+
+
+### Planner Agent (Decompose / Reformulate)
+
+**Purpose**: Understand the user query and determine whether it needs to be split or reformulated.
+
+**Tools:**
+
+* **OpenAI GPT-4 / Claude 3**: Prompted to perform query analysis, reformulation
+* **LlamaIndex Query Decomposition Module**
+* **LangChain Router Chains**: For dynamic route selection
+* **DSPy Planner (Stanford)**: LLM-based dynamic planning engine
+
+
+### Query Generator (Single or Multi-query)
+
+**Purpose**: Translate planner intent into specific queries to maximize recall.
+
+**Tools:**
+
+* **LlamaIndex QueryTransformers**: Generate multiple views of the query
+* **LangChain MultiRetrievalChain**: Supports multi-query pipelines
+* **PromptLayer + OpenAI Functions**: For programmatic query generation
+
+
+### Retriever Agent (Vector Search / Hybrid)
+
+**Purpose**: Retrieve relevant chunks from internal or external knowledge sources.
+
+**Tools:**
+
+* **Chroma / Weaviate / Pinecone / Qdrant**: Vector databases
+* **Elasticsearch / Vespa**: For hybrid (keyword + dense) search
+* **LlamaIndex VectorRetriever**
+* **LangChain Retriever Wrappers**
+
+
+### Reranker Tool (Precision Boost)
+
+**Purpose**: Improve the relevance of retrieved documents using a second-pass ranking.
+
+**Tools:**
+
+* **Cohere ReRank**: Out-of-the-box reranker
+* **BGE-Reranker**: Open-source reranker model
+* **Jina Ranker / ColBERT**: Dense reranking tools
+* **LangChain Rerankers / CrossEncoder**
+
+
+### Validator Agent (Fact Check / Redundancy / Risk)
+
+**Purpose**: Validate factual accuracy, consistency, and completeness.
+
+**Tools:**
+
+* **Retriever-augmented self-consistency prompting**
+* **GPT-4 + custom validators (e.g., Toolformer pattern)**
+* **NeMo Guardrails (NVIDIA)**: For policy and safety checks
+* **OpenAI Moderation API**: For safety and toxicity filtering
+* **Guardrails.ai**: For prompt & output validation framework
+
+
+### Synthesizer Agent (Chain-of-Thought / Citation)
+
+**Purpose**: Compose the final answer using structured reasoning and citing sources.
+
+**Tools:**
+
+* **OpenAI GPT-4-turbo / Claude 3**: For fluent, cited responses
+* **LangChain Stuff / MapReduce / Refine chains**
+* **LlamaIndex ResponseSynthesizer**: For chunk-based synthesis
+* **Citation-aware prompting templates**
+
+
+### Final Answer + User Feedback
+
+**Purpose**: Deliver results to the user and optionally support feedback-based loops.
+
+**Tools:**
+
+* **Streamlit / Gradio / React UI**: Front-end display layer
+* **LangChain AgentExecutor + Memory**: To manage dialogue state
+* **Custom feedback logger (e.g., Supabase, AirTable, Firestore)**
+
+
+### Summary Table
+
+| Component         | Tools / Libraries                                                           |
+| ----------------- | --------------------------------------------------------------------------- |
+| Planner Agent     | GPT-4, Claude 3, LlamaIndex, DSPy, LangChain RouterChains                   |
+| Query Generator   | LlamaIndex QueryTransformers, LangChain MultiQuery, PromptLayer             |
+| Retriever Agent   | Chroma, Weaviate, Pinecone, Qdrant, Elasticsearch, LlamaIndex Retriever     |
+| Reranker Tool     | Cohere ReRank, BGE-Reranker, ColBERT, Jina, LangChain Rerankers             |
+| Validator Agent   | NeMo Guardrails, OpenAI Moderation API, Guardrails.ai, GPT-4 Validators     |
+| Synthesizer Agent | GPT-4, Claude 3, LangChain Chains, LlamaIndex Synthesizer, Custom Templates |
+| Final Output + UI | Streamlit, Gradio, LangChain Executor, Custom UIs, Supabase / Firestore     |
+
+These tools provide a highly customizable and production-friendly foundation for building scalable Agentic RAG systems.
+
 
 ## 8. How to Evaluate Agentic RAG
 
