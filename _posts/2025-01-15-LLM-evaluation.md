@@ -300,13 +300,86 @@ These answers are **semantically the same**, though not word-for-word matches. B
   * Semantic search result comparison
 
 
-## 5. Human Judgment
+## 5. Human Judgment 
 
-* **What it is**: Human evaluators rate output for relevance, helpfulness, tone, etc.
-* **How to test it**: Likert scales, pairwise comparisons, user studies.
-* **Business example**: User study to validate AI-generated legal summaries.
-* **Limitation**: Expensive, slow, subjective, hard to scale.
-* **When to use**: High-stakes or nuanced tasks (e.g., legal, policy, creative writing).
+### What It Is
+
+**Human judgment** refers to evaluating language model outputs using human annotators who assess the quality of generated responses along various subjective dimensions. These can include:
+
+* **Relevance**: How well the response answers the question or meets the prompt
+* **Helpfulness**: Whether the information is actually useful to the user
+* **Factual accuracy**: Is the content correct?
+* **Clarity**: Is the text easy to understand?
+* **Tone/Style**: Does the response match the required tone or brand voice?
+
+This is considered the **gold standard** for evaluating open-ended generative tasks.
+
+
+### Intuition
+
+Unlike automated metrics that compare outputs numerically, human judgment captures **qualitative nuances**. This includes subtle errors, logical coherence, and appropriateness that machines might miss. It enables **real-world usability** evaluation.
+
+
+### How to Test It
+
+There are several common setups for human evaluations:
+
+1. **Likert Scale Rating**:
+
+   * Annotators rate outputs on a fixed scale (e.g., 1–5 or 1–7).
+   * Example: "Rate this summary for informativeness."
+
+2. **Pairwise Comparison**:
+
+   * Annotators are shown two outputs for the same input and asked: "Which is better?"
+   * Often used in A/B testing to compare different models or prompting techniques.
+
+3. **Ranking or Point Allocation**:
+
+   * Annotators rank multiple outputs or assign points proportionally.
+
+4. **Task-Specific Criteria**:
+
+   * Create rubrics tailored to domain needs (e.g., legal clarity, medical safety).
+
+5. **User Studies**:
+
+   * Evaluate with end users in real settings; observe satisfaction or task success.
+
+
+### Business Example
+
+⚖️ *Legal Tech Application*:
+A firm is developing an AI tool to generate legal clause summaries. They run a blind study with 5 legal professionals:
+
+* Task: Rate LLM-generated summaries of contract clauses on clarity and correctness.
+* Method: Each participant scores outputs on a 5-point Likert scale.
+* Outcome: Helps the team fine-tune the model and validate its readiness for production.
+
+
+### Limitations
+
+* **Subjective**: Ratings can vary across annotators; inter-rater agreement must be tracked.
+* **Expensive**: Involves human time and domain expertise.
+* **Slow**: Difficult to scale to thousands of samples.
+* **Not reproducible**: Results depend on who the raters are.
+
+
+### When to Use
+
+* **High-stakes applications** (e.g., law, healthcare, education)
+* **Creative or generative tasks** (e.g., storytelling, marketing copy)
+* **When automated metrics are insufficient or unreliable**
+* **User experience validation** in production systems
+
+
+### Best Practices
+
+* Use multiple annotators and measure **inter-annotator agreement** (e.g., using Cohen’s kappa).
+* Randomize and anonymize samples to avoid bias.
+* Design **clear, consistent rubrics**.
+* Combine with automated metrics for hybrid evaluation pipelines.
+
 
 ---
 
