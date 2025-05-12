@@ -249,7 +249,7 @@ Instead of looking for exact word matches, BERTScore embeds every word in the ca
 
 ### Formula
 
-$$\text{BERTScore} = \frac{1}{|\hat{y}|} \sum_{\hat{w} \in \hat{y}} \max_{w \in y} \text{cosine\_sim}(\text{embed}(\hat{w}), \text{embed}(w))$$
+$$\text{BERTScore} = \frac{1}{|\hat{y}|} \sum_{\hat{w} \in \hat{y}} \max_{w \in y} \text{cosine_{sim}}(\text{embed}(\hat{w}), \text{embed}(w))$$
 
 #### Symbols Explained:
 
@@ -257,7 +257,7 @@ $$\text{BERTScore} = \frac{1}{|\hat{y}|} \sum_{\hat{w} \in \hat{y}} \max_{w \in 
 * $$y$$: The reference sentence.
 * $$\hat{w}$$, $$w$$: Words in the candidate and reference respectively.
 * $$\text{embed}(\cdot)$$: Embedding of a word using a contextual language model (e.g., BERT).
-* $$\text{cosine\_sim}(a, b)$$: Cosine similarity between two vectors $$a$$ and $$b$$.
+* $$\text{cosine_{sim}}(a, b)$$: Cosine similarity between two vectors $$a$$ and $$b$$.
 * The final score aggregates how well each word in the candidate matches the most similar word in the reference.
 
 
