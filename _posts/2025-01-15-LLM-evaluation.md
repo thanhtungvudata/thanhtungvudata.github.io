@@ -510,9 +510,7 @@ F1 ranges from 0 (no correct predictions) to 1 (perfect match).
 
 1. Annotate your dataset with **span-level ground truth** (e.g., using BIO tagging or character offsets).
 2. Run your model to extract spans from the input text.
-3. Compare predicted spans to ground truth:
-
-   * Count True Positives, False Positives, False Negatives.
+3. Compare predicted spans to ground truth: Count True Positives, False Positives, False Negatives.
 4. Compute precision, recall, and F1 using the formulas above.
 
 Libraries like `seqeval`, `scikit-learn`, and `HuggingFace evaluate` can automate this.
@@ -543,15 +541,101 @@ A company wants to automatically redact customer PII (like email addresses, phon
 * **Medical, legal, or financial data extraction**
 
 
-## 8. Faithfulness / Groundedness
+## 8. Faithfulness / Groundedness 
 
-* **What it is**: Measures if model outputs are supported by provided context or sources.
-* **How to test it**: Human review or LLM comparison of output vs source documents.
-* **Business example**: Ensuring chatbot answers align with internal policy PDFs.
-* **Limitation**: No standard metric; annotation is subjective.
-* **When to use**: Retrieval-Augmented Generation (RAG), legal/financial AI.
+### What It Is
 
----
+**Faithfulness** (also known as **groundedness**) measures whether a model's generated output is **factually supported by a given context or source material**. It's especially important in **Retrieval-Augmented Generation (RAG)** systems, where models are expected to generate answers based on retrieved documents.
+
+A response is considered *faithful* if:
+
+* It makes no claims that are contradicted by the source.
+* Every factual claim can be traced to an external or retrieved piece of evidence.
+
+
+### Intuition
+
+Faithfulness goes beyond fluency or relevance. A fluent answer may sound good but still **hallucinate facts**. Faithfulness ensures that what the model says is **verifiably grounded** in the source documents.
+
+
+### How to Test It
+
+There is no single formula, but here are common methods:
+
+#### 1. **Human Annotation**
+
+* Human reviewers compare generated output against source material.
+* Labels:
+
+  * **Faithful**: All claims are supported by the source.
+  * **Unfaithful**: Some claims contradict or are missing from the source.
+
+#### 2. **LLM-as-a-Reviewer**
+
+* Prompt another LLM to compare output and source.
+* Ask it to identify unsupported claims, contradictions, or hallucinations.
+
+#### 3. **Binary / Scale-based Evaluation**
+
+* Binary (Faithful vs. Unfaithful)
+* Scales (e.g., 1–5 for "degree of grounding")
+
+#### 4. **Fact Matching or Evidence Tracing (if structured references exist)**
+
+* Map each sentence in output to a source citation.
+* Score coverage and alignment.
+
+
+### Symbolic Representation (Approximate Heuristic)
+
+While there's no official formula, a conceptual score could be:
+
+$$
+\text{Faithfulness Score} = \frac{\text{Number of supported claims}}{\text{Total factual claims in output}}
+$$
+
+Where:
+
+* **Supported claims**: Claims verifiable from the provided context
+* **Factual claims**: Statements that assert specific facts
+
+This can be applied in automated or manual workflows.
+
+
+### Business Example
+
+🏛️ *Chatbot Compliance in Enterprise IT*:
+A chatbot provides answers based on internal policy PDFs.
+
+* Query: "Can I install third-party apps on my work laptop?"
+* Ground truth: Policy doc says "Only apps from the internal catalog are allowed."
+* Model output: "You are allowed to install third-party apps."
+
+This output is **unfaithful** and could cause a policy violation. Evaluating faithfulness helps ensure compliance and trust.
+
+
+### Limitations
+
+* **No standard benchmark or metric**: Unlike BLEU or F1, faithfulness lacks a universal quantitative score.
+* **Subjectivity**: Human evaluations can vary.
+* **LLM evaluators may hallucinate**: They may miss subtle contradictions or falsely confirm unsupported claims.
+
+
+### When to Use
+
+* In **RAG pipelines** (e.g., document QA, chatbot over knowledge base)
+* **Legal, healthcare, and financial applications** where factual grounding is essential
+* **Enterprise AI** where models are expected to stick to known policies or documents
+* **Academic summarization or report generation** from citations
+
+
+### Best Practices
+
+* Highlight factual claims in output and require citation mapping
+* Use human-in-the-loop workflows for critical domains
+* Train models on contrastive examples (faithful vs unfaithful)
+* Incorporate retrieval confidence signals
+
 
 ## 9. nDCG / MRR
 
