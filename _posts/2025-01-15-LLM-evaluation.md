@@ -18,7 +18,7 @@ As organizations adopt Large Language Models (LLMs) across customer service, mar
 This post dives deep into the most widely used LLM evaluation metrics, what they measure, how they work, where their limitations are, and when to use them.
 
 
-<img src="/assets/images/LLM_evaluation_metrics.png" alt="RAG" width="800">
+<img src="/assets/images/LLM_evaluation_metrics.png" alt="RAG" width="1000">
 
 
 ## 1. Perplexity
