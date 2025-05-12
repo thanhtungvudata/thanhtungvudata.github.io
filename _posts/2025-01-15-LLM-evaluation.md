@@ -155,7 +155,10 @@ These are **n-gram overlap metrics** widely used to evaluate text generation tas
 
 ### Intuition
 
-Imagine the model’s output is a guess and the reference is the gold answer. BLEU rewards guesses that match many parts (n-grams) of the gold answer, while ROUGE emphasizes capturing all the key content from the reference. METEOR tries to balance both while being more linguistically sensitive.
+Imagine the model’s output is a guess and the reference is the gold answer. 
+* BLEU rewards guesses that match many parts (n-grams) of the gold answer
+* ROUGE emphasizes capturing all the key content from the reference. 
+* METEOR tries to balance both while being more linguistically sensitive.
 
 
 ### BLEU Formula
@@ -223,7 +226,7 @@ A retailer uses LLMs to auto-generate product descriptions. To evaluate fluency 
 
 ### When to Use
 
-* When reference texts are available and **output style matters**.
+* Use BLEU, ROUGE, or METEOR when you have one or more human-written reference texts and you want to measure how closely the model's output matches them in terms of word choice, phrasing, and structure. These metrics are especially useful for tasks where fluency, wording, and format are important, such as marketing content, translations, or summaries intended for publication.
 * For tasks like:
 
   * **Summarization**
