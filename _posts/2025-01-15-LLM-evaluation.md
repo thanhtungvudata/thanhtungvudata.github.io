@@ -806,6 +806,30 @@ A law firm uses an LLM to summarize contracts. Some generated summaries invent o
 * Incorporate hallucination feedback into fine-tuning or rejection sampling pipelines
 
 
+## TL;DR: When to Use Each LLM Evaluation Metric?
+
+Below is a quick-reference table summarizing **10 essential LLM evaluation metrics** and the **ideal scenarios** for their application. Use this table to guide your evaluation strategy across generative, extractive, and retrieval-augmented tasks.
+
+| Metric                 | Best When To Use                                                                 | Example Use Case                                           |
+| ---------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Perplexity**         | Measuring fluency and model confidence during pretraining or fine-tuning         | Comparing base model performance on internal corpora       |
+| **Exact Match (EM)**   | Binary classification/extraction tasks with exact targets                        | Invoice number extraction                                  |
+| **BLEU / ROUGE**       | Template-style generation (translation, summarization)                           | Product description generation                             |
+| **METEOR**             | Text generation with flexibility for synonyms and word order                     | Summarization evaluation allowing for lexical variation    |
+| **BERTScore**          | Semantic equivalence matters more than exact wording                             | Paraphrase detection or answer alignment                   |
+| **Human Judgment**     | High-stakes or subjective evaluation requiring nuanced, contextual understanding | Legal summarization, creative content generation           |
+| **LLM-as-a-Judge**     | Scalable comparisons or preference rankings during iteration                     | A/B testing two model outputs using GPT-4 as an evaluator  |
+| **Span-Level F1**      | Extractive tasks requiring structured span annotation                            | Named Entity Recognition, PII redaction                    |
+| **Faithfulness**       | RAG, policy-aligned, or document-grounded generation                             | Enterprise chatbot constrained by internal policy PDFs     |
+| **Hallucination Rate** | High-risk environments needing factual guarantees                                | Legal, healthcare, or financial summarization applications |
+
+### Notes:
+
+* For **end-to-end LLM applications**, use a **combination** of task-specific and holistic metrics (e.g., BLEU + Faithfulness + Human Judgment).
+* Where possible, pair **automated scoring** with **human review** to validate alignment with business requirements.
+* Many modern workflows now incorporate **LLM-as-a-Judge** as an efficient pre-screening step before human evaluation.
+
+
 ## Conclusion
 
 LLM evaluation is a multi-dimensional task requiring both **quantitative rigor** and **qualitative insight**. No single metric suffices for all cases. The best practice is to combine multiple metrics, automated and human-driven, based on your application’s needs. As LLMs evolve, so must your evaluation strategy. Understand the tradeoffs, invest in tooling, and keep the feedback loop open between **engineering, product, and compliance** teams.
