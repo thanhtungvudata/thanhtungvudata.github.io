@@ -81,8 +81,6 @@ Claude's lower perplexity means it's better at modeling your internal documents 
 * Tracking improvements across **language modeling benchmarks** (e.g., WikiText, Penn Treebank).
 
 
----
-
 ## 2. Exact Match (EM)
 
 ### What It Is
@@ -101,7 +99,7 @@ Thus, EM is ideal when you require precision and **can’t tolerate variation in
 
 $$EM = \frac{\sum_{i=1}^{N} \mathbb{1}[y_i = \hat{y}_i]}{N}$$
 
-#### Symbols explained:
+where
 
 * $$N$$: Total number of test examples.
 * $$y_i$$: Ground truth (correct output) for the $$i$$-th example.
@@ -144,18 +142,95 @@ A company builds an LLM to extract invoice numbers from customer emails. Since i
 * In early-stage benchmarking where strict matching is acceptable for diagnostic purposes.
 
 
----
-
 ## 3. BLEU / ROUGE / METEOR
 
-* **What it is**: N-gram overlap metrics; BLEU = precision, ROUGE = recall, METEOR = both + synonym/stemming.
-* **Formula (BLEU)**: $$BLEU = BP \cdot \exp\left( \sum_{n=1}^N w_n \log p_n \right)$$
-* **How to test it**: Compare model output to reference texts.
-* **Business example**: Evaluating product description generation vs human-written versions.
-* **Limitation**: Penalizes outputs that are correct but phrased differently.
-* **When to use**: Summarization, translation, templated generation.
+### What They Are
 
----
+These are **n-gram overlap metrics** widely used to evaluate text generation tasks such as machine translation, summarization, and text rewriting.
+
+* **BLEU** (Bilingual Evaluation Understudy): Measures **precision**, how many predicted n-grams appear in the reference.
+* **ROUGE** (Recall-Oriented Understudy for Gisting Evaluation): Measures **recall**, how many reference n-grams appear in the predicted output.
+* **METEOR** (Metric for Evaluation of Translation with Explicit ORdering): Combines **precision + recall** with additional features like **stemming** and **synonym matching**.
+
+
+### Intuition
+
+Imagine the model’s output is a guess and the reference is the gold answer. BLEU rewards guesses that match many parts (n-grams) of the gold answer, while ROUGE emphasizes capturing all the key content from the reference. METEOR tries to balance both while being more linguistically sensitive.
+
+
+### BLEU Formula
+
+$$BLEU = BP \cdot \exp\left( \sum_{n=1}^N w_n \log p_n \right)$$
+
+where
+
+* $$BP$$: Brevity penalty,  discourages overly short translations
+* $$N$$: Maximum n-gram size (commonly 4)
+* $$w_n$$: Weight for n-gram of size $$n$$; often uniform ($w_n = 1/N$)
+* $$p_n$$: Precision of n-grams of size $$n$$ (e.g., how many bigrams in prediction match the reference)
+* $$\log p_n$$: Logarithmic transformation to prevent a single zero from nullifying the score
+
+
+### ROUGE Formula (ROUGE-N)
+
+$$ROUGE\text{-}N = \frac{\sum_{S \in \text{Reference}} \sum_{gram_n \in S} \text{Count}_{match}(gram_n)}{\sum_{S \in \text{Reference}} \sum_{gram_n \in S} \text{Count}(gram_n)}$$
+
+where
+
+* $$gram_n$$: An n-gram sequence
+* $$\text{Count}_{match}(gram_n)$$: Number of overlapping n-grams between prediction and reference
+* $$\text{Count}(gram_n)$$: Total number of n-grams in the reference
+
+
+### METEOR Formula (Simplified)
+
+$$METEOR = F_{mean} \cdot (1 - Penalty)$$
+
+where:
+
+* $$F_{mean} = \frac{10 \cdot P \cdot R}{R + 9P}$$
+* $$P$$: Precision (matched unigrams / total unigrams in candidate)
+* $$R$$: Recall (matched unigrams / total unigrams in reference)
+* $$Penalty$$: Penalty for fragmented matches (e.g., out-of-order tokens)
+
+METEOR uses stemming, synonym lookup (e.g., WordNet), and exact matches to improve over pure token-level matching.
+
+
+### How to Test It
+
+1. Generate model output for a test set.
+2. Compare each output to one or more reference texts.
+3. Compute overlapping n-grams at different sizes (1-gram to 4-gram).
+4. Use libraries like `sacrebleu`, `nltk.translate`, or `evaluate` (from HuggingFace) to calculate BLEU, ROUGE, and METEOR scores.
+
+
+### Business Example
+
+🛍️ *E-commerce Product Descriptions*:
+A retailer uses LLMs to auto-generate product descriptions. To evaluate fluency and informativeness:
+
+* Human-written descriptions are used as reference.
+* BLEU and ROUGE scores are computed for generated content.
+* METEOR is also considered to capture variations like "soft cotton shirt" vs. "cotton shirt with a soft feel."
+
+
+### Limitations
+
+* **Surface-level matching**: Cannot account for paraphrasing or different correct phrasings.
+* **Sensitive to exact word order** (especially BLEU).
+* **METEOR is more flexible**, but slower to compute and language-dependent.
+
+
+### When to Use
+
+* When reference texts are available and **output style matters**.
+* For tasks like:
+
+  * **Summarization**
+  * **Translation/localization**
+  * **Marketing copy generation**
+  * **Headline rewriting**
+
 
 ## 4. BERTScore
 
