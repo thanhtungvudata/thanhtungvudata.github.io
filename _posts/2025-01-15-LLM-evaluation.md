@@ -487,7 +487,7 @@ You want your model to extract correct spans (like names, dates, or answer phras
 
 $$F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$$
 
-#### Symbols Explained:
+where
 
 * **Precision**: The proportion of predicted spans that are actually correct.
 
@@ -594,7 +594,7 @@ $$
 \text{Faithfulness Score} = \frac{\text{Number of supported claims}}{\text{Total factual claims in output}}
 $$
 
-Where:
+where:
 
 * **Supported claims**: Claims verifiable from the provided context
 * **Factual claims**: Statements that assert specific facts
@@ -639,18 +639,84 @@ This output is **unfaithful** and could cause a policy violation. Evaluating fai
 
 ## 9. nDCG / MRR
 
-* **What it is**:
+### What They Are
 
-  * nDCG: Evaluates ranking quality (relevance + position).
-  * MRR: Measures how early the first correct result appears.
-* **Formula (nDCG)**:
-  $$nDCG@k = \frac{DCG@k}{IDCG@k} \quad \text{where} \quad DCG@k = \sum_{i=1}^{k} \frac{rel_i}{\log_2(i + 1)}$$
-* **How to test it**: Use relevance-labeled datasets and compute for ranked lists.
-* **Business example**: Ranking product FAQs by relevance to a user query.
-* **Limitation**: Needs ground-truth relevance scores.
-* **When to use**: RAG retrievers, semantic search, personalized recommendations.
+Both **nDCG (normalized Discounted Cumulative Gain)** and **MRR (Mean Reciprocal Rank)** are standard metrics for evaluating **ranking quality** ,  particularly useful for systems that return ranked lists such as search engines, recommendation systems, and RAG retrievers.
 
----
+* **nDCG** measures **how well a model ranks relevant results**, taking both **relevance** and **position** into account.
+* **MRR** focuses on **how early the first correct item** appears in a ranked list.
+
+
+### Intuition
+
+Imagine a search engine returns a list of 10 items. Even if all the right answers are there, placing the most relevant ones **at the top** is crucial. nDCG rewards systems that **put the most useful results earlier** in the list. MRR is simpler: it just cares about **where the first correct answer is.**
+
+### nDCG Formula
+
+$$
+nDCG@k = \frac{DCG@k}{IDCG@k}
+\quad \text{where} \quad
+DCG@k = \sum_{i=1}^{k} \frac{rel_i}{\log_2(i + 1)}
+$$
+
+where
+
+* $k$: The cutoff rank, e.g., nDCG\@10 only considers the top 10 results
+* $rel_i$: The graded relevance score of the item at position $i$
+* $DCG@k$: Discounted Cumulative Gain, which adds up the relevance scores, discounted by position
+* $IDCG@k$: Ideal DCG, which is  the DCG if the system had returned items in perfect order
+
+nDCG ranges from 0 to 1, with 1 meaning perfect ranking.
+
+
+### MRR Formula
+
+$$
+MRR = \frac{1}{N} \sum_{i=1}^N \frac{1}{rank_i}
+$$
+
+where
+
+* $$N$$: Number of queries or users
+* $$rank_i$$: The position (rank) of the first correct/relevant result for query $$i$$
+
+If the correct result appears at rank 1, the score is 1. If it appears at rank 5, the score is 1/5. The MRR is the average across all queries.
+
+
+### How to Test It
+
+1. Use a dataset with **ground-truth relevance labels** for each query.
+2. For each query, have the model return a **ranked list** of items (documents, passages, FAQs, etc.).
+3. Assign relevance scores to each item in the list.
+4. Compute **DCG**, **IDCG**, and **nDCG**, and/or **MRR** based on where the first correct answer appears.
+
+You can use libraries like `scikit-learn`, `evaluate`, or `TREC_eval`.
+
+
+### Business Example
+
+🔎 *FAQ Retrieval in Customer Support*:
+A business uses an LLM-backed search to return the top 5 most relevant FAQ articles for a customer query.
+
+* Relevance scores are labeled based on past user clicks or expert judgment.
+* nDCG is used to measure if the best answers are near the top.
+* MRR is used to check if the **first correct answer appears early** in the list.
+
+
+### Limitations
+
+* Requires **annotated datasets** with graded or binary relevance labels.
+* Sensitive to subjective judgments of relevance.
+* MRR assumes there's only **one correct answer** per query ,  not ideal for multi-answer problems.
+
+
+### When to Use
+
+* Evaluating **RAG retrievers** and **semantic search** components.
+* Ranking systems in **recommendation engines**.
+* Optimizing LLMs that rank citations or knowledge snippets.
+* When **ranking position** and **user relevance** are critical for task success.
+
 
 ## 10. Hallucination Rate
 
