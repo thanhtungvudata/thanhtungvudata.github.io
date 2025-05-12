@@ -17,7 +17,7 @@ This post dives deep into the most widely used LLM evaluation metrics, what they
 
 ---
 
-## 1. Perplexity ,  Explained in Detail
+## 1. Perplexity
 
 ### What It Is
 
