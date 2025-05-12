@@ -11,11 +11,15 @@ tags:
   - Generative AI
 ---
 
+<img src="/assets/images/LLM_evaluation_metrics_overview.png" alt="RAG" width="700">
+
 As organizations adopt Large Language Models (LLMs) across customer service, marketing, research, and product development, **rigorous evaluation** of these models becomes a business-critical capability. Poorly evaluated models can lead to misleading outputs, legal liabilities, and damaged user trust. Stakeholders ranging from **data scientists and ML engineers** to **product managers and compliance teams** need to understand how to measure LLM performance, reliability, and fitness for production.
 
 This post dives deep into the most widely used LLM evaluation metrics, what they measure, how they work, where their limitations are, and when to use them.
 
----
+
+<img src="/assets/images/LLM_evaluation_metrics.png" alt="RAG" width="800">
+
 
 ## 1. Perplexity
 
