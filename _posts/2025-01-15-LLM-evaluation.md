@@ -435,7 +435,6 @@ Response B: {{output_2}}
 Which response is better? Answer with 'A' or 'B' and explain briefly.
 ```
 
-
 ### Business Example
 
 💼 *Enterprise Chatbot Evaluation*:
@@ -470,16 +469,79 @@ A tech company tests three different LLM providers for their internal support bo
 * Consider using **chain-of-thought prompting** to elicit better reasoning
 
 
-## 7. Span-Level F1
+## 7. Span-Level F1 
 
-* **What it is**: Harmonic mean of precision and recall for extracted token spans.
-* **Formula**: $$F1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}$$
-* **How to test it**: Compare predicted spans to ground truth spans.
-* **Business example**: Extracting customer PII fields from unstructured text.
-* **Limitation**: Requires span-level annotation.
-* **When to use**: Named Entity Recognition (NER), QA, extractive summarization.
+### What It Is
 
----
+**Span-Level F1** measures how well a model extracts specific spans of text by combining **precision** and **recall** into a single score. It's commonly used in tasks like **Named Entity Recognition (NER)**, **extractive Question Answering (QA)**, and **information extraction**.
+
+Rather than checking if the entire sentence is correct, Span-Level F1 focuses on whether the specific parts of interest (spans) are correctly identified.
+
+
+### Intuition
+
+You want your model to extract correct spans (like names, dates, or answer phrases). Precision tells you how many of the spans your model predicted are correct. Recall tells you how many of the correct spans were found. F1 balances the two, high F1 means your model is both accurate and comprehensive.
+
+
+### Formula
+
+$$F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$$
+
+#### Symbols Explained:
+
+* **Precision**: The proportion of predicted spans that are actually correct.
+
+$$ \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}} $$
+
+* **Recall**: The proportion of actual (gold) spans that the model successfully predicted.
+
+$$ \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} $$
+
+* **True Positives (TP)**: Correctly predicted spans (exact match with reference)
+
+* **False Positives (FP)**: Spans predicted by the model but not in the reference
+
+* **False Negatives (FN)**: Spans in the reference that the model missed
+
+F1 ranges from 0 (no correct predictions) to 1 (perfect match).
+
+
+### How to Test It
+
+1. Annotate your dataset with **span-level ground truth** (e.g., using BIO tagging or character offsets).
+2. Run your model to extract spans from the input text.
+3. Compare predicted spans to ground truth:
+
+   * Count True Positives, False Positives, False Negatives.
+4. Compute precision, recall, and F1 using the formulas above.
+
+Libraries like `seqeval`, `scikit-learn`, and `HuggingFace evaluate` can automate this.
+
+
+### Business Example
+
+🔐 *PII Extraction in Customer Support*:
+A company wants to automatically redact customer PII (like email addresses, phone numbers, and account IDs) from incoming emails.
+
+* Ground truth: Annotated spans showing where the PII occurs
+* Model output: Predicted redaction spans
+* Span-Level F1 evaluates how precisely and completely the model identifies sensitive data
+
+
+### Limitations
+
+* Requires **high-quality annotations** at the span level, which can be labor-intensive.
+* Sensitive to **boundary errors**: if the span is almost correct but slightly off, it is penalized.
+* Doesn’t work well for **free-form generation**; only for structured extraction.
+
+
+### When to Use
+
+* **NER (Named Entity Recognition)**
+* **Extractive QA** (e.g., find answer spans in documents)
+* **Document parsing** (e.g., key-value pair extraction)
+* **Medical, legal, or financial data extraction**
+
 
 ## 8. Faithfulness / Groundedness
 
