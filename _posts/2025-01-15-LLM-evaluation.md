@@ -718,15 +718,93 @@ A business uses an LLM-backed search to return the top 5 most relevant FAQ artic
 * When **ranking position** and **user relevance** are critical for task success.
 
 
-## 10. Hallucination Rate
+## 10. Hallucination Rate 
 
-* **What it is**: % of outputs that contain unsupported or incorrect claims.
-* **How to test it**: Manually annotate outputs or use LLMs for fact-checking.
-* **Business example**: Monitoring a legal summarizer to ensure factual correctness.
-* **Limitation**: Detection is hard to automate; high-quality labels needed.
-* **When to use**: High-trust domains: healthcare, law, finance.
+### What It Is
 
----
+**Hallucination rate** refers to the percentage of model outputs that contain **factually incorrect**, **fabricated**, or **unsupported claims**, particularly in contexts where the model is expected to generate outputs based on verifiable knowledge (e.g., from retrieved documents or structured databases).
+
+This metric helps assess the **factual reliability** of generative models.
+
+
+### Intuition
+
+Even if an output sounds fluent or well-structured, it may invent names, dates, citations, or facts that aren’t supported by any source. This is known as a **hallucination**. Tracking the hallucination rate helps quantify the risk of such errors in real-world deployments.
+
+
+### Approximate Formula
+
+$$
+\text{Hallucination Rate} = \frac{\text{Number of hallucinated outputs}}{\text{Total number of evaluated outputs}} \times 100\%
+$$
+
+where
+
+* **Hallucinated outputs**: Responses containing at least one incorrect or unverifiable factual claim
+* **Evaluated outputs**: The total number of model responses that were examined (manually or automatically)
+
+The rate is typically expressed as a percentage.
+
+
+### How to Test It
+
+1. **Manual Annotation (Gold Standard)**:
+
+   * Human reviewers compare generated output with source/reference documents.
+   * Each response is labeled as **faithful** or **hallucinated**.
+
+2. **LLM-Based Fact-Checking**:
+
+   * Use a second LLM to identify and verify factual claims.
+   * Prompt it to mark which claims are unsupported or false.
+
+3. **Entity Matching / Fact Retrieval (Structured Data)**:
+
+   * Compare outputs against known facts in databases (e.g., Wikidata, product catalogs).
+
+4. **Scoring Granularity**:
+
+   * Binary (Yes/No)
+   * Fraction of hallucinated sentences/claims per output
+
+
+### Business Example
+
+⚖️ *Factual Quality in Legal Summarization*:
+A law firm uses an LLM to summarize contracts. Some generated summaries invent obligations or clauses not found in the original document.
+
+* Annotators manually label summaries with hallucinations.
+* Hallucination rate is tracked across versions of the model.
+* Goal: Reduce hallucination rate below 5% before production deployment.
+
+
+### Limitations
+
+* **Labor-intensive**: High-quality manual annotation requires time and domain expertise.
+* **LLM judges may hallucinate** themselves.
+* **Hard to detect subtle errors**: Some hallucinations are small but impactful.
+* **Subjectivity**: Grounding may depend on what is considered a verifiable source.
+
+
+### When to Use
+
+* In **high-trust domains** where factual correctness is critical:
+
+  * Legal and compliance
+  * Healthcare and clinical documentation
+  * Financial reports or investment research
+  * Academic or government summarization
+
+* In **Retrieval-Augmented Generation (RAG)** applications to ensure outputs are grounded in retrieved context
+
+
+### Best Practices
+
+* Combine manual and automatic evaluations
+* Use claim extraction to analyze hallucinations at sentence or clause level
+* Audit hallucination types (e.g., fabricated entities vs. misleading numbers)
+* Incorporate hallucination feedback into fine-tuning or rejection sampling pipelines
+
 
 ## Conclusion
 
