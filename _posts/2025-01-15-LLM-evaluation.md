@@ -169,7 +169,7 @@ where
 
 * $$BP$$: Brevity penalty,  discourages overly short translations
 * $$N$$: Maximum n-gram size (commonly 4)
-* $$w_n$$: Weight for n-gram of size $$n$$; often uniform ($w_n = 1/N$)
+* $$w_n$$: Weight for n-gram of size $$n$$; often uniform ($$w_n = 1/N$$)
 * $$p_n$$: Precision of n-grams of size $$n$$ (e.g., how many bigrams in prediction match the reference)
 * $$\log p_n$$: Logarithmic transformation to prevent a single zero from nullifying the score
 
@@ -195,8 +195,6 @@ where:
 * $$P$$: Precision (matched unigrams / total unigrams in candidate)
 * $$R$$: Recall (matched unigrams / total unigrams in reference)
 * $$Penalty$$: Penalty for fragmented matches (e.g., out-of-order tokens)
-
-METEOR uses stemming, synonym lookup (e.g., WordNet), and exact matches to improve over pure token-level matching.
 
 
 ### How to Test It
@@ -237,14 +235,70 @@ A retailer uses LLMs to auto-generate product descriptions. To evaluate fluency 
 
 ## 4. BERTScore
 
-* **What it is**: Measures semantic similarity using contextual embeddings.
-* **Formula**: Cosine similarity between BERT-based embeddings of output and reference.
-* **How to test it**: Embed both output and reference; compute pairwise similarity.
-* **Business example**: Checking if generated support answers match knowledge base entries.
-* **Limitation**: Requires pre-trained language model and can be slow.
-* **When to use**: Tasks where semantic correctness matters more than form.
+### What It Is
 
----
+**BERTScore** is a metric that evaluates the quality of generated text by measuring **semantic similarity** between the candidate output and the reference using **pre-trained contextual embeddings** (usually from BERT or RoBERTa).
+
+Unlike traditional n-gram overlap metrics (like BLEU or ROUGE), BERTScore can detect when the model’s output has the **same meaning** as the reference even if the words are different.
+
+
+### Intuition
+
+Instead of looking for exact word matches, BERTScore embeds every word in the candidate and reference into a high-dimensional space using a pre-trained language model. It then computes how close these embeddings are, word by word, using cosine similarity. The closer the match, the better the semantic alignment.
+
+
+### Formula
+
+$$\text{BERTScore} = \frac{1}{|\hat{y}|} \sum_{\hat{w} \in \hat{y}} \max_{w \in y} \text{cosine\_sim}(\text{embed}(\hat{w}), \text{embed}(w))$$
+
+#### Symbols Explained:
+
+* $$\hat{y}$$: The generated (candidate) sentence.
+* $$y$$: The reference sentence.
+* $$\hat{w}$$, $$w$$: Words in the candidate and reference respectively.
+* $$\text{embed}(\cdot)$$: Embedding of a word using a contextual language model (e.g., BERT).
+* $$\text{cosine\_sim}(a, b)$$: Cosine similarity between two vectors $$a$$ and $$b$$.
+* The final score aggregates how well each word in the candidate matches the most similar word in the reference.
+
+
+### How to Test It
+
+1. Tokenize and embed both the candidate and reference sentences using a BERT-based model.
+2. Compute cosine similarity between each token in the candidate and every token in the reference.
+3. For each candidate token, select the maximum similarity score.
+4. Average these maximum scores to get the final BERTScore.
+
+You can use the `bert-score` Python package ([https://github.com/Tiiiger/bert\_score](https://github.com/Tiiiger/bert_score)) for easy implementation.
+
+
+### Business Example
+
+💬 *Customer Support QA*:
+A company builds an LLM-based assistant to answer customer questions using internal documents.
+
+* Ground truth answer: "You can reset your password in the account settings section."
+* Generated answer: "Head to your profile settings to change your password."
+
+These answers are **semantically the same**, though not word-for-word matches. BERTScore recognizes this alignment, while BLEU or ROUGE may penalize the variation.
+
+
+### Limitations
+
+* **Computationally expensive**: Requires embedding large numbers of tokens and computing pairwise similarity.
+* **Model-dependent**: Results vary depending on the embedding model used.
+* **No structural understanding**: Doesn’t account for grammar or sentence structure.
+
+
+### When to Use
+
+* When semantic correctness matters more than surface form.
+* For tasks like:
+
+  * Answer validation in QA systems
+  * Paraphrase detection
+  * Summary evaluation
+  * Semantic search result comparison
+
 
 ## 5. Human Judgment
 
