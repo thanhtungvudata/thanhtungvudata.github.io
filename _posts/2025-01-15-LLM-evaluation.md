@@ -661,10 +661,10 @@ $$
 
 where
 
-* $k$: The cutoff rank, e.g., nDCG\@10 only considers the top 10 results
-* $rel_i$: The graded relevance score of the item at position $i$
-* $DCG@k$: Discounted Cumulative Gain, which adds up the relevance scores, discounted by position
-* $IDCG@k$: Ideal DCG, which is  the DCG if the system had returned items in perfect order
+* $$k$$: The cutoff rank, e.g., nDCG\@10 only considers the top 10 results
+* $$rel_i$$: The graded relevance score of the item at position $$i$$
+* $$DCG@k$$: Discounted Cumulative Gain, which adds up the relevance scores, discounted by position
+* $$IDCG@k$$: Ideal DCG, which is the DCG if the system had returned items in perfect order
 
 nDCG ranges from 0 to 1, with 1 meaning perfect ranking.
 
