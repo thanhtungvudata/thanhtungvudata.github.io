@@ -28,7 +28,9 @@ This post dives deep into the most widely used LLM evaluation metrics, what they
 
 If a model assigns **high probability** to the correct next token, it means the model is confident and not "perplexed", resulting in **low perplexity**. Conversely, if the model spreads its probability mass across many wrong options, perplexity will be high.
 
-Think of perplexity as the "average branching factor", how many possible choices the model considers at each step.
+You can think of it like this:
+* A perplexity of 1 means the model is perfectly confident, it always predicts the correct next word.
+* A perplexity of 10 means the model is, on average, as uncertain as if it had to pick randomly from 10 equally likely next words.
 
 
 ### Formula
@@ -83,12 +85,64 @@ Claude's lower perplexity means it's better at modeling your internal documents 
 
 ## 2. Exact Match (EM)
 
-* **What it is**: Binary score of 1 if output matches ground truth exactly, else 0.
-* **Formula**: $$EM = \frac{\sum_{i=1}^N \mathbb{1}[y_i = \hat{y}_i]}{N}$$
-* **How to test it**: Compare model output to labeled ground truth.
-* **Business example**: Extracting invoice numbers from customer emails.
-* **Limitation**: Too strict for paraphrased or semantically similar answers.
-* **When to use**: Objective tasks with single correct answers.
+### What It Is
+
+**Exact Match (EM)** is one of the simplest yet most stringent metrics used in evaluating language model outputs. It checks whether the predicted output matches the reference (ground truth) **exactly**. If they match perfectly, the score is 1; otherwise, it is 0.
+
+
+### Intuition
+
+Imagine asking a model: "What is the capital of France?" If the model responds with "Paris," that’s a perfect match. If it says "The capital of France is Paris," or just "paris" (lowercase), that may still be correct **in meaning**, but EM will give it a 0 if the formatting isn’t identical.
+
+Thus, EM is ideal when you require precision and **can’t tolerate variation in wording or structure**.
+
+
+### Formula
+
+$$EM = \frac{\sum_{i=1}^{N} \mathbb{1}[y_i = \hat{y}_i]}{N}$$
+
+#### Symbols explained:
+
+* $$N$$: Total number of test examples.
+* $$y_i$$: Ground truth (correct output) for the $$i$$-th example.
+* $$\hat{y}_i$$: Model's prediction for the $$i$$-th example.
+* $$\mathbb{1}[\cdot]$$: Indicator function, it returns 1 if the condition is true (exact match), and 0 otherwise.
+
+This formula counts how many predictions are *exactly correct*, then divides by the total number of predictions.
+
+
+### How to Test It
+
+1. Prepare a set of ground truth answers for your task.
+2. Generate model predictions for the same inputs.
+3. Apply the EM formula by comparing each prediction to its corresponding ground truth.
+
+You may also want to normalize the text before comparison (e.g., remove punctuation, lowercase, strip whitespace) depending on your use case.
+
+
+### Business Example
+
+📨 *Invoice Processing*:
+A company builds an LLM to extract invoice numbers from customer emails. Since invoice numbers must match exactly (e.g., "INV-20394"), EM is used to measure how often the model extracts the exact string correctly.
+
+* Ground truth: "INV-20394"
+* Prediction: "INV-20394" → EM = 1
+* Prediction: "INV20394" → EM = 0 (even though it looks similar)
+
+
+### Limitations
+
+* **Overly strict**: Penalizes answers that are semantically correct but phrased differently.
+* **Insensitive to formatting differences**: Minor variations in punctuation or casing result in a zero score.
+* **Binary outcome**: Doesn’t tell you *how wrong* the prediction is ,  only if it’s perfect or not.
+
+
+### When to Use
+
+* For **closed-domain QA** or **extraction tasks** with highly structured outputs.
+* When **exact correctness** is critical (e.g., usernames, codes, numeric answers).
+* In early-stage benchmarking where strict matching is acceptable for diagnostic purposes.
+
 
 ---
 
