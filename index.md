@@ -7,7 +7,7 @@ author_profile: true
 ---
 🌟 **About Me** 
 
-I am a data scientist and researcher with a strong foundation in machine learning, optimization, and applied AI, backed by a PhD and international experience across academia and industry. I am passionate about applying data science to advance interdisciplinary research and enable evidence-based decision-making. In particular, I enjoy bridging the gap between complex technical challenges and practical solutions, working collaboratively with diverse teams to deliver impactful, scalable outcomes.
+I am a consultant, a data scientist and a research scientist with a strong foundation in machine learning, optimization, and applied AI, backed by a PhD and international experience across academia and industry. I am passionate about applying data science to advance interdisciplinary research and enable evidence-based decision-making. In particular, I enjoy bridging the gap between complex technical challenges and practical solutions, working collaboratively with diverse teams to deliver impactful, scalable outcomes.
 
 - **Versatile Skill Set**: 4+ years in Applied Machine Learning, Generative AI, and Optimization.   
 - **Analytical Excellence**: Highly skilled in solving complex problems scientifically and engineeringly. 
